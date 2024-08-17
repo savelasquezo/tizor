@@ -6,7 +6,9 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 methods = (('crypto','Cryptomonedas'),('bold','Bold'))
+types = (('interest','Interest'),('withdrawal','Withdrawal'),('income','Income'))
 states = (('pending','Pendiente'),('done','Aprobado'),('error','Error'))
+
 
 def LogoUploadTo(instance, filename):
     return f"uploads/{instance.username}/logo/{filename}"
@@ -58,7 +60,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _("Accounts")
 
 
-class Withdrawals(models.Model):
+class Withdrawal(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     uuid = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True)
     amount = models.FloatField(_("Ammount"),blank=False,null=False,default=0)
@@ -69,7 +71,7 @@ class Withdrawals(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.uuid:
-            self.uuid = str(uuid.uuid4())[:12]
+            self.uuid = uuid.uuid4()
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -79,6 +81,7 @@ class Withdrawals(models.Model):
         indexes = [models.Index(fields=['account','voucher','state']),]
         verbose_name = _("Withdrawal")
         verbose_name_plural = _("Withdrawals")
+
 
 class Invoice(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
@@ -91,7 +94,7 @@ class Invoice(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.uuid:
-            self.uuid = str(uuid.uuid4())[:12]
+            self.uuid = uuid.uuid4()
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -101,3 +104,36 @@ class Invoice(models.Model):
         indexes = [models.Index(fields=['account','voucher','state']),]
         verbose_name = _("Invoice")
         verbose_name_plural = _("Invoices")
+
+
+class Transaction(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    amount = models.FloatField(_("Ammount"),blank=False,null=False)
+    fee = models.FloatField(_("Fee"),blank=False,null=False,default=0)
+    date = models.DateField(_("Date"), default=timezone.now)
+    type = models.CharField(_("Type"), choices=types, max_length=128, null=False, blank=False)
+    voucher = models.CharField(_("Voucher"), max_length=128, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.voucher:
+            self.voucher = str(uuid.uuid4())[:6]
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.voucher}"
+
+    class Meta:
+        indexes = [models.Index(fields=['account','voucher']),]
+        verbose_name = _("Transaction")
+        verbose_name_plural = _("Transactions")
+
+
+
+class TizorMiner(models.Model):
+    default = models.CharField(_("TizorMiner"), max_length=32, unique=True, blank=True, null=True, default="TizorMiner")
+    def __str__(self):
+        return f"{self.default}"
+
+    class Meta:
+        verbose_name = _("TizorMiner")
+        verbose_name_plural = _("TizorMiner")

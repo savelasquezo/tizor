@@ -4,6 +4,17 @@ export type SessionInfo = {
     session: Session | null | undefined;
 };
 
+
+export type TransactionsInfo = {
+    id: number;
+    amount: number;
+    fee: number;
+    date: string;
+    type: string;
+    voucher: string;
+    account: string;
+};
+
 export type ModalFunction = {
     closeModal: () => void;
 };

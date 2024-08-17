@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.conf.locale.es import formats as es_formats
 
-from apps.src.models import Account, Invoice, Withdrawals
+import apps.src.models as model
 
 class MyAdminSite(admin.AdminSite):
     index_title = 'Consola Administrativa'
@@ -16,9 +16,9 @@ admin_site.site_header = "TirzorMiner"
 
 
 
-class WithdrawalsInline(admin.StackedInline):
+class WithdrawalInline(admin.StackedInline):
     
-    model = Withdrawals
+    model = model.Withdrawal
     extra = 0
 
     fieldsets = (
@@ -35,9 +35,10 @@ class WithdrawalsInline(admin.StackedInline):
     def has_add_permission(self, request, obj=None):
         return False
 
+
 class InvoiceInline(admin.StackedInline):
     
-    model = Invoice
+    model = model.Invoice
     extra = 0
 
     fieldsets = (
@@ -81,12 +82,8 @@ class InvoiceAdmin(admin.ModelAdmin):
         fieldsets = super().get_fieldsets(request, obj)
         return fieldsets
 
-    readonly_fields=['account','method','amount','date','voucher']
-    def has_add_permission(self, request):
-         return False
 
-
-class WithdrawalsAdmin(admin.ModelAdmin):
+class WithdrawalAdmin(admin.ModelAdmin):
     list_display = (
         'voucher',
         'account',
@@ -112,6 +109,35 @@ class WithdrawalsAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
          return False
 
+
+class TransactionAdmin(admin.ModelAdmin):
+    list_display = (
+        'voucher',
+        'account',
+        'amount',
+        'fee',
+        'date',
+        'type'
+        )
+
+    list_filter = ['date','type']
+    search_fields = ['voucher']
+
+    radio_fields = {'type': admin.HORIZONTAL}
+    es_formats.DATETIME_FORMAT = "d M Y"
+    
+    fieldsets = (
+        (None, {'fields': (
+            ('account','type','voucher'),
+            ('date','amount','fee'),
+        )}),
+    )
+
+    # readonly_fields=['account','uuid','method','amount','date','voucher']
+    # def has_add_permission(self, request):
+    #      return False
+
+
 class AccountAdmin(BaseUserAdmin):
     list_display = ('username', 'email')
     search_fields = ('username', 'email')
@@ -135,7 +161,7 @@ class AccountAdmin(BaseUserAdmin):
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj)
-        self.inlines = [WithdrawalsInline, InvoiceInline]
+        self.inlines = [WithdrawalInline, InvoiceInline]
         return fieldsets
 
     def get_readonly_fields(self, request, obj=None):
@@ -144,6 +170,7 @@ class AccountAdmin(BaseUserAdmin):
 
 admin.site.register(Group)
 
-admin.site.register(Account,AccountAdmin)
-admin.site.register(Invoice, InvoiceAdmin)
-admin.site.register(Withdrawals, WithdrawalsAdmin)
+admin.site.register(model.Account,AccountAdmin)
+admin.site.register(model.Invoice, InvoiceAdmin)
+admin.site.register(model.Withdrawal, WithdrawalAdmin)
+admin.site.register(model.Transaction, TransactionAdmin)

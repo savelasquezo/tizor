@@ -66,18 +66,18 @@ const Auth: React.FC<SessionInfo> = ({ session  }) => {
         <main className="inline-flex items-center h-full ml-5 gap-x-3 lg:w-2/5 lg:justify-end lg:ml-0 ">
             {session && session?.user? (
               <div className='inline-flex gap-x-4'>
-                <button onClick={() => {signOut();}} className="bg-pink-700 hover:bg-pink-900 text-white uppercase text-xs font-semibold p-2 rounded transition-colors duration-300">Salir</button>
+                <a href="/admin" className="text-white uppercase text-xs font-semibold p-2 rounded transition-colors duration-300">Administrar</a>
+                <button onClick={() => {signOut();}} className="text-white uppercase text-xs font-semibold p-2 rounded transition-colors duration-300">Salir</button>
               </div>
               ) : (
               <div className='inline-flex gap-x-2'>
-                <button onClick={() => openModal('login')} className="bg-red-500 hover:bg-red-700 text-white text-sm font-semibold py-1 px-2 rounded transition-colors duration-300">Ingresar</button>
-                <button onClick={() => openModal('singup')} className="bg-pink-700 hover:bg-pink-900 text-white text-sm font-semibold py-1 px-2 rounded transition-colors duration-300">Inscribirse</button>
+                <button onClick={() => openModal('login')} className="text-white text-sm font-semibold py-1 px-2 rounded transition-colors duration-300">Ingresar</button>
+                <button onClick={() => openModal('singup')} className="text-white text-sm font-semibold py-1 px-2 rounded transition-colors duration-300">Inscribirse</button>
               </div>
             )}
             {showModal && (
             <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center transition bg-opacity-50 bg-gray-900 backdrop-blur-sm z-40 ${closingModal ? "animate-fade-out animate__animated animate__fadeOut" : "animate-fade-in animate__animated animate__fadeIn"}`}>
-                <div className="realtive w-4/5 h-1/2 flex justify-start items-center rounded-2xl bg-gray-800 md:w-3/5 lg:w-1/2 lg:h-3/5 xl:h-4/5">
-                  <Image width={1200} height={800} src={"/assets/image/banner.webp"} alt="" className="hidden lg:block h-full w-[45%] object-cover rounded-l-2xl"/>
+                <div className="realtive w-4/5 max-w-xl h-1/2 max-h-[28rem] flex justify-start items-center rounded-2xl bg-gradient-to-r from-indigo-900 to-purple-900 leading-normal md:w-3/5 lg:w-1/2 lg:h-3/5 xl:h-4/5">
                   <div className="relative w-full h-full p-6">
                     <button onClick={closeModal} className='absolute top-4 right-4 text-xl text-gray-400 hover:text-gray-600 transition-colors duration-300' ><AiOutlineClose /></button>
                     <div className={`flex flex-row w-full items-center ${activeTab === 'auth' ?  'hidden' : ''}`}>

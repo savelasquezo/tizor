@@ -1,4 +1,4 @@
-import os
+import os, requests
 
 from openpyxl import Workbook
 from openpyxl import load_workbook
@@ -10,8 +10,9 @@ from django_cron import CronJobBase, Schedule
 from django.db.models import F
 from django.utils import timezone
 
-from apps.src.models import Account
+from apps.src.models import Account, TizorMiner
 
+APILAYER_KEY = settings.APILAYER_KEY
 
 class AddFunds(CronJobBase):
     RUN_EVERY_MINS = 1
@@ -22,11 +23,53 @@ class AddFunds(CronJobBase):
     #crontab -e
     #* * * * * /apps/tizorminer/venv/bin/python /apps/tizorminer/core/manage.py runcrons
     def do(self):
-        
-        Date = timezone.now().strftime("%Y-%m-%d %H:%M")
+        """cron Configuration
+        Install django-crontab and add 'django_cron' to INSTALLED_APPS
+        The `cronjobs` list needs to add config to settings.py:
+            CRON_CLASSES = [
+                "apps.core.cron.AddFunds",
+            ]
+            
+        before add cronjobs clases add the crontask to crontab
+        $ crontab -e
+        > 0 */12 * * * /app/tizorminer/core/venv/bin/python /app/tizorminer/core/manage.py runcrons
+        """
+
+        setting = TizorMiner.objects.get(default="TizorMiner")
+        eDate = timezone.now().strftime("%Y-%m-%d %H:%M")
+
+        try:
+            url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+            response = requests.get(url)
+            if response.status_code == 200:
+                data = response.json()
+                latestBTC=data["bitcoin"]["usd"]
+                setting.latestBTC = latestBTC
+                setting.save()
+
+        except Exception as e:
+            with open(os.path.join(settings.BASE_DIR, 'logs/core.log'), 'a') as f:
+                f.write("CronBTC {} --> Error: {}\n".format(eDate, str(e)))
+
+        try:
+            url = "https://api.apilayer.com/fixer/latest?base=USD&symbols=COP"
+            headers = {
+                'apikey': f'{APILAYER_KEY}'
+            }
+            response = requests.get(url, headers=headers)
+            if response.status_code == 200:
+                data = response.json()
+                latestUSD=data["rates"]["COP"]
+                setting.latestUSD = latestUSD
+                setting.save()
+
+        except Exception as e:
+            
+            with open(os.path.join(settings.BASE_DIR, 'logs/core.log'), 'a') as f:
+                f.write("CronUSD {} --> Error: {}\n".format(eDate, str(e)))    
         
         with open(os.path.join(settings.BASE_DIR, 'logs/logcron.txt'), 'a') as f:
-            f.write("ServiceCron Active {}\n".format(Date))
+            f.write("ServiceCron Active {}\n".format(eDate))
 
         accounts = Account.objects.all()
 
@@ -38,29 +81,29 @@ class AddFunds(CronJobBase):
             obj.available = available
             obj.save()
                         
-            FileName = '/home/savelasquezo/apps/vrt/core/logs/users/'+ obj.username + '.xlsx'
+            file_patch = os.path.join(settings.BASE_DIR, 'logs/users/'+ obj.username + '.xlsx')
             
             try:
-                if not os.path.exists(FileName):
+                if not os.path.exists(file_patch):
                     WB = Workbook()
                     WS = WB.active
-                    WS.append(["Tipo","Date","$Dayli","Aviable","AcComisiones","$Ticket","Origen","Total"])
+                    WS.append(["type","date","$daily","$aviable","$withdrawal","$invoice","$total"])
                 else:
-                    WB = load_workbook(FileName)
+                    WB = load_workbook(file_patch)
                     WS = WB.active
-                
-                cTotal = nUser.total
-                cAviableRef = nUser.ref_available
 
-                FileData = [1, NowToday, cValue, cTodayRef, cAvailable, cAviableRef, "", "", cTotal]
+                data = [1, timezone.now().strftime("%Y-%m-%d"), dayli_ammount, obj.available, 0, 0, obj.total]
 
-                WS.append(FileData)
-                WB.save(FileName)
+                WS.append(data)
+                WB.save(file_patch)
                 
             except Exception as e:
-                with open(os.path.join(settings.BASE_DIR, 'logs/workbook.txt'), 'a') as f:
+                with open(os.path.join(settings.BASE_DIR, 'logs/workbook.log'), 'a') as f:
                     f.write("CronJob WorkbookError: {}\n".format(str(e)))
 
 cronjobs = [
     AddFunds,
 ]
+
+
+

@@ -3,24 +3,28 @@ from djoser.serializers import UserCreateSerializer
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
-from apps.src.models import Invoice, Withdrawals
+import apps.src.models as model
 
-User = get_user_model()
+Account = get_user_model()
 
-class UserSerializer(UserCreateSerializer):
-    bonus = serializers.SerializerMethodField()
+class AccountSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
-        model = User
+        model = model.Account
         fields = '__all__'
 
 class InvoiceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Invoice
+        model = model.Invoice
         fields = '__all__'
 
 class WithdrawalSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Withdrawals
+        model = model.Withdrawal
+        fields = '__all__'
+
+class TransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = model.Transaction
         fields = '__all__'
 
 class CustomPasswordResetConfirmSerializer(PasswordResetConfirmSerializer):

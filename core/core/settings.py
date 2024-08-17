@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
-import environ
+
+from dotenv import load_dotenv
 from datetime import timedelta
 from pathlib import Path
 
@@ -22,10 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # Environment variable patch / '.env'.
-env = environ.Env()
-environ.Env.read_env()
 
 # SECURITY WARNING: keep the secret key used in production secret!
+load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -35,7 +35,8 @@ DEBUG = True if DEBUG == "True" else False
 ALLOWED_HOSTS = ["*"]
 
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_DEBUG = os.getenv('DEBUG')
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://127.0.0.1:8000']
+
 
 # Logging File
 LOGGING = {
@@ -71,17 +72,16 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-CORE_APPS = [
-    'apps.src',
-]
-
 THIRD_APPS = [
     "corsheaders",
     'rest_framework',
     'djoser',
     'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',
     'channels',
+]
+
+CORE_APPS = [
+    'apps.src',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + CORE_APPS
@@ -165,21 +165,7 @@ PASSWORD_HASHERS = [
 ]
 
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
+AUTH_PASSWORD_VALIDATORS = []
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -212,9 +198,11 @@ AUTH_USER_MODEL = "src.Account"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-   'DEFAULT_AUTHENTICATION_CLASSES': (
-       'rest_framework_simplejwt.authentication.JWTAuthentication',
-   ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 }
 
 LOGIN_REDIRECT_URL = "/"
@@ -228,7 +216,6 @@ SIMPLE_JWT = {
     "ROTATE_REFRESFH_TOKENS": True,
     "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
 }
-
 
 # Djoser
 DJOSER = {
@@ -245,11 +232,11 @@ DJOSER = {
     "USERNAME_RESET_CONFIRM_URL": "email/reset/confirm/{uid}/{token}",
     "ACTIVATION_URL": "?auth=True&uid={uid}&token={token}",
     "SERIALIZERS": {
-        "user_create": "apps.src.serializers.UserSerializer",
-        "user": "apps.src.serializers.UserSerializer",
-        "current_user": "apps.src.serializers.UserSerializer",
+        "user_create": "apps.src.serializers.AccountSerializer",
+        "user": "apps.src.serializers.AccountSerializer",
+        "current_user": "apps.src.serializers.AccountSerializer",
         "user_delete": "djoser.serializers.UserDeleteSerializer",
-        "password_reset_confirm": "apps.user.serializers.CustomPasswordResetConfirmSerializer",
+        "password_reset_confirm": "apps.src.serializers.CustomPasswordResetConfirmSerializer",
     },
     "TEMPLATES": {
         "activation": "email/activation.html",

@@ -12,6 +12,10 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
 
+
+        console.log("Autenticacion")
+        console.log(credentials)
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/auth/jwt/create/`, {
           method: 'POST',
           body: JSON.stringify({
@@ -26,6 +30,10 @@ const handler = NextAuth({
         }
 
         const { access, refresh } = await res.json();
+
+        console.log("Tokens")
+        console.log(access)
+        console.log(refresh)
 
         const userRes = await fetch(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/auth/users/me/`, {
           headers: { Authorization: `JWT ${access}` },

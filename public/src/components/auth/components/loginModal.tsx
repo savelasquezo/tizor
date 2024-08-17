@@ -25,7 +25,6 @@ const LoginModal: React.FC<ModalFunction> = ({ closeModal }) => {
         e.preventDefault();
         setLoading(true);
         setError('');
-    
         await new Promise(resolve => setTimeout(resolve, 1000));
         const res = await signIn('credentials', {
           redirect: false,
@@ -38,7 +37,9 @@ const LoginModal: React.FC<ModalFunction> = ({ closeModal }) => {
           setLoading(false);
           closeModal()
         } else {
-          setError("Email/Contraseña Invalidos! ");
+            if (res?.error) {
+                setError(res.error);
+            }
           setLoading(false);
         }
     };
@@ -49,7 +50,7 @@ const LoginModal: React.FC<ModalFunction> = ({ closeModal }) => {
                 <div className="relative h-12 w-full min-w-[200px]">
                     <div className="absolute text-gray-500 text-lg top-2/4 left-4 grid h-5 w-5 -translate-y-2/4 items-center"><CiMail/></div>
                     <input className="h-full w-full indent-8 text-gray-200 rounded-lg border border-gray-700 focus:border-gray-700 bg-transparent px-3 py-2 !pr-9 text-sm outline outline-0 ring-0 focus:!ring-0 focus:outline-0 disabled:border-0"
-                        type="text"
+                        type="email"
                         name="email"
                         value={email}
                         onChange={(e) => onChange(e)}
