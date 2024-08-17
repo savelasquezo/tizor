@@ -15,6 +15,12 @@ export type TransactionsInfo = {
     account: string;
 };
 
+export type HistoryInfo = {
+    date: string;
+    balance: number;
+    history: number;
+};
+  
 export type ModalFunction = {
     closeModal: () => void;
 };

@@ -1,5 +1,6 @@
-import os, requests, hashlib, uuid, base64, logging
+import os, json, base64, logging
 
+from django.http import JsonResponse
 from django.utils import timezone
 from django.conf import settings
 
@@ -76,9 +77,9 @@ class fetchWithdrawal(generics.ListAPIView):
 
         except Exception as e:
             return Response({'detail': 'NotFound Withdrawals.'}, status=status.HTTP_404_NOT_FOUND)
-        
-        
-        
+
+
+
 class fetchTransactions(generics.ListAPIView):
 
     serializer_class = serializer.TransactionSerializer
@@ -98,10 +99,21 @@ class fetchTransactions(generics.ListAPIView):
                 serializer = self.get_serializer(page, many=True)
                 return self.get_paginated_response(serializer.data)
             serializer = self.get_serializer(queryset, many=True)
-            print("XXXXXXXXXXXXXXXXXXXXXXX")
-            print(serializer.data)
             return Response(serializer.data)
         except Exception as e:
             logger.error("%s", e, exc_info=True)
             return Response({'error': 'Not Found Advertisement.'}, status=status.HTTP_404_NOT_FOUND)
-        
+
+
+
+class fetchHistory(generics.GenericAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        username = request.user.username
+        data = os.path.join(settings.BASE_DIR, 'data', f'{username}.json')
+        print(data)
+        with open(data, 'r') as file:
+            response = json.load(file)
+    
+        return JsonResponse(response, safe=False)

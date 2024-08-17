@@ -1,30 +1,58 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Line } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  LineElement,
-  PointElement,
-  LinearScale,
-  Title,
-  CategoryScale,
-  Legend
-} from 'chart.js';
 
+import { HistoryInfo } from '@/lib/types/types';
+import { useSession } from 'next-auth/react';
+
+import { Chart as ChartJS, LineElement, PointElement, LinearScale, Title, CategoryScale, Legend } from 'chart.js';
 ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale, Legend);
 
-export default function Page() {
+export const fetchHistory = async (accessToken: any) => {
+  try {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/fetch-history`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `JWT ${accessToken}`,
+      },
+    });
+    return res.data.data;
+  } catch (error) {
+    console.error(error);
+    return { results: {} };
+  }
+};
+
+const History: React.FC = () => {
+  const { data: session } = useSession();
+
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [history, setHistory] = useState<HistoryInfo[]>([]);
 
   useEffect(() => {
+    fetchData();
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 768); // Define a 768px como el punto de quiebre para pantallas chicas
+      setIsSmallScreen(window.innerWidth <= 768);
     };
     window.addEventListener('resize', handleResize);
-    handleResize(); // Verifica el tamaño de la pantalla al cargar
-
+    handleResize();
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [session]);
 
+
+  const fetchData = async () => {
+    if (session) {
+      const accessToken = session?.user?.accessToken;
+      try {
+        const results = await fetchHistory(accessToken);
+        setHistory(results || {});
+        console.log("Informacion")
+        console.log(history)
+      } catch (error) {
+        console.error('There was an error with the network request:', error);
+      }
+    }
+  };
 
   const data = {
     labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'],
@@ -83,3 +111,5 @@ export default function Page() {
     </section>
   );
 }
+
+export default History;

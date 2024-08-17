@@ -5,4 +5,5 @@ urlpatterns = [
     path('fetch-invoices', view.fetchInvoice.as_view(), name='fetch-invoices'),
     path('fetch-withdrawals', view.fetchWithdrawal.as_view(), name='fetch-withdrawals'),
     path('fetch-transactions', view.fetchTransactions.as_view(), name='fetch-transactions'),
+    path('fetch-history', view.fetchHistory.as_view(), name='fetch-history'),
 ]
