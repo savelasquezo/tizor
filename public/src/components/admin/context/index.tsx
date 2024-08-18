@@ -1,12 +1,11 @@
 import React, { Suspense } from 'react';
-
 import { GrMoney } from "react-icons/gr";
 import { GiReceiveMoney, GiTakeMyMoney } from "react-icons/gi";
 import { MdAttachMoney } from "react-icons/md";
 
+import { SessionInfo } from '@/lib/types/types';
 
-
-export default function Page() {
+const Context: React.FC<SessionInfo> = ({ session }) => {
   return (
     <section>
       <div className="flex flex-wrap -mx-3 mt-4">
@@ -90,5 +89,6 @@ export default function Page() {
       </div>
     </section>
   );
-}
+};
 
+export default Context;
