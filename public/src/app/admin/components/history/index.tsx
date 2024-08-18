@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
-
-import { HistoryInfo } from '@/lib/types/types';
 import { useSession } from 'next-auth/react';
+import { HistoryInfo } from '@/lib/types/types';
+import { Chart as ChartJS, LineElement, PointElement, LinearScale, Title, CategoryScale, Legend, Tooltip } from 'chart.js';
+import _ from 'lodash';
 
-import { Chart as ChartJS, LineElement, PointElement, LinearScale, Title, CategoryScale, Legend } from 'chart.js';
-ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale, Legend);
+ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale, Legend, Tooltip);
 
 export const fetchHistory = async (accessToken: any) => {
   try {
@@ -25,7 +25,6 @@ export const fetchHistory = async (accessToken: any) => {
 
 const History: React.FC = () => {
   const { data: session } = useSession();
-
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [history, setHistory] = useState<HistoryInfo[]>([]);
 
@@ -39,35 +38,59 @@ const History: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [session]);
 
-
   const fetchData = async () => {
     if (session) {
       const accessToken = session?.user?.accessToken;
       try {
         const results = await fetchHistory(accessToken);
-        setHistory(results || {});
-        console.log("Informacion")
-        console.log(history)
+        const sortedResults = results.sort((a: HistoryInfo, b: HistoryInfo) => new Date(a.date).getTime() - new Date(b.date).getTime());
+        setHistory(sortedResults || []);
+        console.log("Información recibida:", sortedResults);
       } catch (error) {
-        console.error('There was an error with the network request:', error);
+        console.error('There was an error con la solicitud de red:', error);
       }
     }
   };
 
+  // Función para reducir los datos utilizando Lodash
+  const reduceData = (data: HistoryInfo[]) => {
+    if (data.length > 20) {
+      const firstData = data[0]; // Primer dato (más antiguo)
+      const lastData = data[data.length - 1]; // Último dato (más reciente)
+      const intermediateData = data.slice(1, -1); // Datos intermedios
+
+      // Calculamos el número de puntos intermedios que queremos conservar
+      const numberOfPointsToKeep = 18; // Deseamos mantener 18 puntos intermedios
+      const step = Math.ceil(intermediateData.length / numberOfPointsToKeep);
+
+      // Seleccionamos puntos representativos de los datos intermedios
+      const downsampledData = _.map(_.range(0, intermediateData.length, step), index => intermediateData[index]);
+
+      return [firstData, ...downsampledData, lastData]; // Reintegrar el primer y último dato
+    }
+    return data;
+  };
+
+  const reducedHistory = reduceData(history);
+
+  const labels = reducedHistory.map(item => item.date);
+  const balanceData = reducedHistory.map(item => item.balance);
+  const historyData = reducedHistory.map(item => item.history);
+
   const data = {
-    labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'],
+    labels: labels,
     datasets: [
       {
         label: 'Total',
-        data: [10000, 15000, 12000, 18000, 22000, 19000, 30000, 32000, 27000, 40000, 50000, 70000, 80000, 10000, 15000, 12000, 18000, 22000, 19000, 30000, 32000, 27000, 40000, 50000, 70000, 83440],
+        data: balanceData,
         fill: true,
         backgroundColor: 'rgba(75,192,192,0.2)',
         borderColor: 'rgba(75,192,192,1)',
         tension: 0.4,
       },
       {
-        label: 'Historico',
-        data: [5000, 10000, 7000, 9000, 14000, 10000, 18000, 20000, 17000, 25000, 30000, 40000, 50000, 5000, 10000, 7000, 9000, 14000, 10000, 18000, 20000, 17000, 25000, 30000, 40000, 50000],
+        label: 'Histórico',
+        data: historyData,
         fill: true,
         backgroundColor: 'rgba(255,99,132,0.2)',
         borderColor: 'rgba(255,99,132,1)',
@@ -77,7 +100,7 @@ const History: React.FC = () => {
   };
 
   const options = {
-    maintainAspectRatio: false, // Permite que el gráfico se ajuste al tamaño del contenedor
+    maintainAspectRatio: false,
     scales: {
       x: {
         display: false,
@@ -88,7 +111,7 @@ const History: React.FC = () => {
         ticks: {
           callback: function(value: any) {
             if (value === 0) {
-              return ''; // Retorna una cadena vacía para ocultar el 0
+              return ''; // Oculta el valor 0
             }
             return value;
           },
@@ -97,8 +120,37 @@ const History: React.FC = () => {
     },
     plugins: {
       legend: {
-        display: true, // Muestra la leyenda
-        position: 'bottom' as const, // Posición de la leyenda, el tipo correcto es 'top' | 'left' | 'right' | 'bottom' | 'center' | 'chartArea'
+        display: true,
+        position: 'bottom' as const,
+      },
+      tooltip: {
+        enabled: true,
+        backgroundColor: 'transparent',
+        callbacks: {
+          label: function(context: any) {
+            const label = context.dataset.label || '';
+            const value = context.raw;
+            return `${label}: ${value}`;
+          },
+        },
+        displayColors: false,
+        titleFont: {
+          family: 'Inter, sans-serif',
+        },
+        bodyFont: {
+          family: 'Inter, sans-serif',
+        },
+        bodyColor: '#000',
+        borderWidth: 1,
+        borderColor: '#e5e7eb',
+        padding: 10,
+        cornerRadius: 6,
+        caretPadding: 10,
+        usePointStyle: true,
+        boxPadding: 8,
+        caretSize: 8,
+        backgroundColor: '#fff',
+        titleColor: '#111827',
       },
     },
   };
