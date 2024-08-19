@@ -2,8 +2,9 @@ import React from 'react';
 
 import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp, FaTelegramPlane, FaYoutube, FaBloggerB } from "react-icons/fa";
 import { FaRegCopy } from "react-icons/fa6";
+import Image from 'next/image';
 
-import { SessionInfo } from '@/lib/types/types';
+import { SessionAuthenticated } from '@/lib/types/types';
 
 interface Task {
   id: number;
@@ -23,7 +24,7 @@ const tasks: Task[] = [
 
 
 
-const Tasks: React.FC<SessionInfo> = ({ session }) => {
+const Tasks: React.FC<SessionAuthenticated> = ({ session }) => {
   return (
     <section className='w-full lg:w-3/5 flex flex-col-reverse lg:flex-row items-center justify-between break-words bg-white shadow-md rounded-2xl bg-clip-border py-1 lg:px-2 lg:pt-3 lg:pb-8'>
       <div className='w-full lg:w-1/2 h-full flex flex-col items-center lg:items-start lg:justify-between px-4 py-1'>
@@ -58,7 +59,7 @@ const Tasks: React.FC<SessionInfo> = ({ session }) => {
             <span className='mt-0 flex items-center justify-center lg:block'><FaBloggerB/></span>
           </button>
           <span className='w-full h-auto hidden lg:flex items-end justify-end'>
-            <img src={"/assets/images/logo0.webp"} className="h-auto w-auto object-fit self-start z-10" alt="" />
+            <Image priority width={360} height={130} src={"/assets/images/logo0.webp"} className="h-auto w-auto object-fit self-start z-10" alt="" />
           </span> 
         </div>
       </div>

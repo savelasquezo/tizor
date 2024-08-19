@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -39,18 +39,18 @@ export const fetchTransactions = async (accessToken: string) => {
 const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
   const [percentage, setPercentage] = useState(0);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const results = await fetchTransactions(session.user.accessToken);
       setPercentage(results.profit || 0);
     } catch (error) {
       console.error('There was an error with the network request:', error);
     }
-  };
+  }, [session.user.accessToken]);
 
   useEffect(() => {
     fetchData();
-  }, [session]);
+  }, [fetchData]);
 
   return (
     <section className='w-full lg:w-3/5 flex flex-col-reverse lg:flex-row items-center justify-between break-words bg-white shadow-md rounded-2xl bg-clip-border py-1 lg:px-2 lg:pt-3 lg:pb-8'>

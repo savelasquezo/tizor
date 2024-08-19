@@ -2,7 +2,9 @@
 
 import React from 'react';
 import { useSession } from 'next-auth/react';
+
 import Link from 'next/link';
+import Image from 'next/image';
 
 import Context from '@/components/admin/context/index';
 import Meta from '@/components/admin/meta/index';
@@ -17,7 +19,7 @@ const AdminPage: React.FC = () => {
     <main className='w-screen h-screen overflow-x-hidden bg-gray-100 pb-12 lg:pb-0'>
       <nav className='w-full h-16 flex flex-row items-center justify-between bg-white shadow-sm px-8 py-1'>
         <Link href="#" className="inline-flex text-center justify-center items-center">
-          <img src={"/assets/images/logo0.webp"} className="h-12 w-auto object-fit self-start mr-4 z-10" alt="Logo" />
+          <Image priority width={360} height={130} src={"/assets/images/logo0.webp"} className="h-12 w-auto object-fit self-start mr-4 z-10" alt="Logo" />
         </Link>
         <div className='flex flex-row items-center justify-center gap-x-4'>
           <a href='' className='font-cocogoose font-semibold text-sm uppercase'>Home</a>

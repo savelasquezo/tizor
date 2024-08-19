@@ -64,7 +64,7 @@ const AuthModal: React.FC<ModalFunction> = ({ closeModal }) => {
             <div className="relative w-full h-full flex flex-col items-center justify-start">
                 <div className="px-4">
                     <p className="text-sm text-white">¡Bienvenido a Zoexbet!</p><br />
-                    <p className="text-xs text-white font-thin text-justify">¡Nos emociona darte la bienvenida a nuestra comunidad! Activa tu cuenta dando clic en el botón "Activar", y ahora estarás listo para sumergirte en la emocionante experiencia de ZoexBet.</p>
+                    <p className="text-xs text-white font-thin text-justify">¡Nos emociona darte la bienvenida a nuestra comunidad! Activa tu cuenta dando clic en el botón Activar, y ahora estarás listo para sumergirte en la emocionante experiencia de ZoexBet.</p>
                 </div>
                 <div className="absolute bottom-10 w-full px-4 ">
                     {activated ? (

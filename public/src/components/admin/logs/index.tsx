@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useSession } from 'next-auth/react';
 
@@ -35,7 +35,7 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
   const [pageCount, setPageCount] = useState(0);
   const TicketsPage = 5;
 
-  const fetchData = async (page: number = 1) => {
+  const fetchData = React.useCallback(async (page: number = 1) => {
     if (session) {
       const accessToken = session?.user?.accessToken;
       try {
@@ -46,17 +46,17 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
         console.error('There was an error with the network request:', error);
       }
     }
-  };
+  }, [session, TicketsPage]);
 
   useEffect(() => {
     fetchData(pageNumber + 1);
-  }, [session, pageNumber]);
+  }, [session, pageNumber, fetchData]);
 
   const changePage = ({ selected }: { selected: number }) => {
     setPageNumber(selected);
   };
 
-  // Rellenar con filas vacías si es necesario
+
   const filledTickets = [...tickets];
   while (filledTickets.length < TicketsPage) {
     filledTickets.push({

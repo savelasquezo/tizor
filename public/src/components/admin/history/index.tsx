@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 import { HistoryInfo } from '@/lib/types/types';
@@ -28,17 +28,7 @@ const History: React.FC<SessionAuthenticated> = ({ session }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [history, setHistory] = useState<HistoryInfo[]>([]);
 
-  useEffect(() => {
-    fetchData();
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 768);
-    };
-    window.addEventListener('resize', handleResize);
-    handleResize();
-    return () => window.removeEventListener('resize', handleResize);
-  }, [session]);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     if (session) {
       const accessToken = session?.user?.accessToken;
       try {
@@ -50,23 +40,30 @@ const History: React.FC<SessionAuthenticated> = ({ session }) => {
         console.error('There was an error con la solicitud de red:', error);
       }
     }
-  };
+  }, [session]);
 
-  // Función para reducir los datos utilizando Lodash
+  useEffect(() => {
+    fetchData();
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, [fetchData, session]);
+
+
   const reduceData = (data: HistoryInfo[]) => {
     if (data.length > 20) {
-      const firstData = data[0]; // Primer dato (más antiguo)
-      const lastData = data[data.length - 1]; // Último dato (más reciente)
-      const intermediateData = data.slice(1, -1); // Datos intermedios
+      const firstData = data[0];
+      const lastData = data[data.length - 1];
+      const intermediateData = data.slice(1, -1);
 
-      // Calculamos el número de puntos intermedios que queremos conservar
-      const numberOfPointsToKeep = 18; // Deseamos mantener 18 puntos intermedios
+
+      const numberOfPointsToKeep = 18;
       const step = Math.ceil(intermediateData.length / numberOfPointsToKeep);
-
-      // Seleccionamos puntos representativos de los datos intermedios
       const downsampledData = _.map(_.range(0, intermediateData.length, step), index => intermediateData[index]);
-
-      return [firstData, ...downsampledData, lastData]; // Reintegrar el primer y último dato
+      return [firstData, ...downsampledData, lastData];
     }
     return data;
   };
@@ -111,7 +108,7 @@ const History: React.FC<SessionAuthenticated> = ({ session }) => {
         ticks: {
           callback: function(value: any) {
             if (value === 0) {
-              return ''; // Oculta el valor 0
+              return '';
             }
             return value;
           },
