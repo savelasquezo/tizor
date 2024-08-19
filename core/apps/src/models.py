@@ -35,16 +35,15 @@ class Account(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True, primary_key=True)
     email = models.EmailField(_("Email"),unique=True)
     username = models.CharField(_("Usuario"),max_length=64, unique=True)
+    wallet = models.CharField(_("Wallet"), max_length=128, unique=True)
     date_joined = models.DateField(_("Fecha"),default=timezone.now)
     last_joined = models.DateField(_("Ultimo Ingreso"),default=timezone.now)
     is_active = models.BooleanField(_("¿Activo?"),default=False)
     is_staff = models.BooleanField(_("¿Staff?"),default=False)
 
-    ammount = models.PositiveBigIntegerField(_("Ammount"),blank=True,default=0)
-    interest = models.DecimalField(_("Interest"), max_digits=5, decimal_places=2, blank=True,default=0)
-    available = models.PositiveBigIntegerField(_("Available"),blank=True,default=0)
-    paid = models.PositiveBigIntegerField(_("Paid"),blank=True,default=0)
-    total = models.PositiveBigIntegerField(_("Total"),blank=True,default=0)
+    balance = models.FloatField(_("Ammount"), blank=True, null=True, default=0)
+    interest = models.FloatField(_("Interest"), blank=True, null=True, default=0)
+    profit = models.FloatField(_("Profit"), blank=True, null=True,default=0)
     
     objects = AccountManager()
 
@@ -86,7 +85,7 @@ class Withdrawal(models.Model):
 class Invoice(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     uuid = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True)
-    amount = models.FloatField(_("Ammount"),blank=False,null=False,default=0)
+    amount = models.FloatField(_("Amount"),blank=False,null=False,default=0)
     date = models.DateField(_("Date"), default=timezone.now)
     method = models.CharField(_("Method"), choices=methods, max_length=128, null=False, blank=False)
     voucher = models.CharField(_("Voucher"), max_length=128, null=False, blank=False)

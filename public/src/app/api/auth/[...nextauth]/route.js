@@ -11,11 +11,6 @@ const handler = NextAuth({
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials, req) {
-
-
-        console.log("Autenticacion")
-        console.log(credentials)
-
         const res = await fetch(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/auth/jwt/create/`, {
           method: 'POST',
           body: JSON.stringify({
@@ -30,11 +25,6 @@ const handler = NextAuth({
         }
 
         const { access, refresh } = await res.json();
-
-        console.log("Tokens")
-        console.log(access)
-        console.log(refresh)
-
         const userRes = await fetch(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/auth/users/me/`, {
           headers: { Authorization: `JWT ${access}` },
         });
@@ -48,10 +38,14 @@ const handler = NextAuth({
           id: userData.id,
           email: userData.email,
           username: userData.username,
+          wallet: userData.wallet,
           date_joined: userData.date_joined,
           last_joined: userData.last_joined,
           is_active: userData.is_active,
           is_staff: userData.is_staff,
+          balance: userData.balance,
+          interest: userData.interest,
+          profit: userData.profit,
           accessToken: access,
           refreshToken: refresh,
         };
@@ -86,10 +80,14 @@ const handler = NextAuth({
           id: userData.id,
           email: userData.email,
           username: userData.username,
+          wallet: userData.wallet,
           date_joined: userData.date_joined,
           last_joined: userData.last_joined,
           is_active: userData.is_active,
           is_staff: userData.is_staff,
+          balance: userData.balance,
+          interest: userData.interest,
+          profit: userData.profit,
           accessToken: token.accessToken,
           refreshToken: token.refreshToken,
         };

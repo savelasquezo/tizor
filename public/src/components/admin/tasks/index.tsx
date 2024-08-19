@@ -3,6 +3,8 @@ import React from 'react';
 import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp, FaTelegramPlane, FaYoutube, FaBloggerB } from "react-icons/fa";
 import { FaRegCopy } from "react-icons/fa6";
 
+import { SessionInfo } from '@/lib/types/types';
+
 interface Task {
   id: number;
   name: string;
@@ -19,7 +21,9 @@ const tasks: Task[] = [
   { id: 5, name: 'Inversor Inteligente', description: 'Manten la inversion en Holding', percentage: '0.25', completed: false }
 ];
 
-export default function Page() {
+
+
+const Tasks: React.FC<SessionInfo> = ({ session }) => {
   return (
     <section className='w-full lg:w-3/5 flex flex-col-reverse lg:flex-row items-center justify-between break-words bg-white shadow-md rounded-2xl bg-clip-border py-1 lg:px-2 lg:pt-3 lg:pb-8'>
       <div className='w-full lg:w-1/2 h-full flex flex-col items-center lg:items-start lg:justify-between px-4 py-1'>
@@ -88,4 +92,6 @@ export default function Page() {
       </div>
     </section>
   );
-}
+};
+
+export default Tasks;

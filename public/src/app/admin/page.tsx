@@ -25,17 +25,21 @@ const AdminPage: React.FC = () => {
           <a href='' className='font-cocogoose font-semibold text-sm uppercase'>Salir</a>
         </div>
       </nav>
-      <section className='w-full h-auto flex flex-col px-6 gap-y-6'>
-        <Context session={session} />
-        <div className='w-full h-auto lg:h-96 flex flex-col lg:flex-row gap-4'>
-          <Meta session={session} />
-          <Logs session={session} />
-        </div>
-        <div className='w-full h-auto lg:h-72 flex flex-col lg:flex-row gap-4'>
-          <Tasks session={session} />
-          <History session={session} />
-        </div>
-      </section>
+        {session && session?.user? (
+        <section className='w-full h-auto flex flex-col px-6 gap-y-6'>
+          <Context session={session} />
+          <div className='w-full h-auto lg:h-96 flex flex-col lg:flex-row gap-4'>
+            <Meta session={session} />
+            <Logs session={session} />
+          </div>
+          <div className='w-full h-auto lg:h-72 flex flex-col lg:flex-row gap-4'>
+            <Tasks session={session} />
+            <History session={session} />
+          </div>
+        </section>
+        ) : (
+          <div>...</div>
+        )}
     </main>
   );
 };

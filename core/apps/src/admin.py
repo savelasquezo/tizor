@@ -145,8 +145,9 @@ class AccountAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': (('email','is_active','is_staff'), 'password')}),
             ('', {'fields': (
-            ('username'),
+            ('username','wallet'),
             ('date_joined','last_joined'),
+            ('balance','interest','profit'),
         )}),
     )
 

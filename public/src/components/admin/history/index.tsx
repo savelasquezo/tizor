@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
-import { useSession } from 'next-auth/react';
 import { HistoryInfo } from '@/lib/types/types';
 import { Chart as ChartJS, LineElement, PointElement, LinearScale, Title, CategoryScale, Legend, Tooltip } from 'chart.js';
 import _ from 'lodash';
+
+import { SessionAuthenticated } from '@/lib/types/types';
 
 ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale, Legend, Tooltip);
 
@@ -23,8 +24,7 @@ export const fetchHistory = async (accessToken: any) => {
   }
 };
 
-const History: React.FC = () => {
-  const { data: session } = useSession();
+const History: React.FC<SessionAuthenticated> = ({ session }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [history, setHistory] = useState<HistoryInfo[]>([]);
 
@@ -149,7 +149,6 @@ const History: React.FC = () => {
         usePointStyle: true,
         boxPadding: 8,
         caretSize: 8,
-        backgroundColor: '#fff',
         titleColor: '#111827',
       },
     },
@@ -162,6 +161,6 @@ const History: React.FC = () => {
       </div>
     </section>
   );
-}
+};
 
 export default History;

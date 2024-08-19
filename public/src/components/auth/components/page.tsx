@@ -7,12 +7,12 @@ import LoginModal from "@/components/auth/components/loginModal";
 import RegisterModal from "@/components/auth/components/registerModal";
 import ForgotPasswordModal from "@/components/auth/components/ForgotPasswordModal";
 import ForgotPasswordConfirmModal from "@/components/auth/components/ForgotPasswordConfirmModal";
-import { SessionInfo } from '@/lib/types/types';
+import { SessionAuth } from '@/lib/types/types';
 
 import {AiOutlineClose, AiFillLock, AiFillUnlock} from 'react-icons/ai'
 
 
-const Auth: React.FC<SessionInfo> = ({ session  }) => {
+const Auth: React.FC<SessionAuth> = ({ session  }) => {
     const searchParams = useSearchParams();
     const router = useRouter();
 

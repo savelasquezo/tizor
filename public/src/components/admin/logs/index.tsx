@@ -5,9 +5,10 @@ import { useSession } from 'next-auth/react';
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
-import { TransactionsInfo } from '@/lib/types/types';
+import { SessionAuthenticated, TransactionsInfo } from '@/lib/types/types';
 
-export const fetchTransactions = async (accessToken: any, page: number = 1) => {
+
+export const fetchTransactions = async (accessToken: string, page: number = 1) => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/fetch-transactions?page=${page}`, {
       method: 'GET',
@@ -28,9 +29,7 @@ export const fetchTransactions = async (accessToken: any, page: number = 1) => {
   }
 }
 
-export default function Page() {
-  const { data: session } = useSession();
-
+const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
   const [pageNumber, setPageNumber] = useState(0);
   const [tickets, setTickets] = useState<TransactionsInfo[]>([]);
   const [pageCount, setPageCount] = useState(0);
@@ -132,4 +131,6 @@ export default function Page() {
       </div>
     </section>
   );
-}
+};
+
+export default Logs;

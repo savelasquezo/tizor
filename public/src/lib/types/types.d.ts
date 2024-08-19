@@ -1,9 +1,12 @@
 import { Session } from 'next-auth';
 
-export type SessionInfo = {
+export type SessionAuth = {
     session: Session | null | undefined;
 };
 
+export type SessionAuthenticated = {
+    session: Session;
+};
 
 export type TransactionsInfo = {
     id: number;

@@ -13,6 +13,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 import apps.src.models as model
 import apps.src.serializers as serializer
+import apps.src.pagination as paginate
 
 logger = logging.getLogger(__name__)
 
@@ -83,9 +84,9 @@ class fetchWithdrawal(generics.ListAPIView):
 class fetchTransactions(generics.ListAPIView):
 
     serializer_class = serializer.TransactionSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
-    pagination_class = PageNumberPagination
+    pagination_class = paginate.TransactionPagination
     page_size = 5
 
     def get_queryset(self, request):
