@@ -128,11 +128,11 @@ class Transaction(models.Model):
 
 
 
-class TizorMiner(models.Model):
-    default = models.CharField(_("TizorMiner"), max_length=32, unique=True, blank=True, null=True, default="TizorMiner")
+class Tizorbank(models.Model):
+    default = models.CharField(_("Tizorbank"), max_length=32, unique=True, blank=True, null=True, default="Tizorbank")
     def __str__(self):
         return f"{self.default}"
 
     class Meta:
-        verbose_name = _("TizorMiner")
-        verbose_name_plural = _("TizorMiner")
+        verbose_name = _("Tizorbank")
+        verbose_name_plural = _("Tizorbank")

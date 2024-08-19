@@ -5,8 +5,8 @@ import '@/styles/styles.css';
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
-  title: "TizorMiner",
-  description: "TizorMiner - Bitcoin",
+  title: "Tizorbank",
+  description: "Tizorbank",
 };
 
 export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) 

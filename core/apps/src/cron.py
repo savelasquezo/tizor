@@ -10,7 +10,7 @@ from django_cron import CronJobBase, Schedule
 from django.db.models import F
 from django.utils import timezone
 
-from apps.src.models import Account, TizorMiner
+from apps.src.models import Account, Tizorbank
 
 APILAYER_KEY = settings.APILAYER_KEY
 
@@ -21,7 +21,7 @@ class AddFunds(CronJobBase):
     code = 'apps.src.AddFunds'
     
     #crontab -e
-    #* * * * * /apps/tizorminer/venv/bin/python /apps/tizorminer/core/manage.py runcrons
+    #* * * * * /apps/Tizorbank/venv/bin/python /apps/Tizorbank/core/manage.py runcrons
     def do(self):
         """cron Configuration
         Install django-crontab and add 'django_cron' to INSTALLED_APPS
@@ -32,10 +32,10 @@ class AddFunds(CronJobBase):
             
         before add cronjobs clases add the crontask to crontab
         $ crontab -e
-        > 0 */12 * * * /app/tizorminer/core/venv/bin/python /app/tizorminer/core/manage.py runcrons
+        > 0 */12 * * * /app/Tizorbank/core/venv/bin/python /app/Tizorbank/core/manage.py runcrons
         """
 
-        setting = TizorMiner.objects.get(default="TizorMiner")
+        setting = Tizorbank.objects.get(default="Tizorbank")
         eDate = timezone.now().strftime("%Y-%m-%d %H:%M")
 
         try:
