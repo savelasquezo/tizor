@@ -138,6 +138,7 @@ class TransactionAdmin(admin.ModelAdmin):
     #      return False
 
 
+
 class AccountAdmin(BaseUserAdmin):
     list_display = ('username', 'email')
     search_fields = ('username', 'email')
@@ -145,7 +146,7 @@ class AccountAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': (('email','is_active','is_staff'), 'password')}),
             ('', {'fields': (
-            ('username','wallet'),
+            ('username','wallet','uuid','ref'),
             ('date_joined','last_joined'),
             ('balance','interest','profit'),
         )}),
@@ -175,3 +176,6 @@ admin.site.register(model.Account,AccountAdmin)
 admin.site.register(model.Invoice, InvoiceAdmin)
 admin.site.register(model.Withdrawal, WithdrawalAdmin)
 admin.site.register(model.Transaction, TransactionAdmin)
+
+
+

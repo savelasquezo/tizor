@@ -28,5 +28,7 @@ export type ModalFunction = {
     closeModal: () => void;
 };
 
+
+export type SessionAuthModal = SessionInfo & ModalFunction;
 export type ForgotPasswordConfirm = {updateForgotPasswordModalState: (value: boolean) => void;};
 export type ForgotPasswordConfirmInfo = ForgotPasswordConfirm & ModalFunction;

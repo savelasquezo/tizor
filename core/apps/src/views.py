@@ -106,14 +106,12 @@ class fetchTransactions(generics.ListAPIView):
             return Response({'error': 'Not Found Advertisement.'}, status=status.HTTP_404_NOT_FOUND)
 
 
-
 class fetchHistory(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         username = request.user.username
         data = os.path.join(settings.BASE_DIR, 'data', f'{username}.json')
-        print(data)
         with open(data, 'r') as file:
             response = json.load(file)
     

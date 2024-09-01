@@ -74,7 +74,7 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
     <section className='w-full lg:w-2/5 break-words bg-white shadow-md rounded-2xl bg-clip-border'>
       <div className="w-full h-full overflow-x-auto lg:overflow-y-hidden shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+          <thead className="text-xs text-gray-700 uppercase bg-blue-100">
             <tr>
               <th scope="col" className="px-6 py-5">Fecha</th>
               <th scope="col" className="px-6 py-5">Movimiento</th>

@@ -7,13 +7,16 @@ import { SlPencil } from "react-icons/sl";
 import { MdLibraryAdd } from "react-icons/md";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { TbReport } from "react-icons/tb";
-import { IoIosLock, IoIosUnlock } from "react-icons/io";
-
+import { BiSupport } from "react-icons/bi";
 import { MdOutlineMail } from "react-icons/md";
 import { IoWalletOutline } from "react-icons/io5";
+import {AiOutlineClose} from 'react-icons/ai';
+
 
 
 import { SessionAuthenticated } from '@/lib/types/types';
+
+import AddFunds from '@/components/admin/context/addFunds';
 
 export const fetchTransactions = async (accessToken: string) => {
   try {
@@ -39,6 +42,10 @@ export const fetchTransactions = async (accessToken: string) => {
 const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
   const [percentage, setPercentage] = useState(0);
 
+  const [activeTab, setActiveTab] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [closingModal, setClosingModal] = useState(false);
+
   const fetchData = useCallback(async () => {
     try {
       const results = await fetchTransactions(session.user.accessToken);
@@ -51,6 +58,19 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  const openModal = (tab: string) => {
+    setShowModal(true);
+    setActiveTab(tab);
+  };
+
+  const closeModal = () => {
+      setClosingModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+        setClosingModal(false);
+      }, 500);
+  };
 
   return (
     <section className='w-full lg:w-3/5 flex flex-col-reverse lg:flex-row items-center justify-between break-words bg-white shadow-md rounded-2xl bg-clip-border py-1 lg:px-2 lg:pt-3 lg:pb-8'>
@@ -73,20 +93,17 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
           <p className='text-[0.65rem] text-start leading-tight font-cocogoose'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis.</p>
         </div>
         <div className='w-full flex flex-row items-center justify-center lg:justify-start gap-x-4 my-6 lg:my-0'>
-          <button className="w-full lg:w-1/3 h-10 text-center lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-green-600 hover:bg-green-800 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
+          <button onClick={() => openModal('add')} className="w-full lg:w-1/3 h-10 text-center lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-green-600 hover:bg-green-800 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
             <span className='mt-0 flex items-center justify-center lg:block'><MdLibraryAdd /></span>
             <span className='hidden lg:block font-cocogoose uppercase text-xs font-semibold'>Agregar</span>
           </button>
-          <button className="w-full lg:w-1/3 h-10 text-center lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-blue-600 hover:bg-blue-800 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
+          <button onClick={() => openModal('transfer')} className="w-full lg:w-1/3 h-10 text-center lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-blue-600 hover:bg-blue-800 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
             <span className='mt-0 flex items-center justify-center lg:block'><FaMoneyBillTransfer /></span>
             <span className='hidden lg:block font-cocogoose uppercase text-xs font-semibold'>Transferir</span>
           </button>
-          <button className="w-full lg:w-1/3 h-10 lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-gray-700 hover:bg-gray-800 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
+          <button onClick={() => openModal('lock')} className="w-full lg:w-1/3 h-10 lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-yellow-600 hover:bg-yellow-700 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
             <span className='mt-0 flex items-center justify-center lg:block'><TbReport /></span>
-            <span className='hidden lg:block font-cocogoose uppercase text-xs font-semibold'>Historial</span>
-          </button>
-          <button className="w-full lg:w-1/12 h-10 lg:flex lg:flex-row lg:items-center lg:justify-center lg:gap-x-1 bg-yellow-600 hover:bg-yellow-800 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
-            <span className='mt-0 flex items-center justify-center lg:block'><IoIosLock /></span>
+            <span className='hidden lg:block font-cocogoose uppercase text-xs font-semibold'>Invertir</span>
           </button>
         </div>
       </div>
@@ -98,6 +115,22 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
           <CircularProgressbar value={percentage} text={`${percentage}%`} />
         </div>
       </div>
+      {showModal && (
+        <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center transition bg-opacity-50 bg-gray-900 backdrop-blur-sm z-40 ${closingModal ? "animate-fade-out animate__animated animate__fadeOut" : "animate-fade-in animate__animated animate__fadeIn"}`}>
+            <div className={`relative w-11/12 sm:w-3/5 md:w-3/5 lg:w-2/5 max-w-[40rem] bg-gray-50 rounded-lg p-6 lg:pb-2`}>
+              <button onClick={closeModal} className='absolute z-10 top-4 right-4 text-xl text-gray-400 hover:text-gray-600 transition-colors duration-300' ><AiOutlineClose /></button>
+                <div className={`h-full my-4 ${activeTab === 'add' ? 'block' : 'hidden'}`}>
+                  <AddFunds closeModal={closeModal} session={session} />
+                </div>
+                <div className={`h-full my-4 ${activeTab === 'wt' ? 'block' : 'hidden'}`}>
+                <p>Hola</p>
+                </div>
+                <div className={`h-full my-4 ${activeTab === 'wallet' ? 'block' : 'hidden'}`}>
+                <p>Hola</p>
+                </div>
+            </div>
+          </div>
+        )}
     </section>
   );
 };

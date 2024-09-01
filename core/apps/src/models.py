@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 methods = (('crypto','Cryptomonedas'),('bold','Bold'))
-types = (('interest','Interest'),('withdrawal','Withdrawal'),('income','Income'))
+types = (('interest','Interest'),('withdrawal','Withdrawal'),('income','Income'),('ref','Referred'))
 states = (('pending','Pendiente'),('done','Aprobado'),('error','Error'))
 
 
@@ -33,6 +33,8 @@ class AccountManager(BaseUserManager):
 
 class Account(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True, primary_key=True)
+    uuid =  models.CharField(_("UUID"), max_length=6, null=True, blank=True)
+    ref = models.CharField(_("Ref"), max_length=6, blank=True)
     email = models.EmailField(_("Email"),unique=True)
     username = models.CharField(_("Usuario"),max_length=64, unique=True)
     wallet = models.CharField(_("Wallet"), max_length=128, unique=True)
@@ -52,6 +54,12 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f"{self.email}"
+
+    def save(self, *args, **kwargs):
+        if not self.uuid:
+            self.uuid = str(uuid.uuid4())[:6]
+        super().save(*args, **kwargs)
+
 
     class Meta:
         indexes = [models.Index(fields=['email']),]
@@ -128,11 +136,3 @@ class Transaction(models.Model):
 
 
 
-class Tizorbank(models.Model):
-    default = models.CharField(_("Tizorbank"), max_length=32, unique=True, blank=True, null=True, default="Tizorbank")
-    def __str__(self):
-        return f"{self.default}"
-
-    class Meta:
-        verbose_name = _("Tizorbank")
-        verbose_name_plural = _("Tizorbank")

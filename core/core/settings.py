@@ -70,6 +70,7 @@ DJANGO_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django_crontab',
     'daphne',
     'django.contrib.staticfiles',
 ]
@@ -84,9 +85,15 @@ THIRD_APPS = [
 
 CORE_APPS = [
     'apps.src',
+    'apps.core',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + CORE_APPS
+
+CRONPATH = os.path.join(BASE_DIR, 'logs', 'cron.log')
+CRONJOBS = [
+    #('0 0 * * *', 'apps.src.cron.AddFunds', f'>> {CRONPATH}'),
+]
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
@@ -127,7 +134,7 @@ ASGI_APPLICATION = "core.asgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "dbpostgresql",
+        "NAME": os.getenv('DATABASE'),
         "USER": "postgres",
         "PASSWORD": "4oPn2655Lmn",
         "HOST": "localhost",
