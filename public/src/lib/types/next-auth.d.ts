@@ -8,7 +8,7 @@ declare module 'next-auth' {
       username: string;
       wallet: string;
       date_joined: Date;
-      last_joined: Date;
+      last_update: Date;
       is_active: boolean;
       is_staff: boolean;
       balance: number,

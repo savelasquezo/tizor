@@ -11,7 +11,7 @@ ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale, L
 
 export const fetchHistory = async (accessToken: any) => {
   try {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/fetch-history`, {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/src/fetch-history`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `JWT ${accessToken}`,

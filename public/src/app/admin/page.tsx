@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from "react";
 import { useSession } from 'next-auth/react';
+import axios from 'axios';
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -12,8 +13,24 @@ import Logs from '@/components/admin/logs/index';
 import History from '@/components/admin/history/index';
 import Tasks from '@/components/admin/tasks/index';
 
+import { SiteType } from '@/lib/types/types';
+
 const AdminPage: React.FC = () => {
   const { data: session } = useSession();
+  const fetchSettings = async () => {
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/site/fetch-information/`);
+      const settings: SiteType = response.data;
+      const formattedSettings: SiteType = { ...settings };
+      localStorage.setItem('nextsite.data', JSON.stringify(formattedSettings));
+    } catch (error) {
+      console.error('Error fetching settings:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchSettings();
+  }, []);
 
   return (
     <main className='w-screen h-screen overflow-x-hidden bg-gray-100 pb-12 lg:pb-0'>

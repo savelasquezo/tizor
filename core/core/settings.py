@@ -33,7 +33,6 @@ DEBUG = os.getenv('DEBUG')
 DEBUG = True if DEBUG == "True" else False
 
 ALLOWED_HOSTS = ["*"]
-
 CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://127.0.0.1:8000']
 
@@ -71,6 +70,7 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django_crontab',
+    'django_ckeditor_5',
     'daphne',
     'django.contrib.staticfiles',
 ]
@@ -85,7 +85,7 @@ THIRD_APPS = [
 
 CORE_APPS = [
     'apps.src',
-    'apps.core',
+    'apps.site',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + CORE_APPS
@@ -260,8 +260,97 @@ DJOSER = {
 DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800
 FILE_UPLOAD_MAX_MEMORY_SIZE = 52428800
 
+customColorPalette = [
+        {
+            'color': 'hsl(4, 90%, 58%)',
+            'label': 'Red'
+        },
+        {
+            'color': 'hsl(340, 82%, 52%)',
+            'label': 'Pink'
+        },
+        {
+            'color': 'hsl(291, 64%, 42%)',
+            'label': 'Purple'
+        },
+        {
+            'color': 'hsl(262, 52%, 47%)',
+            'label': 'Deep Purple'
+        },
+        {
+            'color': 'hsl(231, 48%, 48%)',
+            'label': 'Indigo'
+        },
+        {
+            'color': 'hsl(207, 90%, 54%)',
+            'label': 'Blue'
+        },
+]
+
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': ['heading', '|', 'bold', 'italic', 'link',
+                    'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', ],
+
+    },
+    'extends': {
+        'blockToolbar': [
+            'paragraph', 'heading1', 'heading2', 'heading3',
+            '|',
+            'bulletedList', 'numberedList',
+            '|',
+            'blockQuote',
+        ],
+        'toolbar': ['heading', '|', 'outdent', 'indent', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
+        'code','subscript', 'superscript', 'highlight', '|', 'codeBlock', 'sourceEditing', 'insertImage',
+                    'bulletedList', 'numberedList', 'todoList', '|',  'blockQuote', 'imageUpload', '|',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'mediaEmbed', 'removeFormat',
+                    'insertTable',],
+        'image': {
+            'toolbar': ['imageTextAlternative', '|', 'imageStyle:alignLeft',
+                        'imageStyle:alignRight', 'imageStyle:alignCenter', 'imageStyle:side',  '|'],
+            'styles': [
+                'full',
+                'side',
+                'alignLeft',
+                'alignRight',
+                'alignCenter',
+            ]
+
+        },
+        'table': {
+            'contentToolbar': [ 'tableColumn', 'tableRow', 'mergeTableCells',
+            'tableProperties', 'tableCellProperties' ],
+            'tableProperties': {
+                'borderColors': customColorPalette,
+                'backgroundColors': customColorPalette
+            },
+            'tableCellProperties': {
+                'borderColors': customColorPalette,
+                'backgroundColors': customColorPalette
+            }
+        },
+        'heading' : {
+            'options': [
+                { 'model': 'paragraph', 'title': 'Paragraph', 'class': 'ck-heading_paragraph' },
+                { 'model': 'heading1', 'view': 'h1', 'title': 'Heading 1', 'class': 'ck-heading_heading1' },
+                { 'model': 'heading2', 'view': 'h2', 'title': 'Heading 2', 'class': 'ck-heading_heading2' },
+                { 'model': 'heading3', 'view': 'h3', 'title': 'Heading 3', 'class': 'ck-heading_heading3' }
+            ]
+        }
+    },
+    'list': {
+        'properties': {
+            'styles': 'true',
+            'startIndex': 'true',
+            'reversed': 'true',
+        }
+    }
+}
+
+
 if not DEBUG:
-    #SECURE_SSL_REDIRECT = True
+    DOMAIN = 'tizorbank.com'
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
     CORS_ALLOW_ALL_ORIGINS = False
@@ -269,11 +358,17 @@ if not DEBUG:
     ALLOWED_HOSTS = ['tizorbank.com', 'localhost', '127.0.0.1']
     CORS_ALLOWED_ORIGINS = ['https://tizorbank.com','https://analytics.google.com']
     CSRF_TRUSTED_ORIGINS = ['https://tizorbank.com','https://analytics.google.com']
+    
     EMAIL_PORT = 465
+    EMAIL_USE_SSL = True
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_HOST = 'smtp.hostinger.com'
-    EMAIL_HOST_USER = 'noreply@tizorbank.com'
-    DEFAULT_FROM_EMAIL = 'noreply@tizorbank.com'
-    SERVER_EMAIL = 'noreply@tizorbank.com'
+    EMAIL_HOST_USER = f'noreply@{DOMAIN}'
     EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-    EMAIL_USE_SSL = True
+    EMAIL_SUBJECT_PREFIX = f'[{DOMAIN}] '
+    ADMINS = [('admin', f'admin@{DOMAIN}'), ('support', f'support@{DOMAIN}')]
+    SERVER_EMAIL = f'noreply@{DOMAIN}'
+    DEFAULT_FROM_EMAIL = f'noreply@{DOMAIN}'
+
+
+

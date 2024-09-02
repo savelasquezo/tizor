@@ -23,7 +23,7 @@ class WithdrawalInline(admin.StackedInline):
 
     fieldsets = (
         (" ", {"fields": (
-            ('method','state'),
+            ('uuid','state'),
             ('amount','date','voucher'),
                 )
             }
@@ -31,7 +31,7 @@ class WithdrawalInline(admin.StackedInline):
     )
 
     radio_fields = {'state': admin.HORIZONTAL}
-    readonly_fields = ('method','amount','date','voucher')
+    readonly_fields = ('uuid','amount','date','voucher')
     def has_add_permission(self, request, obj=None):
         return False
 
@@ -43,7 +43,7 @@ class InvoiceInline(admin.StackedInline):
 
     fieldsets = (
         (" ", {"fields": (
-            ('method','state'),
+            ('uuid','state'),
             ('amount','date','voucher'),
                 )
             }
@@ -51,7 +51,7 @@ class InvoiceInline(admin.StackedInline):
     )
 
     radio_fields = {'state': admin.HORIZONTAL}
-    readonly_fields = ('method','amount','date','voucher')
+    readonly_fields = ('uuid','amount','date','voucher')
     def has_add_permission(self, request, obj=None):
         return False
 
@@ -73,7 +73,7 @@ class InvoiceAdmin(admin.ModelAdmin):
     
     fieldsets = (
         (None, {'fields': (
-            ('account','method','state'),
+            ('uuid','account','state'),
             ('amount','date','voucher'),
         )}),
     )
@@ -100,12 +100,12 @@ class WithdrawalAdmin(admin.ModelAdmin):
     
     fieldsets = (
         (None, {'fields': (
-            ('account','method','state'),
+            ('uuid','account','state'),
             ('amount','date','voucher'),
         )}),
     )
 
-    readonly_fields=['account','uuid','method','amount','date','voucher']
+    readonly_fields=['account','uuid','amount','date','voucher']
     def has_add_permission(self, request):
          return False
 
@@ -117,7 +117,8 @@ class TransactionAdmin(admin.ModelAdmin):
         'amount',
         'fee',
         'date',
-        'type'
+        'type',
+        'state'
         )
 
     list_filter = ['date','type']
@@ -128,7 +129,7 @@ class TransactionAdmin(admin.ModelAdmin):
     
     fieldsets = (
         (None, {'fields': (
-            ('account','type','voucher'),
+            ('account','type','voucher','state'),
             ('date','amount','fee'),
         )}),
     )
@@ -147,7 +148,7 @@ class AccountAdmin(BaseUserAdmin):
         (None, {'fields': (('email','is_active','is_staff'), 'password')}),
             ('', {'fields': (
             ('username','wallet','uuid','ref'),
-            ('date_joined','last_joined'),
+            ('date_joined','last_update'),
             ('balance','interest','profit'),
         )}),
     )

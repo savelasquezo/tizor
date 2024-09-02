@@ -20,7 +20,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("app/admin/", admin.site.urls),
+    path("ckeditor5/", include('django_ckeditor_5.urls')),
     path("app/auth/", include("djoser.urls")),
     path("app/auth/", include("djoser.urls.jwt")),
-    path("app/v1/", include("apps.src.urls")),
+    path("app/v1/src/", include("apps.src.urls")),
+    path("app/v1/site/", include("apps.site.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

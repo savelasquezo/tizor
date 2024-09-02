@@ -10,12 +10,12 @@ from typing import Optional
 from django.utils import timezone
 
 from apps.src.models import Account, Transaction
-from apps.core.models import Tizorbank
+from apps.site.models import Tizorbank
 
 logger = logging.getLogger(__name__)
 
 def makeTransaction(user: Account, amount: float, type: str) -> Optional[Transaction]:
-    return Transaction.objects.create(account=user,**{'amount':amount,'type':type})
+    return Transaction.objects.create(account=user,**{'amount':amount,'type':type,'state':'done'})
 
 def daily(balance: float, interest: float) -> float:
     return balance * ((1 + interest*0.01) ** (1/365) - 1)

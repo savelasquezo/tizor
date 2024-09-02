@@ -10,7 +10,7 @@ import { SessionAuthenticated, TransactionsInfo } from '@/lib/types/types';
 
 export const fetchTransactions = async (accessToken: string, page: number = 1) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/fetch-transactions?page=${page}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/src/fetch-transactions?page=${page}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

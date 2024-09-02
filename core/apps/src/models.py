@@ -5,9 +5,8 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-methods = (('crypto','Cryptomonedas'),('bold','Bold'))
 types = (('interest','Interest'),('withdrawal','Withdrawal'),('income','Income'),('ref','Referred'))
-states = (('pending','Pendiente'),('done','Aprobado'),('error','Error'))
+states = (('invoiced','Facturado'),('done','Aprobado'),('error','Error'))
 
 
 def LogoUploadTo(instance, filename):
@@ -38,8 +37,10 @@ class Account(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_("Email"),unique=True)
     username = models.CharField(_("Usuario"),max_length=64, unique=True)
     wallet = models.CharField(_("Wallet"), max_length=128, unique=True)
-    date_joined = models.DateField(_("Fecha"),default=timezone.now)
-    last_joined = models.DateField(_("Ultimo Ingreso"),default=timezone.now)
+    
+    date_joined = models.DateField(default=timezone.now)
+    last_update = models.DateField(default=timezone.now)
+    
     is_active = models.BooleanField(_("¿Activo?"),default=False)
     is_staff = models.BooleanField(_("¿Staff?"),default=False)
 
@@ -67,41 +68,17 @@ class Account(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _("Accounts")
 
 
-class Withdrawal(models.Model):
-    account = models.ForeignKey(Account, on_delete=models.CASCADE)
-    uuid = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True)
-    amount = models.FloatField(_("Ammount"),blank=False,null=False,default=0)
-    date = models.DateField(_("Date"), default=timezone.now)
-    method = models.CharField(_("Method"), max_length=128, null=False, blank=False)
-    voucher = models.CharField(_("Voucher"), max_length=128, null=False, blank=False)
-    state = models.CharField(_("¿Estado?"), choices=states, default="pending", max_length=16)
-
-    def save(self, *args, **kwargs):
-        if not self.uuid:
-            self.uuid = uuid.uuid4()
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f"{self.voucher}"
-
-    class Meta:
-        indexes = [models.Index(fields=['account','voucher','state']),]
-        verbose_name = _("Withdrawal")
-        verbose_name_plural = _("Withdrawals")
-
-
 class Invoice(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     uuid = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True)
     amount = models.FloatField(_("Amount"),blank=False,null=False,default=0)
     date = models.DateField(_("Date"), default=timezone.now)
-    method = models.CharField(_("Method"), choices=methods, max_length=128, null=False, blank=False)
     voucher = models.CharField(_("Voucher"), max_length=128, null=False, blank=False)
-    state = models.CharField(_("¿State?"), choices=states, default="pending", max_length=16)
+    state = models.CharField(choices=states, default="invoiced", max_length=16, verbose_name="")
 
     def save(self, *args, **kwargs):
-        if not self.uuid:
-            self.uuid = uuid.uuid4()
+        if not self.voucher:
+            self.voucher = str(uuid.uuid4())[:8]
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -113,6 +90,28 @@ class Invoice(models.Model):
         verbose_name_plural = _("Invoices")
 
 
+class Withdrawal(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    uuid = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True)
+    amount = models.FloatField(_("Ammount"),blank=False,null=False,default=0)
+    date = models.DateField(_("Date"), default=timezone.now)
+    voucher = models.CharField(_("Voucher"), max_length=128, null=False, blank=False)
+    state = models.CharField(choices=states, default="invoiced", max_length=16, verbose_name="")
+
+    def save(self, *args, **kwargs):
+        if not self.voucher:
+            self.voucher = str(uuid.uuid4())[:8]
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.voucher}"
+
+    class Meta:
+        indexes = [models.Index(fields=['account','voucher','state']),]
+        verbose_name = _("Withdrawal")
+        verbose_name_plural = _("Withdrawals")
+        
+
 class Transaction(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     amount = models.FloatField(_("Ammount"),blank=False,null=False)
@@ -120,6 +119,7 @@ class Transaction(models.Model):
     date = models.DateField(_("Date"), default=timezone.now)
     type = models.CharField(_("Type"), choices=types, max_length=128, null=False, blank=False)
     voucher = models.CharField(_("Voucher"), max_length=128, null=True, blank=True)
+    state = models.CharField(choices=states, default="invoiced", max_length=16, verbose_name="")
 
     def save(self, *args, **kwargs):
         if not self.voucher:

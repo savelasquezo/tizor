@@ -16,11 +16,12 @@ import {AiOutlineClose} from 'react-icons/ai';
 
 import { SessionAuthenticated } from '@/lib/types/types';
 
-import AddFunds from '@/components/admin/context/addFunds';
+import AddFunds from '@/components/admin/meta/interface/addFunds';
+import RemFunds from '@/components/admin/meta/interface/remFunds';
 
 export const fetchTransactions = async (accessToken: string) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/fetch-transactions`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/src/fetch-transactions`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -97,11 +98,11 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
             <span className='mt-0 flex items-center justify-center lg:block'><MdLibraryAdd /></span>
             <span className='hidden lg:block font-cocogoose uppercase text-xs font-semibold'>Agregar</span>
           </button>
-          <button onClick={() => openModal('transfer')} className="w-full lg:w-1/3 h-10 text-center lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-blue-600 hover:bg-blue-800 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
+          <button onClick={() => openModal('rem')} className="w-full lg:w-1/3 h-10 text-center lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-blue-600 hover:bg-blue-800 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
             <span className='mt-0 flex items-center justify-center lg:block'><FaMoneyBillTransfer /></span>
             <span className='hidden lg:block font-cocogoose uppercase text-xs font-semibold'>Transferir</span>
           </button>
-          <button onClick={() => openModal('lock')} className="w-full lg:w-1/3 h-10 lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-yellow-600 hover:bg-yellow-700 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
+          <button onClick={() => openModal('bck')} className="w-full lg:w-1/3 h-10 lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-yellow-600 hover:bg-yellow-700 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
             <span className='mt-0 flex items-center justify-center lg:block'><TbReport /></span>
             <span className='hidden lg:block font-cocogoose uppercase text-xs font-semibold'>Invertir</span>
           </button>
@@ -120,13 +121,13 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
             <div className={`relative w-11/12 sm:w-3/5 md:w-3/5 lg:w-2/5 max-w-[40rem] bg-gray-50 rounded-lg p-6 lg:pb-2`}>
               <button onClick={closeModal} className='absolute z-10 top-4 right-4 text-xl text-gray-400 hover:text-gray-600 transition-colors duration-300' ><AiOutlineClose /></button>
                 <div className={`h-full my-4 ${activeTab === 'add' ? 'block' : 'hidden'}`}>
-                  <AddFunds closeModal={closeModal} session={session} />
+                  <AddFunds session={session} />
                 </div>
-                <div className={`h-full my-4 ${activeTab === 'wt' ? 'block' : 'hidden'}`}>
-                <p>Hola</p>
+                <div className={`h-full my-4 ${activeTab === 'rem' ? 'block' : 'hidden'}`}>
+                  <RemFunds session={session} />
                 </div>
                 <div className={`h-full my-4 ${activeTab === 'wallet' ? 'block' : 'hidden'}`}>
-                <p>Hola</p>
+                  <p>Hola</p>
                 </div>
             </div>
           </div>

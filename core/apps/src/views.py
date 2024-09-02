@@ -1,8 +1,9 @@
-import os, json, base64, logging
+import os, uuid, json, base64, logging
 
 from django.http import JsonResponse
 from django.utils import timezone
 from django.conf import settings
+from django.db import transaction
 
 from rest_framework import generics
 from rest_framework import status
@@ -14,6 +15,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 import apps.src.models as model
 import apps.src.serializers as serializer
 import apps.src.pagination as paginate
+from apps.src.functions import makeTransaction
 
 logger = logging.getLogger(__name__)
 
@@ -21,44 +23,27 @@ def makeInvoice(length=12):
     return base64.urlsafe_b64encode(os.urandom(length)).decode('utf-8')[:length]
 
 
-class fetchInvoice(generics.ListAPIView):
-
-    serializer_class = serializer.InvoiceSerializer
-    permission_classes = [AllowAny]
-
-    def get_queryset(self):
-        return model.Invoice.objects.filter(account=self.request).order_by('-id')
-
-    def get(self, request, *args, **kwargs):
-        try:
-            queryset = self.get_queryset()
-            serialized_data = self.serializer_class(queryset, many=True).data
-            return Response(serialized_data, status=status.HTTP_200_OK)
-
-        except Exception as e:
-            return Response({'detail': 'NotFound Invoices.'}, status=status.HTTP_404_NOT_FOUND)
-
+class requestInvoice(generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
 
-        method = str(request.data.get('method'))
-        amount = int(request.data.get('amount'))
-
-        data = {'method':method,'amount':amount}
-
+        data = {'amount':request.data.get('amount')}
         try:
-            obj = model.Invoice.objects.create(account=request,**data)
-            apiInvoice = makeInvoice()
-            obj.voucher = apiInvoice
-            obj.save()
+            with transaction.atomic():
+                obj, created = model.Invoice.objects.get_or_create(account=request.user,state='invoiced',defaults={**data})
+                if not created:
+                    for attr, value in data.items():
+                        setattr(obj, attr, value)
+                    obj.save()
             
-            return Response({'apiInvoice': apiInvoice, 'amount': amount}, status=status.HTTP_200_OK)
+            apiInvoice = obj.voucher
+            makeTransaction(request.user, data.get('amount'), 'income','invoiced')
+            return Response({'apiInvoice': apiInvoice}, status=status.HTTP_200_OK)
         
         except Exception as e:
-            date = timezone.now().strftime("%Y-%m-%d %H:%M")
-            with open(os.path.join(settings.BASE_DIR, 'logs/core.log'), 'a') as f:
-                f.write("requestInvoice {} --> Error: {}\n".format(date, str(e)))
+            logger.error("%s", e, exc_info=True)
             return Response({'error': 'NotFound Invoice.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
         
 
 class fetchWithdrawal(generics.ListAPIView):
