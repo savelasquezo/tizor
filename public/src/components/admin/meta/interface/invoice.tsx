@@ -6,12 +6,18 @@ import CircleLoader from 'react-spinners/CircleLoader';
 
 import { FiDollarSign } from "react-icons/fi";
 import { IoWalletOutline } from "react-icons/io5";
-import { FaMinus, FaRegCopy } from "react-icons/fa6";
+import { FaRegCopy } from "react-icons/fa6";
+import { LuCopyCheck } from "react-icons/lu";
+
+
+import { FaPlus } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa6";
 
 import { nextSite } from '@/utils/next-site';
+
 import { SessionAuthenticated } from '@/lib/types/types';
 
-const remFunds: React.FC<SessionAuthenticated> = ({ session  }) => {
+const Invoice: React.FC<SessionAuthenticated> = ({ session  }) => {
     const [data, setData] = useState<{ [key: string]: any } | null>(null);
 
     const [loading, setLoading] = useState(false);
@@ -76,7 +82,7 @@ const remFunds: React.FC<SessionAuthenticated> = ({ session  }) => {
   return (
     <div className="w-full h-full">
       <form className="w-full h-full space-y-4">
-        <p className="text-start text-lg font-semibold font-cocogoose text-gray-800">Transferir Fondos</p>
+        <p className="text-start text-lg font-semibold font-cocogoose text-gray-800">Agregar Fondos</p>
         <div className="relative h-full flex items-center rounded-md border border-gray-400">
           <FiDollarSign className="absolute left-3 text-green-950" />
           <input
@@ -93,15 +99,15 @@ const remFunds: React.FC<SessionAuthenticated> = ({ session  }) => {
             placeholder="Ingrese el monto"
           />
           {!registrationSuccess ? (
-            loading ? (<button className="flex justify-center items-center bg-red-800 h-10 w-10 text-white p-2 shadow-sm rounded-r-md"><CircleLoader loading={loading} size={14} color="#ffff" /></button>) : (
-              <button type="button" onClick={(e) => onSubmit(e)} className="flex justify-center items-center bg-red-600 h-10 w-10 text-white p-2 shadow-sm rounded-r-md focus:bg-red-700 hover:bg-red-800 transition-colors duration-700"><FaMinus/></button>
+            loading ? (<button className="flex justify-center items-center bg-green-800 h-10 w-10 text-white p-2 shadow-sm rounded-r-md"><CircleLoader loading={loading} size={14} color="#ffff" /></button>) : (
+              <button type="button" onClick={(e) => onSubmit(e)} className="flex justify-center items-center bg-green-600 h-10 w-10 text-white p-2 shadow-sm rounded-r-md focus:bg-green-700 hover:bg-green-800 transition-colors duration-700"><FaPlus/></button>
             )) : (<p className="flex justify-center items-center bg-gray-600 h-10 w-32 text-white p-2 shadow-sm rounded-r-md">{invoice}</p>
           )}
         </div>
         <div className='w-full flex flex-row justify-between items-center rounded-sm my-2 p-2 border bg-yellow-50 border-blue-50'>
           <p className='flex flex-row justify-start items-center gap-x-2'>
             <span className='text-gray-500 text-sm'><IoWalletOutline /></span>
-            <span className='text-gray-800 font-bankprinter text-xs'>{session.user.wallet}</span>
+            <span className='text-gray-800 font-bankprinter text-xs'>{data?.address}</span>
           </p>
           <span onClick={handleCopyClick} className={`cursor-pointer transition-colors duration-1000 ${copySuccess ? 'text-green-500' : ''}`}><FaRegCopy /></span>
         </div>
@@ -121,4 +127,4 @@ const remFunds: React.FC<SessionAuthenticated> = ({ session  }) => {
   );
 };
 
-export default remFunds;
+export default Invoice;

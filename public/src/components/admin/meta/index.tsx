@@ -16,8 +16,8 @@ import {AiOutlineClose} from 'react-icons/ai';
 
 import { SessionAuthenticated } from '@/lib/types/types';
 
-import AddFunds from '@/components/admin/meta/interface/addFunds';
-import RemFunds from '@/components/admin/meta/interface/remFunds';
+import Invoice from '@/components/admin/meta/interface/invoice';
+import Withdrawal from '@/components/admin/meta/interface/withdrawal';
 
 export const fetchTransactions = async (accessToken: string) => {
   try {
@@ -121,10 +121,10 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
             <div className={`relative w-11/12 sm:w-3/5 md:w-3/5 lg:w-2/5 max-w-[40rem] bg-gray-50 rounded-lg p-6 lg:pb-2`}>
               <button onClick={closeModal} className='absolute z-10 top-4 right-4 text-xl text-gray-400 hover:text-gray-600 transition-colors duration-300' ><AiOutlineClose /></button>
                 <div className={`h-full my-4 ${activeTab === 'add' ? 'block' : 'hidden'}`}>
-                  <AddFunds session={session} />
+                  <Invoice session={session} />
                 </div>
                 <div className={`h-full my-4 ${activeTab === 'rem' ? 'block' : 'hidden'}`}>
-                  <RemFunds session={session} />
+                  <Withdrawal session={session} />
                 </div>
                 <div className={`h-full my-4 ${activeTab === 'wallet' ? 'block' : 'hidden'}`}>
                   <p>Hola</p>
