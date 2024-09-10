@@ -15,11 +15,13 @@ def ImagesUploadTo(instance, id):
 
 class Tizorbank(models.Model):
     default = models.CharField(_("Tizorbank"), max_length=32, unique=True, blank=True, null=True, default="Tizorbank")
-    interest = models.FloatField(_("Interet"),blank=False,null=False,default=14)
     ref = models.FloatField(_("Interet-reF"),blank=False,null=False,default=0.5)
     
+    min_interest = models.FloatField(_("Interest (Min)"),blank=False,null=False,default=14)
+    max_interest = models.FloatField(_("Interest (Max)"),blank=False,null=False,default=24)
+    
     email = models.EmailField(_("Email"), max_length=256, blank=True, null=True)
-    address = models.CharField(_("Wallet"),max_length=256, unique=True)
+    address = models.CharField(_("Address"),max_length=256, unique=True)
     
     terms = CKEditor5Field(_("Terms & Conditions"), config_name='extends')
     legal = CKEditor5Field(_("Legal"), config_name='extends')

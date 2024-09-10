@@ -18,6 +18,7 @@ import { SessionAuthenticated } from '@/lib/types/types';
 
 import Invoice from '@/components/admin/meta/interface/invoice';
 import Withdrawal from '@/components/admin/meta/interface/withdrawal';
+import Investment from '@/components/admin/meta/interface/investment';
 
 export const fetchTransactions = async (accessToken: string) => {
   try {
@@ -86,7 +87,7 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
               </p>
               <p className='flex flex-row justify-start items-center gap-x-2'>
                 <span className='text-gray-500 text-sm'><IoWalletOutline /></span>
-                <span className='text-gray-800 font-bankprinter text-xs'>{session.user.wallet}</span>
+                <span className='text-gray-800 font-bankprinter text-xs'>{session.user.address}</span>
               </p>
             </div>
             <button><SlPencil /></button>
@@ -94,15 +95,15 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
           <p className='text-[0.65rem] text-start leading-tight font-cocogoose'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis.</p>
         </div>
         <div className='w-full flex flex-row items-center justify-center lg:justify-start gap-x-4 my-6 lg:my-0'>
-          <button onClick={() => openModal('add')} className="w-full lg:w-1/3 h-10 text-center lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-green-600 hover:bg-green-800 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
+          <button onClick={() => openModal('add')} className="w-full lg:w-1/3 h-10 text-center lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-green-700 hover:bg-green-900 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
             <span className='mt-0 flex items-center justify-center lg:block'><MdLibraryAdd /></span>
             <span className='hidden lg:block font-cocogoose uppercase text-xs font-semibold'>Agregar</span>
           </button>
-          <button onClick={() => openModal('rem')} className="w-full lg:w-1/3 h-10 text-center lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-blue-600 hover:bg-blue-800 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
+          <button onClick={() => openModal('rem')} className="w-full lg:w-1/3 h-10 text-center lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-blue-700 hover:bg-blue-900 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
             <span className='mt-0 flex items-center justify-center lg:block'><FaMoneyBillTransfer /></span>
             <span className='hidden lg:block font-cocogoose uppercase text-xs font-semibold'>Transferir</span>
           </button>
-          <button onClick={() => openModal('bck')} className="w-full lg:w-1/3 h-10 lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-yellow-600 hover:bg-yellow-700 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
+          <button onClick={() => openModal('bck')} className="w-full lg:w-1/3 h-10 lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-violet-700 hover:bg-violet-900 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
             <span className='mt-0 flex items-center justify-center lg:block'><TbReport /></span>
             <span className='hidden lg:block font-cocogoose uppercase text-xs font-semibold'>Invertir</span>
           </button>
@@ -118,7 +119,7 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
       </div>
       {showModal && (
         <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center transition bg-opacity-50 bg-gray-900 backdrop-blur-sm z-40 ${closingModal ? "animate-fade-out animate__animated animate__fadeOut" : "animate-fade-in animate__animated animate__fadeIn"}`}>
-            <div className={`relative w-11/12 sm:w-3/5 md:w-3/5 lg:w-2/5 max-w-[40rem] bg-gray-50 rounded-lg p-6 lg:pb-2`}>
+            <div className={`relative w-11/12 md:w-3/5 lg:w-2/5 max-w-[40rem] bg-gray-50 rounded-lg p-6 lg:pb-2`}>
               <button onClick={closeModal} className='absolute z-10 top-4 right-4 text-xl text-gray-400 hover:text-gray-600 transition-colors duration-300' ><AiOutlineClose /></button>
                 <div className={`h-full my-4 ${activeTab === 'add' ? 'block' : 'hidden'}`}>
                   <Invoice session={session} />
@@ -126,8 +127,8 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
                 <div className={`h-full my-4 ${activeTab === 'rem' ? 'block' : 'hidden'}`}>
                   <Withdrawal session={session} />
                 </div>
-                <div className={`h-full my-4 ${activeTab === 'wallet' ? 'block' : 'hidden'}`}>
-                  <p>Hola</p>
+                <div className={`h-full my-4 ${activeTab === 'bck' ? 'block' : 'hidden'}`}>
+                  <Investment session={session} />
                 </div>
             </div>
           </div>

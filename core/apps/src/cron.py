@@ -20,7 +20,7 @@ def AddFunds():
             balance = user.balance
             interest = user.interest
             amount = daily(balance, interest)
-            makeTransaction(user, amount, 'interest','done')
+            makeTransaction(user, amount, 'interest','done', None)
 
             list_ref = list_user.filter(ref=user.uuid)
             amount_ref = 0
@@ -31,6 +31,9 @@ def AddFunds():
             user.profit += amount + amount_ref
             makeTransaction(user, amount_ref, 'ref','done')
             user.save()
+            
+            
+            
             
     except Exception as e:
         print(f'AddFunds Error-{e}')

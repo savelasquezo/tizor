@@ -1,4 +1,5 @@
-import os, uuid, json, base64, logging
+import os, math, json, base64, logging
+from dateutil.relativedelta import relativedelta
 
 from django.http import JsonResponse
 from django.utils import timezone
@@ -8,10 +9,10 @@ from django.db import transaction
 from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.pagination import PageNumberPagination
 
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
+from apps.site.models import Tizorbank
 import apps.src.models as model
 import apps.src.serializers as serializer
 import apps.src.pagination as paginate
@@ -24,10 +25,38 @@ def makeInvoice(length=12):
 
 
 class requestInvoice(generics.GenericAPIView):
+    
+    serializer_class = serializer.InvoiceSerializer
+    permission_classes = [IsAuthenticated]
+
+    pagination_class = paginate.PageNumberPagination
+    page_size = 5
+
+    def get_queryset(self, request):
+        return model.Invoice.objects.filter(account=request.user).order_by('-id')
+
+    def get(self, request, *args, **kwargs):
+        try:
+            queryset = self.get_queryset(request)
+            page = self.paginate_queryset(queryset)
+            if page is not None:
+                serializer = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializer.data)
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            logger.error("%s", e, exc_info=True)
+            return Response({'error': 'Not Found Invoices.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def post(self, request, *args, **kwargs):
-
-        data = {'amount':request.data.get('amount')}
+        
+        amount = float(request.data.get('amount'))
+        address = Tizorbank.objects.get(default="Tizorbank").address
+        
+        data = {'amount': amount, 'address':address}
+        if data['amount'] <= 0:
+            return Response({'detail': 'The requested amount is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
+        
         try:
             with transaction.atomic():
                 obj, created = model.Invoice.objects.get_or_create(account=request.user,state='invoiced',defaults={**data})
@@ -37,32 +66,117 @@ class requestInvoice(generics.GenericAPIView):
                     obj.save()
             
             apiInvoice = obj.voucher
-            makeTransaction(request.user, data.get('amount'), 'income','invoiced')
+            makeTransaction(request.user, obj.amount, 'income','invoiced', apiInvoice)
             return Response({'apiInvoice': apiInvoice}, status=status.HTTP_200_OK)
         
         except Exception as e:
             logger.error("%s", e, exc_info=True)
             return Response({'error': 'NotFound Invoice.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-        
 
-class fetchWithdrawal(generics.ListAPIView):
 
+class requestWithdrawal(generics.GenericAPIView):
+    
     serializer_class = serializer.WithdrawalSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
-    def get_queryset(self, myaccount):
-        return model.Withdrawal.objects.filter(account=myaccount).order_by('-id')
+    pagination_class = paginate.PageNumberPagination
+    page_size = 5
+
+    def get_queryset(self, request):
+        return model.Withdrawal.objects.filter(account=request.user).order_by('-id')
 
     def get(self, request, *args, **kwargs):
-        myaccount = model.Account.objects.get(email="email@email.com")
         try:
-            queryset = self.get_queryset(myaccount)
-            serialized_data = self.serializer_class(queryset, many=True).data
-            return Response(serialized_data, status=status.HTTP_200_OK)
+            queryset = self.get_queryset(request)
+            page = self.paginate_queryset(queryset)
+            if page is not None:
+                serializer = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializer.data)
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            logger.error("%s", e, exc_info=True)
+            return Response({'error': 'Not Found Withdrawals.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+ 
+    def post(self, request, *args, **kwargs):
+        
+        amount = float(request.data.get('amount'))
+        address = request.user.address
+        
+        data = {'amount': amount, 'address':address}
+        if amount > request.user.balance or amount <= 0:
+            return Response({'detail': 'The requested amount is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            with transaction.atomic():
+                obj, created = model.Withdrawal.objects.get_or_create(account=request.user, state='invoiced', defaults={**data})
+                if not created:
+                    obj.amount += amount
+                    obj.save()
+            
+            request.user.balance -= amount
+            request.user.save()
+
+            apiWithdrawal = obj.voucher
+            makeTransaction(request.user, -obj.amount, 'outcome', 'invoiced', apiWithdrawal)
+            return Response({'apiWithdrawal': apiWithdrawal}, status=status.HTTP_200_OK)
+        
+        except Exception as e:
+            logger.error("%s", e, exc_info=True)
+            return Response({'error': 'NotFound Invoice.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR) 
+
+
+class requestInvestment(generics.GenericAPIView):
+    
+    serializer_class = serializer.InvestmentSerializer
+    permission_classes = [IsAuthenticated]
+
+    pagination_class = paginate.PageNumberPagination
+    page_size = 5
+
+    def get_queryset(self, request):
+        return model.Investment.objects.filter(account=request.user).order_by('-id')
+
+    def get(self, request, *args, **kwargs):
+        try:
+            queryset = self.get_queryset(request)
+            page = self.paginate_queryset(queryset)
+            if page is not None:
+                serializer = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializer.data)
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            logger.error("%s", e, exc_info=True)
+            return Response({'error': 'Not Found Investments.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def post(self, request, *args, **kwargs):
+        amount = request.data.get('amount')
+        months = request.data.get('months')
+        
+        if amount > request.user.balance or amount <= 0 or not months in range(6, 37):
+            return Response({'detail': 'The requested amount is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            data = Tizorbank.objects.get(default="Tizorbank")
+            obj = model.Investment.objects.create(account=request.user)
+        
+            obj.amount = amount
+            obj.interest = round(data.min_interest * math.exp((math.log(data.max_interest/data.min_interest) / 36) * months),2)
+            obj.date_target = timezone.now() + relativedelta(months=months)
+            obj.save()
+            
+            request.user.balance -= amount
+            request.user.save()
+
+            apiInvestment = obj.voucher
+            makeTransaction(request.user, -amount, 'investment', 'done', apiInvestment)
+            return Response({'apiInvestment': apiInvestment}, status=status.HTTP_200_OK)
 
         except Exception as e:
-            return Response({'detail': 'NotFound Withdrawals.'}, status=status.HTTP_404_NOT_FOUND)
+            logger.error("%s", e, exc_info=True)
+            return Response({'error': 'NotFound Invoice.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR) 
 
 
 
@@ -88,16 +202,20 @@ class fetchTransactions(generics.ListAPIView):
             return Response(serializer.data)
         except Exception as e:
             logger.error("%s", e, exc_info=True)
-            return Response({'error': 'Not Found Advertisement.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'error': 'Not Found Advertisement.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class fetchHistory(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
-        username = request.user.username
-        data = os.path.join(settings.BASE_DIR, 'data', f'{username}.json')
-        with open(data, 'r') as file:
-            response = json.load(file)
-    
-        return JsonResponse(response, safe=False)
+        try:
+            username = request.user.username
+            data = os.path.join(settings.BASE_DIR, 'data', f'{username}.json')
+            with open(data, 'r') as file:
+                response = json.load(file)
+            return JsonResponse(response, safe=False)
+        
+        except Exception as e:
+            logger.error("%s", e, exc_info=True)
+            return Response({'error': 'Not Found Advertisement.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

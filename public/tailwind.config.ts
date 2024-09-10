@@ -6,15 +6,16 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/flowbite-react/lib/esm/**/*.js",
-    "./node_modules/@nextui-org/theme/dist/components/(button|modal|ripple|spinner).js"
+    "./node_modules/flowbite-react/lib/esm/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       fontFamily: {
         bankprinter: ['BankPrinter', 'sans-serif'],
         creatodisplay: ['CreatoDisplay', 'sans-serif'],
-        cocogoose: ['Cocogoose', 'sans-serif']
+        cocogoose: ['Cocogoose', 'sans-serif'],
+        carvingsoft: ['CarvingSoft', 'sans-serif'],
       },
       backgroundImage: {
         'background-image01': "url('/assets/demo/background01.webp')",

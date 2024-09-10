@@ -14,24 +14,26 @@ admin_site = MyAdminSite()
 admin.site = admin_site
 admin_site.site_header = "TirzorMiner"
 
+###################################################################
+###################################################################
 
-
-class WithdrawalInline(admin.StackedInline):
+class InvestmentlInline(admin.StackedInline):
     
-    model = model.Withdrawal
+    model = model.Investment
     extra = 0
 
     fieldsets = (
         (" ", {"fields": (
-            ('uuid','state'),
-            ('amount','date','voucher'),
+            ('amount','interest','accumulated'),
+            ('date_joined','date_target'),
                 )
             }
         ),
     )
 
     radio_fields = {'state': admin.HORIZONTAL}
-    readonly_fields = ('uuid','amount','date','voucher')
+    readonly_fields = ('uuid','amount','date_joined','date_target',)
+
     def has_add_permission(self, request, obj=None):
         return False
 
@@ -43,7 +45,7 @@ class InvoiceInline(admin.StackedInline):
 
     fieldsets = (
         (" ", {"fields": (
-            ('uuid','state'),
+            ('uuid','address','state'),
             ('amount','date','voucher'),
                 )
             }
@@ -51,7 +53,29 @@ class InvoiceInline(admin.StackedInline):
     )
 
     radio_fields = {'state': admin.HORIZONTAL}
-    readonly_fields = ('uuid','amount','date','voucher')
+    readonly_fields = ('uuid','address','amount','date','voucher')
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+
+class WithdrawalInline(admin.StackedInline):
+    
+    model = model.Withdrawal
+    extra = 0
+
+    fieldsets = (
+        (" ", {"fields": (
+            ('uuid','address','state'),
+            ('amount','date','voucher'),
+                )
+            }
+        ),
+    )
+
+    radio_fields = {'state': admin.HORIZONTAL}
+    readonly_fields = ('uuid','address','amount','date','voucher')
+
     def has_add_permission(self, request, obj=None):
         return False
 
@@ -61,6 +85,7 @@ class InvoiceAdmin(admin.ModelAdmin):
         'voucher',
         'account',
         'amount',
+        'address',
         'date',
         'state'
         )
@@ -73,7 +98,7 @@ class InvoiceAdmin(admin.ModelAdmin):
     
     fieldsets = (
         (None, {'fields': (
-            ('uuid','account','state'),
+            ('account','address','state'),
             ('amount','date','voucher'),
         )}),
     )
@@ -82,12 +107,18 @@ class InvoiceAdmin(admin.ModelAdmin):
         fieldsets = super().get_fieldsets(request, obj)
         return fieldsets
 
+    def get_readonly_fields(self, request, obj=None):
+        if obj and obj.state != "invoiced":
+            return [field.name for field in self.model._meta.fields]
+        return ['uuid','account','address','amount','date','voucher']
+
 
 class WithdrawalAdmin(admin.ModelAdmin):
     list_display = (
         'voucher',
         'account',
         'amount',
+        'address',
         'date',
         'state'
         )
@@ -100,15 +131,19 @@ class WithdrawalAdmin(admin.ModelAdmin):
     
     fieldsets = (
         (None, {'fields': (
-            ('uuid','account','state'),
+            ('account','address','state'),
             ('amount','date','voucher'),
         )}),
     )
 
-    readonly_fields=['account','uuid','amount','date','voucher']
-    def has_add_permission(self, request):
-         return False
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super().get_fieldsets(request, obj)
+        return fieldsets
 
+    def get_readonly_fields(self, request, obj=None):
+        if obj and obj.state != "invoiced":
+            return [field.name for field in self.model._meta.fields]
+        return ['uuid','account','address','amount','date','voucher']
 
 class TransactionAdmin(admin.ModelAdmin):
     list_display = (
@@ -145,10 +180,9 @@ class AccountAdmin(BaseUserAdmin):
     search_fields = ('username', 'email')
 
     fieldsets = (
-        (None, {'fields': (('email','is_active','is_staff'), 'password')}),
+        (None, {'fields': (('username','email','uuid','ref','is_active'), 'password')}),
             ('', {'fields': (
-            ('username','wallet','uuid','ref'),
-            ('date_joined','last_update'),
+            ('address','date_joined'),
             ('balance','interest','profit'),
         )}),
     )
@@ -164,11 +198,11 @@ class AccountAdmin(BaseUserAdmin):
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj)
-        self.inlines = [WithdrawalInline, InvoiceInline]
+        self.inlines = [InvestmentlInline, InvoiceInline, WithdrawalInline]
         return fieldsets
 
     def get_readonly_fields(self, request, obj=None):
-        return ['username','email']
+        return ['username','email','uuid','date_joined']
 
 
 admin.site.register(Group)

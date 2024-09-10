@@ -5,9 +5,9 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-types = (('interest','Interest'),('withdrawal','Withdrawal'),('income','Income'),('ref','Referred'))
-states = (('invoiced','Facturado'),('done','Aprobado'),('error','Error'))
-
+types = (('interest','Interest'),('outcome','Outcome'),('income','Income'),('investment','Investment'),('ref','Referred'),('error','Error'))
+states = (('invoiced','Invoiced'),('done','Approved'),('error','Error'))
+status = (('active','Active'),('inactive','Inactive'),('cancelled','Cancelled'),('error','Error'))
 
 def LogoUploadTo(instance, filename):
     return f"uploads/{instance.username}/logo/{filename}"
@@ -36,15 +36,15 @@ class Account(AbstractBaseUser, PermissionsMixin):
     ref = models.CharField(_("Ref"), max_length=6, blank=True)
     email = models.EmailField(_("Email"),unique=True)
     username = models.CharField(_("Usuario"),max_length=64, unique=True)
-    wallet = models.CharField(_("Wallet"), max_length=128, unique=True)
+    address = models.CharField(_("Address"), max_length=128, unique=True)
     
-    date_joined = models.DateField(default=timezone.now)
+    date_joined = models.DateField(_("Date"),default=timezone.now)
     last_update = models.DateField(default=timezone.now)
     
-    is_active = models.BooleanField(_("¿Activo?"),default=False)
-    is_staff = models.BooleanField(_("¿Staff?"),default=False)
+    is_active = models.BooleanField(default=False, verbose_name="")
+    is_staff = models.BooleanField(default=False, verbose_name="")
 
-    balance = models.FloatField(_("Ammount"), blank=True, null=True, default=0)
+    balance = models.FloatField(_("Amount"), blank=True, null=True, default=0)
     interest = models.FloatField(_("Interest"), blank=True, null=True, default=0)
     profit = models.FloatField(_("Profit"), blank=True, null=True,default=0)
     
@@ -68,12 +68,43 @@ class Account(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _("Accounts")
 
 
+
+class Investment(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    uuid = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True)
+    amount = models.FloatField(_("Amount"), blank=True, null=True, default=0)
+    interest = models.FloatField(_("Interest"), blank=True, null=True, default=0)
+    accumulated = models.FloatField(_("Accumulated"), blank=True, null=True, default=0)
+
+    date_joined = models.DateField(_("Initial"), default=timezone.now)
+    date_target = models.DateField(_("Finish"), default=timezone.now)
+
+    voucher = models.CharField(_("Voucher"), max_length=128, null=False, blank=False)
+    state = models.CharField(choices=status, default="active", max_length=16, verbose_name="")
+
+    def __str__(self):
+        return self.account.uuid
+
+    def save(self, *args, **kwargs):
+        if not self.voucher:
+            self.voucher = str(uuid.uuid4())[:8]
+        super().save(*args, **kwargs)
+
+
+    class Meta:
+        indexes = [models.Index(fields=['account']),]
+        verbose_name = _("Investment")
+        verbose_name_plural = _("Investment")
+
+
+
 class Invoice(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     uuid = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True)
     amount = models.FloatField(_("Amount"),blank=False,null=False,default=0)
     date = models.DateField(_("Date"), default=timezone.now)
     voucher = models.CharField(_("Voucher"), max_length=128, null=False, blank=False)
+    address = models.CharField(_("Address"), max_length=128, null=True, blank=True)
     state = models.CharField(choices=states, default="invoiced", max_length=16, verbose_name="")
 
     def save(self, *args, **kwargs):
@@ -90,12 +121,14 @@ class Invoice(models.Model):
         verbose_name_plural = _("Invoices")
 
 
+
 class Withdrawal(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     uuid = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True)
-    amount = models.FloatField(_("Ammount"),blank=False,null=False,default=0)
+    amount = models.FloatField(_("Amount"),blank=False,null=False,default=0)
     date = models.DateField(_("Date"), default=timezone.now)
     voucher = models.CharField(_("Voucher"), max_length=128, null=False, blank=False)
+    address = models.CharField(_("Address"), max_length=128, null=True, blank=True)
     state = models.CharField(choices=states, default="invoiced", max_length=16, verbose_name="")
 
     def save(self, *args, **kwargs):
@@ -111,10 +144,11 @@ class Withdrawal(models.Model):
         verbose_name = _("Withdrawal")
         verbose_name_plural = _("Withdrawals")
         
+        
 
 class Transaction(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
-    amount = models.FloatField(_("Ammount"),blank=False,null=False)
+    amount = models.FloatField(_("Amount"),blank=False,null=False)
     fee = models.FloatField(_("Fee"),blank=False,null=False,default=0)
     date = models.DateField(_("Date"), default=timezone.now)
     type = models.CharField(_("Type"), choices=types, max_length=128, null=False, blank=False)

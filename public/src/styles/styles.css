@@ -25,6 +25,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'CarvingSoft';
+  src: url('/fonts/CarvingSoft.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 :root {
   --foreground-rgb: 0, 0, 0;

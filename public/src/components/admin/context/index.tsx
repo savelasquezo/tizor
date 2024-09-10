@@ -3,14 +3,8 @@ import { GrMoney } from "react-icons/gr";
 import { GiReceiveMoney, GiTakeMyMoney } from "react-icons/gi";
 import { MdAttachMoney } from "react-icons/md";
 
+import { formatNumber } from "@/utils/formatNumber";
 import { SessionAuthenticated } from '@/lib/types/types';
-
-const formatNumber = (number: number) => {
-  return number.toLocaleString('es-CO', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-};
 
 const Context: React.FC<SessionAuthenticated> = ({ session }) => {
   const dailyAmount = Math.floor(((session?.user?.balance ?? 0) * (Math.pow(1 + (session?.user?.interest ?? 0) / 100, 1 / 365) - 1)) * 100) / 100;

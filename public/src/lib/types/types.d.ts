@@ -17,6 +17,25 @@ export type TransactionsInfo = {
     account: string;
 };
 
+export type TicketInfo = {
+    address: string;
+    amount: number;
+    date: string;
+    voucher: string;
+    state: string;
+};
+
+export type InvestmentInfo = {
+    uuid: string;
+    amount: number;
+    interest: number;
+    accumulated: number | null;
+    date_joined: string;
+    date_target: string;
+    voucher: string;
+    state: string;
+};
+
 export type HistoryInfo = {
     date: string;
     balance: number;
@@ -24,19 +43,23 @@ export type HistoryInfo = {
 };
   
 export type SiteType = {
-    nit: string;
-    phone: string;
+    id: number;
+    default: string;
+    ref: number;
+    min_interest: number;
+    max_interest: number;
     email: string;
-    facebook: string;
-    twitter: string;
-    instagram: string;
     address: string;
-    location: string;
-    start_attention: string;
-    end_attention: string;
-    special_attention: string;
-};
-
+    file: string | null;
+    legal: string;
+    template_block: string | null;
+    template_block_status: string | null;
+    template_invoice: string | null;
+    template_invoice_status: string | null;
+    template_withdrawal: string | null;
+    template_withdrawal_status: string | null;
+    terms: string;
+  };
 
 
 

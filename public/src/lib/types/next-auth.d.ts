@@ -6,7 +6,7 @@ declare module 'next-auth' {
       id: string;
       email: string;
       username: string;
-      wallet: string;
+      address: string;
       date_joined: Date;
       last_update: Date;
       is_active: boolean;
