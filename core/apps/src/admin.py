@@ -38,6 +38,34 @@ class InvestmentlInline(admin.StackedInline):
         return False
 
 
+class InvestmentHistorylInline(admin.TabularInline):
+    
+    model = model.InvestmentHistory
+    extra = 0
+
+    fieldsets = (
+        (" ", {"fields": (
+            ('account','amount'),
+            ('date','type','voucher'),
+                )
+            }
+        ),
+    )
+
+    radio_fields = {'state': admin.HORIZONTAL}
+
+    def get_readonly_fields(self, request, obj=None):
+        return [field.name for field in self.model._meta.fields]
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    class Media:
+        css = {'all': ('css/styles.css',)}
+
 class InvoiceInline(admin.StackedInline):
     
     model = model.Invoice
@@ -78,6 +106,41 @@ class WithdrawalInline(admin.StackedInline):
 
     def has_add_permission(self, request, obj=None):
         return False
+
+
+class InvestmentAdmin(admin.ModelAdmin):
+    list_display = (
+        'voucher',
+        'account',
+        'amount',
+        'interest',
+        'accumulated',
+        'date_joined',
+        'date_target',
+        'state'
+        )
+
+    list_filter = ['date_target','state']
+    search_fields = ['voucher']
+
+    radio_fields = {'state': admin.HORIZONTAL}
+    es_formats.DATETIME_FORMAT = "d M Y"
+    
+    fieldsets = (
+        (None, {'fields': (
+            ('account','amount','interest','accumulated'),
+            ('date_joined','date_target','state'),
+        )}),
+    )
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super().get_fieldsets(request, obj)
+        self.inlines = [InvestmentHistorylInline]
+        return fieldsets
+
+    def get_readonly_fields(self, request, obj=None):
+        return [field.name for field in self.model._meta.fields]
+
 
 
 class InvoiceAdmin(admin.ModelAdmin):
@@ -150,7 +213,6 @@ class TransactionAdmin(admin.ModelAdmin):
         'voucher',
         'account',
         'amount',
-        'fee',
         'date',
         'type',
         'state'
@@ -165,7 +227,7 @@ class TransactionAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': (
             ('account','type','voucher','state'),
-            ('date','amount','fee'),
+            ('date','amount'),
         )}),
     )
 
@@ -208,6 +270,7 @@ class AccountAdmin(BaseUserAdmin):
 admin.site.register(Group)
 
 admin.site.register(model.Account,AccountAdmin)
+admin.site.register(model.Investment,InvestmentAdmin)
 admin.site.register(model.Invoice, InvoiceAdmin)
 admin.site.register(model.Withdrawal, WithdrawalAdmin)
 admin.site.register(model.Transaction, TransactionAdmin)

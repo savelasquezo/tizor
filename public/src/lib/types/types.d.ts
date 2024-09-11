@@ -10,11 +10,11 @@ export type ForgotPasswordConfirmInfo = ForgotPasswordConfirm & ModalFunction;
 export type TransactionsInfo = {
     id: number;
     amount: number;
-    fee: number;
     date: string;
     type: string;
     voucher: string;
     account: string;
+    state: string;
 };
 
 export type TicketInfo = {
@@ -41,7 +41,33 @@ export type HistoryInfo = {
     balance: number;
     history: number;
 };
-  
+
+export type AccountReferedInfo = {
+    username: string;
+    balance: number;
+    date_joined: string;
+};
+
+export type LinkType = {
+    id: number;
+    uuid: string;
+    is_active: boolean;
+    name: string;
+    link: string;
+    settings: number;
+};
+
+export type ImageType = {
+    id: number;
+    file: string | null;
+};
+
+export type FAQType = {
+    id: number;
+    question: string;
+    answer: string;
+};
+
 export type SiteType = {
     id: number;
     default: string;
@@ -59,7 +85,8 @@ export type SiteType = {
     template_withdrawal: string | null;
     template_withdrawal_status: string | null;
     terms: string;
-  };
-
-
+    links: LinkType[];
+    images: ImageType[];
+    faqs: FAQType[];
+};
 

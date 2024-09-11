@@ -8,8 +8,10 @@ from rest_framework.pagination import PageNumberPagination
 import apps.src.models as model
 
 class TransactionPagination(PageNumberPagination):
+    page_size = 10
+    
     def get_paginated_response(self, data):
-        profit = math.floor((self.__sumTransaction('interest') or 0) / (self.__sumTransaction('income') or 1))
+        profit = round(((self.__sumTransaction('interest') or 0) / (self.__sumTransaction('income') or 1)) * 100, 2)
         return Response({
             'count': self.page.paginator.count,
             'profit': profit,

@@ -1,0 +1,21 @@
+{
+    "id": "edbee4",
+    "name": "adx",
+    "data": [
+        {
+            "date": "2024-09-10",
+            "balance": 24.03,
+            "history": 0
+        },
+        {
+            "date": "2024-09-10",
+            "balance": 24.17,
+            "history": 0
+        },
+        {
+            "date": "2024-09-10",
+            "balance": 24.32,
+            "history": 24.315403814771898
+        }
+    ]
+}

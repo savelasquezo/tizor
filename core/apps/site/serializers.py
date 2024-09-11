@@ -1,7 +1,7 @@
 from rest_framework import serializers
 import apps.site.models as model
 
-class ImagenSliderSerializer(serializers.ModelSerializer):
+class ImageSliderSerializer(serializers.ModelSerializer):
     
     file = serializers.SerializerMethodField()
     def get_file(self, obj):
@@ -10,7 +10,12 @@ class ImagenSliderSerializer(serializers.ModelSerializer):
         return None
 
     class Meta:
-        model = model.ImagenSlider
+        model = model.ImageSlider
+        fields = '__all__'
+
+class LinkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = model.Link
         fields = '__all__'
 
 class FAQSerializer(serializers.ModelSerializer):
@@ -19,6 +24,11 @@ class FAQSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class TizorbankSerializer(serializers.ModelSerializer):
+
+    links = LinkSerializer(many=True, read_only=True, source='link_set')
+    images = ImageSliderSerializer(many=True, read_only=True, source='imageslider_set')
+    faqs = FAQSerializer(many=True, read_only=True, source='faqs_set') 
+
     class Meta:
         model = model.Tizorbank
         fields = '__all__'

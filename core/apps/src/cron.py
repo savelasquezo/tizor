@@ -1,13 +1,42 @@
-import logging
+import os, json, logging
+
 from django.utils import timezone
-from apps.src.models import Account
+from django.db.models import Sum
+from django.conf import settings
+
+from apps.src.models import Account, Investment
 from apps.site.models import Tizorbank
-from apps.src.functions import makeTransaction
+from apps.src.functions import makeTransaction, makeHistory
 
 logger = logging.getLogger(__name__)
 
-def daily(balance: float, interest: float) -> float:
-    return balance * ((1 + interest*0.01) ** (1/365) - 1)
+def daily(amount: float, interest: float) -> float:
+    return amount * ((1 + interest*0.01) ** (1/365) - 1)
+
+def updateJson(user, amount, history):
+    file_path = os.path.join(settings.BASE_DIR, 'data', f'{user.username}.json')
+
+    user_data = {
+        "id": str(user.uuid),
+        "email": user.email,
+        "data": []
+    }
+
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as file:
+            try:
+                user_data = json.load(file)
+            except json.JSONDecodeError:
+                logger.error(f"Error decoding JSON for user {user.username}")
+    
+    user_data["data"].append({
+        "date": timezone.now().strftime('%Y-%m-%d'),
+        "balance": round(amount, 2),
+        "history": history
+    })
+
+    with open(file_path, 'w') as file:
+        json.dump(user_data, file, indent=4)
 
 def AddFunds():
     
@@ -22,21 +51,28 @@ def AddFunds():
             amount = daily(balance, interest)
             makeTransaction(user, amount, 'interest','done', None)
 
+            list_investments = Investment.objects.filter(account=user)
+            for invest in list_investments:
+                daily_interest = daily(invest.amount, invest.interest)
+                invest.accumulated += daily_interest
+                makeHistory(user, invest, daily_interest, 'interest')
+                invest.save()
+
             list_ref = list_user.filter(ref=user.uuid)
             amount_ref = 0
             for ref in list_ref:
-                amount_ref += daily(ref.balance, interest_ref)
+                totalref = ref.balance + (Investment.objects.filter(account=ref).aggregate(total=Sum('amount'))['total'] or 0)
+                amount_ref += daily(totalref, interest_ref)
 
+            if amount_ref > 0:
+                makeTransaction(user, amount_ref, 'ref','done')
+            
             user.balance += amount + amount_ref
             user.profit += amount + amount_ref
-            makeTransaction(user, amount_ref, 'ref','done')
             user.save()
             
-            
-            
-            
+            updateJson(user, user.balance, user.profit)
+
     except Exception as e:
         print(f'AddFunds Error-{e}')
-
-    
 

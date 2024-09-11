@@ -73,8 +73,8 @@ class fetchImagesSlider(generics.ListAPIView):
     Endpoint to retrieve all images of Slider module.
     Not Requires authentication.
     """
-    queryset = model.ImagenSlider.objects.all()
-    serializer_class = serializer.ImagenSliderSerializer
+    queryset = model.ImageSlider.objects.all()
+    serializer_class = serializer.ImageSliderSerializer
     permission_classes = [AllowAny]
 
     def get(self, request, *args, **kwargs):

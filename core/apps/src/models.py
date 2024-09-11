@@ -5,6 +5,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+event = (('investment','Investment'),('interest','Interest'),('closure','Closure'),('error','Error'))
 types = (('interest','Interest'),('outcome','Outcome'),('income','Income'),('investment','Investment'),('ref','Referred'),('error','Error'))
 states = (('invoiced','Invoiced'),('done','Approved'),('error','Error'))
 status = (('active','Active'),('inactive','Inactive'),('cancelled','Cancelled'),('error','Error'))
@@ -32,8 +33,8 @@ class AccountManager(BaseUserManager):
 
 class Account(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True, primary_key=True)
-    uuid =  models.CharField(_("UUID"), max_length=6, null=True, blank=True)
-    ref = models.CharField(_("Ref"), max_length=6, blank=True)
+    uuid =  models.CharField(_("UUID"), max_length=8, null=True, blank=True)
+    ref = models.CharField(_("Ref"), max_length=8, blank=True)
     email = models.EmailField(_("Email"),unique=True)
     username = models.CharField(_("Usuario"),max_length=64, unique=True)
     address = models.CharField(_("Address"), max_length=128, unique=True)
@@ -58,12 +59,12 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     def save(self, *args, **kwargs):
         if not self.uuid:
-            self.uuid = str(uuid.uuid4())[:6]
+            self.uuid = str(uuid.uuid4())[:8]
         super().save(*args, **kwargs)
 
 
     class Meta:
-        indexes = [models.Index(fields=['email']),]
+        indexes = [models.Index(fields=['email','uuid','ref']),]
         verbose_name = _("Account")
         verbose_name_plural = _("Accounts")
 
@@ -83,7 +84,7 @@ class Investment(models.Model):
     state = models.CharField(choices=status, default="active", max_length=16, verbose_name="")
 
     def __str__(self):
-        return self.account.uuid
+        return self.voucher
 
     def save(self, *args, **kwargs):
         if not self.voucher:
@@ -92,9 +93,32 @@ class Investment(models.Model):
 
 
     class Meta:
-        indexes = [models.Index(fields=['account']),]
+        indexes = [models.Index(fields=['voucher']),]
         verbose_name = _("Investment")
         verbose_name_plural = _("Investment")
+
+
+
+class InvestmentHistory(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    investment = models.ForeignKey(Investment, on_delete=models.CASCADE)
+    amount = models.FloatField(_("Amount"),blank=False,null=False)
+    date = models.DateField(_("Date"), default=timezone.now)
+    type = models.CharField(_("Type"), choices=event, max_length=128, null=False, blank=False)
+    voucher = models.CharField(_("Voucher"), max_length=128, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.voucher}"
+
+    def save(self, *args, **kwargs):
+        if not self.voucher:
+            self.voucher = str(uuid.uuid4())[:8]
+        super().save(*args, **kwargs)
+
+    class Meta:
+        indexes = [models.Index(fields=['investment','voucher']),]
+        verbose_name = _("History")
+        verbose_name_plural = _("History")
 
 
 
@@ -107,16 +131,16 @@ class Invoice(models.Model):
     address = models.CharField(_("Address"), max_length=128, null=True, blank=True)
     state = models.CharField(choices=states, default="invoiced", max_length=16, verbose_name="")
 
+    def __str__(self):
+        return f"{self.voucher}"
+
     def save(self, *args, **kwargs):
         if not self.voucher:
             self.voucher = str(uuid.uuid4())[:8]
         super().save(*args, **kwargs)
 
-    def __str__(self):
-        return f"{self.voucher}"
-
     class Meta:
-        indexes = [models.Index(fields=['account','voucher','state']),]
+        indexes = [models.Index(fields=['voucher','state']),]
         verbose_name = _("Invoice")
         verbose_name_plural = _("Invoices")
 
@@ -131,16 +155,16 @@ class Withdrawal(models.Model):
     address = models.CharField(_("Address"), max_length=128, null=True, blank=True)
     state = models.CharField(choices=states, default="invoiced", max_length=16, verbose_name="")
 
+    def __str__(self):
+        return f"{self.voucher}"
+
     def save(self, *args, **kwargs):
         if not self.voucher:
             self.voucher = str(uuid.uuid4())[:8]
         super().save(*args, **kwargs)
 
-    def __str__(self):
-        return f"{self.voucher}"
-
     class Meta:
-        indexes = [models.Index(fields=['account','voucher','state']),]
+        indexes = [models.Index(fields=['voucher','state']),]
         verbose_name = _("Withdrawal")
         verbose_name_plural = _("Withdrawals")
         
@@ -149,19 +173,18 @@ class Withdrawal(models.Model):
 class Transaction(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     amount = models.FloatField(_("Amount"),blank=False,null=False)
-    fee = models.FloatField(_("Fee"),blank=False,null=False,default=0)
     date = models.DateField(_("Date"), default=timezone.now)
     type = models.CharField(_("Type"), choices=types, max_length=128, null=False, blank=False)
     voucher = models.CharField(_("Voucher"), max_length=128, null=True, blank=True)
     state = models.CharField(choices=states, default="invoiced", max_length=16, verbose_name="")
 
-    def save(self, *args, **kwargs):
-        if not self.voucher:
-            self.voucher = str(uuid.uuid4())[:6]
-        super().save(*args, **kwargs)
-
     def __str__(self):
         return f"{self.voucher}"
+
+    def save(self, *args, **kwargs):
+        if not self.voucher:
+            self.voucher = str(uuid.uuid4())[:8]
+        super().save(*args, **kwargs)
 
     class Meta:
         indexes = [models.Index(fields=['account','voucher']),]

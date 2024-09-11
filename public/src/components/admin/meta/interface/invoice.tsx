@@ -118,7 +118,7 @@ const Invoice: React.FC<SessionAuthenticated> = ({ session }) => {
     <div className="w-full h-full">
       <div className="w-full h-56 space-y-4">
         <div className='w-full flex flex-row'>
-          <button onClick={() => switchModal('add')} className={`text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'add' ? 'bg-green-700 hover:bg-green-900' : 'bg-green-400'}`}>Transferir</button>
+          <button onClick={() => switchModal('add')} className={`text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'add' ? 'bg-green-700 hover:bg-green-900' : 'bg-green-400'}`}>Agregar</button>
           <button onClick={() => switchModal('lst')} className={`text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'lst' ? 'bg-gray-700 hover:bg-gray-900' : 'bg-gray-400'}`}>Historial</button>
         </div>
         <form className={`${activeTab === 'add' ? 'block animate-fade-in animate__animated animate__fadeIn' : 'hidden animate-fade-out animate__animated animate__fadeOut'}`}>
@@ -148,7 +148,7 @@ const Invoice: React.FC<SessionAuthenticated> = ({ session }) => {
               <span className='text-gray-500 text-sm'><IoWalletOutline /></span>
               <span className='text-gray-800 font-bankprinter text-xs'>{data?.address}</span>
             </p>
-            <span onClick={handleCopyClick} className={`cursor-pointer transition-colors duration-1000 ${copySuccess ? 'text-green-500' : ''}`}><FaRegCopy /></span>
+            <span onClick={handleCopyClick} className={`cursor-pointer transition-colors duration-1000 z-10 ${copySuccess ? 'text-green-500' : ''}`}><FaRegCopy /></span>
           </div>
           <div className="text-center">
             <p className="mt-2 text-gray-900 text-xs">

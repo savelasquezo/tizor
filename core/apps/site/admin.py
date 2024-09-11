@@ -3,11 +3,22 @@ import apps.site.models as model
 
 
 class ImageSliderInline(admin.StackedInline):
-    
-    model = model.ImagenSlider
-    extra = 0
-    fieldsets = ((' ', {'fields': (('file',),)}),)
 
+    model = model.ImageSlider
+    extra = 0
+    fieldsets = ((' ', {'fields': (('file','is_active'),)}),)
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+class LinksInline(admin.TabularInline):
+    
+    model = model.Link
+    extra = 0
+    fieldsets = ((' ', {'fields': (('name','link','is_active'),)}),)
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 class FAQsInline(admin.StackedInline):
     
@@ -15,9 +26,12 @@ class FAQsInline(admin.StackedInline):
     extra = 0
     fieldsets = ((' ', {'fields': (('question','is_active'),'answer')}),)
 
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 class TizorbankAdmin(admin.ModelAdmin):
 
-    inlines = [ImageSliderInline, FAQsInline, ]
+    inlines = [ImageSliderInline, LinksInline, FAQsInline, ]
     
     list_display = (
         'default',
@@ -50,8 +64,7 @@ class TizorbankAdmin(admin.ModelAdmin):
     )
 
 
-    def has_delete_permission(self, request, obj=None):
-        return False
+
     
     def has_add_permission(self, request):
         return False if model.Tizorbank.objects.exists() else True

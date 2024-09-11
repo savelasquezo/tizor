@@ -16,7 +16,7 @@ from apps.site.models import Tizorbank
 import apps.src.models as model
 import apps.src.serializers as serializer
 import apps.src.pagination as paginate
-from apps.src.functions import makeTransaction
+from apps.src.functions import makeTransaction, makeHistory
 
 logger = logging.getLogger(__name__)
 
@@ -171,12 +171,14 @@ class requestInvestment(generics.GenericAPIView):
             request.user.save()
 
             apiInvestment = obj.voucher
+            
+            makeHistory(request.user, obj, obj.amount, 'investment')
             makeTransaction(request.user, -amount, 'investment', 'done', apiInvestment)
             return Response({'apiInvestment': apiInvestment}, status=status.HTTP_200_OK)
 
         except Exception as e:
             logger.error("%s", e, exc_info=True)
-            return Response({'error': 'NotFound Invoice.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR) 
+            return Response({'error': 'NotFound Investment.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR) 
 
 
 
@@ -186,10 +188,18 @@ class fetchTransactions(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     pagination_class = paginate.TransactionPagination
-    page_size = 5
 
     def get_queryset(self, request):
-        return model.Transaction.objects.filter(account=request.user).order_by('id')
+        queryset = model.Transaction.objects.filter(account=request.user).order_by('-id')
+        voucher = request.query_params.get('voucher')
+        if voucher:
+            queryset = queryset.filter(voucher__icontains=voucher)
+
+        transaction_date = request.query_params.get('date')
+        if transaction_date:
+            queryset = queryset.filter(date__icontains=transaction_date)
+
+        return queryset
 
     def list(self, request, *args, **kwargs):
         try:
@@ -202,7 +212,8 @@ class fetchTransactions(generics.ListAPIView):
             return Response(serializer.data)
         except Exception as e:
             logger.error("%s", e, exc_info=True)
-            return Response({'error': 'Not Found Advertisement.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({'error': 'Not Found Transactions.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 
 class fetchHistory(generics.GenericAPIView):
@@ -218,4 +229,28 @@ class fetchHistory(generics.GenericAPIView):
         
         except Exception as e:
             logger.error("%s", e, exc_info=True)
-            return Response({'error': 'Not Found Advertisement.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({'error': 'Not Found History.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class fetchReferred(generics.ListAPIView):
+    serializer_class = serializer.AccountSerializer
+    permission_classes = [IsAuthenticated]
+
+    pagination_class = paginate.PageNumberPagination
+
+    def get_queryset(self, request):
+        queryset = model.Account.objects.filter(ref=request.user.uuid).order_by('-id')[:5]
+        return queryset
+
+    def list(self, request, *args, **kwargs):
+        try:
+            queryset = self.get_queryset(request)
+            page = self.paginate_queryset(queryset)
+            if page is not None:
+                serializer = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializer.data)
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data)
+        except Exception as e:
+            logger.error("%s", e, exc_info=True)
+            return Response({'error': 'Not Found Referred.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

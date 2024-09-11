@@ -1,16 +1,19 @@
 from typing import Optional
 from django.db import transaction
-from apps.src.models import Account, Transaction
+from apps.src.models import Account, Transaction, Investment, InvestmentHistory
 
-def makeTransaction(user: Account, amount: float, type: str, state: str, voucher: Optional[str] = None) -> Optional[Transaction]:
+def makeHistory(account: Account, investment: Investment, amount: float, type: str, voucher: Optional[str] = None) -> Optional[InvestmentHistory]:
+    obj = InvestmentHistory.objects.create(account=account, investment=investment, amount=amount, type=type, voucher=voucher)
+    obj.save()
+
+def makeTransaction(account: Account, amount: float, type: str, state: str, voucher: Optional[str] = None) -> Optional[Transaction]:
     data = {'amount': amount, 'type': type, 'state': state}
     with transaction.atomic():
-        obj, created = Transaction.objects.get_or_create(account=user, state='invoiced', voucher=voucher, defaults={**data})
+        obj, created = Transaction.objects.get_or_create(account=account, state='invoiced', voucher=voucher, defaults={**data})
         if not created:
             for attr, value in data.items():
                 setattr(obj, attr, value)
             obj.save()
-    return obj
 
 def updateTransaction(user: Account, state: str, voucher: str) -> Optional[Transaction]:
     obj = Transaction.objects.get(account=user, voucher=voucher)

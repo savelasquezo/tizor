@@ -13,12 +13,17 @@ def FilesUploadTo(instance, id):
 def ImagesUploadTo(instance, id):
     return f"uploads/files/{id}"
 
+links = (('facebook', 'Facebook'),('instagram', 'Instagram'),('youtube', 'YouTube'),('tiktok', 'TikTok'),
+         ('twitter', 'Twitter'),('linkedin', 'LinkedIn'),('reddit', 'Reddit'),('pinterest', 'Pinterest'),
+         ('snapchat', 'Snapchat'),('telegram', 'Telegram'),('whatsapp', 'WhatsApp'),
+        )
+
 class Tizorbank(models.Model):
     default = models.CharField(_("Tizorbank"), max_length=32, unique=True, blank=True, null=True, default="Tizorbank")
-    ref = models.FloatField(_("Interet-reF"),blank=False,null=False,default=0.5)
     
     min_interest = models.FloatField(_("Interest (Min)"),blank=False,null=False,default=14)
     max_interest = models.FloatField(_("Interest (Max)"),blank=False,null=False,default=24)
+    ref = models.FloatField(_("Interet-reF"),blank=False,null=False,default=5)
     
     email = models.EmailField(_("Email"), max_length=256, blank=True, null=True)
     address = models.CharField(_("Address"),max_length=256, unique=True)
@@ -45,23 +50,27 @@ class Tizorbank(models.Model):
         verbose_name_plural = _("Tizorbank")
 
 
-class MediaLinks(models.Model):
+class Link(models.Model):
     uuid = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True)
     settings = models.ForeignKey(Tizorbank, on_delete=models.CASCADE)
-    name = models.CharField(_("Name"),max_length=64, null=False, blank=False)
-    link = models.URLField(_("Link"), max_length=128, blank=True, null=True)
+    is_active = models.BooleanField(default=True, verbose_name='')
+    
+    name = models.CharField(_("Name-SM google"),choices=links, max_length=64, null=False, blank=False)
+    link = models.URLField(_("Link-SM (https://google.com/*)"), max_length=128, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.uuid}"
+        return f'{""}'
 
     class Meta:
         verbose_name = _("Link")
         verbose_name_plural = _("Links")
 
 
-class ImagenSlider(models.Model):
+class ImageSlider(models.Model):
     uuid = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True)
     settings = models.ForeignKey(Tizorbank, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True, verbose_name='')
+
     file = models.ImageField(_("Image"), upload_to=ImagesUploadTo, max_length=512, null=True, blank=True,
                               help_text="Width-(1280px) - Height-(640px)")
 
@@ -76,9 +85,10 @@ class ImagenSlider(models.Model):
 class FAQs(models.Model):
     uuid = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True)
     settings = models.ForeignKey(Tizorbank, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True, verbose_name='')
+    
     question = models.CharField(_("Title"),max_length=64, null=False, blank=False)
     answer = models.TextField(_("Description"),max_length=1024, null=False, blank=False)
-    is_active = models.BooleanField(default=True, verbose_name='')
 
     def __str__(self):
         return f"{self.uuid}"
