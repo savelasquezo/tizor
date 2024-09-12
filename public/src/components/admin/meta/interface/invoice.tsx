@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { reloadSession } from '@/app/api/auth/[...nextauth]/route';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 
@@ -106,9 +107,11 @@ const Invoice: React.FC<SessionAuthenticated> = ({ session }) => {
       if (!data.error) {
         setInvoice(data.apiInvoice);
         setRegistrationSuccess(true);
+        reloadSession();
       }
-    } catch (error) {
-      setError('There was an error with the network request');
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.error || 'There was an error with the network request';
+      setError(errorMessage);
       NextResponse.json({ error: 'There was an error with the network request' }, { status: 500 });
     }
     setLoading(false);
@@ -157,32 +160,31 @@ const Invoice: React.FC<SessionAuthenticated> = ({ session }) => {
             <div className='flex items-center justify-center text-xs h-10 my-4 border-t-1 border-gray-400'>
               {registrationSuccess && <p className="text-green-900 font-semibold font-cocogoose text-[0.65rem] mt-3">¡Felicidades! Has generado tu factura con éxito. Ahora, solo resta realizar el envío de las USDT a la dirección de wallet indicada. ¡Gracias por tu confianza!</p>}
               {error && <p className="text-red-600 font-semibold font-carvingsoft text-sm mt-3 uppercase">{error}</p>}
-              {!registrationSuccess && !error && <p className="text-gray-900 mt-3">¿Necesitas ayuda? {data?.email ?? 'support@webmaster.com'}
-              </p>}
+              {!registrationSuccess && !error && <p className="text-gray-900 mt-3">¿Necesitas ayuda? {data?.email ?? 'support@webmaster.com'}</p>}
             </div>
           </div>
         </form>
         <section className={`w-full h-full ${activeTab === 'lst' ? 'block animate-fade-in animate__animated animate__fadeIn' : 'hidden animate-fade-out animate__animated animate__fadeOut'}`}>
           {tickets.length > 0 ? (
             <div>
-              <table className="min-w-full text-center text-sm font-light">
+              <table className="w-full text-center text-sm font-light table-fixed">
                 <thead className="font-medium text-gray-900">
                   <tr className="border-b-2 border-slate-400 font-cocogoose font-semibold uppercase text-xs">
-                    <th scope="col" className=" px-6 py-1">ID</th>
-                    <th scope="col" className=" px-6 py-1">Wallet</th>
-                    <th scope="col" className=" px-6 py-1">Valor</th>
-                    <th scope="col" className=" px-6 py-1">Fecha</th>
-                    <th scope="col" className=" px-6 py-1">Estado</th>
+                    <th scope="col" className="w-1/6 px-6 py-1">ID</th>
+                    <th scope="col" className="w-1/6 px-6 py-1">Wallet</th>
+                    <th scope="col" className="w-1/6 px-6 py-1">Valor</th>
+                    <th scope="col" className="w-1/6 px-6 py-1">Fecha</th>
+                    <th scope="col" className="w-1/6 px-6 py-1">Estado</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filledTickets.map((obj, index) => (
                     <tr key={index} className="border-b border-slate-300 uppercase text-xs text-gray-600 text-center align-middle h-6">
-                      <td className="whitespace-nowrap px-6 py-1 font-bankprinter">{obj.voucher ? obj.voucher : ''}</td>
-                      <td className="whitespace-nowrap px-6 py-1 font-bankprinter">{obj.address ? obj.address : ''}</td>
-                      <td className="whitespace-nowrap px-6 py-1 font-bankprinter">{obj.amount ? formatNumber(obj.amount) : ''}</td>
-                      <td className="whitespace-nowrap px-6 py-1 font-bankprinter">{obj.date ? obj.date : ''}</td>
-                      <td className="whitespace-nowrap px-6 py-1 font-bankprinter">{obj.state ? obj.state : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-6 py-1 font-bankprinter">{obj.voucher ? obj.voucher : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-6 py-1 font-bankprinter">{obj.address ? obj.address : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-6 py-1 font-bankprinter">{obj.amount ? formatNumber(obj.amount) : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-6 py-1 font-bankprinter">{obj.date ? obj.date : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-6 py-1 font-bankprinter">{obj.state ? obj.state : ''}</td>
                     </tr>
                   ))}
                 </tbody>

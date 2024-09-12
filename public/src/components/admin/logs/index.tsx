@@ -30,7 +30,6 @@ export const fetchTransactions = async (accessToken: string, page: number = 1, f
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error(error);
     return { results: [], count: 0 };
   }
 }
@@ -64,10 +63,7 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
     fetchData(1);
   }, [voucherFilter, dateFilter]);
 
-  const changePage = ({ selected }: { selected: number }) => {
-    setPageNumber(selected);
-  };
-
+  const changePage = ({ selected }: { selected: number }) => { setPageNumber(selected); };
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (name === 'voucher') setVoucherFilter(value);
@@ -95,43 +91,41 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
             className="w-1/3 text-default-400 bg-gray-100 rounded-lg px-4 flex-shrink-0 focus:outline-none focus:ring-0"
           />
         </div>
-        <div className="w-full h-3/4">
-          <div className="w-full h-full overflow-x-auto lg:overflow-y-hidden">
-            <table className="min-w-full text-center text-sm font-light">
-              <thead className="font-medium text-gray-900">
-                <tr className="border-b-2 border-slate-400 font-cocogoose font-semibold uppercase text-xs">
-                  <th scope="col" className=" px-6 py-0.5">Voucher</th>
-                  <th scope="col" className=" px-6 py-0.5">Valor</th>
-                  <th scope="col" className=" px-6 py-0.5">Fecha</th>
-                  <th scope="col" className=" px-6 py-0.5">Movimiento</th>
-                  <th scope="col" className=" px-6 py-0.5">Estado</th>
+        <div className="relative w-full h-full">
+          <table className="min-w-full text-center text-sm font-light table-fixed">
+            <thead className="font-medium text-gray-900">
+              <tr className="border-b-2 border-slate-400 font-cocogoose font-semibold uppercase text-xs">
+                <th scope="col" className="w-1/5 px-6 py-0.5">Voucher</th>
+                <th scope="col" className="w-1/5 px-6 py-0.5">Valor</th>
+                <th scope="col" className="w-1/5 px-6 py-0.5">Fecha</th>
+                <th scope="col" className="w-1/5 px-6 py-0.5">Movimiento</th>
+                <th scope="col" className="w-1/5 px-6 py-0.5">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tickets.map((ticket) => (
+                <tr key={ticket.id} className="w-full border-b border-slate-300 uppercase text-xs text-gray-500 text-center align-middle h-6">
+                  <td className="w-1/5 whitespace-nowrap px-6 py-0.5 font-bankprinter">{ticket.voucher}</td>
+                  <td className="w-1/5 whitespace-nowrap px-6 py-0.5 font-bankprinter">{formatNumber(ticket.amount)}</td>
+                  <td className="w-1/5 whitespace-nowrap px-6 py-0.5 font-bankprinter">{ticket.date}</td>
+                  <td className="w-1/5 whitespace-nowrap px-6 py-0.5 font-bankprinter">{ticket.type}</td>
+                  <td className="w-1/5 whitespace-nowrap px-6 py-0.5 font-bankprinter">{ticket.state}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {tickets.map((ticket) => (
-                  <tr key={ticket.id} className="border-b border-slate-300 uppercase text-xs text-gray-500 text-center align-middle h-6">
-                    <td className="whitespace-nowrap px-6 py-0.5 font-bankprinter">{ticket.voucher}</td>
-                    <td className="whitespace-nowrap px-6 py-0.5 font-bankprinter">{formatNumber(ticket.amount)}</td>
-                    <td className="whitespace-nowrap px-6 py-0.5 font-bankprinter">{ticket.date}</td>
-                    <td className="whitespace-nowrap px-6 py-0.5 font-bankprinter">{ticket.type}</td>
-                    <td className="whitespace-nowrap px-6 py-0.5 font-bankprinter">{ticket.state}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className='flex flex-row items-center justify-center'>
+              ))}
+            </tbody>
+          </table>
+          <div className='w-full flex flex-row items-center justify-center'>
             <ReactPaginate
               previousLabel={<MdNavigateBefore />}
               nextLabel={<MdNavigateNext />}
               breakLabel={'...'}
               pageCount={pageCount}
               onPageChange={changePage}
-              className={'relative bottom-2 w-full h-16 flex flex-row items-center justify-center gap-x-2 px-8'}
+              className={'absolute bottom-12 w-full flex flex-row items-center justify-center gap-x-2'}
               pageClassName={'text-gray-700 rounded-full !px-3 !py-1 transition-colors duration-300'}
               activeClassName={'text-blue-800 font-semibold rounded-full !px-3 !py-1 transition-colors duration-300'}
-              previousClassName={'absolute left-5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-1 transition-colors duration-300'}
-              nextClassName={'absolute right-5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-1 transition-colors duration-300'}
+              previousClassName={'absolute left-10 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-1 transition-colors duration-300'}
+              nextClassName={'absolute right-10 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-1 transition-colors duration-300'}
             />
           </div>
         </div>

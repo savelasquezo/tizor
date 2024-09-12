@@ -24,6 +24,38 @@ def makeInvoice(length=12):
     return base64.urlsafe_b64encode(os.urandom(length)).decode('utf-8')[:length]
 
 
+class updateAccount(generics.GenericAPIView):
+    """
+    API view to update the authenticated user's address.
+
+    Attributes:
+        serializer_class (serializer.AccountSerializer): The serializer for request and response data.
+        permission_classes (list): The permissions required to access this view.
+
+    Methods:
+        post(request, *args, **kwargs):
+            Updates the user's address if it's not already associated with another account.
+    """
+    serializer_class = serializer.AccountSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        address = request.data.get('address')
+            
+        try:
+            if model.Account.objects.filter(address=address):
+                return Response({'error': 'The wallet is already associated with another account'}, status=status.HTTP_409_CONFLICT)
+                
+            request.user.address = address
+            request.user.save()
+            return Response({'message': 'The user has been updated successfully'}, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            logger.error("%s", e, exc_info=True)
+            return Response({'error': 'NotFound Account'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
 class requestInvoice(generics.GenericAPIView):
     
     serializer_class = serializer.InvoiceSerializer
@@ -154,7 +186,7 @@ class requestInvestment(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         amount = request.data.get('amount')
         months = request.data.get('months')
-        
+        print("entro al metodo")
         if amount > request.user.balance or amount <= 0 or not months in range(6, 37):
             return Response({'detail': 'The requested amount is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
         

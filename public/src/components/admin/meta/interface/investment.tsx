@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { reloadSession } from '@/app/api/auth/[...nextauth]/route';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 
@@ -31,6 +32,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
   const [investment, setInvestment] = useState(false);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
+  const [mathAmount, setMathAmount] = useState(false);
   const mathInterest = (months: number): number => {
     const minInterest = data?.min_interest;
     const maxInterest = data?.max_interest;
@@ -78,7 +80,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
     if (fetchedSettings) {
       setData(fetchedSettings);
       if (session.user.balance > 100) {
-        setInvestment(true)
+        setMathAmount(true)
       }
 
     }
@@ -109,10 +111,13 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
       );
       const data = res.data;
       if (!data.error) {
-        console.log("OK")
+        setInvestment(data.apiInvestment);
+        setRegistrationSuccess(true);
+        reloadSession();
       }
-    } catch (error) {
-      setError('There was an error with the network request');
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.error || 'There was an error with the network request';
+      setError(errorMessage);
       NextResponse.json({ error: 'There was an error with the network request' }, { status: 500 });
     }
     setLoading(false);
@@ -127,9 +132,9 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
         </div>
         <form className={`${activeTab === 'add' ? 'block animate-fade-in animate__animated animate__fadeIn' : 'hidden animate-fade-out animate__animated animate__fadeOut'}`}>
           <div className="w-full h-full flex flex-col items-center justify-center">
-            <Slider label="Saldo" hideValue={!investment} step={stepAmount} minValue={stepAmount} maxValue={stepAmount*10} defaultValue={stepAmount} showSteps={true} size="sm" color="primary"
+            <Slider label="Saldo" hideValue={!mathAmount} step={stepAmount} minValue={stepAmount} maxValue={stepAmount*10} defaultValue={stepAmount} showSteps={true} isDisabled={registrationSuccess} size="sm" color="primary"
               onChange={(value: number | number[]) => {if (Array.isArray(value)) {setAmount(value[0]);} else {setAmount(value);}}}/>
-            <Slider label="Temporalidad" step={3} minValue={6} maxValue={36} defaultValue={12} showSteps={true} size="sm" color="primary"
+            <Slider label="Temporalidad" step={3} minValue={6} maxValue={36} defaultValue={12} showSteps={true} isDisabled={registrationSuccess} size="sm" color="primary"
               onChange={(value: number | number[]) => {if (Array.isArray(value)) {setMonths(value[0]);} else {setMonths(value);}}}/>
           </div>
           <div className="text-center">
@@ -140,7 +145,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
               <div className='flex flex-col items-start justify-center py-1'>
                 <p className='flex flex-row justify-start items-center gap-x-2'>
                   <span className='text-gray-500 text-sm'><IoWalletOutline /></span>
-                  <span className='text-gray-800 font-bankprinter text-xs'>Saldo Aproximado: {investment ? `${mathExpected().toFixed(2)}` : '--'}</span>
+                  <span className='text-gray-800 font-bankprinter text-xs'>Saldo Aproximado: {mathAmount ? `${mathExpected().toFixed(2)}` : '--'}</span>
                 </p>
                 <p className='flex flex-row justify-start items-center gap-x-2'>
                   <span className='text-gray-500 text-sm'><TbSquareRoundedPercentage /></span>
@@ -150,40 +155,39 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
               {!registrationSuccess ? (
                 loading ? (<button className="h-14 w-10 flex justify-center items-center bg-violet-800 text-white p-2 shadow-sm rounded-r-md"><CircleLoader loading={loading} size={14} color="#ffff" /></button>) : (
                   <button type="button" onClick={(e) => onSubmit(e)} className="h-14 w-10 flex justify-center font-cocogoose items-center bg-violet-600 text-white p-2 shadow-sm rounded-r-md focus:bg-violet-700 hover:bg-violet-800 transition-colors duration-700"><MdOutlineFactCheck/></button>
-                )) : (<p className="h-14 w-32 flex justify-center items-center bg-gray-600 text-white p-2 shadow-sm rounded-r-md">FACTURA</p>
+                )) : (<p className="h-14 w-32 flex justify-center items-center bg-gray-600 text-white p-2 shadow-sm rounded-r-md">{investment}</p>
               )}
             </div>
             <div className='flex items-center justify-center text-xs h-10 my-4 border-t-1 border-gray-400'>
               {registrationSuccess && <p className="text-green-900 font-semibold font-cocogoose text-[0.65rem] mt-3">¡Felicidades! Has generado tu factura con éxito. Ahora, solo resta realizar el envío de las USDT a la dirección de wallet indicada. ¡Gracias por tu confianza!</p>}
-              {!registrationSuccess && !error && <p className="text-gray-900 mt-3">¿Necesitas ayuda? {data?.email ?? 'support@webmaster.com'}
-              {error && <p className="text-red-600 mt-3">{error}</p>}
-              </p>}
+              {error && <p className="text-red-600 font-semibold font-carvingsoft text-sm mt-3 uppercase">{error}</p>}
+              {!registrationSuccess && !error && <p className="text-gray-900 mt-3">¿Necesitas ayuda? {data?.email ?? 'support@webmaster.com'}</p>}
             </div>
           </div>
         </form>
         <section className={`w-full h-full ${activeTab === 'lst' ? 'block animate-fade-in animate__animated animate__fadeIn' : 'hidden animate-fade-out animate__animated animate__fadeOut'}`}>
           {tickets.length > 0 ? (
             <div>
-              <table className="min-w-full text-center text-sm font-light">
+              <table className="min-w-full text-center text-sm font-light table-fixed">
                 <thead className="font-medium text-gray-900">
                   <tr className="border-b-2 border-slate-400 font-cocogoose font-semibold uppercase text-xs">
-                    <th scope="col" className=" px-1 py-2">ID</th>
-                    <th scope="col" className=" px-1 py-2">Saldo</th>
-                    <th scope="col" className=" px-1 py-2">Interes</th>
-                    <th scope="col" className=" px-1 py-2">Acumulado</th>
-                    <th scope="col" className=" px-1 py-2">Fecha</th>
-                    <th scope="col" className=" px-1 py-2">Estado</th>
+                    <th scope="col" className="w-1/6 px-1 py-2">ID</th>
+                    <th scope="col" className="w-1/6 px-1 py-2">Saldo</th>
+                    <th scope="col" className="w-1/6 px-1 py-2">Interes</th>
+                    <th scope="col" className="w-1/6 px-1 py-2">Acumulado</th>
+                    <th scope="col" className="w-1/6 px-1 py-2">Fecha</th>
+                    <th scope="col" className="w-1/6 px-1 py-2">Estado</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filledTickets.map((obj, index) => (
                     <tr key={index} className="border-b border-slate-300 uppercase text-xs text-gray-600 text-center align-middle h-8">
-                      <td className="whitespace-nowrap px-1 py-2 font-bankprinter">{obj.voucher ? obj.voucher : ''}</td>
-                      <td className="whitespace-nowrap px-1 py-2 font-bankprinter">{obj.amount ? formatNumber(obj.amount) : ''}</td>
-                      <td className="whitespace-nowrap px-1 py-2 font-bankprinter">{obj.interest ? formatNumber(obj.interest)+'%' : ''}</td>
-                      <td className="whitespace-nowrap px-1 py-2 font-bankprinter">{obj.accumulated !== null && obj.accumulated !== undefined ? formatNumber(obj.accumulated) : ''}</td>
-                      <td className="whitespace-nowrap px-1 py-2 font-bankprinter">{obj.date_target ? obj.date_target : ''}</td>
-                      <td className="whitespace-nowrap px-1 py-2 font-bankprinter">{obj.state ? obj.state : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.voucher ? obj.voucher : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.amount ? formatNumber(obj.amount) : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.interest ? formatNumber(obj.interest)+'%' : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.accumulated !== null && obj.accumulated !== undefined ? formatNumber(obj.accumulated) : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.date_target ? obj.date_target : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.state ? obj.state : ''}</td>
                     </tr>
                   ))}
                 </tbody>

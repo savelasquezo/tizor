@@ -24,7 +24,7 @@ const AdminPage: React.FC = () => {
       const formattedSettings: SiteType = { ...settings };
       localStorage.setItem('nextsite.data', JSON.stringify(formattedSettings));
     } catch (error) {
-      console.error('Error fetching settings:', error);
+      console.error('There was an error with the network request:', error);
     }
   };
 

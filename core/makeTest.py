@@ -57,23 +57,37 @@ def main():
         amount = daily(balance, interest)
         makeTransaction(user, amount, 'interest','done', None)
 
-        list_investments = Investment.objects.filter(account=user)
-        for invest in list_investments:
-            daily_interest = daily(invest.amount, invest.interest)
-            invest.accumulated += daily_interest
-            makeHistory(user, invest, daily_interest, 'interest')
-            invest.save()
-
         list_ref = list_user.filter(ref=user.uuid)
         amount_ref = 0
         for ref in list_ref:
             totalref = ref.balance + (Investment.objects.filter(account=ref).aggregate(total=Sum('amount'))['total'] or 0)
             amount_ref += daily(totalref, interest_ref)
-        makeTransaction(user, amount_ref, 'ref','done')
-        
+
+        if amount_ref > 0:
+            makeTransaction(user, amount_ref, 'ref','done')
+
         user.balance += amount + amount_ref
         user.profit += amount + amount_ref
         user.save()
+        
+        list_investments = Investment.objects.filter(account=user)
+        for invest in list_investments:
+            if invest.date_target <= timezone.now().date() and invest.state == 'active':
+                invest.state = 'inactive'
+                total_invest = invest.amount + invest.accumulated
+                user.balance += total_invest
+                invest.save()
+                user.save()
+                
+                makeTransaction(user, total_invest, 'investment','done')
+                makeHistory(user, invest, invest.accumulated, 'closure')
+
+            if invest.date_target > timezone.now().date() and invest.state == 'active':
+                daily_interest = daily(invest.amount, invest.interest)
+                invest.accumulated += daily_interest
+                invest.save()
+                
+                makeHistory(user, invest, daily_interest, 'interest')
         
         updateJson(user, user.balance, user.profit)
 

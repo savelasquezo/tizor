@@ -39,8 +39,6 @@ const Tasks: React.FC<SessionAuthenticated> = ({ session }) => {
         }
       });
       const { results, count } = response.data;
-      console.log("xxxxxxxxxxxxxxxxxx")
-      console.log(results)
       setTickets(results || []);
     } catch (error) {
       console.error('There was an error with the network request:', error);

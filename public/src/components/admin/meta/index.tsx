@@ -16,6 +16,7 @@ import {AiOutlineClose} from 'react-icons/ai';
 
 import { SessionAuthenticated } from '@/lib/types/types';
 
+import UpdateInfo from '@/components/admin/meta/interface/updateInfo';
 import Invoice from '@/components/admin/meta/interface/invoice';
 import Withdrawal from '@/components/admin/meta/interface/withdrawal';
 import Investment from '@/components/admin/meta/interface/investment';
@@ -36,7 +37,6 @@ export const fetchTransactions = async (accessToken: string) => {
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error(error);
     return { percentage: 0 };
   }
 }
@@ -90,7 +90,7 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
                 <span className='text-gray-800 font-bankprinter text-xs'>{session.user.address}</span>
               </p>
             </div>
-            <button><SlPencil /></button>
+            <button onClick={() => openModal('edt')}><SlPencil /></button>
           </div>
           <p className='text-[0.65rem] text-start leading-tight font-cocogoose'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis.</p>
         </div>
@@ -121,6 +121,9 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
         <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center transition bg-opacity-50 bg-gray-900 backdrop-blur-sm z-40 ${closingModal ? "animate-fade-out animate__animated animate__fadeOut" : "animate-fade-in animate__animated animate__fadeIn"}`}>
             <div className={`relative w-11/12 md:w-3/5 lg:w-2/5 max-w-[40rem] bg-gray-50 rounded-lg p-6 lg:pb-2`}>
               <button onClick={closeModal} className='absolute z-10 top-4 right-4 text-xl text-gray-400 hover:text-gray-600 transition-colors duration-300' ><AiOutlineClose /></button>
+                <div className={`h-full my-4 ${activeTab === 'edt' ? 'block' : 'hidden'}`}>
+                  <UpdateInfo session={session} />
+                </div>
                 <div className={`h-full my-4 ${activeTab === 'add' ? 'block' : 'hidden'}`}>
                   <Invoice session={session} />
                 </div>

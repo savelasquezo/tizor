@@ -20,7 +20,6 @@ export const fetchHistory = async (accessToken: any) => {
     });
     return res.data.data;
   } catch (error) {
-    console.error(error);
     return { results: {} };
   }
 };
@@ -37,7 +36,7 @@ const History: React.FC<SessionAuthenticated> = ({ session }) => {
         const sortedResults = results.sort((a: HistoryInfo, b: HistoryInfo) => new Date(a.date).getTime() - new Date(b.date).getTime());
         setHistory(sortedResults || []);
       } catch (error) {
-        console.error('There was an error con la solicitud de red:', error);
+        console.error('There was an error with the network request:', error);
       }
     }
   }, [session]);
