@@ -20,11 +20,12 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
     
     const [formData, setFormData] = useState({
         username: '',
+        address: '',
         email: '',
         password: '',
       });
 
-    const {username, email, password } = formData;
+    const {username, address, email, password } = formData;
 
     const [agreed, setAgreed] = useState(false);
     const toggleAgreed = () => {
@@ -85,6 +86,7 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
             },
             body: JSON.stringify({
               username,
+              address,
               email,
               referred,
               password,
@@ -122,6 +124,18 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
                         onChange={(e) => onChange(e)}
                         required
                         placeholder="Usuario"
+                        readOnly={registrationSuccess}
+                    />
+                </div>
+                <div className="relative h-8 md:h-10 w-full flex items-center min-w-[200px]">
+                    <div className="absolute text-gray-400 text-lg top-2/4 left-4 grid h-5 w-5 -translate-y-2/4 items-center"><CiMail/></div>
+                    <input className="h-8 md:h-12 w-full indent-8 text-gray-200 rounded-lg border border-gray-700 !bg-transparent px-3 py-2 !pr-9 text-sm outline outline-0 transition-all focus:outline-0 disabled:border-0"
+                        type="address"
+                        name="address"
+                        value={address}
+                        onChange={(e) => onChange(e)}
+                        required
+                        placeholder="Wallet"
                         readOnly={registrationSuccess}
                     />
                 </div>
