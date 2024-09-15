@@ -92,7 +92,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + CORE_APPS
 
 CRONPATH = os.path.join(BASE_DIR, 'logs', 'cron.log')
 CRONJOBS = [
-    #('0 0 * * *', 'apps.src.cron.AddFunds', f'>> {CRONPATH}'),
+    ('0 0 * * *', 'apps.src.cron.AddFunds', f'>> {CRONPATH}'),
 ]
 
 MIDDLEWARE = [
