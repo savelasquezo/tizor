@@ -103,8 +103,10 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
           setSuccess("¡Enviamos un correo electrónico de verificación.! ");
           NextResponse.json({ success: 'The request has been processed successfully.' }, { status: 200 });
 
-        } catch (error) {
-          return NextResponse.json({ error: 'There was an error with the network request' }, { status: 500 });
+        } catch (error: any) {
+          const errorMessage = error.response?.data?.error || 'There was an error with the network request';
+          setError(errorMessage);
+          NextResponse.json({ error: 'There was an error with the network request' }, { status: 500 });
 
         } finally  {
           setLoading(false);
