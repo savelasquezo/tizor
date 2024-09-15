@@ -70,6 +70,7 @@ def AddFunds():
                     invest.state = 'inactive'
                     total_invest = invest.amount + invest.accumulated
                     user.balance += total_invest
+                    user.profit += invest.accumulated
                     invest.save()
                     user.save()
                     
