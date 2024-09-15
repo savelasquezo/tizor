@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { reloadSession } from '@/app/api/auth/[...nextauth]/route';
+import { reloadSession } from '@/app/api/auth/[...nextauth]/session';
 import axios from 'axios';
 
 import { NextResponse } from 'next/server';

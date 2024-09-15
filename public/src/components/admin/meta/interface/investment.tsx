@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { reloadSession } from '@/app/api/auth/[...nextauth]/route';
+import React, { useState, useEffect, useCallback } from 'react';
+import { reloadSession } from '@/app/api/auth/[...nextauth]/session';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 
@@ -56,7 +56,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
   const [pageCount, setPageCount] = useState(0);
   const TicketsPage = 5;
 
-  const fetchData = async (page: number = 1) => {
+  const fetchData = useCallback(async (page: number = 1) => {
     try {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/src/request-investment/`, {
         params: { page: page },
@@ -71,7 +71,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
     } catch (error) {
       console.error('There was an error with the network request:', error);
     }
-  };
+  }, [session]);
 
 
   useEffect(() => {

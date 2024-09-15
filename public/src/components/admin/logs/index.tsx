@@ -57,11 +57,10 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
 
   useEffect(() => {
     fetchData(pageNumber + 1);
-  }, [session, pageNumber, fetchData]);
-
-  useEffect(() => {
-    fetchData(1);
-  }, [voucherFilter, dateFilter]);
+    if (voucherFilter || dateFilter) {
+      fetchData(1);
+    }
+  }, [session, pageNumber, voucherFilter, dateFilter]);
 
   const changePage = ({ selected }: { selected: number }) => { setPageNumber(selected); };
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {

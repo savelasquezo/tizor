@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp, FaTelegramPlane, FaYoutube, FaBloggerB } from "react-icons/fa";
@@ -30,7 +30,7 @@ const Tasks: React.FC<SessionAuthenticated> = ({ session }) => {
   };
 
   const [tickets, setTickets] = useState<AccountReferedInfo[]>([]);
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/src/fetch-referred/`, {
         headers: {
@@ -43,18 +43,13 @@ const Tasks: React.FC<SessionAuthenticated> = ({ session }) => {
     } catch (error) {
       console.error('There was an error with the network request:', error);
     }
-  };
+  }, [session]);
 
-  const [facebookLink, setFacebookLink] = useState<string | null>(null);
   useEffect(() => {
     const fetchedSettings = nextSite();
     fetchData();
     if (fetchedSettings) {
       setData(fetchedSettings);
-      const facebook = fetchedSettings?.links?.find((link: any) => link.name === "facebook");
-      if (facebook) {
-        setFacebookLink(facebook.link);
-      }
     }
   }, [session]);
 
