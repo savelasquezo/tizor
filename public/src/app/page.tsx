@@ -2,12 +2,11 @@
 
 import React, { useState, useEffect, Suspense } from "react";
 import axios from 'axios';
+
 import { SessionProvider } from 'next-auth/react';
-
 import Navbar from '@/components/navbar/index';
-import Header from '@/components/header/index';
-
 import { SiteType } from '@/lib/types/types';
+
 
 export default function Home() {
   const fetchSettings = async () => {
@@ -28,9 +27,8 @@ export default function Home() {
   return (
     <SessionProvider>
       <Suspense fallback={<div>Loading...</div>}>
-        <main className="bg-gradient-to-r from-indigo-950 to-purple-950 leading-normal tracking-normal text-indigo-100 m-6 bg-cover bg-fixed">
+        <main className="bg-tizor5 h-screen w-screen overflow-hidden">
           <Navbar />
-          <Header />
         </main>
       </Suspense>
     </SessionProvider>

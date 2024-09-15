@@ -28,6 +28,7 @@ const config: Config = {
         tizor2: '#13F2DC',
         tizor3: '#F2E30C',
         tizor4: '#650000',
+        tizor5: '#212529',
       },
     },
   },

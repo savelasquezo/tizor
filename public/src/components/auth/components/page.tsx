@@ -77,7 +77,7 @@ const Auth: React.FC<SessionAuth> = ({ session  }) => {
             )}
             {showModal && (
             <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center transition bg-opacity-50 bg-gray-900 backdrop-blur-sm z-40 ${closingModal ? "animate-fade-out animate__animated animate__fadeOut" : "animate-fade-in animate__animated animate__fadeIn"}`}>
-                <div className="realtive w-4/5 max-w-xl h-1/2 max-h-[28rem] flex justify-start items-center rounded-2xl bg-gradient-to-r from-indigo-900 to-purple-900 leading-normal md:w-3/5 lg:w-1/2 lg:h-3/5 xl:h-4/5">
+                <div className="realtive bg-gray-800 w-4/5 max-w-xl h-1/2 max-h-[28rem] flex justify-start items-center rounded-2xl leading-normal md:w-3/5 lg:w-1/2 lg:h-3/5 xl:h-4/5">
                   <div className="relative w-full h-full p-6">
                     <button onClick={closeModal} className='absolute top-4 right-4 text-xl text-gray-400 hover:text-gray-600 transition-colors duration-300' ><AiOutlineClose /></button>
                     <div className={`flex flex-row w-full items-center ${activeTab === 'auth' ?  'hidden' : ''}`}>
@@ -108,7 +108,7 @@ const Auth: React.FC<SessionAuth> = ({ session  }) => {
                       <ForgotPasswordModal closeModal={closeModal}/>
                       <div className="inline-flex gap-x-2 items-center">
                         <p className="text-xs text-gray-300">¿Ya tienes una cuenta?</p>
-                        <button onClick={() => openModal('login')} className="cursor-pointer text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">Ingresar</button>
+                        <button onClick={() => openModal('login')} className="cursor-pointer text-gray-200 hover:text-green-300 transition-colors duration-300 -mt-1">Ingresar</button>
                       </div>
                     </div>
                     <div style={{ display: activeTab === 'forgot_password_confirm' ? 'block' : 'none' }} className={`h-full my-4 ${activeTab === 'forgot_password_confirm' ? 'animate-fade-in animate__animated animate__fadeIn' : 'animate-fade-out animate__animated animate__fadeOut'} ${activeTab === 'login' ? 'hidden' : ''}`}>

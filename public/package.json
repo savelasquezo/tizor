@@ -33,6 +33,7 @@
     "react-wavify": "^1.10.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@types/lodash": "^4.17.7",
     "@types/node": "^20",
     "@types/react": "^18.3.5",

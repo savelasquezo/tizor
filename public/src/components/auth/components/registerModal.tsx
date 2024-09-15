@@ -115,7 +115,7 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
             <form method="POST" onSubmit={onSubmit} className="relative flex flex-col gap-y-4 p-2">
                 <div className="relative h-8 md:h-10 w-full flex items-center min-w-[200px]">
                     <div className="absolute text-gray-500 text-lg top-2/4 left-4 grid h-5 w-5 -translate-y-2/4 items-center"><AiOutlineUser/></div>
-                    <input className="h-8 md:h-12 w-full indent-8 text-gray-200 rounded-lg border border-gray-700 bg-transparent px-3 py-2 !pr-9 text-sm outline outline-0 transition-all focus:outline-0 disabled:border-0"
+                    <input className="h-8 md:h-12 w-full indent-8 text-gray-200 rounded-lg border border-gray-700 !bg-transparent px-3 py-2 !pr-9 text-sm outline outline-0 transition-all focus:outline-0 disabled:border-0"
                         type="text"
                         name="username"
                         value={username}
@@ -127,8 +127,8 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
                 </div>
                 <div className="relative h-8 md:h-10 w-full flex items-center min-w-[200px]">
                     <div className="absolute text-gray-400 text-lg top-2/4 left-4 grid h-5 w-5 -translate-y-2/4 items-center"><CiMail/></div>
-                    <input className="h-8 md:h-12 w-full indent-8 text-gray-200 rounded-lg border border-gray-700 bg-transparent px-3 py-2 !pr-9 text-sm outline outline-0 transition-all focus:outline-0 disabled:border-0"
-                        type="text"
+                    <input className="h-8 md:h-12 w-full indent-8 text-gray-200 rounded-lg border border-gray-700 !bg-transparent px-3 py-2 !pr-9 text-sm outline outline-0 transition-all focus:outline-0 disabled:border-0"
+                        type="email"
                         name="email"
                         value={email}
                         onChange={(e) => onChange(e)}
