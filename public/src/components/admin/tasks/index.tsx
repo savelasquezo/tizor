@@ -51,7 +51,7 @@ const Tasks: React.FC<SessionAuthenticated> = ({ session }) => {
     if (fetchedSettings) {
       setData(fetchedSettings);
     }
-  }, [session]);
+  }, [session, fetchData]);
 
   const filledTickets = [...tickets];
   while (filledTickets.length < 5) {

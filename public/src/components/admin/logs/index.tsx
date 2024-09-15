@@ -60,7 +60,7 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
     if (voucherFilter || dateFilter) {
       fetchData(1);
     }
-  }, [session, pageNumber, voucherFilter, dateFilter]);
+  }, [session, pageNumber, voucherFilter, dateFilter, fetchData]);
 
   const changePage = ({ selected }: { selected: number }) => { setPageNumber(selected); };
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {

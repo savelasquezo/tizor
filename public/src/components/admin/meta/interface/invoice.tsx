@@ -70,7 +70,7 @@ const Invoice: React.FC<SessionAuthenticated> = ({ session }) => {
     if (fetchedSettings) {
       setData(fetchedSettings);
     }
-  }, [session, pageNumber]);
+  }, [session, pageNumber, fetchData]);
 
 
   const changePage = ({ selected }: { selected: number }) => { setPageNumber(selected); };

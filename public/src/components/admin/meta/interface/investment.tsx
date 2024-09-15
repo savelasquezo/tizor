@@ -84,7 +84,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
       }
 
     }
-  }, [session, pageNumber]);
+  }, [session, pageNumber, fetchData]);
 
   const changePage = ({ selected }: { selected: number }) => { setPageNumber(selected); };
   const filledTickets = [...tickets];
