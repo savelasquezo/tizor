@@ -6,9 +6,16 @@ from django.dispatch import receiver
 from django.conf import settings
 
 import apps.src.models as model
+from apps.site.models import Tizorbank
 from apps.src.functions import updateTransaction
 
 logger = logging.getLogger(__name__)
+
+@receiver(post_save, sender=model.Account)
+def updateAccount(sender, instance, created, **kwargs):
+    if created:
+        instance.interest = Tizorbank.objects.get(default="Tizorbank").min_interest
+        instance.save()
 
 @receiver(pre_save, sender=model.Invoice)
 def updateInvoice(sender, instance, **kwargs):
