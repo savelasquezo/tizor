@@ -19,13 +19,13 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
     const [success, setSuccess] = useState('');
     
     const [formData, setFormData] = useState({
+        email: '',
         username: '',
         address: '',
-        email: '',
         password: '',
       });
 
-    const {username, address, email, password } = formData;
+    const {email, username, address, password } = formData;
 
     const [agreed, setAgreed] = useState(false);
     const toggleAgreed = () => {
@@ -85,9 +85,9 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+              email,
               username,
               address,
-              email,
               referred,
               password,
               re_password
