@@ -97,7 +97,8 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
           const data = await res.json();
           if (!res.ok) {
             setLoading(false);
-            return setError("¡Email no encontrado! Intentalo nuevamente.");
+            const errorMessage = data?.detail || 'There was an error with the network request';
+            return setError(errorMessage);
           }
           setRegistrationSuccess(true);
           setSuccess("¡Enviamos un correo electrónico de verificación.! ");
