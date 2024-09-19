@@ -87,5 +87,5 @@ def AddFunds():
             updateJson(user, user.balance, user.profit)
 
     except Exception as e:
-        print(f'AddFunds Error-{e}')
+        logger.error("%s", e, exc_info=True)
 
