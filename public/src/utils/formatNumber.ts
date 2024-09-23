@@ -1,6 +1,6 @@
-export const formatNumber = (number: number | undefined = 0) => {
+export const formatNumber = (number: number | undefined = 0, mumFractionDigits: number | undefined = 2) => {
     return number.toLocaleString('es-CO', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
+        minimumFractionDigits: mumFractionDigits,
+        maximumFractionDigits: mumFractionDigits,
     });
 };

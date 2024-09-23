@@ -149,7 +149,8 @@ const Invoice: React.FC<SessionAuthenticated> = ({ session }) => {
           <div className='w-full flex flex-row justify-between items-center rounded-sm my-2 p-2 border bg-yellow-50 border-blue-50'>
             <p className='flex flex-row justify-start items-center gap-x-2'>
               <span className='text-gray-500 text-sm'><IoWalletOutline /></span>
-              <span className='text-gray-800 font-bankprinter text-xs'>{data?.address}</span>
+              <span className='text-gray-800 font-bankprinter text-xs hidden sm:block'>{data?.address}</span>
+              <span className='text-gray-800 font-bankprinter text-xs block sm:hidden select-none'>{data?.address ? `${data.address.slice(0, 10)}***${data.address.slice(-10)}` : ''}</span>
             </p>
             <span onClick={handleCopyClick} className={`cursor-pointer transition-colors duration-1000 z-10 ${copySuccess ? 'text-green-500' : ''}`}><FaRegCopy /></span>
           </div>
@@ -170,21 +171,21 @@ const Invoice: React.FC<SessionAuthenticated> = ({ session }) => {
               <table className="w-full text-center text-sm font-light table-fixed">
                 <thead className="font-medium text-gray-900">
                   <tr className="border-b-2 border-slate-400 font-cocogoose font-semibold uppercase text-xs">
-                    <th scope="col" className="w-1/6 px-6 py-1">ID</th>
-                    <th scope="col" className="w-1/6 px-6 py-1">Wallet</th>
-                    <th scope="col" className="w-1/6 px-6 py-1">Valor</th>
-                    <th scope="col" className="w-1/6 px-6 py-1">Fecha</th>
-                    <th scope="col" className="w-1/6 px-6 py-1">Estado</th>
+                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1">Voucher</th>
+                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1 hidden lg:table-cell">Wallet</th>
+                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1 hidden sm:table-cell">Valor</th>
+                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1">Fecha</th>
+                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1">Estado</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filledTickets.map((obj, index) => (
                     <tr key={index} className="border-b border-slate-300 uppercase text-xs text-gray-600 text-center align-middle h-6">
-                      <td className="w-1/6 whitespace-nowrap px-6 py-1 font-bankprinter">{obj.voucher ? obj.voucher : ''}</td>
-                      <td className="w-1/6 whitespace-nowrap px-6 py-1 font-bankprinter">{obj.address ? obj.address : ''}</td>
-                      <td className="w-1/6 whitespace-nowrap px-6 py-1 font-bankprinter">{obj.amount ? formatNumber(obj.amount) : ''}</td>
-                      <td className="w-1/6 whitespace-nowrap px-6 py-1 font-bankprinter">{obj.date ? obj.date : ''}</td>
-                      <td className="w-1/6 whitespace-nowrap px-6 py-1 font-bankprinter">{obj.state ? obj.state : ''}</td>
+                      <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-1 font-bankprinter">{obj.voucher ? obj.voucher : ''}</td>
+                      <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-1 font-bankprinter hidden lg:table-cell">{obj.address ? obj.address : ''}</td>
+                      <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-1 font-bankprinter hidden sm:table-cell">{obj.amount ? formatNumber(obj.amount) : ''}</td>
+                      <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-1 font-bankprinter">{obj.date ? obj.date : ''}</td>
+                      <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-1 font-bankprinter">{obj.state ? obj.state : ''}</td>
                     </tr>
                   ))}
                 </tbody>

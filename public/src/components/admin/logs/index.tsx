@@ -70,8 +70,8 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
   };
 
   return (
-    <section className='w-full lg:w-2/5 break-words bg-white shadow-md rounded-2xl bg-clip-border'>
-      <div className="w-full h-full p-4">
+    <section className='w-full h-96 lg:w-2/5 break-words bg-white shadow-md rounded-2xl bg-clip-border'>
+      <div className="w-full h-5/6 p-4">
         <div className="w-full flex flex-row gap-x-2 mb-4">
           <Input
             type="text"
@@ -94,37 +94,37 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
           <table className="min-w-full text-center text-sm font-light table-fixed">
             <thead className="font-medium text-gray-900">
               <tr className="border-b-2 border-slate-400 font-cocogoose font-semibold uppercase text-xs">
-                <th scope="col" className="w-1/5 px-6 py-0.5">Voucher</th>
-                <th scope="col" className="w-1/5 px-6 py-0.5">Valor</th>
-                <th scope="col" className="w-1/5 px-6 py-0.5">Fecha</th>
-                <th scope="col" className="w-1/5 px-6 py-0.5">Movimiento</th>
-                <th scope="col" className="w-1/5 px-6 py-0.5">Estado</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">Voucher</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5 hidden sm:table-cell">Valor</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">Fecha</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5 hidden sm:table-cell">Movimiento</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">Estado</th>
               </tr>
             </thead>
             <tbody>
               {tickets.map((ticket) => (
                 <tr key={ticket.id} className="w-full border-b border-slate-300 uppercase text-xs text-gray-500 text-center align-middle h-6">
-                  <td className="w-1/5 whitespace-nowrap px-6 py-0.5 font-bankprinter">{ticket.voucher}</td>
-                  <td className="w-1/5 whitespace-nowrap px-6 py-0.5 font-bankprinter">{formatNumber(ticket.amount)}</td>
-                  <td className="w-1/5 whitespace-nowrap px-6 py-0.5 font-bankprinter">{ticket.date}</td>
-                  <td className="w-1/5 whitespace-nowrap px-6 py-0.5 font-bankprinter">{ticket.type}</td>
-                  <td className="w-1/5 whitespace-nowrap px-6 py-0.5 font-bankprinter">{ticket.state}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.voucher}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{formatNumber(ticket.amount)}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.date}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.type}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.state}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <div className='w-full flex flex-row items-center justify-center'>
+          <div className='relative w-full h-1/6 flex flex-row items-center justify-center'>
             <ReactPaginate
               previousLabel={<MdNavigateBefore />}
               nextLabel={<MdNavigateNext />}
               breakLabel={'...'}
               pageCount={pageCount}
               onPageChange={changePage}
-              className={'absolute bottom-12 w-full flex flex-row items-center justify-center gap-x-2'}
+              className={'absolute bottom-2 w-full flex flex-row items-center justify-center gap-x-2'}
               pageClassName={'text-gray-700 rounded-full !px-3 !py-1 transition-colors duration-300'}
               activeClassName={'text-blue-800 font-semibold rounded-full !px-3 !py-1 transition-colors duration-300'}
-              previousClassName={'absolute left-10 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-1 transition-colors duration-300'}
-              nextClassName={'absolute right-10 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-1 transition-colors duration-300'}
+              previousClassName={'absolute left-4 lg:left-10 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-1 transition-colors duration-300'}
+              nextClassName={'absolute right-4 lg:right-10 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-1 transition-colors duration-300'}
             />
           </div>
         </div>

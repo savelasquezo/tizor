@@ -44,7 +44,7 @@ const AdminPage: React.FC = () => {
           <a href='' className='font-cocogoose font-semibold text-sm uppercase'>Salir</a>
         </div>
       </nav>
-        {session && session?.user? (
+      {session && session?.user ? (
         <section className='w-full h-auto flex flex-col px-6 gap-y-6'>
           <Context session={session} />
           <div className='w-full h-auto lg:h-96 flex flex-col lg:flex-row gap-4'>
@@ -56,9 +56,9 @@ const AdminPage: React.FC = () => {
             <History session={session} />
           </div>
         </section>
-        ) : (
-          <div>...</div>
-        )}
+      ) : (
+        <div>...</div>
+      )}
     </main>
   );
 };

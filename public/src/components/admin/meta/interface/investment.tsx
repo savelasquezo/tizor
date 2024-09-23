@@ -145,7 +145,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
               <div className='flex flex-col items-start justify-center py-1'>
                 <p className='flex flex-row justify-start items-center gap-x-2'>
                   <span className='text-gray-500 text-sm'><IoWalletOutline /></span>
-                  <span className='text-gray-800 font-bankprinter text-xs'>Saldo Aproximado: {mathAmount ? `${mathExpected().toFixed(2)}` : '--'}</span>
+                  <span className='text-gray-800 font-bankprinter text-xs'>Total: {mathAmount ? `${mathExpected().toFixed(2)}` : '--'}</span>
                 </p>
                 <p className='flex flex-row justify-start items-center gap-x-2'>
                   <span className='text-gray-500 text-sm'><TbSquareRoundedPercentage /></span>

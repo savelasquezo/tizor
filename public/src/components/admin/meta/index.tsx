@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 import { SlPencil } from "react-icons/sl";
@@ -10,7 +10,7 @@ import { TbReport } from "react-icons/tb";
 import { BiSupport } from "react-icons/bi";
 import { MdOutlineMail } from "react-icons/md";
 import { IoWalletOutline } from "react-icons/io5";
-import {AiOutlineClose} from 'react-icons/ai';
+import { AiOutlineClose } from 'react-icons/ai';
 
 
 
@@ -67,11 +67,11 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
   };
 
   const closeModal = () => {
-      setClosingModal(true);
-      setTimeout(() => {
-        setShowModal(false);
-        setClosingModal(false);
-      }, 500);
+    setClosingModal(true);
+    setTimeout(() => {
+      setShowModal(false);
+      setClosingModal(false);
+    }, 500);
   };
 
   return (
@@ -94,48 +94,48 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
           </div>
           <p className='text-[0.65rem] text-start leading-tight font-cocogoose'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis.</p>
         </div>
-        <div className='w-full flex flex-row items-center justify-center lg:justify-start gap-x-4 my-6 lg:my-0'>
-          <button onClick={() => openModal('add')} className="w-full lg:w-1/3 h-10 text-center lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-green-700 hover:bg-green-900 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
-            <span className='mt-0 flex items-center justify-center lg:block'><MdLibraryAdd /></span>
-            <span className='hidden lg:block font-cocogoose uppercase text-xs font-semibold'>Agregar</span>
+        <div className='w-full flex flex-row items-center justify-center sm:justify-start gap-x-4 my-6 lg:my-0'>
+          <button onClick={() => openModal('add')} className="w-full sm:w-1/3 h-12 lg:h-10 text-center sm:flex sm:flex-row sm:items-center sm:justify-center lg:justify-start sm:gap-x-1 bg-green-700 hover:bg-green-900 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
+            <span className='-mt-1 flex items-center justify-center sm:block'><MdLibraryAdd /></span>
+            <span className='hidden sm:block font-cocogoose uppercase text-sm font-semibold'>Agregar</span>
           </button>
-          <button onClick={() => openModal('rem')} className="w-full lg:w-1/3 h-10 text-center lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-blue-700 hover:bg-blue-900 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
-            <span className='mt-0 flex items-center justify-center lg:block'><FaMoneyBillTransfer /></span>
-            <span className='hidden lg:block font-cocogoose uppercase text-xs font-semibold'>Transferir</span>
+          <button onClick={() => openModal('rem')} className="w-full sm:w-1/3 h-12 lg:h-10 text-center sm:flex sm:flex-row sm:items-center sm:justify-center lg:justify-start sm:gap-x-1 bg-blue-700 hover:bg-blue-900 text-white px-2 sm:px-6 py-2 text-xl rounded-md transition-colors duration-300">
+            <span className='-mt-1 flex items-center justify-center sm:block'><FaMoneyBillTransfer /></span>
+            <span className='hidden sm:block font-cocogoose uppercase text-sm font-semibold'>Transferir</span>
           </button>
-          <button onClick={() => openModal('bck')} className="w-full lg:w-1/3 h-10 lg:flex lg:flex-row lg:items-center lg:justify-start lg:gap-x-1 bg-violet-700 hover:bg-violet-900 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
-            <span className='mt-0 flex items-center justify-center lg:block'><TbReport /></span>
-            <span className='hidden lg:block font-cocogoose uppercase text-xs font-semibold'>Invertir</span>
+          <button onClick={() => openModal('bck')} className="w-full sm:w-1/3 h-12 lg:h-10 text-center sm:flex sm:flex-row sm:items-center sm:justify-center lg:justify-start sm:gap-x-1 bg-violet-700 hover:bg-violet-900 text-white px-2 sm:px-6 py-2 text-xl rounded-md transition-colors duration-300">
+            <span className='-mt-1 flex items-center justify-center sm:block'><TbReport /></span>
+            <span className='hidden sm:block font-cocogoose uppercase text-sm font-semibold'>Invertir</span>
           </button>
         </div>
       </div>
-      <div className='w-full lg:max-w-80 h-auto p-0 lg:mt-8 px-4'>
+      <div className='w-10/12 lg:max-w-80 h-auto p-0 lg:mt-8 px-4'>
         <div className='block lg:hidden py-4 mb-2'>
-          <p className='text-[0.55rem] text-center font-cocogoose'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum, non fringilla lacus lacinia. Phasellus varius erat quis euismod molestie. Pellentesque non dolor nec arcu porta fringilla. Suspendisse interdum maximus mauris ac maximus.</p>
+          <p className='text-[0.55rem] sm:text-xs lg:text-sm text-center font-cocogoose'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum, non fringilla lacus lacinia. Phasellus varius erat quis euismod molestie. Pellentesque non dolor nec arcu porta fringilla. Suspendisse interdum maximus mauris ac maximus.</p>
         </div>
         <div className='w-full h-full lg:-ml-6'>
-          <CircularProgressbar value={percentage} text={`${percentage}%`} />
+          <CircularProgressbar value={percentage} text={`${percentage}%`} styles={buildStyles({pathColor: '#4caf50', textColor: '#1f2937', trailColor: '#e0e0e0', strokeLinecap: 'butt', textSize: '18px',})}/>
         </div>
       </div>
       {showModal && (
         <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center transition bg-opacity-50 bg-gray-900 backdrop-blur-sm z-40 ${closingModal ? "animate-fade-out animate__animated animate__fadeOut" : "animate-fade-in animate__animated animate__fadeIn"}`}>
-            <div className={`relative w-11/12 md:w-3/5 lg:w-2/5 max-w-[40rem] bg-gray-50 rounded-lg p-6 lg:pb-2`}>
-              <button onClick={closeModal} className='absolute z-10 top-4 right-4 text-xl text-gray-400 hover:text-gray-600 transition-colors duration-300' ><AiOutlineClose /></button>
-                <div className={`h-full my-4 ${activeTab === 'edt' ? 'block' : 'hidden'}`}>
-                  <UpdateInfo session={session} />
-                </div>
-                <div className={`h-full my-4 ${activeTab === 'add' ? 'block' : 'hidden'}`}>
-                  <Invoice session={session} />
-                </div>
-                <div className={`h-full my-4 ${activeTab === 'rem' ? 'block' : 'hidden'}`}>
-                  <Withdrawal session={session} />
-                </div>
-                <div className={`h-full my-4 ${activeTab === 'bck' ? 'block' : 'hidden'}`}>
-                  <Investment session={session} />
-                </div>
+          <div className={`relative w-10/12 md:w-3/5 lg:w-2/5 max-w-[40rem] bg-gray-50 rounded-lg p-6 lg:pb-2`}>
+            <button onClick={closeModal} className='absolute z-10 top-4 right-4 text-xl text-gray-400 hover:text-gray-600 transition-colors duration-300' ><AiOutlineClose /></button>
+            <div className={`h-full my-4 ${activeTab === 'edt' ? 'block' : 'hidden'}`}>
+              <UpdateInfo session={session} />
+            </div>
+            <div className={`h-full my-4 ${activeTab === 'add' ? 'block' : 'hidden'}`}>
+              <Invoice session={session} />
+            </div>
+            <div className={`h-full my-4 ${activeTab === 'rem' ? 'block' : 'hidden'}`}>
+              <Withdrawal session={session} />
+            </div>
+            <div className={`h-full my-4 ${activeTab === 'bck' ? 'block' : 'hidden'}`}>
+              <Investment session={session} />
             </div>
           </div>
-        )}
+        </div>
+      )}
     </section>
   );
 };

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-
+import { I18next } from '@/utils/i18next';
 import '@/styles/styles.css';
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,12 +12,12 @@ export const metadata: Metadata = {
 export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) 
 {
   return (
-    <html lang="en">
-      <body className="bg-tizor5">
-        {children}
-      </body>
+    <html>
+      <I18next>        
+        <body className="bg-tizor5">
+          {children}
+        </body>
+      </I18next>
     </html>
   );
 }
-
-
