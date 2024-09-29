@@ -25,8 +25,9 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
   const [error, setError] = useState('');
 
   const stepAmount = Math.floor(Number(session.user.balance)/100)*10;
+  const [fixAmount, setfixAmount] = useState<number>(stepAmount);
 
-  const [amount, setAmount] = useState<number>(stepAmount);
+  const [amount, setAmount] = useState<number>(stepAmount*10);
   const [months, setMonths] = useState<number>(12);
 
   const [investment, setInvestment] = useState(false);
@@ -99,6 +100,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
   
     await new Promise(resolve => setTimeout(resolve, 1500));
     try {
+      setfixAmount(stepAmount)
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/src/request-investment/`,
         { amount, months }, 
@@ -132,7 +134,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
         </div>
         <form className={`${activeTab === 'add' ? 'block animate-fade-in animate__animated animate__fadeIn' : 'hidden animate-fade-out animate__animated animate__fadeOut'}`}>
           <div className="w-full h-full flex flex-col items-center justify-center">
-            <Slider label="Saldo" hideValue={!mathAmount} step={stepAmount} minValue={stepAmount} maxValue={stepAmount*10} defaultValue={stepAmount} showSteps={true} isDisabled={registrationSuccess} size="sm" color="primary"
+            <Slider label="Saldo" hideValue={!mathAmount} step={fixAmount} minValue={fixAmount} maxValue={fixAmount*10} defaultValue={fixAmount} showSteps={true} isDisabled={registrationSuccess} size="sm" color="primary"
               onChange={(value: number | number[]) => {if (Array.isArray(value)) {setAmount(value[0]);} else {setAmount(value);}}}/>
             <Slider label="Temporalidad" step={3} minValue={6} maxValue={36} defaultValue={12} showSteps={true} isDisabled={registrationSuccess} size="sm" color="primary"
               onChange={(value: number | number[]) => {if (Array.isArray(value)) {setMonths(value[0]);} else {setMonths(value);}}}/>

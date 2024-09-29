@@ -69,6 +69,11 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
     if (name === 'date') setDateFilter(value);
   };
 
+  const filledTickets = [...tickets];
+  while (filledTickets.length < TicketsPage) {
+    filledTickets.push({ id: 0, amount: 0, date: '', type: '', voucher: '', account: '', state: ''});
+  }
+
   return (
     <section className='w-full h-96 lg:w-2/5 break-words bg-white shadow-md rounded-2xl bg-clip-border'>
       <div className="w-full h-5/6 p-4">
@@ -102,25 +107,25 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
               </tr>
             </thead>
             <tbody>
-              {tickets.map((ticket) => (
-                <tr key={ticket.id} className="w-full border-b border-slate-300 uppercase text-xs text-gray-500 text-center align-middle h-6">
-                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.voucher}</td>
-                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{formatNumber(ticket.amount)}</td>
-                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.date}</td>
+              {filledTickets.map((ticket, index) => (
+                <tr key={index} className="w-full border-b border-slate-300 uppercase text-xs text-gray-500 text-center align-middle h-6">
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.voucher ? ticket.voucher : ''}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.amount ? formatNumber(ticket.amount) : ''}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.date ? ticket.date : ''}</td>
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.type}</td>
-                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.state}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.state ? ticket.state : ''}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <div className='relative w-full h-1/6 flex flex-row items-center justify-center'>
+          <div className='absolute -bottom-6 w-full h-1/6 flex flex-row items-center justify-center'>
             <ReactPaginate
               previousLabel={<MdNavigateBefore />}
               nextLabel={<MdNavigateNext />}
               breakLabel={'...'}
               pageCount={pageCount}
               onPageChange={changePage}
-              className={'absolute bottom-2 w-full flex flex-row items-center justify-center gap-x-2'}
+              className={'relative w-full flex flex-row items-center justify-center gap-x-2'}
               pageClassName={'text-gray-700 rounded-full !px-3 !py-1 transition-colors duration-300'}
               activeClassName={'text-blue-800 font-semibold rounded-full !px-3 !py-1 transition-colors duration-300'}
               previousClassName={'absolute left-4 lg:left-10 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-1 transition-colors duration-300'}

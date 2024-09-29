@@ -33,7 +33,7 @@ class AccountManager(BaseUserManager):
 
 class Account(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True, primary_key=True)
-    uuid =  models.CharField(_("UUID"), max_length=8, null=True, blank=True)
+    uuid =  models.CharField(_("UUID"), max_length=8, unique=True, null=True, blank=True)
     ref = models.CharField(_("Ref"), max_length=8, blank=True)
     email = models.EmailField(_("Email"),unique=True)
     username = models.CharField(_("Usuario"),max_length=64, unique=True)

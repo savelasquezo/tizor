@@ -66,7 +66,7 @@ const ForgotPasswordModal: React.FC<ModalFunction> = ({ closeModal }) => {
                 onChange={(e) => onChange(e)}
                 required
                 placeholder="Email"
-                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
                 disabled={registrationSuccess}
             />
         </div>

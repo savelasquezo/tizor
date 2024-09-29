@@ -186,7 +186,6 @@ class requestInvestment(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         amount = request.data.get('amount')
         months = request.data.get('months')
-        print("entro al metodo")
         if amount > request.user.balance or amount <= 0 or not months in range(6, 37):
             return Response({'detail': 'The requested amount is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
         

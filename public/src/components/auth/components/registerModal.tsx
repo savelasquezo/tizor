@@ -62,7 +62,7 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
           setError('');
         }
 
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        const emailPattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
         if (!emailPattern.test(email)) {
           setError('¡Email invalido! example@domain.com');
           setLoading(false);
@@ -77,7 +77,7 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
           return;
         }
 
-        const referred = searchParams.get('uuid') ?? 'N/A';
+        const ref = searchParams.get('uuid') ?? 'N/A';
         try {
           const res = await fetch(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/auth/users/`, {
             method: 'POST',
@@ -88,7 +88,7 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
               email,
               username,
               address,
-              referred,
+              ref,
               password,
               re_password
             }),
@@ -151,7 +151,7 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
                         onChange={(e) => onChange(e)}
                         required
                         placeholder="Email"
-                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+                        pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
                         readOnly={registrationSuccess}
                     />
                 </div>

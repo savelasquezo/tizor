@@ -25,7 +25,7 @@ const Tasks: React.FC<SessionAuthenticated> = ({ session }) => {
 
   const [copySuccess, setCopySuccess] = useState(false);
   const handleCopyClick = () => {
-    navigator.clipboard.writeText(data?.address)
+    navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_APP_API_URL}/?singup=True&uuid=${session.user.uuid}`)
     setCopySuccess(true);
   };
 

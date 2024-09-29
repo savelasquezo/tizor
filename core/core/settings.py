@@ -90,10 +90,12 @@ CORE_APPS = [
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + CORE_APPS
 
-CRONPATH = os.path.join(BASE_DIR, 'logs', 'cron.log')
+CRONPATH = os.path.join(BASE_DIR, 'logs', 'django.log')
 CRONJOBS = [
-    ('0 * * * *', 'apps.src.cron.AddFunds', f'>> {CRONPATH}'),
+    ('0 * * * *', 'sudo apps.src.cron.AddFunds', f'>> {CRONPATH}'), #'0 0 * * *'
 ]
+
+
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
@@ -348,6 +350,8 @@ CKEDITOR_5_CONFIGS = {
     }
 }
 
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 if not DEBUG:
     DOMAIN = 'tizorbank.com'

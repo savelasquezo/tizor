@@ -45,51 +45,56 @@ def updateJson(user, amount, history):
 
 def main():
     print(f'CronJob -{timezone.now().strftime("%Y-%m-%d %H:%M")}')
-    logger.info("%s", f'CronJob -{timezone.now().strftime("%Y-%m-%d %H:%M")}', exc_info=True)
+    try:
+        list_user = Account.objects.filter(is_active=True, balance__gt=0)
+        interest_ref = Tizorbank.objects.get(default="Tizorbank").ref
 
-    list_user = Account.objects.filter(is_active=True)
-    interest_ref = Tizorbank.objects.get(default="Tizorbank").ref
+        for user in list_user:
 
-    for user in list_user:
+            balance = user.balance
+            interest = user.interest
+            amount = daily(balance, interest)
+            makeTransaction(user, amount, 'interest','done', None)
 
-        balance = user.balance
-        interest = user.interest
-        amount = daily(balance, interest)
-        makeTransaction(user, amount, 'interest','done', None)
+            list_ref = list_user.filter(ref=user.uuid)
+            amount_ref = 0
+            for ref in list_ref:
+                totalref = ref.balance + (Investment.objects.filter(account=ref).aggregate(total=Sum('amount'))['total'] or 0)
+                amount_ref += daily(totalref, interest_ref)
 
-        list_ref = list_user.filter(ref=user.uuid)
-        amount_ref = 0
-        for ref in list_ref:
-            totalref = ref.balance + (Investment.objects.filter(account=ref).aggregate(total=Sum('amount'))['total'] or 0)
-            amount_ref += daily(totalref, interest_ref)
+            if amount_ref > 0:
+                makeTransaction(user, amount_ref, 'ref','done')
 
-        if amount_ref > 0:
-            makeTransaction(user, amount_ref, 'ref','done')
+            user.balance += amount + amount_ref
+            user.profit += amount + amount_ref
+            user.save()
+            
+            list_investments = Investment.objects.filter(account=user)
+            for invest in list_investments:
+                if invest.date_target <= timezone.now().date() and invest.state == 'active':
+                    invest.state = 'inactive'
+                    total_invest = invest.amount + invest.accumulated
+                    user.balance += total_invest
+                    user.profit += invest.accumulated
+                    invest.save()
+                    user.save()
+                    
+                    makeTransaction(user, total_invest, 'investment','done')
+                    makeHistory(user, invest, invest.accumulated, 'closure')
 
-        user.balance += amount + amount_ref
-        user.profit += amount + amount_ref
-        user.save()
-        
-        list_investments = Investment.objects.filter(account=user)
-        for invest in list_investments:
-            if invest.date_target <= timezone.now().date() and invest.state == 'active':
-                invest.state = 'inactive'
-                total_invest = invest.amount + invest.accumulated
-                user.balance += total_invest
-                invest.save()
-                user.save()
-                
-                makeTransaction(user, total_invest, 'investment','done')
-                makeHistory(user, invest, invest.accumulated, 'closure')
+                if invest.date_target > timezone.now().date() and invest.state == 'active':
+                    daily_interest = daily(invest.amount, invest.interest)
+                    invest.accumulated += daily_interest
+                    invest.save()
+                    
+                    makeHistory(user, invest, daily_interest, 'interest')
+            
+            updateJson(user, user.balance, user.profit)
 
-            if invest.date_target > timezone.now().date() and invest.state == 'active':
-                daily_interest = daily(invest.amount, invest.interest)
-                invest.accumulated += daily_interest
-                invest.save()
-                
-                makeHistory(user, invest, daily_interest, 'interest')
-        
-        updateJson(user, user.balance, user.profit)
+    except Exception as e:
+        logger.error("%s", e, exc_info=True)
+
+
 
 if __name__ == '__main__':
     main()
