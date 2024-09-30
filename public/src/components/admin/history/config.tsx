@@ -10,15 +10,15 @@ export const chartData = (labels: string[], balanceData: number[], historyData: 
       backgroundColor: 'rgba(75,192,192,0.2)',
       borderColor: 'rgba(75,192,192,1)',
       tension: 0.4,
-    },
-    {
+    }
+    /*{
       label: 'Histórico',
       data: historyData,
       fill: true,
       backgroundColor: 'rgba(255,99,132,0.2)',
       borderColor: 'rgba(255,99,132,1)',
       tension: 0.4,
-    },
+    },*/
   ],
 });
 
