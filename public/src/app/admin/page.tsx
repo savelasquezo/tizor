@@ -53,9 +53,9 @@ const AdminPage: React.FC = () => {
           <Select
             className="!w-20"
             radius={'sm'}
-            selectedKeys={[selectedLanguage === 'us' ? 'US' : 'ES']}
-            disabledKeys={[selectedLanguage === 'us' ? 'US' : 'ES']}
-            startContent={<Flag code={selectedLanguage === 'us' ? 'US' : 'ES'} className="w-6 h-6" />}
+            selectedKeys={[selectedLanguage === 'us' ? 'us' : 'es']}
+            disabledKeys={[selectedLanguage === 'us' ? 'us' : 'es']}
+            startContent={<Flag code={selectedLanguage === 'us' ? 'us' : 'es'} className="w-6 h-6" />}
           >
             <SelectItem onClick={() => handleLanguageChange('us')} key="us" startContent={<Flag code="US" className="w-6 h-6" />}></SelectItem>
             <SelectItem onClick={() => handleLanguageChange('es')} key="es" startContent={<Flag code="ES" className="w-6 h-6" />}></SelectItem>
