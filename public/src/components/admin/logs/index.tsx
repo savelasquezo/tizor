@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLanguage } from '@/utils/i18next';
 import ReactPaginate from 'react-paginate';
 import {Input} from "@nextui-org/react";
-import {DateInput} from "@nextui-org/date-input";
 
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { MdQrCode2 } from "react-icons/md";
 
 import { formatNumber } from "@/utils/formatNumber";
 import { SessionAuthenticated, TransactionsInfo } from '@/lib/types/types';
+import { lowerCase } from 'lodash';
 
 export const fetchTransactions = async (accessToken: string, page: number = 1, filters: { voucher?: string; date?: string } = {}) => {
   try {
@@ -35,6 +36,8 @@ export const fetchTransactions = async (accessToken: string, page: number = 1, f
 }
 
 const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
+  const { t } = useLanguage();
+
   const [pageNumber, setPageNumber] = useState(0);
   const [tickets, setTickets] = useState<TransactionsInfo[]>([]);
   const [pageCount, setPageCount] = useState(0);
@@ -83,7 +86,7 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
             name="voucher"
             value={voucherFilter}
             onChange={handleFilterChange}
-            placeholder="Ingresa Voucher"
+            placeholder={t('logs.filter')}
             className="w-2/3"
             startContent={<MdQrCode2 className="text-2xl text-default-400 pointer-events-none flex-shrink-0"/>}
           />
@@ -99,11 +102,11 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
           <table className="min-w-full text-center text-sm font-light table-fixed">
             <thead className="font-medium text-gray-900">
               <tr className="border-b-2 border-slate-400 font-cocogoose font-semibold uppercase text-xs">
-                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">Voucher</th>
-                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5 hidden sm:table-cell">Valor</th>
-                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">Fecha</th>
-                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5 hidden sm:table-cell">Movimiento</th>
-                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">Estado</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">{t('logs.table.th1')}</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5 hidden sm:table-cell">{t('logs.table.th2')}</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">{t('logs.table.th3')}</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5 hidden sm:table-cell">{t('logs.table.th4')}</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">{t('logs.table.th5')}</th>
               </tr>
             </thead>
             <tbody>
@@ -113,7 +116,7 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.amount ? formatNumber(ticket.amount) : ''}</td>
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.date ? ticket.date : ''}</td>
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.type}</td>
-                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.state ? ticket.state : ''}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.state ? t(`logs.states.${lowerCase(ticket.state)}`) : ''}</td>
                 </tr>
               ))}
             </tbody>

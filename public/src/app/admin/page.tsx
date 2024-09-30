@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSession } from 'next-auth/react';
 import axios from 'axios';
-
 import Link from 'next/link';
 import Image from 'next/image';
+import Flag from 'react-world-flags';
+import { Select, SelectItem } from "@nextui-org/react";
 
 import Context from '@/components/admin/context/index';
 import Meta from '@/components/admin/meta/index';
@@ -13,25 +14,35 @@ import Logs from '@/components/admin/logs/index';
 import History from '@/components/admin/history/index';
 import Tasks from '@/components/admin/tasks/index';
 
+import { useLanguage } from '@/utils/i18next';
 import { SiteType } from '@/lib/types/types';
 
 const AdminPage: React.FC = () => {
   const { data: session } = useSession();
-  const fetchSettings = async () => {
-    try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/site/fetch-information/`);
-      const settings: SiteType = response.data;
-      const formattedSettings: SiteType = { ...settings };
-      localStorage.setItem('nextsite.data', JSON.stringify(formattedSettings));
-    } catch (error) {
-      console.error('There was an error with the network request:', error);
-    }
-  };
+  const { t, setLanguage, language } = useLanguage();
+  
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('us');
 
   useEffect(() => {
+    const storedLanguage = JSON.parse(localStorage.getItem('nextsite.locale') || '"us"');
+    setSelectedLanguage(storedLanguage);
+
+    const fetchSettings = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/site/fetch-information/`);
+        const settings: SiteType = response.data;
+        localStorage.setItem('nextsite.data', JSON.stringify(settings));
+      } catch (error) {
+        console.error('There was an error with the network request:', error);
+      }
+    };
     fetchSettings();
   }, []);
 
+  const handleLanguageChange = (lang: string) => {
+    setSelectedLanguage(lang);
+    setLanguage(lang);
+  };
   return (
     <main className='w-screen h-screen overflow-x-hidden bg-gray-100 pb-12 lg:pb-0'>
       <nav className='w-full h-16 flex flex-row items-center justify-between bg-white shadow-sm px-8 py-1'>
@@ -39,9 +50,16 @@ const AdminPage: React.FC = () => {
           <Image priority width={360} height={130} src={"/assets/images/logo0.webp"} className="h-12 w-auto object-fit self-start mr-4 z-10" alt="Logo" />
         </Link>
         <div className='flex flex-row items-center justify-center gap-x-4'>
-          <a href='' className='font-cocogoose font-semibold text-sm uppercase'>Home</a>
-          <a href='' className='font-cocogoose font-semibold text-sm uppercase'>Admin</a>
-          <a href='' className='font-cocogoose font-semibold text-sm uppercase'>Salir</a>
+          <Select
+            className="!w-20"
+            radius={'sm'}
+            selectedKeys={[selectedLanguage === 'us' ? 'US' : 'ES']}
+            disabledKeys={[selectedLanguage === 'us' ? 'US' : 'ES']}
+            startContent={<Flag code={selectedLanguage === 'us' ? 'US' : 'ES'} className="w-6 h-6" />}
+          >
+            <SelectItem onClick={() => handleLanguageChange('us')} key="us" startContent={<Flag code="US" className="w-6 h-6" />}></SelectItem>
+            <SelectItem onClick={() => handleLanguageChange('es')} key="es" startContent={<Flag code="ES" className="w-6 h-6" />}></SelectItem>
+          </Select>
         </div>
       </nav>
       {session && session?.user ? (

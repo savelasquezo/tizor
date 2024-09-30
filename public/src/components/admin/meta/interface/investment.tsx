@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useLanguage } from '@/utils/i18next';
 import { reloadSession } from '@/app/api/auth/[...nextauth]/session';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
@@ -21,15 +22,15 @@ import { SessionAuthenticated, InvestmentInfo } from '@/lib/types/types';
 
 const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
   const [data, setData] = useState<{ [key: string]: any } | null>(null);
+  const { t } = useLanguage();
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const stepAmount = Math.floor(Number(session.user.balance)/100)*10;
   const [fixAmount, setfixAmount] = useState<number>(stepAmount);
-
   const [amount, setAmount] = useState<number>(stepAmount*10);
   const [months, setMonths] = useState<number>(12);
-
   const [investment, setInvestment] = useState(false);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
 

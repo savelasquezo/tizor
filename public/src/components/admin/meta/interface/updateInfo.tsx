@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '@/utils/i18next';
 import { reloadSession } from '@/app/api/auth/[...nextauth]/session';
 import axios from 'axios';
 
@@ -14,6 +15,7 @@ import { SessionAuthenticated, TicketInfo } from '@/lib/types/types';
 
 const UpdateInfo: React.FC<SessionAuthenticated> = ({ session }) => {
   const [data, setData] = useState<{ [key: string]: any } | null>(null);
+  const { t } = useLanguage();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -63,7 +65,7 @@ const UpdateInfo: React.FC<SessionAuthenticated> = ({ session }) => {
     <div className="w-full h-full">
       <div className="w-full h-auto space-y-4">
         <form className='w-full h-full'>
-          <p className='text-gray-900 font-cocogoose text-start font-semibold my-4'>Actualizar Informacion</p>
+          <p className='text-gray-900 font-cocogoose text-start font-semibold my-4'>{t('meta.interface.updateInfo.title')}</p>
           <div className="relative flex items-center rounded-md border border-gray-400">
             <MdOutlineMail className="absolute left-3 text-green-950" />
             <input
@@ -83,13 +85,11 @@ const UpdateInfo: React.FC<SessionAuthenticated> = ({ session }) => {
               )) : (<p className="flex justify-center items-center bg-gray-600 h-10 w-32 text-white p-2 shadow-sm rounded-r-md">OK</p>
             )}
           </div>
-          <p className="mt-2 text-gray-900 text-xs text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum.
-            </p>
+          <p className="mt-2 text-gray-900 text-xs text-center">{t('meta.interface.updateInfo.description')}</p>
           <div className='flex items-center justify-center text-xs h-10 my-4 border-t-1 border-gray-400 text-center'>
-            {registrationSuccess && <p className="text-green-900 font-semibold font-cocogoose text-[0.65rem] mt-3">¡Felicidades! Has generado tu factura con éxito. Ahora, solo resta realizar el envío de las USDT a la dirección de wallet indicada. ¡Gracias por tu confianza!</p>}
+            {registrationSuccess && <p className="text-green-900 font-semibold font-cocogoose text-[0.65rem] mt-3">{t('meta.interface.updateInfo.message.success')}</p>}
             {error && <p className="text-red-600 font-semibold font-carvingsoft text-sm mt-3 uppercase">{error}</p>}
-            {!registrationSuccess && !error && <p className="text-gray-900 mt-3">¿Necesitas ayuda? {data?.email ?? 'support@webmaster.com'}</p>}
+            {!registrationSuccess && !error && <p className="text-gray-900 mt-3">{t('meta.interface.updateInfo.message.information')} {data?.email ?? 'support@webmaster.com'}</p>}
           </div>
         </form>
       </div>

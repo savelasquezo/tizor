@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useLanguage } from '@/utils/i18next';
 import axios from 'axios';
 
 import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp, FaTelegramPlane, FaYoutube, FaBloggerB } from "react-icons/fa";
@@ -22,6 +23,7 @@ const linkIcons: { [key: string]: JSX.Element } = {
 
 const Tasks: React.FC<SessionAuthenticated> = ({ session }) => {
   const [data, setData] = useState<{ [key: string]: any } | null>(null);
+  const { t } = useLanguage();
 
   const [copySuccess, setCopySuccess] = useState(false);
   const handleCopyClick = () => {

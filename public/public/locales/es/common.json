@@ -1,5 +1,118 @@
 {
-    "greeting": "¡Hola, bienvenido a nuestro sitio web!",
-    "loading": "cargando español",
-    "welcome_message": "mensaje de bienvenida español"
+  "i18next": "es",
+  "admin": {
+    "context": {
+      "card1": {
+        "title": "Saldo",
+        "description": "Total disponible"
+      },
+      "card2": {
+        "title": "Interes",
+        "description": "Efectivo Anual"
+      },
+      "card3": {
+        "title": "Abonos",
+        "description": "Interes diario"
+      },
+      "card4": {
+        "title": "Total",
+        "description": "Intereses obtenidos"
+      }
+    }
+  },
+  "logs": {
+    "table": {
+      "th1": "Voucher",
+      "th2": "Valor",
+      "th3": "Fecha",
+      "th4": "Movimiento",
+      "th5": "Estado"
+    },
+    "states": {
+      "invoiced": "Facturado",
+      "done": "Aprobado",
+      "error": "Error"
+    },
+    "filter": "Ingresa Voucher"
+  },
+  "meta": {
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis",
+    "information": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis",
+    "interface": {
+      "updateInfo": {
+        "title": "Actualizar Informacion",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum.",
+        "message": {
+          "success": "¡Actualizado! La actualizacion de la billetera ha sido correcta, recuerda mantener tus datos actualizados",
+          "information": "¿Necesitas ayuda?"
+        }
+      },
+      "invoice": {
+        "button": "Agregar",
+        "tab1": "Agregar",
+        "tab2": "Historial",
+        "placeholder": "Ingrese el monto",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum.",
+        "table": {
+          "th1": "Voucher",
+          "th2": "Wallet",
+          "th3": "Valor",
+          "th4": "Fecha",
+          "th5": "Estado",
+          "information": {
+            "alert":"¡Aun no has realizado ningun deposito!",
+            "message": "Agrega saldo a tu cuenta y empieza a generar intereses"
+          }
+        },
+        "states": {
+          "invoiced": "Facturado",
+          "done": "Aprobado",
+          "error": "Error"
+        },
+        "message": {
+          "success": "¡Felicidades! Has generado tu factura con éxito",
+          "information": "Transfiere la cantidad en USDT a la dirección de wallet indicada. ¡Gracias por tu confianza!",
+          "help": "¿Necesitas ayuda?"
+        }
+      },
+      "withdrawal": {
+        "button": "Transferir",
+        "tab1": "Transferir",
+        "tab2": "Historial",
+        "placeholder": "Ingrese el monto",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum.",
+        "table": {
+          "th1": "Voucher",
+          "th2": "Wallet",
+          "th3": "Valor",
+          "th4": "Fecha",
+          "th5": "Estado",
+          "information": {
+            "alert":"¡Aun no has realizado ningun retiro!",
+            "message": "El costo de las transacciones dependeran de la red seleccionada"
+          }
+        },
+        "states": {
+          "invoiced": "Facturado",
+          "done": "Aprobado",
+          "error": "Error"
+        },
+        "message": {
+          "success": "¡Felicidades! Has generado la solicitud de Transferencia con éxito",
+          "information": "Verificaremos la tranferencia y realizaremos el envío en las próximas horas.",
+          "help": "¿Necesitas ayuda?"
+        }
+      },
+      "investment": {
+        "button": "Invertir",
+        "tab1": "Invertir",
+        "tab2": "Historial",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum.",
+        "message": {
+          "success": "¡Actualizado! La actualizacion de la billetera ha sido correcta, recuerda mantener tus datos actualizados",
+          "information": "¿Necesitas ayuda?"
+        }
+      }
+    }
+  }
 }

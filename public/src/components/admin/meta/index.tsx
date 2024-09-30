@@ -1,18 +1,16 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { useLanguage } from '@/utils/i18next';
+
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 import { SlPencil } from "react-icons/sl";
-
 import { MdLibraryAdd } from "react-icons/md";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { TbReport } from "react-icons/tb";
-import { BiSupport } from "react-icons/bi";
 import { MdOutlineMail } from "react-icons/md";
 import { IoWalletOutline } from "react-icons/io5";
 import { AiOutlineClose } from 'react-icons/ai';
-
-
 
 import { SessionAuthenticated } from '@/lib/types/types';
 
@@ -42,8 +40,9 @@ export const fetchTransactions = async (accessToken: string) => {
 }
 
 const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
-  const [percentage, setPercentage] = useState(0);
+  const { t } = useLanguage();
 
+  const [percentage, setPercentage] = useState(0);
   const [activeTab, setActiveTab] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [closingModal, setClosingModal] = useState(false);
@@ -78,7 +77,7 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
     <section className='w-full lg:w-3/5 flex flex-col-reverse lg:flex-row items-center justify-between break-words bg-white shadow-md rounded-2xl bg-clip-border py-1 lg:px-2 lg:pt-3 lg:pb-8'>
       <div className='w-full lg:w-2/3 h-full flex flex-col items-center lg:items-start lg:justify-between px-4 lg:pt-8'>
         <div className='w-full hidden lg:flex flex-col items-start justify-start gap-y-4'>
-          <p className='text-[0.65rem] text-justify leading-tight font-cocogoose'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum, non fringilla lacus lacinia. Phasellus varius erat quis euismod molestie. Pellentesque non dolor nec arcu porta fringilla. Suspendisse interdum maximus mauris ac maximus.</p>
+          <p className='text-[0.65rem] text-justify leading-tight font-cocogoose'>{t('meta.description')}</p>
           <div className='w-full flex flex-row justify-between items-center rounded-sm my-4 p-4 border bg-yellow-50 border-blue-50'>
             <div className='flex flex-col items-start justify-start'>
               <p className='flex flex-row justify-start items-center gap-x-2'>
@@ -92,26 +91,26 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
             </div>
             <button onClick={() => openModal('edt')}><SlPencil /></button>
           </div>
-          <p className='text-[0.65rem] text-start leading-tight font-cocogoose'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis.</p>
+          <p className='text-[0.65rem] text-start leading-tight font-cocogoose'>{t('meta.information')}</p>
         </div>
         <div className='w-full flex flex-row items-center justify-center sm:justify-start gap-x-4 my-6 lg:my-0'>
           <button onClick={() => openModal('add')} className="w-full sm:w-1/3 h-12 lg:h-10 text-center sm:flex sm:flex-row sm:items-center sm:justify-center lg:justify-start sm:gap-x-1 bg-green-700 hover:bg-green-900 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
             <span className='-mt-1 flex items-center justify-center sm:block'><MdLibraryAdd /></span>
-            <span className='hidden sm:block font-cocogoose uppercase text-sm font-semibold'>Agregar</span>
+            <span className='hidden sm:block font-cocogoose uppercase text-sm font-semibold'>{t('meta.interface.invoice.button')}</span>
           </button>
           <button onClick={() => openModal('rem')} className="w-full sm:w-1/3 h-12 lg:h-10 text-center sm:flex sm:flex-row sm:items-center sm:justify-center lg:justify-start sm:gap-x-1 bg-blue-700 hover:bg-blue-900 text-white px-2 sm:px-6 py-2 text-xl rounded-md transition-colors duration-300">
             <span className='-mt-1 flex items-center justify-center sm:block'><FaMoneyBillTransfer /></span>
-            <span className='hidden sm:block font-cocogoose uppercase text-sm font-semibold'>Transferir</span>
+            <span className='hidden sm:block font-cocogoose uppercase text-sm font-semibold'>{t('meta.interface.withdrawal.button')}</span>
           </button>
           <button onClick={() => openModal('bck')} className="w-full sm:w-1/3 h-12 lg:h-10 text-center sm:flex sm:flex-row sm:items-center sm:justify-center lg:justify-start sm:gap-x-1 bg-violet-700 hover:bg-violet-900 text-white px-2 sm:px-6 py-2 text-xl rounded-md transition-colors duration-300">
             <span className='-mt-1 flex items-center justify-center sm:block'><TbReport /></span>
-            <span className='hidden sm:block font-cocogoose uppercase text-sm font-semibold'>Invertir</span>
+            <span className='hidden sm:block font-cocogoose uppercase text-sm font-semibold'>{t('meta.interface.investment.button')}</span>
           </button>
         </div>
       </div>
       <div className='w-10/12 lg:max-w-80 h-auto p-0 lg:mt-8 px-4'>
         <div className='block lg:hidden py-4 mb-2'>
-          <p className='text-[0.55rem] sm:text-xs lg:text-sm text-center font-cocogoose'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum, non fringilla lacus lacinia. Phasellus varius erat quis euismod molestie. Pellentesque non dolor nec arcu porta fringilla. Suspendisse interdum maximus mauris ac maximus.</p>
+          <p className='text-[0.55rem] sm:text-xs lg:text-sm text-center font-cocogoose'>{t('meta.description')}</p>
         </div>
         <div className='w-full h-full lg:-ml-6'>
           <CircularProgressbar value={percentage} text={`${percentage}%`} styles={buildStyles({pathColor: '#4caf50', textColor: '#1f2937', trailColor: '#e0e0e0', strokeLinecap: 'butt', textSize: '18px',})}/>

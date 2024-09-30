@@ -1,0 +1,32 @@
+{
+  "i18next": "us",
+  "admin": {
+    "context": {
+      "card1": {
+        "title": "Balance",
+        "description": "Total disponible"
+      },
+      "card2": {
+        "title": "Interes",
+        "description": "Efectivo Anual"
+      },
+      "card3": {
+        "title": "Abonos",
+        "description": "Interes diario"
+      },
+      "card4": {
+        "title": "Total",
+        "description": "Intereses obtenidos"
+      }
+    }
+  },
+  "logs": {
+    "table": {
+      "th1": "Voucher",
+      "th2": "Valor",
+      "th3": "Fecha",
+      "th4": "Movimiento",
+      "th5": "Estado"
+    }
+  }
+}

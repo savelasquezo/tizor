@@ -37,6 +37,7 @@ const handler = NextAuth({
         const user = {
           id: userData.id,
           uuid: userData.uuid,
+          ref: userData.ref,
           email: userData.email,
           username: userData.username,
           address: userData.address,
@@ -80,6 +81,7 @@ const handler = NextAuth({
         session.user = {
           id: userData.id,
           uuid: userData.uuid,
+          ref: userData.ref,
           email: userData.email,
           username: userData.username,
           address: userData.address,

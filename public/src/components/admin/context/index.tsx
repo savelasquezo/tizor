@@ -1,12 +1,15 @@
 import React from 'react';
-import { GrMoney } from "react-icons/gr";
-import { GiReceiveMoney, GiTakeMyMoney } from "react-icons/gi";
-import { MdAttachMoney } from "react-icons/md";
+import { useLanguage } from '@/utils/i18next';
 
 import { formatNumber } from "@/utils/formatNumber";
 import { SessionAuthenticated } from '@/lib/types/types';
 
+import { GrMoney } from "react-icons/gr";
+import { GiReceiveMoney, GiTakeMyMoney } from "react-icons/gi";
+import { MdAttachMoney } from "react-icons/md";
+
 const Context: React.FC<SessionAuthenticated> = ({ session }) => {
+  const { t } = useLanguage();
   const dailyAmount = Math.floor(((session?.user?.balance ?? 0) * (Math.pow(1 + (session?.user?.interest ?? 0) / 100, 1 / 365) - 1)) * 100) / 100;
   
   return (
@@ -17,8 +20,8 @@ const Context: React.FC<SessionAuthenticated> = ({ session }) => {
             <div className="flex-auto p-5">
               <div className="w-full flex flex-row justify-between">
                 <div className='flex flex-col gap-1 justify-center items-start'>
-                  <p className="mb-0 font-cocogoose uppercase font-semibold leading-normal text-xs lg:text-base">Saldo</p>
-                  <p className='text-xs font-cocogoose hidden lg:block'>Total disponible </p>
+                  <p className="mb-0 font-cocogoose uppercase font-semibold leading-normal text-xs lg:text-base">{t('admin.context.card1.title')}</p>
+                  <p className='text-xs font-cocogoose hidden lg:block'>{t('admin.context.card1.description')}</p>
                   <p className="mb-0 text-sm md:text-xl font-creatodisplay block lg:hidden">${formatNumber(session?.user?.balance ?? 0, 0)}</p>
                 </div>
                 <div className="flex flex-row items-center text-right gap-4">
@@ -36,8 +39,8 @@ const Context: React.FC<SessionAuthenticated> = ({ session }) => {
             <div className="flex-auto p-5">
               <div className="w-full flex flex-row justify-between">
                 <div className='flex flex-col gap-1 justify-center items-start'>
-                  <p className="mb-0 font-cocogoose uppercase font-semibold leading-normal text-xs lg:text-base">Interes</p>
-                  <p className='text-xs font-cocogoose hidden lg:block'>Efectivo Anual </p>
+                  <p className="mb-0 font-cocogoose uppercase font-semibold leading-normal text-xs lg:text-base">{t('admin.context.card2.title')}</p>
+                  <p className='text-xs font-cocogoose hidden lg:block'>{t('admin.context.card2.description')}</p>
                   <p className="mb-0 text-sm md:text-xl font-creatodisplay block lg:hidden">{session.user.interest}%</p>
                 </div>
                 <div className="flex flex-row items-center text-right gap-4">
@@ -55,8 +58,8 @@ const Context: React.FC<SessionAuthenticated> = ({ session }) => {
             <div className="flex-auto p-5">
               <div className="w-full flex flex-row justify-between">
                 <div className='flex flex-col gap-1 justify-center items-start'>
-                  <p className="mb-0 font-cocogoose uppercase font-semibold leading-normal text-xs lg:text-base">Abonos</p>
-                  <p className='text-xs font-cocogoose hidden lg:block'>Interes diario </p>
+                  <p className="mb-0 font-cocogoose uppercase font-semibold leading-normal text-xs lg:text-base">{t('admin.context.card3.title')}</p>
+                  <p className='text-xs font-cocogoose hidden lg:block'>{t('admin.context.card3.description')}</p>
                   <p className="mb-0 text-sm md:text-xl font-creatodisplay block lg:hidden">${formatNumber(dailyAmount)}</p>
                 </div>
                 <div className="flex flex-row items-center text-right gap-4">
@@ -74,8 +77,8 @@ const Context: React.FC<SessionAuthenticated> = ({ session }) => {
             <div className="flex-auto p-5">
               <div className="w-full flex flex-row justify-between">
                 <div className='flex flex-col gap-1 justify-center items-start'>
-                  <p className="mb-0 font-cocogoose uppercase font-semibold leading-normal text-xs lg:text-base">Total</p>
-                  <p className='text-xs font-cocogoose hidden lg:block'>Intereses obtenidos</p>                  
+                  <p className="mb-0 font-cocogoose uppercase font-semibold leading-normal text-xs lg:text-base">{t('admin.context.card4.title')}</p>
+                  <p className='text-xs font-cocogoose hidden lg:block'>{t('admin.context.card4.description')}</p>                  
                   <p className="mb-0 text-sm md:text-xl font-creatodisplay block lg:hidden">${formatNumber(session.user.profit)}</p>
                 </div>
                 <div className="flex flex-row items-center text-right gap-4">
