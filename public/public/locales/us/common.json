@@ -4,29 +4,115 @@
     "context": {
       "card1": {
         "title": "Balance",
-        "description": "Total disponible"
+        "description": "Total available"
       },
       "card2": {
-        "title": "Interes",
-        "description": "Efectivo Anual"
+        "title": "Interest",
+        "description": "Annual Cash"
       },
       "card3": {
-        "title": "Abonos",
-        "description": "Interes diario"
+        "title": "Deposits",
+        "description": "Daily interest"
       },
       "card4": {
         "title": "Total",
-        "description": "Intereses obtenidos"
+        "description": "Interest earned"
       }
     }
   },
   "logs": {
     "table": {
       "th1": "Voucher",
-      "th2": "Valor",
-      "th3": "Fecha",
-      "th4": "Movimiento",
-      "th5": "Estado"
+      "th2": "Amount",
+      "th3": "Date",
+      "th4": "Transaction",
+      "th5": "Status"
+    },
+    "states": {
+      "invoiced": "Invoiced",
+      "done": "Approved",
+      "error": "Error"
+    },
+    "filter": "Enter Voucher"
+  },
+  "meta": {
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis.",
+    "information": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis.",
+    "interface": {
+      "updateInfo": {
+        "title": "Update Information",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum.",
+        "message": {
+          "success": "Updated! Wallet update was successful. Remember to keep your data up to date.",
+          "information": "Need help?"
+        }
+      },
+      "invoice": {
+        "button": "Add",
+        "tab1": "Add",
+        "tab2": "History",
+        "placeholder": "Enter the amount",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum.",
+        "table": {
+          "th1": "Voucher",
+          "th2": "Wallet",
+          "th3": "Amount",
+          "th4": "Date",
+          "th5": "Status",
+          "information": {
+            "alert": "You haven't made any deposits yet!",
+            "message": "Add balance to your account and start earning interest."
+          }
+        },
+        "states": {
+          "invoiced": "Invoiced",
+          "done": "Approved",
+          "error": "Error"
+        },
+        "message": {
+          "success": "Congratulations! You have successfully generated your invoice.",
+          "information": "Transfer the amount in USDT to the indicated wallet address. Thank you for your trust!",
+          "help": "Need help?"
+        }
+      },
+      "withdrawal": {
+        "button": "Transfer",
+        "tab1": "Transfer",
+        "tab2": "History",
+        "placeholder": "Enter the amount",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum.",
+        "table": {
+          "th1": "Voucher",
+          "th2": "Wallet",
+          "th3": "Amount",
+          "th4": "Date",
+          "th5": "Status",
+          "information": {
+            "alert": "You haven't made any withdrawals yet!",
+            "message": "The cost of transactions will depend on the selected network."
+          }
+        },
+        "states": {
+          "invoiced": "Invoiced",
+          "done": "Approved",
+          "error": "Error"
+        },
+        "message": {
+          "success": "Congratulations! You have successfully generated the transfer request.",
+          "information": "We will verify the transfer and process it within the next few hours.",
+          "help": "Need help?"
+        }
+      },
+      "investment": {
+        "button": "Invest",
+        "tab1": "Invest",
+        "tab2": "History",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum.",
+        "message": {
+          "success": "Updated! Wallet update was successful. Remember to keep your data up to date.",
+          "information": "Need help?"
+        }
+      }
     }
   }
 }
