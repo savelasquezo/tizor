@@ -44,7 +44,7 @@ export const chartOptions = (isSmallScreen: boolean): ChartOptions<'line'> => ({
   plugins: {
     legend: {
       display: true,
-      position: 'bottom', // Aquí no es necesario usar 'as const'
+      position: 'bottom',
     },
     tooltip: {
       enabled: true,

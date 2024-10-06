@@ -36,7 +36,7 @@ const UpdateInfo: React.FC<SessionAuthenticated> = ({ session }) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-
+    console.log(address)
     await new Promise(resolve => setTimeout(resolve, 1500));
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/src/update-account/`,
@@ -87,9 +87,9 @@ const UpdateInfo: React.FC<SessionAuthenticated> = ({ session }) => {
           </div>
           <p className="mt-2 text-gray-900 text-xs text-center">{t('meta.interface.updateInfo.description')}</p>
           <div className='flex items-center justify-center text-xs h-10 my-4 border-t-1 border-gray-400 text-center'>
-            {registrationSuccess && <p className="text-green-900 font-semibold font-cocogoose text-[0.65rem] mt-3">{t('meta.interface.updateInfo.message.success')}</p>}
+            {registrationSuccess && <p className="text-green-900 font-semibold font-cocogoose text-[0.65rem] mt-3">{t('meta.interface.updateInfo.message.success')} <br />{t('meta.interface.updateInfo.message.information')}</p>}
             {error && <p className="text-red-600 font-semibold font-carvingsoft text-sm mt-3 uppercase">{error}</p>}
-            {!registrationSuccess && !error && <p className="text-gray-900 mt-3">{t('meta.interface.updateInfo.message.information')} {data?.email ?? 'support@webmaster.com'}</p>}
+            {!registrationSuccess && !error && <p className="text-gray-900 mt-3">{t('meta.interface.updateInfo.message.help')} {data?.email ?? 'support@webmaster.com'}</p>}
           </div>
         </form>
       </div>

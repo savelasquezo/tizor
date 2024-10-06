@@ -91,7 +91,7 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
             </div>
             <button onClick={() => openModal('edt')}><SlPencil /></button>
           </div>
-          <p className='text-[0.65rem] text-start leading-tight font-cocogoose'>{t('meta.information')}</p>
+          <p className='text-[0.65rem] text-justify leading-tight font-cocogoose'>{t('meta.information')}</p>
         </div>
         <div className='w-full flex flex-row items-center justify-center sm:justify-start gap-x-4 my-6 lg:my-0'>
           <button onClick={() => openModal('add')} className="w-full sm:w-1/3 h-12 lg:h-10 text-center sm:flex sm:flex-row sm:items-center sm:justify-center lg:justify-start sm:gap-x-1 bg-green-700 hover:bg-green-900 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">

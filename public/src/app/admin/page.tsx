@@ -12,7 +12,7 @@ import Context from '@/components/admin/context/index';
 import Meta from '@/components/admin/meta/index';
 import Logs from '@/components/admin/logs/index';
 import History from '@/components/admin/history/index';
-import Tasks from '@/components/admin/tasks/index';
+import Shared from '@/components/admin/shared/index';
 
 import { useLanguage } from '@/utils/i18next';
 import { SiteType } from '@/lib/types/types';
@@ -53,12 +53,14 @@ const AdminPage: React.FC = () => {
           <Select
             className="!w-20"
             radius={'sm'}
-            selectedKeys={[selectedLanguage === 'us' ? 'us' : 'es']}
-            disabledKeys={[selectedLanguage === 'us' ? 'us' : 'es']}
-            startContent={<Flag code={selectedLanguage === 'us' ? 'us' : 'es'} className="w-6 h-6" />}
+            selectedKeys={[selectedLanguage]}
+            disabledKeys={[selectedLanguage]}
+            startContent={<Flag code={selectedLanguage} className="w-6 h-6" />}
           >
-            <SelectItem onClick={() => handleLanguageChange('us')} key="us" startContent={<Flag code="US" className="w-6 h-6" />}></SelectItem>
-            <SelectItem onClick={() => handleLanguageChange('es')} key="es" startContent={<Flag code="ES" className="w-6 h-6" />}></SelectItem>
+            <SelectItem onClick={() => handleLanguageChange('us')} key="us" startContent={<Flag code="us" className="w-6 h-6" />}></SelectItem>
+            <SelectItem onClick={() => handleLanguageChange('es')} key="es" startContent={<Flag code="es" className="w-6 h-6" />}></SelectItem>
+            <SelectItem onClick={() => handleLanguageChange('pt')} key="pt" startContent={<Flag code="pt" className="w-6 h-6" />}></SelectItem>
+            <SelectItem onClick={() => handleLanguageChange('fr')} key="fr" startContent={<Flag code="fr" className="w-6 h-6" />}></SelectItem>
           </Select>
         </div>
       </nav>
@@ -70,7 +72,7 @@ const AdminPage: React.FC = () => {
             <Logs session={session} />
           </div>
           <div className='w-full h-auto lg:h-72 flex flex-col lg:flex-row gap-4'>
-            <Tasks session={session} />
+            <Shared session={session} />
             <History session={session} />
           </div>
         </section>

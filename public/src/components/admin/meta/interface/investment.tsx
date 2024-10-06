@@ -135,24 +135,22 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
         </div>
         <form className={`${activeTab === 'add' ? 'block animate-fade-in animate__animated animate__fadeIn' : 'hidden animate-fade-out animate__animated animate__fadeOut'}`}>
           <div className="w-full h-full flex flex-col items-center justify-center">
-            <Slider label="Saldo" hideValue={!mathAmount} step={fixAmount} minValue={fixAmount} maxValue={fixAmount*10} defaultValue={fixAmount} showSteps={true} isDisabled={registrationSuccess} size="sm" color="primary"
+            <Slider label={t('meta.interface.investment.label.invest')} hideValue={!mathAmount} step={fixAmount} minValue={fixAmount} maxValue={fixAmount*10} defaultValue={fixAmount} showSteps={true} isDisabled={registrationSuccess} size="sm" color="primary"
               onChange={(value: number | number[]) => {if (Array.isArray(value)) {setAmount(value[0]);} else {setAmount(value);}}}/>
-            <Slider label="Temporalidad" step={3} minValue={6} maxValue={36} defaultValue={12} showSteps={true} isDisabled={registrationSuccess} size="sm" color="primary"
+            <Slider label={t('meta.interface.investment.label.temporality')} step={3} minValue={6} maxValue={36} defaultValue={12} showSteps={true} isDisabled={registrationSuccess} size="sm" color="primary"
               onChange={(value: number | number[]) => {if (Array.isArray(value)) {setMonths(value[0]);} else {setMonths(value);}}}/>
           </div>
           <div className="text-center">
-            <p className="mt-2 text-gray-900 text-xs">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a feugiat arcu. Sed condimentum ultrices tristique. Duis quis tortor id justo tincidunt mollis. Cras euismod erat eu felis bibendum.
-            </p>
+            <p className="mt-2 text-gray-900 text-xs">{t('meta.interface.investment.description')}</p>
             <div className='h-full w-full flex flex-row justify-between items-center rounded-sm my-2 pl-2 rounded-r-md border-2 bg-yellow-50 border-gray-200'>
               <div className='flex flex-col items-start justify-center py-1'>
                 <p className='flex flex-row justify-start items-center gap-x-2'>
                   <span className='text-gray-500 text-sm'><IoWalletOutline /></span>
-                  <span className='text-gray-800 font-bankprinter text-xs'>Total: {mathAmount ? `${mathExpected().toFixed(2)}` : '--'}</span>
+                  <span className='text-gray-800 font-bankprinter text-xs'>{t('meta.interface.investment.results.total')}: {mathAmount ? `${mathExpected().toFixed(2)}` : '--'}</span>
                 </p>
                 <p className='flex flex-row justify-start items-center gap-x-2'>
                   <span className='text-gray-500 text-sm'><TbSquareRoundedPercentage /></span>
-                  <span className='text-gray-800 font-bankprinter text-xs'>Interes: {mathInterest(months).toFixed(2)}% (E.A)</span>
+                  <span className='text-gray-800 font-bankprinter text-xs'>{t('meta.interface.investment.results.interest')}: {mathInterest(months).toFixed(2)}% (E.A)</span>
                 </p>
               </div>
               {!registrationSuccess ? (
@@ -162,9 +160,10 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
               )}
             </div>
             <div className='flex items-center justify-center text-xs h-10 my-4 border-t-1 border-gray-400'>
-              {registrationSuccess && <p className="text-green-900 font-semibold font-cocogoose text-[0.65rem] mt-3">¡Felicidades! Has generado tu factura con éxito. Ahora, solo resta realizar el envío de las USDT a la dirección de wallet indicada. ¡Gracias por tu confianza!</p>}
+              {registrationSuccess && <p className="text-green-900 font-semibold font-cocogoose text-[0.65rem] mt-3">
+                {t('meta.interface.investment.message.success')}<br />{t('meta.interface.investment.message.information')}</p>}
               {error && <p className="text-red-600 font-semibold font-carvingsoft text-sm mt-3 uppercase">{error}</p>}
-              {!registrationSuccess && !error && <p className="text-gray-900 mt-3">¿Necesitas ayuda? {data?.email ?? 'support@webmaster.com'}</p>}
+              {!registrationSuccess && !error && <p className="text-gray-900 mt-3">{t('meta.interface.investment.message.help')} {data?.email ?? 'support@webmaster.com'}</p>}
             </div>
           </div>
         </form>
@@ -174,12 +173,12 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
               <table className="min-w-full text-center text-sm font-light table-fixed">
                 <thead className="font-medium text-gray-900">
                   <tr className="border-b-2 border-slate-400 font-cocogoose font-semibold uppercase text-xs">
-                    <th scope="col" className="w-1/6 px-1 py-2">ID</th>
-                    <th scope="col" className="w-1/6 px-1 py-2">Saldo</th>
-                    <th scope="col" className="w-1/6 px-1 py-2">Interes</th>
-                    <th scope="col" className="w-1/6 px-1 py-2">Acumulado</th>
-                    <th scope="col" className="w-1/6 px-1 py-2">Fecha</th>
-                    <th scope="col" className="w-1/6 px-1 py-2">Estado</th>
+                    <th scope="col" className="w-1/6 px-1 py-2">{t('meta.interface.investment.table.th1')}</th>
+                    <th scope="col" className="w-1/6 px-1 py-2">{t('meta.interface.investment.table.th2')}</th>
+                    <th scope="col" className="w-1/6 px-1 py-2 hidden lg:table-cell">{t('meta.interface.investment.table.th3')}</th>
+                    <th scope="col" className="w-1/6 px-1 py-2 hidden lg:table-cell">{t('meta.interface.investment.table.th4')}</th>
+                    <th scope="col" className="w-1/6 px-1 py-2">{t('meta.interface.investment.table.th5')}</th>
+                    <th scope="col" className="w-1/6 px-1 py-2">{t('meta.interface.investment.table.th6')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -187,8 +186,8 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
                     <tr key={index} className="border-b border-slate-300 uppercase text-xs text-gray-600 text-center align-middle h-8">
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.voucher ? obj.voucher : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.amount ? formatNumber(obj.amount) : ''}</td>
-                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.interest ? formatNumber(obj.interest)+'%' : ''}</td>
-                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.accumulated !== null && obj.accumulated !== undefined ? formatNumber(obj.accumulated) : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter hidden lg:table-cell">{obj.interest ? formatNumber(obj.interest)+'%' : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter hidden lg:table-cell">{obj.accumulated !== null && obj.accumulated !== undefined ? formatNumber(obj.accumulated) : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.date_target ? obj.date_target : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.state ? obj.state : ''}</td>
                     </tr>
@@ -215,8 +214,8 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
           ) : (
             <div className='w-full h-full flex flex-col justify-start items-center'>
               <span className='text-center text-gray-800 mt-8 text-sm'>
-                <p>¡Aun no has realizado ningun deposito!</p>
-                <p>Agrega saldo a tu cuenta y empieza a generar intereses.</p>
+              <p>{t('meta.interface.investment.table.information.alert')}</p>
+              <p>{t('meta.interface.investment.table.information.message')}</p>
               </span>
             </div>
           )}

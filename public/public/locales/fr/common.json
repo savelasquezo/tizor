@@ -1,0 +1,154 @@
+{
+  "i18next": "fr",
+  "admin": {
+    "context": {
+      "card1": {
+        "title": "Solde",
+        "description": "Total disponible"
+      },
+      "card2": {
+        "title": "Intérêts",
+        "description": "Annuel Effectif"
+      },
+      "card3": {
+        "title": "Dépôts",
+        "description": "Intérêts quotidiens"
+      },
+      "card4": {
+        "title": "Total",
+        "description": "Intérêts obtenus"
+      }
+    }
+  },
+  "logs": {
+    "table": {
+      "th1": "Reçu",
+      "th2": "Valeur",
+      "th3": "Date",
+      "th4": "Mouvement",
+      "th5": "État"
+    },
+    "states": {
+      "invoiced": "Facturé",
+      "done": "Approuvé",
+      "error": "Erreur"
+    },
+    "filter": "Entrez le reçu"
+  },
+  "meta": {
+    "description": "Tizorbank transforme votre façon de penser vos finances ; une fintech innovante qui offre l'opportunité de faire croître votre argent avec des rendements quotidiens supérieurs. Grâce à notre plateforme d'investissement, vous pouvez investir en toute sécurité et sans complications, et voir vos économies générer des rendements constants jour après jour.",
+    "information": "La sécurité est notre priorité. Pour garantir que vous ayez toujours un contrôle total sur vos fonds et éviter tout désagrément, il est essentiel de maintenir vos données utilisateur à jour. Garder vos informations à jour est la clé pour gérer votre capital de manière efficace et sans risques.",
+    "interface": {
+      "updateInfo": {
+        "title": "Mettre à jour les informations",
+        "description": "Tizorbank décline toute responsabilité en cas de pertes ou de désagréments si l'utilisateur ne maintient pas son adresse à jour ou perd l'accès à son portefeuille numérique. Il est essentiel que les données soient toujours à jour pour garantir la sécurité des investissements et l'accès continu aux fonds.",
+        "message": {
+          "success": "Mis à jour ! Vous avez correctement changé votre portefeuille virtuel.",
+          "information": "Gardez vos données à jour pour éviter les pertes lors des transactions.",
+          "help": "Avez-vous besoin d'aide ?"
+        }
+      },
+      "invoice": {
+        "button": "Ajouter",
+        "tab1": "Ajouter",
+        "tab2": "Historique",
+        "placeholder": "Entrez le montant",
+        "description": "La confirmation de la transaction peut prendre jusqu'à 36 heures pour être vérifiée. Pendant ce temps, notre système traitera votre demande pour garantir la sécurité de chaque transaction. Si vous avez des questions, contactez notre service clientèle.",
+        "table": {
+          "th1": "Reçu",
+          "th2": "Portefeuille",
+          "th3": "Valeur",
+          "th4": "Date",
+          "th5": "État",
+          "information": {
+            "alert": "Vous n'avez encore effectué aucun dépôt !",
+            "message": "Ajoutez du solde à votre compte et commencez à générer des intérêts."
+          }
+        },
+        "states": {
+          "invoiced": "Facturé",
+          "done": "Approuvé",
+          "error": "Erreur"
+        },
+        "message": {
+          "success": "Félicitations ! Vous avez généré votre facture avec succès.",
+          "information": "Transférez le montant en USDT à l'adresse de portefeuille indiquée.",
+          "help": "Avez-vous besoin d'aide ?"
+        }
+      },
+      "withdrawal": {
+        "button": "Transférer",
+        "tab1": "Transférer",
+        "tab2": "Historique",
+        "placeholder": "Entrez le montant",
+        "description": "La confirmation du transfert peut prendre jusqu'à 36 heures pour être effectuée. Pendant ce temps, notre système traitera votre demande pour garantir la sécurité de chaque transaction. Si vous avez des questions, contactez notre service clientèle.",
+        "table": {
+          "th1": "Reçu",
+          "th2": "Portefeuille",
+          "th3": "Valeur",
+          "th4": "Date",
+          "th5": "État",
+          "information": {
+            "alert": "Vous n'avez encore effectué aucun retrait !",
+            "message": "Les frais de transaction dépendront du réseau sélectionné."
+          }
+        },
+        "states": {
+          "invoiced": "Facturé",
+          "done": "Approuvé",
+          "error": "Erreur"
+        },
+        "message": {
+          "success": "Félicitations ! Vous avez généré la demande de transfert avec succès.",
+          "information": "Nous vérifierons le transfert et l'enverrons dans les prochaines heures.",
+          "help": "Avez-vous besoin d'aide ?"
+        }
+      },
+      "investment": {
+        "button": "Investir",
+        "tab1": "Investir",
+        "tab2": "Historique",
+        "description": "Investissez votre argent à des échéances définies chez Tizorbank et maximisez vos gains. En optant pour ce mode, vous garantissez un rendement supérieur par rapport aux investissements traditionnels.",
+        "table": {
+          "th1": "Reçu",
+          "th2": "Solde",
+          "th3": "Intérêts",
+          "th4": "Cumulé",
+          "th5": "Date",
+          "th6": "État",
+          "information": {
+            "alert": "Vous n'avez encore effectué aucun investissement !",
+            "message": "Investissez votre argent à des échéances définies et augmentez votre rentabilité."
+          }
+        },
+        "label": {
+          "invest": "Investissement",
+          "temporality": "Temporalité"
+        },
+        "results": {
+          "total": "Total",
+          "interest": "Intérêts"
+        },
+        "states": {
+          "active": "Active",
+          "inactive": "Inactive",
+          "cancelled": "Annulée"
+        },
+        "message": {
+          "success": "Félicitations ! Vous avez généré un nouvel investissement avec succès.",
+          "information": "Le solde généré sera transféré à votre compte à la fin de la période d'investissement.",
+          "help": "Avez-vous besoin d'aide ?"
+        }
+      }
+    }
+  },
+  "shared": {
+    "description": "Invitez d'autres à rejoindre et commencez à générer des gains passifs quotidiens. Chaque nouvel utilisateur qui s'inscrit avec votre lien et effectue un investissement générera automatiquement des intérêts. Vos amis profiteront des avantages d'investir et vous verrez vos gains croître chaque jour. Partagez l'opportunité de créer de la richesse et maximisez vos revenus dans notre communauté d'investisseurs.",
+    "information": "Envoyez votre lien d'invitation et commencez à générer des gains en invitant d'autres à investir ; vous générerez des intérêts quotidiens grâce à leur investissement. C'est facile et rapide !",
+    "table": {
+      "th1": "Utilisateur",
+      "th2": "Solde",
+      "th3": "Date"
+    }
+  }
+}

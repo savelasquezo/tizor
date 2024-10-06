@@ -5,10 +5,10 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-event = (('investment','Investment'),('interest','Interest'),('closure','Closure'),('error','Error'))
-types = (('interest','Interest'),('outcome','Outcome'),('income','Income'),('investment','Investment'),('ref','Referred'),('error','Error'))
-states = (('invoiced','Invoiced'),('done','Approved'),('error','Error'))
-status = (('active','Active'),('inactive','Inactive'),('cancelled','Cancelled'),('error','Error'))
+event = (('investment','Investment'),('interest','Interest'),('closure','Closure'))
+types = (('interest','Interest'),('outcome','Outcome'),('income','Income'),('investment','Investment'),('ref','Referred'))
+states = (('invoiced','Invoiced'),('done','Approved'))
+status = (('active','Active'),('inactive','Inactive'),('cancelled','Cancelled'))
 
 def LogoUploadTo(instance, filename):
     return f"uploads/{instance.username}/logo/{filename}"
