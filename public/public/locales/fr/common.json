@@ -31,7 +31,7 @@
     "states": {
       "invoiced": "Facturé",
       "done": "Approuvé",
-      "error": "Erreur"
+      "refund": "Remboursement"
     },
     "filter": "Entrez le reçu"
   },
@@ -108,17 +108,17 @@
         "button": "Investir",
         "tab1": "Investir",
         "tab2": "Historique",
-        "description": "Investissez votre argent à des échéances définies chez Tizorbank et maximisez vos gains. En optant pour ce mode, vous garantissez un rendement supérieur par rapport aux investissements traditionnels.",
+        "description": "Investissez votre argent sur des périodes définies avec Tizorbank et maximisez vos gains. En optant pour cette modalité, vous assurez un rendement supérieur par rapport aux investissements traditionnels.",
         "table": {
-          "th1": "Reçu",
+          "th1": "Bon",
           "th2": "Solde",
-          "th3": "Intérêts",
+          "th3": "Intérêt",
           "th4": "Cumulé",
           "th5": "Date",
           "th6": "État",
           "information": {
-            "alert": "Vous n'avez encore effectué aucun investissement !",
-            "message": "Investissez votre argent à des échéances définies et augmentez votre rentabilité."
+            "alert": "Vous n'avez encore réalisé aucun investissement !",
+            "message": "Investissez votre argent sur des périodes définies et augmentez votre rentabilité"
           }
         },
         "label": {
@@ -127,17 +127,26 @@
         },
         "results": {
           "total": "Total",
-          "interest": "Intérêts"
+          "interest": "Intérêt",
+          "invest": "Investissement",
+          "settlement": "Liquidation"
         },
         "states": {
           "active": "Active",
           "inactive": "Inactive",
           "cancelled": "Annulée"
         },
+        "unlock": {
+          "description": {
+            "txt1": "L'utilisateur a la possibilité d'annuler son investissement à tout moment, ce qui déclenchera le remboursement des fonds initialement investis. De plus, une compensation supplémentaire sera accordée, calculée en fonction des intérêts générés jusqu'à la date d'annulation. Ce processus offre un moyen simple de récupérer votre investissement.",
+            "txt2": "Il est important de noter que l'annulation de l'investissement est irréversible et s'exécute immédiatement. Une fois la transaction demandée, elle ne peut être annulée ou modifiée. Il est donc recommandé de bien réfléchir avant de procéder à l'annulation."
+          },
+          "information": "La suppression de l'investissement est irréversible, une pénalité sera appliquée sur le capital accumulé, le montant initial investi sera remboursé avec une compensation supplémentaire calculée sur les intérêts générés jusqu'à la date de suppression. Veuillez examiner attentivement les conditions avant de procéder."
+        },
         "message": {
-          "success": "Félicitations ! Vous avez généré un nouvel investissement avec succès.",
-          "information": "Le solde généré sera transféré à votre compte à la fin de la période d'investissement.",
-          "help": "Avez-vous besoin d'aide ?"
+          "success": "Félicitations ! Vous avez créé un nouvel investissement avec succès.",
+          "information": "Le solde généré sera transféré sur votre compte à la fin de la période d'investissement.",
+          "help": "Besoin d'aide ?"
         }
       }
     }

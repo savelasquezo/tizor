@@ -31,7 +31,7 @@
     "states": {
       "invoiced": "Faturado",
       "done": "Aprovado",
-      "error": "Erro"
+      "refund": "Reembolso"
     },
     "filter": "Digite o Comprovante"
   },
@@ -108,17 +108,17 @@
         "button": "Investir",
         "tab1": "Investir",
         "tab2": "Histórico",
-        "description": "Invista seu dinheiro a prazos definidos na Tizorbank e maximize seus lucros. Ao optar por essa modalidade, você garante um retorno superior em comparação com os investimentos tradicionais.",
+        "description": "Invista seu dinheiro em prazos definidos no Tizorbank e maximize seus lucros. Ao optar por esta modalidade, você garante um retorno superior em comparação com os investimentos tradicionais.",
         "table": {
-          "th1": "Comprovante",
+          "th1": "Voucher",
           "th2": "Saldo",
           "th3": "Juros",
           "th4": "Acumulado",
           "th5": "Data",
-          "th6": "Status",
+          "th6": "Estado",
           "information": {
             "alert": "Você ainda não fez nenhum investimento!",
-            "message": "Invista seu dinheiro em prazos definidos e aumente sua rentabilidade."
+            "message": "Invista seu dinheiro em prazos definidos e aumente sua rentabilidade"
           }
         },
         "label": {
@@ -127,12 +127,21 @@
         },
         "results": {
           "total": "Total",
-          "interest": "Juros"
+          "interest": "Juros",
+          "invest": "Investimento",
+          "settlement": "Liquidação"
         },
         "states": {
           "active": "Ativa",
           "inactive": "Inativa",
           "cancelled": "Cancelada"
+        },
+        "unlock": {
+          "description": {
+            "txt1": "O usuário tem a opção de cancelar seu investimento a qualquer momento, o que acionará o reembolso dos fundos inicialmente investidos. Além disso, será concedida uma compensação adicional, calculada com base nos juros gerados até a data do cancelamento. Este processo oferece uma forma simples de recuperar seu investimento.",
+            "txt2": "É importante destacar que o cancelamento do investimento é irreversível e é executado imediatamente. Uma vez solicitada a transação, ela não pode ser revertida ou modificada. Por isso, é recomendado avaliar cuidadosamente sua decisão antes de prosseguir com o cancelamento."
+          },
+          "information": "A remoção do investimento é irreversível, uma penalização será aplicada ao capital acumulado, o investimento inicial será reembolsado junto com uma compensação adicional calculada com base nos juros gerados até a data da remoção. Revise cuidadosamente as condições antes de prosseguir."
         },
         "message": {
           "success": "Parabéns! Você gerou um novo investimento com sucesso.",

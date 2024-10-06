@@ -1,4 +1,4 @@
-import os, json, logging
+import logging
 
 from django.utils import timezone
 from django.db.models import Sum
@@ -6,37 +6,13 @@ from django.conf import settings
 
 from apps.src.models import Account, Investment
 from apps.site.models import Tizorbank
-from apps.src.functions import makeTransaction, makeHistory
+from apps.src.functions import makeTransaction, makeHistory, updateJson
 
 logger = logging.getLogger(__name__)
 
 def daily(amount: float, interest: float) -> float:
     return amount * ((1 + interest*0.01) ** (1/365) - 1)
 
-def updateJson(user, amount, history):
-    file_path = os.path.join(settings.BASE_DIR, 'data', f'{user.username}.json')
-
-    user_data = {
-        "id": str(user.uuid),
-        "email": user.email,
-        "data": []
-    }
-
-    if os.path.exists(file_path):
-        with open(file_path, 'r') as file:
-            try:
-                user_data = json.load(file)
-            except json.JSONDecodeError:
-                logger.error(f"Error decoding JSON for user {user.username}")
-    
-    user_data["data"].append({
-        "date": timezone.now().strftime('%Y-%m-%d'),
-        "balance": round(amount, 2),
-        "history": history
-    })
-
-    with open(file_path, 'w') as file:
-        json.dump(user_data, file, indent=4)
 
 def AddFunds():
     
@@ -84,7 +60,7 @@ def AddFunds():
                     
                     makeHistory(user, invest, daily_interest, 'interest')
             
-            updateJson(user, user.balance, user.profit)
+            updateJson(user, user.balance)
 
     except Exception as e:
         logger.error("%s", e, exc_info=True)

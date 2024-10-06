@@ -39,11 +39,12 @@ class TizorbankAdmin(admin.ModelAdmin):
         'min_interest',
         'max_interest',
         'ref',
+        'unlock',
         )
 
     fieldsets_ = {'fields': (
-        ('email','address'),
-        ('min_interest','max_interest','ref'),
+        ('email','network','address'),
+        ('min_interest','max_interest','ref','unlock'),
         )}
 
     fieldsets_templates = {'fields': (
@@ -63,9 +64,6 @@ class TizorbankAdmin(admin.ModelAdmin):
         ('Terms/Legal', fieldsets_legal),
     )
 
-
-
-    
     def has_add_permission(self, request):
         return False if model.Tizorbank.objects.exists() else True
 

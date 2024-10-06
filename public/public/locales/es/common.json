@@ -31,7 +31,7 @@
     "states": {
       "invoiced": "Facturado",
       "done": "Aprobado",
-      "error": "Error"
+      "refund": "Rembolso"
     },
     "filter": "Ingresa Voucher"
   },
@@ -108,7 +108,7 @@
         "button": "Invertir",
         "tab1": "Invertir",
         "tab2": "Historial",
-        "description": " Invierte tu dinero a plazos definidos en Tizorbank y maximiza tus ganancias. Al optar por esta modalidad, aseguras un rendimiento superior en comparación con las inversiones tradicionales.",
+        "description": "Invierte tu dinero a plazos definidos en Tizorbank y maximiza tus ganancias. Al optar por esta modalidad, aseguras un rendimiento superior en comparación con las inversiones tradicionales.",
         "table": {
           "th1": "Voucher",
           "th2": "Saldo",
@@ -127,12 +127,21 @@
         },
         "results": {
           "total": "Total",
-          "interest": "Interes"
+          "interest": "Interes",
+          "invest": "Inversion",
+          "settlement":"Liquidación"
         },
         "states": {
           "active": "Activa",
           "inactive": "Inactiva",
           "cancelled": "Cancelada"
+        },
+        "unlock": {
+          "description": {
+            "txt1": "El usuario tiene la opción de cancelar su inversión en cualquier momento, lo que activará el reembolso de los fondos inicialmente invertidos. Además, se otorgará una compensación adicional, calculada en función de los intereses generados hasta la fecha de cancelación. Este proceso ofrece una forma de recuperar su inversión de manera directa y sencilla.",
+            "txt2": "Es importante destacar que la cancelación de la inversión es irreversible y se ejecuta de manera inmediata. Una vez solicitada la transacción, no se puede revertir ni modificar. Por ello, se recomienda evaluar cuidadosamente su decisión antes de proceder con la cancelación."
+          },
+          "information": "La eliminación de la inversión es irreversible, aplicará una penalización al capital acumulado, reembolsará la inversión inicial junto con una compensación adicional calculada en función de los intereses generados hasta la fecha de la eliminación, revisa detenidamente las condiciones antes de proceder."
         },
         "message": {
           "success": "¡Felicidades! Has generado una nueva Inversion con éxito",

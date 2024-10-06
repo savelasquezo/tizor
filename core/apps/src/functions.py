@@ -1,6 +1,13 @@
+import os, json, logging
+
+from django.utils import timezone
+from django.conf import settings
+
 from typing import Optional
 from django.db import transaction
 from apps.src.models import Account, Transaction, Investment, InvestmentHistory
+
+logger = logging.getLogger(__name__)
 
 def makeHistory(account: Account, investment: Investment, amount: float, type: str, voucher: Optional[str] = None) -> Optional[InvestmentHistory]:
     obj = InvestmentHistory.objects.create(account=account, investment=investment, amount=amount, type=type, voucher=voucher)
@@ -19,3 +26,27 @@ def updateTransaction(user: Account, state: str, voucher: str) -> Optional[Trans
     obj = Transaction.objects.get(account=user, voucher=voucher)
     obj.state = state
     obj.save()
+
+def updateJson(user, amount):
+    file_path = os.path.join(settings.BASE_DIR, 'data', f'{user.username}.json')
+
+    user_data = {
+        "id": str(user.uuid),
+        "email": user.email,
+        "data": []
+    }
+
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as file:
+            try:
+                user_data = json.load(file)
+            except json.JSONDecodeError:
+                logger.error(f"Error decoding JSON for user {user.username}")
+    
+    user_data["data"].append({
+        "date": timezone.now().strftime('%Y-%m-%d'),
+        "balance": round(amount, 2)
+    })
+
+    with open(file_path, 'w') as file:
+        json.dump(user_data, file, indent=4)

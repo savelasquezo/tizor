@@ -16,7 +16,7 @@ from apps.site.models import Tizorbank
 import apps.src.models as model
 import apps.src.serializers as serializer
 import apps.src.pagination as paginate
-from apps.src.functions import makeTransaction, makeHistory
+from apps.src.functions import makeTransaction, makeHistory, updateJson
 
 logger = logging.getLogger(__name__)
 
@@ -40,13 +40,18 @@ class updateAccount(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
+        network = request.data.get('network')
         address = request.data.get('address')
-            
+        
         try:
-            if model.Account.objects.filter(address=address):
+            if model.Account.objects.filter(address=address) and address != request.user.address:
                 return Response({'error': 'The wallet is already associated with another account'}, status=status.HTTP_409_CONFLICT)
+            
+            if network:
+                request.user.network = network
+            if address:
+                request.user.address = address
                 
-            request.user.address = address
             request.user.save()
             return Response({'message': 'The user has been updated successfully'}, status=status.HTTP_200_OK)
 
@@ -132,23 +137,25 @@ class requestWithdrawal(generics.GenericAPIView):
             return Response({'error': 'Not Found Withdrawals.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
  
     def post(self, request, *args, **kwargs):
+        user = request.user
         
         amount = float(request.data.get('amount'))
-        address = request.user.address
-        
+        address = user.address
         data = {'amount': amount, 'address':address}
-        if amount > request.user.balance or amount <= 0:
+        if amount > user.balance or amount <= 0:
             return Response({'detail': 'The requested amount is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
             with transaction.atomic():
-                obj, created = model.Withdrawal.objects.get_or_create(account=request.user, state='invoiced', defaults={**data})
+                obj, created = model.Withdrawal.objects.get_or_create(account=user, state='invoiced', defaults={**data})
                 if not created:
                     obj.amount += amount
                     obj.save()
             
-            request.user.balance -= amount
-            request.user.save()
+            user.balance -= amount
+            user.save()
+            
+            updateJson(user, user.balance)
 
             apiWithdrawal = obj.voucher
             makeTransaction(request.user, -obj.amount, 'outcome', 'invoiced', apiWithdrawal)
@@ -184,22 +191,26 @@ class requestInvestment(generics.GenericAPIView):
             return Response({'error': 'Not Found Investments.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def post(self, request, *args, **kwargs):
+        user = request.user
+        
         amount = request.data.get('amount')
         months = request.data.get('months')
-        if amount > request.user.balance or amount <= 0 or not months in range(6, 37):
+        if amount > user.balance or amount <= 0 or not months in range(6, 37):
             return Response({'detail': 'The requested amount is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
             data = Tizorbank.objects.get(default="Tizorbank")
-            obj = model.Investment.objects.create(account=request.user)
+            obj = model.Investment.objects.create(account=user)
         
             obj.amount = amount
             obj.interest = round(data.min_interest * math.exp((math.log(data.max_interest/data.min_interest) / 36) * months),2)
             obj.date_target = timezone.now() + relativedelta(months=months)
             obj.save()
             
-            request.user.balance -= amount
-            request.user.save()
+            user.balance -= amount
+            user.save()
+            
+            updateJson(user, user.balance)
 
             apiInvestment = obj.voucher
             
@@ -211,6 +222,38 @@ class requestInvestment(generics.GenericAPIView):
             logger.error("%s", e, exc_info=True)
             return Response({'error': 'NotFound Investment.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR) 
 
+
+class refundInvestment(generics.GenericAPIView):
+    
+    serializer_class = serializer.InvestmentSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        try:
+            user = request.user      
+            voucher = request.data.get('voucher')  
+            investment = model.Investment.objects.get(account=user, voucher=voucher)
+
+            if investment.state != 'active':
+                return Response({'detail': 'The requested state is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
+
+            data = Tizorbank.objects.get(default="Tizorbank")
+            investment.state = 'cancelled'
+            investment.save()
+            
+            amount = investment.amount + investment.accumulated*(data.unlock/100)
+            user.balance += amount
+            user.save()
+            
+            updateJson(user, user.balance)
+            makeHistory(user, investment, amount, 'refund')
+            makeTransaction(user, amount, 'investment','refund')
+            
+            return Response({'message': 'the investment was refunded successful'}, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            logger.error("%s", e, exc_info=True)
+            return Response({'error': 'NotFound Investment.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR) 
 
 
 class fetchTransactions(generics.ListAPIView):

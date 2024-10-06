@@ -76,8 +76,8 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
   return (
     <section className='w-full lg:w-3/5 flex flex-col-reverse lg:flex-row items-center justify-between break-words bg-white shadow-md rounded-2xl bg-clip-border py-1 lg:px-2 lg:pt-3 lg:pb-8'>
       <div className='w-full lg:w-2/3 h-full flex flex-col items-center lg:items-start lg:justify-between px-4 lg:pt-8'>
-        <div className='w-full hidden lg:flex flex-col items-start justify-start gap-y-4'>
-          <p className='text-[0.65rem] text-justify leading-tight font-cocogoose'>{t('meta.description')}</p>
+        <div className='w-full lg:flex flex-col items-start justify-start gap-y-4 my-6 lg:my-0'>
+          <p className='text-[0.65rem] text-center lg:text-justify leading-tight font-cocogoose'>{t('meta.description')}</p>
           <div className='w-full flex flex-row justify-between items-center rounded-sm my-4 p-4 border bg-yellow-50 border-blue-50'>
             <div className='flex flex-col items-start justify-start'>
               <p className='flex flex-row justify-start items-center gap-x-2'>
@@ -86,12 +86,14 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
               </p>
               <p className='flex flex-row justify-start items-center gap-x-2'>
                 <span className='text-gray-500 text-sm'><IoWalletOutline /></span>
-                <span className='text-gray-800 font-bankprinter text-xs'>{session.user.address}</span>
+                <span className='text-gray-800 font-bankprinter text-xs hidden sm:block'>{session.user.address}</span>
+                <span className='text-gray-800 font-bankprinter text-xs block sm:hidden select-none'>{session.user.address ? `${session.user.address.slice(0, 10)}***${session.user.address.slice(-10)}` : ''}</span>
+                <span className='text-gray-800 font-bankprinter text-xs uppercase'>({session.user.network})</span>
               </p>
             </div>
             <button onClick={() => openModal('edt')}><SlPencil /></button>
           </div>
-          <p className='text-[0.65rem] text-justify leading-tight font-cocogoose'>{t('meta.information')}</p>
+          <p className='text-[0.65rem] text-center lg:text-justify leading-tight font-cocogoose'>{t('meta.information')}</p>
         </div>
         <div className='w-full flex flex-row items-center justify-center sm:justify-start gap-x-4 my-6 lg:my-0'>
           <button onClick={() => openModal('add')} className="w-full sm:w-1/3 h-12 lg:h-10 text-center sm:flex sm:flex-row sm:items-center sm:justify-center lg:justify-start sm:gap-x-1 bg-green-700 hover:bg-green-900 text-white px-2 lg:px-6 py-2 text-xl rounded-md transition-colors duration-300">
@@ -108,11 +110,8 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
           </button>
         </div>
       </div>
-      <div className='w-10/12 lg:max-w-80 h-auto p-0 lg:mt-8 px-4'>
-        <div className='block lg:hidden py-4 mb-2'>
-          <p className='text-[0.55rem] sm:text-xs lg:text-sm text-center font-cocogoose'>{t('meta.description')}</p>
-        </div>
-        <div className='w-full h-full lg:-ml-6'>
+      <div className='w-11/12 lg:max-w-80 h-auto p-0 mt-8 px-4'>
+        <div className='w-full h-full mt-8 lg:-ml-6'>
           <CircularProgressbar value={percentage} text={`${percentage}%`} styles={buildStyles({pathColor: '#4caf50', textColor: '#1f2937', trailColor: '#e0e0e0', strokeLinecap: 'butt', textSize: '18px',})}/>
         </div>
       </div>

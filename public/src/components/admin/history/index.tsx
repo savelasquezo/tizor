@@ -73,9 +73,8 @@ const History: React.FC<SessionAuthenticated> = ({ session }) => {
   const balanceData = reducedHistory.map(item => item.balance);
   const historyData = reducedHistory.map(item => item.history);
 
-  const data = chartData(labels, balanceData, historyData);
-  const options = chartOptions(isSmallScreen);
-
+  const data = chartData(labels, balanceData);
+  const options = chartOptions(isSmallScreen, balanceData);
 
   return (
     <section className='w-full lg:w-2/5 h-full break-words bg-white shadow-md rounded-2xl bg-clip-border p-4'>

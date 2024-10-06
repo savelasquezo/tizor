@@ -123,8 +123,8 @@ const Withdrawal: React.FC<SessionAuthenticated> = ({ session }) => {
     <div className="w-full h-full">
       <div className="w-full h-56 space-y-4">
         <div className='w-full flex flex-row'>
-          <button onClick={() => switchModal('add')} className={`text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'add' ? 'bg-blue-700 hover:bg-blue-900' : 'bg-blue-400'}`}>{t('meta.interface.withdrawal.tab1')}</button>
-          <button onClick={() => switchModal('lst')} className={`text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'lst' ? 'bg-gray-700 hover:bg-gray-800' : 'bg-gray-400'}`}>{t('meta.interface.withdrawal.tab2')}</button>
+          <button onClick={() => switchModal('add')} className={`h-6 text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'add' ? 'bg-blue-700 hover:bg-blue-900' : 'bg-blue-400'}`}>{t('meta.interface.withdrawal.tab1')}</button>
+          <button onClick={() => switchModal('lst')} className={`h-6 text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'lst' ? 'bg-gray-700 hover:bg-gray-800' : 'bg-gray-400'}`}>{t('meta.interface.withdrawal.tab2')}</button>
         </div>
         <form className={`${activeTab === 'add' ? 'block animate-fade-in animate__animated animate__fadeIn' : 'hidden animate-fade-out animate__animated animate__fadeOut'}`}>
           <div className="relative h-full flex items-center rounded-md border border-gray-400">
@@ -150,9 +150,9 @@ const Withdrawal: React.FC<SessionAuthenticated> = ({ session }) => {
           </div>
           <div className='w-full flex flex-row justify-between items-center rounded-sm my-2 p-2 border bg-yellow-50 border-blue-50'>
             <p className='flex flex-row justify-start items-center gap-x-2'>
-              <span className='text-gray-500 text-sm'><IoWalletOutline /></span>
-              <span className='text-gray-800 font-bankprinter text-xs hidden sm:block'>{data?.address}</span>
-              <span className='text-gray-800 font-bankprinter text-xs block sm:hidden select-none'>{data?.address ? `${data.address.slice(0, 10)}***${data.address.slice(-10)}` : ''}</span>
+              <span className='px-1 py-0-5 bg-white border-2 border-gray-400 font-semibold uppercase text-xs'>{session.user.network}</span>
+              <span className='text-gray-800 font-bankprinter text-xs hidden sm:block'>{session.user.address}</span>
+              <span className='text-gray-800 font-bankprinter text-xs block sm:hidden select-none'>{session.user.address ? `${session.user.address.slice(0, 10)}***${session.user.address.slice(-10)}` : ''}</span>
             </p>
             <span onClick={handleCopyClick} className={`cursor-pointer transition-colors duration-1000 ${copySuccess ? 'text-green-500' : ''}`}><FaRegCopy /></span>
           </div>

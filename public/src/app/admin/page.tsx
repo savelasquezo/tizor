@@ -21,7 +21,7 @@ const AdminPage: React.FC = () => {
   const { data: session } = useSession();
   const { t, setLanguage, language } = useLanguage();
   
-  const [selectedLanguage, setSelectedLanguage] = useState<string>('us');
+  const [selectedLanguage, setSelectedLanguage] = useState('us');
 
   useEffect(() => {
     const storedLanguage = JSON.parse(localStorage.getItem('nextsite.locale') || '"us"');
@@ -50,13 +50,7 @@ const AdminPage: React.FC = () => {
           <Image priority width={360} height={130} src={"/assets/images/logo0.webp"} className="h-12 w-auto object-fit self-start mr-4 z-10" alt="Logo" />
         </Link>
         <div className='flex flex-row items-center justify-center gap-x-4'>
-          <Select
-            className="!w-20"
-            radius={'sm'}
-            selectedKeys={[selectedLanguage]}
-            disabledKeys={[selectedLanguage]}
-            startContent={<Flag code={selectedLanguage} className="w-6 h-6" />}
-          >
+          <Select className="!w-20" radius={'sm'} selectedKeys={[selectedLanguage]} disabledKeys={[selectedLanguage]} startContent={<Flag code={selectedLanguage} className="w-6 h-6" />}>
             <SelectItem onClick={() => handleLanguageChange('us')} key="us" startContent={<Flag code="us" className="w-6 h-6" />}></SelectItem>
             <SelectItem onClick={() => handleLanguageChange('es')} key="es" startContent={<Flag code="es" className="w-6 h-6" />}></SelectItem>
             <SelectItem onClick={() => handleLanguageChange('pt')} key="pt" startContent={<Flag code="pt" className="w-6 h-6" />}></SelectItem>

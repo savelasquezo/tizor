@@ -5,10 +5,11 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-event = (('investment','Investment'),('interest','Interest'),('closure','Closure'))
+event = (('investment','Investment'),('interest','Interest'),('closure','Closure'),('refund','Refund'))
 types = (('interest','Interest'),('outcome','Outcome'),('income','Income'),('investment','Investment'),('ref','Referred'))
-states = (('invoiced','Invoiced'),('done','Approved'))
+states = (('invoiced','Invoiced'),('done','Approved'),('refund','Refund'))
 status = (('active','Active'),('inactive','Inactive'),('cancelled','Cancelled'))
+networks = (('erc20','ERC20'),('trc20','TRC20'),('bep20','BEP20'))
 
 def LogoUploadTo(instance, filename):
     return f"uploads/{instance.username}/logo/{filename}"
@@ -37,6 +38,8 @@ class Account(AbstractBaseUser, PermissionsMixin):
     ref = models.CharField(_("Ref"), max_length=8, blank=True)
     email = models.EmailField(_("Email"),unique=True)
     username = models.CharField(_("Usuario"),max_length=64, unique=True)
+    
+    network = models.CharField(_("Network"),choices=networks, default="bep20" , max_length=8, blank=False, null=False)
     address = models.CharField(_("Address"), max_length=128, unique=True)
     
     date_joined = models.DateField(_("Date"),default=timezone.now)

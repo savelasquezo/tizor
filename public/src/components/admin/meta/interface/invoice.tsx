@@ -8,7 +8,6 @@ import { NextResponse } from 'next/server';
 import CircleLoader from 'react-spinners/CircleLoader';
 
 import { FiDollarSign } from "react-icons/fi";
-import { IoWalletOutline } from "react-icons/io5";
 import { FaRegCopy } from "react-icons/fa6";
 
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
@@ -123,8 +122,8 @@ const Invoice: React.FC<SessionAuthenticated> = ({ session }) => {
     <div className="w-full h-full">
       <div className="w-full h-56 space-y-4">
         <div className='w-full flex flex-row'>
-          <button onClick={() => switchModal('add')} className={`text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'add' ? 'bg-green-700 hover:bg-green-900' : 'bg-green-400'}`}>{t('meta.interface.invoice.tab1')}</button>
-          <button onClick={() => switchModal('lst')} className={`text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'lst' ? 'bg-gray-700 hover:bg-gray-900' : 'bg-gray-400'}`}>{t('meta.interface.invoice.tab2')}</button>
+          <button onClick={() => switchModal('add')} className={`h-6 text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'add' ? 'bg-green-700 hover:bg-green-900' : 'bg-green-400'}`}>{t('meta.interface.invoice.tab1')}</button>
+          <button onClick={() => switchModal('lst')} className={`h-6 text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'lst' ? 'bg-gray-700 hover:bg-gray-900' : 'bg-gray-400'}`}>{t('meta.interface.invoice.tab2')}</button>
         </div>
         <form className={`${activeTab === 'add' ? 'block animate-fade-in animate__animated animate__fadeIn' : 'hidden animate-fade-out animate__animated animate__fadeOut'}`}>
           <div className="relative h-full flex items-center rounded-md border border-gray-400">
@@ -150,7 +149,7 @@ const Invoice: React.FC<SessionAuthenticated> = ({ session }) => {
           </div>
           <div className='w-full flex flex-row justify-between items-center rounded-sm my-2 p-2 border bg-yellow-50 border-blue-50'>
             <p className='flex flex-row justify-start items-center gap-x-2'>
-              <span className='text-gray-500 text-sm'><IoWalletOutline /></span>
+              <span className='px-1 py-0-5 bg-white border-2 border-gray-400 font-semibold uppercase text-xs'>{data?.network}</span>
               <span className='text-gray-800 font-bankprinter text-xs hidden sm:block'>{data?.address}</span>
               <span className='text-gray-800 font-bankprinter text-xs block sm:hidden select-none'>{data?.address ? `${data.address.slice(0, 10)}***${data.address.slice(-10)}` : ''}</span>
             </p>

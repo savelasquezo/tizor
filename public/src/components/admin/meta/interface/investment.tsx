@@ -7,12 +7,20 @@ import ReactPaginate from 'react-paginate';
 import { NextResponse } from 'next/server';
 import CircleLoader from 'react-spinners/CircleLoader';
 
+
+
 import { Slider } from "@nextui-org/slider";
 
+
+import { FaUnlock } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa6";
+import { MdQrCode2 } from "react-icons/md";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { IoWalletOutline } from "react-icons/io5";
 import { TbSquareRoundedPercentage } from "react-icons/tb";
 import { MdOutlineFactCheck } from "react-icons/md";
+import { AiTwotoneDelete } from "react-icons/ai";
+
 
 import { nextSite } from '@/utils/next-site';
 import { formatNumber } from "@/utils/formatNumber";
@@ -27,12 +35,15 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const stepAmount = Math.floor(Number(session.user.balance)/100)*10;
+  const stepAmount = Math.floor(Number(session.user.balance) / 100) * 10;
   const [fixAmount, setfixAmount] = useState<number>(stepAmount);
-  const [amount, setAmount] = useState<number>(stepAmount*10);
+  const [amount, setAmount] = useState<number>(stepAmount * 10);
   const [months, setMonths] = useState<number>(12);
   const [investment, setInvestment] = useState(false);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [refundSuccess, setRefundSuccess] = useState(false);
+  const [voucherFilter, setVoucherFilter] = useState<string>('');
+  const [filteredTicket, setFilteredTicket] = useState<InvestmentInfo | null>(null);
 
   const [mathAmount, setMathAmount] = useState(false);
   const mathInterest = (months: number): number => {
@@ -43,7 +54,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
 
   const mathExpected = (): number => {
     const interest = mathInterest(months) / 100;
-    const expectedBalance = amount * Math.pow(1 + (interest /12), 12 * (months/12));
+    const expectedBalance = amount * Math.pow(1 + (interest / 12), 12 * (months / 12));
     return expectedBalance;
   };
 
@@ -91,20 +102,20 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
   const changePage = ({ selected }: { selected: number }) => { setPageNumber(selected); };
   const filledTickets = [...tickets];
   while (filledTickets.length < TicketsPage) {
-    filledTickets.push({ uuid: '', amount: 0, interest: 0, accumulated: null, date_joined: '', date_target: '', voucher: '', state: ''});
+    filledTickets.push({ uuid: '', amount: 0, interest: 0, accumulated: 0, date_joined: '', date_target: '', voucher: '', state: '' });
   }
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const onSubmitInvestment = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-  
+
     await new Promise(resolve => setTimeout(resolve, 1500));
     try {
       setfixAmount(stepAmount)
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/src/request-investment/`,
-        { amount, months }, 
+        { amount, months },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -126,19 +137,59 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
     setLoading(false);
   };
 
+  const onSubmitRefund = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/src/refund-investment/`,
+        { voucher: voucherFilter },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `JWT ${session?.user?.accessToken}`,
+          },
+        }
+      );
+      const data = res.data;
+      if (!data.error) {
+        setRefundSuccess(true);
+        reloadSession();
+      }
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.error || 'There was an error with the network request';
+      setError(errorMessage);
+      NextResponse.json({ error: 'There was an error with the network request' }, { status: 500 });
+    }
+    setLoading(false);
+  };
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (name === 'voucher') {
+      setVoucherFilter(value);
+      const foundTicket = tickets.find(ticket => ticket.voucher === value && ticket.state === 'active');
+      setFilteredTicket(foundTicket || null);
+    }
+  };
+
   return (
     <div className="w-full h-full">
       <div className="w-full h-72 space-y-4">
-        <div className='w-full flex flex-row'>
-          <button onClick={() => switchModal('add')} className={`text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'add' ? 'bg-violet-700 hover:bg-violet-900' : 'bg-violet-400'}`}>Invertir</button>
-          <button onClick={() => switchModal('lst')} className={`text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'lst' ? 'bg-gray-700 hover:bg-gray-900' : 'bg-gray-400'}`}>Historial</button>
+        <div className='w-full flex flex-row items-center'>
+          <button onClick={() => switchModal('add')} className={`h-6 text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'add' ? 'bg-violet-700 hover:bg-violet-900' : 'bg-violet-400'}`}>{t('meta.interface.investment.tab1')}</button>
+          <button onClick={() => switchModal('lst')} className={`h-6 text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'lst' ? 'bg-gray-700 hover:bg-gray-900' : 'bg-gray-400'}`}>{t('meta.interface.investment.tab2')}</button>
+          <button onClick={() => switchModal('del')} className={`h-6 text-gray-100 font-cocogoose rounded-md px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'del' ? 'bg-red-700 hover:bg-red-900' : 'bg-red-300'}`}><FaUnlock /></button>
         </div>
         <form className={`${activeTab === 'add' ? 'block animate-fade-in animate__animated animate__fadeIn' : 'hidden animate-fade-out animate__animated animate__fadeOut'}`}>
           <div className="w-full h-full flex flex-col items-center justify-center">
-            <Slider label={t('meta.interface.investment.label.invest')} hideValue={!mathAmount} step={fixAmount} minValue={fixAmount} maxValue={fixAmount*10} defaultValue={fixAmount} showSteps={true} isDisabled={registrationSuccess} size="sm" color="primary"
-              onChange={(value: number | number[]) => {if (Array.isArray(value)) {setAmount(value[0]);} else {setAmount(value);}}}/>
+            <Slider label={t('meta.interface.investment.label.invest')} hideValue={!mathAmount} step={fixAmount} minValue={fixAmount} maxValue={fixAmount * 10} defaultValue={fixAmount} showSteps={true} isDisabled={registrationSuccess} size="sm" color="primary"
+              onChange={(value: number | number[]) => { if (Array.isArray(value)) { setAmount(value[0]); } else { setAmount(value); } }} />
             <Slider label={t('meta.interface.investment.label.temporality')} step={3} minValue={6} maxValue={36} defaultValue={12} showSteps={true} isDisabled={registrationSuccess} size="sm" color="primary"
-              onChange={(value: number | number[]) => {if (Array.isArray(value)) {setMonths(value[0]);} else {setMonths(value);}}}/>
+              onChange={(value: number | number[]) => { if (Array.isArray(value)) { setMonths(value[0]); } else { setMonths(value); } }} />
           </div>
           <div className="text-center">
             <p className="mt-2 text-gray-900 text-xs">{t('meta.interface.investment.description')}</p>
@@ -155,7 +206,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
               </div>
               {!registrationSuccess ? (
                 loading ? (<button className="h-14 w-10 flex justify-center items-center bg-violet-800 text-white p-2 shadow-sm rounded-r-md"><CircleLoader loading={loading} size={14} color="#ffff" /></button>) : (
-                  <button type="button" onClick={(e) => onSubmit(e)} className="h-14 w-10 flex justify-center font-cocogoose items-center bg-violet-600 text-white p-2 shadow-sm rounded-r-md focus:bg-violet-700 hover:bg-violet-800 transition-colors duration-700"><MdOutlineFactCheck/></button>
+                  <button type="button" onClick={(e) => onSubmitInvestment(e)} className="h-14 w-10 flex justify-center font-cocogoose items-center bg-violet-600 text-white p-2 shadow-sm rounded-r-md focus:bg-violet-700 hover:bg-violet-800 transition-colors duration-700"><MdOutlineFactCheck /></button>
                 )) : (<p className="h-14 w-32 flex justify-center items-center bg-gray-600 text-white p-2 shadow-sm rounded-r-md">{investment}</p>
               )}
             </div>
@@ -186,7 +237,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
                     <tr key={index} className="border-b border-slate-300 uppercase text-xs text-gray-600 text-center align-middle h-8">
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.voucher ? obj.voucher : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.amount ? formatNumber(obj.amount) : ''}</td>
-                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter hidden lg:table-cell">{obj.interest ? formatNumber(obj.interest)+'%' : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter hidden lg:table-cell">{obj.interest ? formatNumber(obj.interest) + '%' : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter hidden lg:table-cell">{obj.accumulated !== null && obj.accumulated !== undefined ? formatNumber(obj.accumulated) : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.date_target ? obj.date_target : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.state ? obj.state : ''}</td>
@@ -214,14 +265,64 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
           ) : (
             <div className='w-full h-full flex flex-col justify-start items-center'>
               <span className='text-center text-gray-800 mt-8 text-sm'>
-              <p>{t('meta.interface.investment.table.information.alert')}</p>
-              <p>{t('meta.interface.investment.table.information.message')}</p>
+                <p>{t('meta.interface.investment.table.information.alert')}</p>
+                <p>{t('meta.interface.investment.table.information.message')}</p>
               </span>
             </div>
           )}
         </section>
-      </div>
-    </div>
+        <form className={`${activeTab === 'del' ? 'block animate-fade-in' : 'hidden'}`}>
+          <div className="relative h-full flex items-center rounded-md border border-gray-400">
+            <MdQrCode2 className="absolute left-3 text-green-950" />
+            <input
+              className="w-full h-10 bg-white-400 pl-10 pr-3 text-gray-800 border-none rounded-md focus:bg-yellow-50 outline-none transition-colors duration-300"
+              type="text"
+              name="voucher"
+              value={voucherFilter}
+              onChange={handleFilterChange}
+              required
+              placeholder="Ingrese código del voucher"
+            />
+            {!refundSuccess ? (
+              loading ? (<button className="flex justify-center items-center bg-red-800 h-10 w-10 text-white p-2 shadow-sm rounded-r-md"><CircleLoader loading={loading} size={14} color="#ffff" /></button>) : (
+                !filteredTicket ? (<button className="flex justify-center items-center bg-red-300 h-10 w-10 text-white p-2 shadow-sm rounded-r-md transition-colors duration-700"><AiTwotoneDelete /></button>) : (
+                  <button type="button" onClick={(e) => onSubmitRefund(e)} className="flex justify-center items-center bg-red-700 h-10 w-10 text-white p-2 shadow-sm rounded-r-md focus:bg-red-800 hover:bg-red-900 transition-colors duration-700"><AiTwotoneDelete /></button>
+                ))) : (<p className="flex justify-center items-center bg-gray-600 h-10 w-32 text-white p-2 shadow-sm rounded-r-md"><FaCheck/></p>
+            )}
+          </div>
+          {filteredTicket ? (
+            <div className='w-full h-full flex flex-col gap-y-2'>
+              <p className="mt-2 text-gray-900 text-xs text-justify">{t('meta.interface.investment.unlock.information')}</p>
+              <div className='h-24 w-full flex flex-row justify-between items-center rounded-sm my-1 px-2 rounded-r-md border-2 bg-yellow-50 border-gray-200'>
+                <div className='w-full flex flex-col items-start justify-center'>
+                  <p className='w-full flex flex-row justify-between items-center'>
+                    <p className='flex flex-row justify-start items-center'>
+                      <span className='text-gray-500 text-sm'><IoWalletOutline /></span>
+                      <span className='text-gray-800 font-bankprinter text-xs ml-2'>{t('meta.interface.investment.results.invest')}: {formatNumber(filteredTicket.amount)} ({filteredTicket.interest ? formatNumber(filteredTicket.interest) + '%' : '--'})</span>
+                    </p>
+                    <p className='text-end text-gray-800 font-bankprinter text-xs mr-1'>{filteredTicket.date_target}</p>
+                  </p>
+                  <p className='flex flex-row justify-start items-center gap-x-2'>
+                    <span className='text-gray-500 text-sm'><TbSquareRoundedPercentage /></span>
+                    <span className='text-gray-800 font-bankprinter text-xs'>{t('meta.interface.investment.results.interest')}: {formatNumber(filteredTicket.accumulated)}</span>
+                  </p>
+                  <br />
+                  <p className='flex flex-row justify-start items-center gap-x-2 -mt-4'>
+                    <span className='text-gray-500 text-sm'><TbSquareRoundedPercentage /></span>
+                    <span className='text-gray-800 font-bankprinter text-xs'>{t('meta.interface.investment.results.settlement')}: {formatNumber(filteredTicket.accumulated * 0.3)}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className='flex flex-col gap-y-2'>
+              <p className="mt-2 text-gray-900 text-xs text-justify">{t('meta.interface.investment.unlock.description.txt1')}</p>
+              <p className="mt-2 text-gray-900 text-xs text-justify">{t('meta.interface.investment.unlock.description.txt2')}</p>
+            </div>
+          )}
+        </form>
+      </div >
+    </div >
   );
 };
 

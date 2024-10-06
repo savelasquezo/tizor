@@ -31,7 +31,7 @@
     "states": {
       "invoiced": "Invoiced",
       "done": "Approved",
-      "error": "Error"
+      "refund": "Refund"
     },
     "filter": "Enter Voucher"
   },
@@ -108,7 +108,7 @@
         "button": "Invest",
         "tab1": "Invest",
         "tab2": "History",
-        "description": "Invest your money in defined terms at Tizorbank and maximize your profits. By choosing this option, you ensure a higher return compared to traditional investments.",
+        "description": "Invest your money in defined terms with Tizorbank and maximize your profits. By opting for this option, you ensure a higher return compared to traditional investments.",
         "table": {
           "th1": "Voucher",
           "th2": "Balance",
@@ -117,25 +117,34 @@
           "th5": "Date",
           "th6": "Status",
           "information": {
-            "alert": "You have not made any investments yet!",
-            "message": "Invest your money in defined terms and increase your profitability."
+            "alert": "You haven't made any investments yet!",
+            "message": "Invest your money in defined terms and increase your profitability"
           }
         },
         "label": {
           "invest": "Investment",
-          "temporality": "Temporality"
+          "temporality": "Term"
         },
         "results": {
           "total": "Total",
-          "interest": "Interest"
+          "interest": "Interest",
+          "invest": "Investment",
+          "settlement": "Settlement"
         },
         "states": {
           "active": "Active",
           "inactive": "Inactive",
           "cancelled": "Cancelled"
         },
+        "unlock": {
+          "description": {
+            "txt1": "The user has the option to cancel their investment at any time, which will trigger the refund of the initially invested funds. Additionally, an extra compensation will be provided, calculated based on the interest generated up to the cancellation date. This process offers a straightforward way to recover your investment.",
+            "txt2": "It is important to note that the cancellation of the investment is irreversible and is executed immediately. Once the transaction is requested, it cannot be reversed or modified. Therefore, it is recommended to carefully consider your decision before proceeding with the cancellation."
+          },
+          "information": "The removal of the investment is irreversible, a penalty will be applied to the accumulated capital, the initial investment will be refunded along with an additional compensation calculated based on the interest generated up to the removal date. Please review the conditions carefully before proceeding."
+        },
         "message": {
-          "success": "Congratulations! You have successfully generated a new investment.",
+          "success": "Congratulations! You have successfully created a new investment.",
           "information": "The generated balance will be transferred to your account at the end of the investment period.",
           "help": "Need help?"
         }

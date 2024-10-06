@@ -8,6 +8,7 @@ declare module 'next-auth' {
       ref: string;
       email: string;
       username: string;
+      network: string;
       address: string;
       date_joined: Date;
       last_update: Date;

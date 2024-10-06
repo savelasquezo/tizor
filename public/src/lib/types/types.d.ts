@@ -29,7 +29,7 @@ export type InvestmentInfo = {
     uuid: string;
     amount: number;
     interest: number;
-    accumulated: number | null;
+    accumulated: number;
     date_joined: string;
     date_target: string;
     voucher: string;
@@ -72,9 +72,11 @@ export type SiteType = {
     id: number;
     default: string;
     ref: number;
+    unlock: number;
     min_interest: number;
     max_interest: number;
     email: string;
+    network: string;
     address: string;
     file: string | null;
     legal: string;

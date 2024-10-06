@@ -243,7 +243,7 @@ class AccountAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': (('username','email','uuid','ref','is_active'), 'password')}),
             ('', {'fields': (
-            ('address','date_joined'),
+            ('network','address','date_joined'),
             ('balance','interest','profit'),
         )}),
     )
