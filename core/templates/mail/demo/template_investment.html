@@ -1,0 +1,71 @@
+{% block subject %}
+Tizorbank - Investment Confirmed
+{% endblock subject %}
+
+{% block text_body %}
+Your investment has been successfully confirmed! You have invested {{ amount }} USDT at an annual interest rate of {{ interest }}%. 
+The investment is set to mature on {{ date_target }}. Your voucher ID for this transaction is {{ voucher }}.
+
+Thank you for investing with us! If you have any questions, feel free to contact our support team.
+This is an automated messaging service. Please do not reply to this message.
+{% endblock text_body %}
+
+{% block html_body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tizorbank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .message {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        .voucher, .amount, .interest, .date_target {
+            font-weight: bold;
+            font-size: 18px;
+            color: #007BFF;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #999;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Investment Confirmed!</h1>
+        <p class="message">Your investment has been successfully confirmed! You have invested <span class="amount">{{ amount }}</span> 
+            USDT at an annual interest rate of <span class="interest">{{ interest }}</span>%. The investment is set to mature on <span class="date_target">{{ date_target }}</span>
+            . Your voucher ID for this transaction is <span class="voucher">{{ voucher }}</span>.
+        </p><br />
+        <p class="message">Thank you for investing with us! If you have any questions, feel free to contact our support team.</p>
+        <p class="footer">This is an automated messaging service. Please do not reply to this message.</p>
+    </div>
+</body>
+</html>
+{% endblock html_body %}

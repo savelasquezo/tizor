@@ -28,6 +28,13 @@
       "th4": "Mouvement",
       "th5": "État"
     },
+    "types": {
+      "interest": "Intérêts",
+      "outcome": "Retrait",
+      "income": "Dépôt",
+      "investment": "Investissement",
+      "ref": "Références"
+    },
     "states": {
       "invoiced": "Facturé",
       "done": "Approuvé",

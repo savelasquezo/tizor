@@ -28,6 +28,13 @@
       "th4": "Movimento",
       "th5": "Status"
     },
+    "types": {
+      "interest": "Interesses",
+      "outcome": "Retirada",
+      "income": "Depósito",
+      "investment": "Investimento",
+      "ref": "Indicações"
+    },
     "states": {
       "invoiced": "Faturado",
       "done": "Aprovado",

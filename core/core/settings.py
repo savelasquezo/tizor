@@ -181,7 +181,7 @@ AUTH_PASSWORD_VALIDATORS = []
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'es'
+LANGUAGE_CODE = 'en-Us'
 
 TIME_ZONE = 'America/Bogota'
 
@@ -252,10 +252,10 @@ DJOSER = {
         "password_reset_confirm": "apps.src.serializers.CustomPasswordResetConfirmSerializer",
     },
     "TEMPLATES": {
-        "activation": "email/activation.html",
-        "confirmation": "email/confirmation.html",
-        "password_reset": "email/password_reset.html",
-        "password_changed_confirmation": "email/password_changed_confirmation.html",
+        "activation": "auth/activation.html",
+        "confirmation": "auth/confirmation.html",
+        "password_reset": "auth/password_reset.html",
+        "password_changed_confirmation": "auth/password_changed_confirmation.html",
     },
 }
 

@@ -115,7 +115,7 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.voucher ? ticket.voucher : ''}</td>
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.amount ? formatNumber(ticket.amount) : ''}</td>
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.date ? ticket.date : ''}</td>
-                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.type}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.type ? t(`logs.types.${lowerCase(ticket.type)}`) : ''}</td>
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.state ? t(`logs.states.${lowerCase(ticket.state)}`) : ''}</td>
                 </tr>
               ))}

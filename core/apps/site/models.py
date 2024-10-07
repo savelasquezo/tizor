@@ -37,14 +37,14 @@ class Tizorbank(models.Model):
     file = models.FileField(upload_to=FilesUploadTo, max_length=512, null=True, blank=True,
                             help_text="Files-Terms/Legal")
     
-    template_invoice = models.FileField(upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for invoice")
-    template_invoice_status = models.FileField(upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for invoice status")
+    template_invoice = models.FileField(_("Invoice"),upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for invoice")
+    template_invoice_status = models.FileField(_("Invoice Alert"),upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for invoice status")
                                              
-    template_withdrawal = models.FileField(upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for withdrawal")
-    template_withdrawal_status = models.FileField(upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for withdrawal status")
+    template_withdrawal = models.FileField(_("Withdrawal"),upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for withdrawal")
+    template_withdrawal_status = models.FileField(_("Withdrawal Alert"),upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for withdrawal status")
     
-    template_block = models.FileField(upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for block")
-    template_block_status = models.FileField(upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for block status")
+    template_investment = models.FileField(_("Investment"),upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for block")
+    template_investment_status = models.FileField(_("Investment Alert"),upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for block status")
 
     def __str__(self):
         return f"{self.default}"

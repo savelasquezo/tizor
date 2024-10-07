@@ -16,7 +16,7 @@ from apps.site.models import Tizorbank
 import apps.src.models as model
 import apps.src.serializers as serializer
 import apps.src.pagination as paginate
-from apps.src.functions import makeTransaction, makeHistory, updateJson
+from apps.src.functions import makeTransaction, makeHistory, updateJson, sendEmail
 
 logger = logging.getLogger(__name__)
 
@@ -82,32 +82,42 @@ class requestInvoice(generics.GenericAPIView):
             serializer = self.get_serializer(queryset, many=True)
             return Response(serializer.data)
         except Exception as e:
-            logger.error("%s", e, exc_info=True)
+            logger.error("requestInvoice GET: %s", e, exc_info=True)
             return Response({'error': 'Not Found Invoices.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def post(self, request, *args, **kwargs):
-        
+        user = request.user
         amount = float(request.data.get('amount'))
-        address = Tizorbank.objects.get(default="Tizorbank").address
+        tz = Tizorbank.objects.get(default="Tizorbank")
         
-        data = {'amount': amount, 'address':address}
+        data = {'amount': amount, 'network':user.network, 'address':tz.address}
         if data['amount'] <= 0:
             return Response({'detail': 'The requested amount is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
             with transaction.atomic():
-                obj, created = model.Invoice.objects.get_or_create(account=request.user,state='invoiced',defaults={**data})
+                obj, created = model.Invoice.objects.get_or_create(account=user,state='invoiced',defaults={**data})
                 if not created:
                     for attr, value in data.items():
                         setattr(obj, attr, value)
                     obj.save()
-            
+
             apiInvoice = obj.voucher
-            makeTransaction(request.user, obj.amount, 'income','invoiced', apiInvoice)
+            makeTransaction(user, obj.amount, 'income','invoiced', apiInvoice)
+            
+            try:
+                template_url = tz.template_invoice if tz.template_invoice else "mail/demo/template_invoice.html"
+                email_list=[user.email]
+                context_data = {'voucher': obj.voucher, 'amount': amount, 'network': tz.network, 'address': tz.address}
+                sendEmail(f'Tizorbank - Invoiced-{context_data["voucher"]}', template_url, email_list, context_data)
+            except Exception as e:
+                logger.error("sendEmail Error --> requestInvoice %s: %s", user.email, e, exc_info=True)
+                logger.error("%s", e, exc_info=True)
+
             return Response({'apiInvoice': apiInvoice}, status=status.HTTP_200_OK)
         
         except Exception as e:
-            logger.error("%s", e, exc_info=True)
+            logger.error("requestInvoice POST: %s", e, exc_info=True)
             return Response({'error': 'NotFound Invoice.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
@@ -140,8 +150,7 @@ class requestWithdrawal(generics.GenericAPIView):
         user = request.user
         
         amount = float(request.data.get('amount'))
-        address = user.address
-        data = {'amount': amount, 'address':address}
+        data = {'amount': amount, 'network':user.network, 'address':user.address}
         if amount > user.balance or amount <= 0:
             return Response({'detail': 'The requested amount is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
         
@@ -159,6 +168,17 @@ class requestWithdrawal(generics.GenericAPIView):
 
             apiWithdrawal = obj.voucher
             makeTransaction(request.user, -obj.amount, 'outcome', 'invoiced', apiWithdrawal)
+            
+            try:
+                tz = Tizorbank.objects.get(default="Tizorbank")
+                template_url = tz.template_withdrawal if tz.template_withdrawal else "mail/demo/template_withdrawal.html"
+                email_list=[user.email]
+                context_data = {'voucher': obj.voucher, 'amount': obj.amount, 'network': obj.network, 'address': obj.address}
+                sendEmail(f'Tizorbank - Withdrawal-{context_data["voucher"]}', template_url, email_list, context_data)
+            except Exception as e:
+                logger.error("sendEmail Error --> requestWithdrawal %s: %s", user.email, e, exc_info=True)
+                logger.error("%s", e, exc_info=True)
+            
             return Response({'apiWithdrawal': apiWithdrawal}, status=status.HTTP_200_OK)
         
         except Exception as e:
@@ -199,11 +219,11 @@ class requestInvestment(generics.GenericAPIView):
             return Response({'detail': 'The requested amount is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
-            data = Tizorbank.objects.get(default="Tizorbank")
+            tz = Tizorbank.objects.get(default="Tizorbank")
             obj = model.Investment.objects.create(account=user)
         
             obj.amount = amount
-            obj.interest = round(data.min_interest * math.exp((math.log(data.max_interest/data.min_interest) / 36) * months),2)
+            obj.interest = round(tz.min_interest * math.exp((math.log(tz.max_interest/tz.min_interest) / 36) * months),2)
             obj.date_target = timezone.now() + relativedelta(months=months)
             obj.save()
             
@@ -211,11 +231,19 @@ class requestInvestment(generics.GenericAPIView):
             user.save()
             
             updateJson(user, user.balance)
-
             apiInvestment = obj.voucher
-            
             makeHistory(request.user, obj, obj.amount, 'investment')
             makeTransaction(request.user, -amount, 'investment', 'done', apiInvestment)
+            
+            try:
+                template_url = tz.template_investment if tz.template_investment else "mail/demo/template_investment.html"
+                email_list=[user.email]
+                context_data = {'voucher': obj.voucher, 'amount': obj.amount, 'interest': obj.interest, 'date_target': obj.date_target}
+                sendEmail(f'Tizorbank - Investment-{context_data["voucher"]}', template_url, email_list, context_data)
+            except Exception as e:
+                logger.error("sendEmail Error --> requestInvestment %s: %s", user.email, e, exc_info=True)
+                logger.error("%s", e, exc_info=True)
+            
             return Response({'apiInvestment': apiInvestment}, status=status.HTTP_200_OK)
 
         except Exception as e:
@@ -248,7 +276,17 @@ class refundInvestment(generics.GenericAPIView):
             updateJson(user, user.balance)
             makeHistory(user, investment, amount, 'refund')
             makeTransaction(user, amount, 'investment','refund')
-            
+
+            try:
+                tz = Tizorbank.objects.get(default="Tizorbank")
+                template_url = tz.template_investment_status if tz.template_investment_status else "mail/demo/template_investment_status.html"
+                email_list=[user.email]
+                context_data = {'voucher': investment.voucher, 'amount': amount, 'state': investment.state}
+                sendEmail(f'Tizorbank - Investment-{context_data["voucher"]}', template_url, email_list, context_data)
+            except Exception as e:
+                logger.error("sendEmail Error --> refundInvestment %s: %s", user.email, e, exc_info=True)
+                logger.error("%s", e, exc_info=True)
+
             return Response({'message': 'the investment was refunded successful'}, status=status.HTTP_200_OK)
 
         except Exception as e:

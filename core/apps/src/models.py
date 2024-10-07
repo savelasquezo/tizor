@@ -1,15 +1,20 @@
 import uuid
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import Group, Permission
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-event = (('investment','Investment'),('interest','Interest'),('closure','Closure'),('refund','Refund'))
-types = (('interest','Interest'),('outcome','Outcome'),('income','Income'),('investment','Investment'),('ref','Referred'))
-states = (('invoiced','Invoiced'),('done','Approved'),('refund','Refund'))
-status = (('active','Active'),('inactive','Inactive'),('cancelled','Cancelled'))
+states = (('invoiced','Invoiced'),('done','Approved'))
 networks = (('erc20','ERC20'),('trc20','TRC20'),('bep20','BEP20'))
+
+transactions = (('invoiced','Invoiced'),('done','Approved'),('refund','Refund'))
+types = (('interest','Interest'),('outcome','Outcome'),('income','Income'),('investment','Investment'),('ref','Referred'))
+
+investments = (('active','Active'),('inactive','Inactive'),('cancelled','Cancelled'))
+historys = (('investment','Investment'),('interest','Interest'),('closure','Closure'),('refund','Refund'))
+
 
 def LogoUploadTo(instance, filename):
     return f"uploads/{instance.username}/logo/{filename}"
@@ -53,7 +58,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     profit = models.FloatField(_("Profit"), blank=True, null=True,default=0)
     
     objects = AccountManager()
-
+    
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username','address','ref']
 
@@ -84,7 +89,7 @@ class Investment(models.Model):
     date_target = models.DateField(_("Finish"), default=timezone.now)
 
     voucher = models.CharField(_("Voucher"), max_length=128, null=False, blank=False)
-    state = models.CharField(choices=status, default="active", max_length=16, verbose_name="")
+    state = models.CharField(choices=investments, default="active", max_length=16, verbose_name="")
 
     def __str__(self):
         return self.voucher
@@ -107,7 +112,7 @@ class InvestmentHistory(models.Model):
     investment = models.ForeignKey(Investment, on_delete=models.CASCADE)
     amount = models.FloatField(_("Amount"),blank=False,null=False)
     date = models.DateField(_("Date"), default=timezone.now)
-    type = models.CharField(_("Type"), choices=event, max_length=128, null=False, blank=False)
+    type = models.CharField(_("Type"), choices=historys, max_length=128, null=False, blank=False)
     voucher = models.CharField(_("Voucher"), max_length=128, null=True, blank=True)
 
     def __str__(self):
@@ -131,6 +136,7 @@ class Invoice(models.Model):
     amount = models.FloatField(_("Amount"),blank=False,null=False,default=0)
     date = models.DateField(_("Date"), default=timezone.now)
     voucher = models.CharField(_("Voucher"), max_length=128, null=False, blank=False)
+    network = models.CharField(_("Network"),choices=networks, default="bep20" , max_length=8, blank=False, null=False)
     address = models.CharField(_("Address"), max_length=128, null=True, blank=True)
     state = models.CharField(choices=states, default="invoiced", max_length=16, verbose_name="")
 
@@ -155,6 +161,7 @@ class Withdrawal(models.Model):
     amount = models.FloatField(_("Amount"),blank=False,null=False,default=0)
     date = models.DateField(_("Date"), default=timezone.now)
     voucher = models.CharField(_("Voucher"), max_length=128, null=False, blank=False)
+    network = models.CharField(_("Network"),choices=networks, default="bep20" , max_length=8, blank=False, null=False)
     address = models.CharField(_("Address"), max_length=128, null=True, blank=True)
     state = models.CharField(choices=states, default="invoiced", max_length=16, verbose_name="")
 
@@ -179,7 +186,7 @@ class Transaction(models.Model):
     date = models.DateField(_("Date"), default=timezone.now)
     type = models.CharField(_("Type"), choices=types, max_length=128, null=False, blank=False)
     voucher = models.CharField(_("Voucher"), max_length=128, null=True, blank=True)
-    state = models.CharField(choices=states, default="invoiced", max_length=16, verbose_name="")
+    state = models.CharField(choices=transactions, default="invoiced", max_length=16, verbose_name="")
 
     def __str__(self):
         return f"{self.voucher}"

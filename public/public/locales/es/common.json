@@ -28,6 +28,13 @@
       "th4": "Movimiento",
       "th5": "Estado"
     },
+    "types": {
+      "interest": "Intereses",
+      "outcome": "Retiro",
+      "income": "Deposito",
+      "investment": "Inversion",
+      "ref": "Referidos"
+    },
     "states": {
       "invoiced": "Facturado",
       "done": "Aprobado",
@@ -61,7 +68,7 @@
           "th4": "Fecha",
           "th5": "Estado",
           "information": {
-            "alert":"¡Aun no has realizado ningun deposito!",
+            "alert": "¡Aun no has realizado ningun deposito!",
             "message": "Agrega saldo a tu cuenta y empieza a generar intereses"
           }
         },
@@ -89,7 +96,7 @@
           "th4": "Fecha",
           "th5": "Estado",
           "information": {
-            "alert":"¡Aun no has realizado ningun retiro!",
+            "alert": "¡Aun no has realizado ningun retiro!",
             "message": "El costo de las transacciones dependeran de la red seleccionada"
           }
         },
@@ -117,7 +124,7 @@
           "th5": "Fecha",
           "th6": "Estado",
           "information": {
-            "alert":"¡Aun no has realizado ninguna inversion!",
+            "alert": "¡Aun no has realizado ninguna inversion!",
             "message": "Invierte tu dinero en plazos definidos y aumenta tu rentabilidad"
           }
         },
@@ -129,7 +136,7 @@
           "total": "Total",
           "interest": "Interes",
           "invest": "Inversion",
-          "settlement":"Liquidación"
+          "settlement": "Liquidación"
         },
         "states": {
           "active": "Activa",

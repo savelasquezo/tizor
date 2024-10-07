@@ -1,41 +1,24 @@
 from django.contrib import admin
-from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.conf.locale.es import formats as es_formats
 
 import apps.src.models as model
 
-class MyAdminSite(admin.AdminSite):
-    index_title = 'Consola Administrativa'
-    verbose_name = "TirzorMiner"
 
-
-admin_site = MyAdminSite()
-admin.site = admin_site
-admin_site.site_header = "TirzorMiner"
-
-###################################################################
-###################################################################
-
-class InvestmentlInline(admin.StackedInline):
+class InvestmentlInline(admin.TabularInline):
     
     model = model.Investment
     extra = 0
 
     fieldsets = (
         (" ", {"fields": (
-            ('amount','interest','accumulated'),
-            ('date_joined','date_target'),
+            ('amount','interest','accumulated','date_joined','date_target'),
                 )
             }
         ),
     )
 
     radio_fields = {'state': admin.HORIZONTAL}
-    readonly_fields = ('uuid','amount','date_joined','date_target',)
-
-    def has_add_permission(self, request, obj=None):
-        return False
 
 
 class InvestmentHistorylInline(admin.TabularInline):
@@ -53,27 +36,17 @@ class InvestmentHistorylInline(admin.TabularInline):
     )
 
     radio_fields = {'state': admin.HORIZONTAL}
-
-    def get_readonly_fields(self, request, obj=None):
-        return [field.name for field in self.model._meta.fields]
-
-    def has_add_permission(self, request, obj=None):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
-
     class Media:
         css = {'all': ('css/styles.css',)}
 
-class InvoiceInline(admin.StackedInline):
+class InvoiceInline(admin.TabularInline):
     
     model = model.Invoice
     extra = 0
 
     fieldsets = (
         (" ", {"fields": (
-            ('uuid','address','state'),
+            ('network','address','state'),
             ('amount','date','voucher'),
                 )
             }
@@ -81,20 +54,17 @@ class InvoiceInline(admin.StackedInline):
     )
 
     radio_fields = {'state': admin.HORIZONTAL}
-    readonly_fields = ('uuid','address','amount','date','voucher')
-
-    def has_add_permission(self, request, obj=None):
-        return False
 
 
-class WithdrawalInline(admin.StackedInline):
+
+class WithdrawalInline(admin.TabularInline):
     
     model = model.Withdrawal
     extra = 0
 
     fieldsets = (
         (" ", {"fields": (
-            ('uuid','address','state'),
+            ('network','address','state'),
             ('amount','date','voucher'),
                 )
             }
@@ -102,10 +72,7 @@ class WithdrawalInline(admin.StackedInline):
     )
 
     radio_fields = {'state': admin.HORIZONTAL}
-    readonly_fields = ('uuid','address','amount','date','voucher')
 
-    def has_add_permission(self, request, obj=None):
-        return False
 
 
 class InvestmentAdmin(admin.ModelAdmin):
@@ -120,8 +87,8 @@ class InvestmentAdmin(admin.ModelAdmin):
         'state'
         )
 
-    list_filter = ['date_target','state']
-    search_fields = ['voucher']
+    list_filter = ['date_joined','date_target','state']
+    search_fields = ['account','voucher']
 
     radio_fields = {'state': admin.HORIZONTAL}
     es_formats.DATETIME_FORMAT = "d M Y"
@@ -138,8 +105,10 @@ class InvestmentAdmin(admin.ModelAdmin):
         self.inlines = [InvestmentHistorylInline]
         return fieldsets
 
-
-
+    def get_readonly_fields(self, request, obj=None):
+        if request.user.is_superuser:
+            return []
+        return [field.name for field in self.model._meta.fields]
 
 
 class InvoiceAdmin(admin.ModelAdmin):
@@ -147,21 +116,22 @@ class InvoiceAdmin(admin.ModelAdmin):
         'voucher',
         'account',
         'amount',
+        'network',
         'address',
         'date',
         'state'
         )
 
-    list_filter = ['date','state']
-    search_fields = ['voucher']
+    list_filter = ['date','state','network']
+    search_fields = ['account','voucher']
 
     radio_fields = {'state': admin.HORIZONTAL}
     es_formats.DATETIME_FORMAT = "d M Y"
     
     fieldsets = (
         (None, {'fields': (
-            ('account','address','state'),
-            ('amount','date','voucher'),
+            ('account','network','address'),
+            ('date','amount','voucher','state'),
         )}),
     )
 
@@ -170,9 +140,14 @@ class InvoiceAdmin(admin.ModelAdmin):
         return fieldsets
 
     def get_readonly_fields(self, request, obj=None):
+        if request.user.is_superuser:
+            return []
+        
+        readonly_fields = [field.name for field in self.model._meta.fields]
         if obj and obj.state != "invoiced":
-            return [field.name for field in self.model._meta.fields]
-        return ['uuid','account','address','amount','date','voucher']
+            return readonly_fields
+        return [field for field in readonly_fields if field != 'state']
+
 
 
 class WithdrawalAdmin(admin.ModelAdmin):
@@ -180,21 +155,22 @@ class WithdrawalAdmin(admin.ModelAdmin):
         'voucher',
         'account',
         'amount',
+        'network',
         'address',
         'date',
         'state'
         )
 
-    list_filter = ['date','state']
-    search_fields = ['voucher']
+    list_filter = ['date','state','network']
+    search_fields = ['account','voucher']
 
     radio_fields = {'state': admin.HORIZONTAL}
     es_formats.DATETIME_FORMAT = "d M Y"
     
     fieldsets = (
         (None, {'fields': (
-            ('account','address','state'),
-            ('amount','date','voucher'),
+            ('account','network','address'),
+            ('date','amount','voucher','state'),
         )}),
     )
 
@@ -203,9 +179,15 @@ class WithdrawalAdmin(admin.ModelAdmin):
         return fieldsets
 
     def get_readonly_fields(self, request, obj=None):
+        if request.user.is_superuser:
+            return []
+        
+        readonly_fields = [field.name for field in self.model._meta.fields]
         if obj and obj.state != "invoiced":
-            return [field.name for field in self.model._meta.fields]
-        return ['uuid','account','address','amount','date','voucher']
+            return readonly_fields
+        return [field for field in readonly_fields if field != 'state']
+
+
 
 class TransactionAdmin(admin.ModelAdmin):
     list_display = (
@@ -217,8 +199,8 @@ class TransactionAdmin(admin.ModelAdmin):
         'state'
         )
 
-    list_filter = ['date','type']
-    search_fields = ['voucher']
+    list_filter = ['date','type','state']
+    search_fields = ['account','voucher']
 
     radio_fields = {'type': admin.HORIZONTAL}
     es_formats.DATETIME_FORMAT = "d M Y"
@@ -230,22 +212,42 @@ class TransactionAdmin(admin.ModelAdmin):
         )}),
     )
 
-    # readonly_fields=['account','uuid','method','amount','date','voucher']
-    # def has_add_permission(self, request):
-    #      return False
+    def get_readonly_fields(self, request, obj=None):
+        if request.user.is_superuser:
+            return []
+        return [field.name for field in self.model._meta.fields]
 
 
 
 class AccountAdmin(BaseUserAdmin):
-    list_display = ('username', 'email')
-    search_fields = ('username', 'email')
-
+    list_display = (
+        'username',
+        'email',
+        'uuid',
+        'ref',
+        'network',
+        'address',
+        'formatted_balance',
+        'interest',
+        'date_joined'
+    )
+    
+    def formatted_balance(self, obj):
+        return f'{obj.balance:.2f}'
+    formatted_balance.short_description = 'Saldo'
+    
+    search_fields = ('username', 'email','address')
+    list_filter=['network','date_joined','is_active']
+        
     fieldsets = (
-        (None, {'fields': (('username','email','uuid','ref','is_active'), 'password')}),
+        (None, {'fields': (
+            ('username','email','uuid','ref','is_active','is_staff'), 'password')}),
             ('', {'fields': (
             ('network','address','date_joined'),
             ('balance','interest','profit'),
-        )}),
+            )}
+        ),
+        (None, {"fields": ['groups']})
     )
 
     add_fieldsets = (
@@ -255,24 +257,14 @@ class AccountAdmin(BaseUserAdmin):
         }),
     )
 
-    list_filter=['is_active']
-
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj)
         self.inlines = [InvestmentlInline, InvoiceInline, WithdrawalInline]
+        if not request.user.is_superuser:
+            fieldsets = [fieldsets[1]]
         return fieldsets
 
-    def get_readonly_fields(self, request, obj=None):
-        return ['username','email','uuid','date_joined']
 
-
-admin.site.register(Group)
-
-admin.site.register(model.Account,AccountAdmin)
-admin.site.register(model.Investment,InvestmentAdmin)
-admin.site.register(model.Invoice, InvoiceAdmin)
-admin.site.register(model.Withdrawal, WithdrawalAdmin)
-admin.site.register(model.Transaction, TransactionAdmin)
 
 
 
