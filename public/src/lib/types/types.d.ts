@@ -29,7 +29,7 @@ export type InvestmentInfo = {
     uuid: string;
     amount: number;
     interest: number;
-    accumulated: number;
+    accumulated: number | null;
     date_joined: string;
     date_target: string;
     voucher: string;

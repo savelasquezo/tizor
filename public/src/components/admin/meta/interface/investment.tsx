@@ -102,7 +102,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
   const changePage = ({ selected }: { selected: number }) => { setPageNumber(selected); };
   const filledTickets = [...tickets];
   while (filledTickets.length < TicketsPage) {
-    filledTickets.push({ uuid: '', amount: 0, interest: 0, accumulated: 0, date_joined: '', date_target: '', voucher: '', state: '' });
+    filledTickets.push({ uuid: '', amount: 0, interest: 0, accumulated: null, date_joined: '', date_target: '', voucher: '', state: '' });
   }
 
   const onSubmitInvestment = async (e: React.FormEvent) => {
@@ -238,7 +238,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.voucher ? obj.voucher : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.amount ? formatNumber(obj.amount) : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter hidden lg:table-cell">{obj.interest ? formatNumber(obj.interest) + '%' : ''}</td>
-                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter hidden lg:table-cell">{obj.accumulated ? formatNumber(obj.accumulated) : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter hidden lg:table-cell">{obj.accumulated !== undefined && obj.accumulated !== null ? formatNumber(obj.accumulated) : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.date_target ? obj.date_target : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.state ? obj.state : ''}</td>
                     </tr>
@@ -304,12 +304,12 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
                   </p>
                   <p className='flex flex-row justify-start items-center gap-x-2'>
                     <span className='text-gray-500 text-sm'><TbSquareRoundedPercentage /></span>
-                    <span className='text-gray-800 font-bankprinter text-xs'>{t('meta.interface.investment.results.interest')}: {formatNumber(filteredTicket.accumulated)}</span>
+                    <span className='text-gray-800 font-bankprinter text-xs'>{t('meta.interface.investment.results.interest')}: {formatNumber(filteredTicket.accumulated ? filteredTicket.accumulated : 0)}</span>
                   </p>
                   <br />
                   <p className='flex flex-row justify-start items-center gap-x-2 -mt-4'>
                     <span className='text-gray-500 text-sm'><TbSquareRoundedPercentage /></span>
-                    <span className='text-gray-800 font-bankprinter text-xs'>{t('meta.interface.investment.results.settlement')}: {formatNumber(filteredTicket.accumulated * 0.3)}</span>
+                    <span className='text-gray-800 font-bankprinter text-xs'>{t('meta.interface.investment.results.settlement')}: {formatNumber(filteredTicket.accumulated ?  filteredTicket.accumulated* 0.3 : 0)}</span>
                   </p>
                 </div>
               </div>
