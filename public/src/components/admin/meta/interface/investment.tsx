@@ -238,7 +238,7 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.voucher ? obj.voucher : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.amount ? formatNumber(obj.amount) : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter hidden lg:table-cell">{obj.interest ? formatNumber(obj.interest) + '%' : ''}</td>
-                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter hidden lg:table-cell">{obj.accumulated !== null && obj.accumulated !== undefined ? formatNumber(obj.accumulated) : ''}</td>
+                      <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter hidden lg:table-cell">{obj.accumulated ? formatNumber(obj.accumulated) : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.date_target ? obj.date_target : ''}</td>
                       <td className="w-1/6 whitespace-nowrap px-1 py-2 font-bankprinter">{obj.state ? obj.state : ''}</td>
                     </tr>
