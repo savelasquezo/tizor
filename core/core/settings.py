@@ -92,10 +92,8 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + CORE_APPS
 
 CRONPATH = os.path.join(BASE_DIR, 'logs', 'django.log')
 CRONJOBS = [
-    ('0 * * * *', 'sudo apps.src.cron.AddFunds', f'>> {CRONPATH}'), #'0 0 * * *'
+    ('* * * * *', 'sudo apps.src.cron.AddFunds', f'>> {CRONPATH}'),
 ]
-
-
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
