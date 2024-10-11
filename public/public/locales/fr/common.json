@@ -164,7 +164,11 @@
     "table": {
       "th1": "Utilisateur",
       "th2": "Solde",
-      "th3": "Date"
+      "th3": "Date",
+      "information": {
+        "alert": "Vous ne partagez toujours pas votre lien ?",
+        "message": "Obtenez des revenus passifs de vos références"
+      }
     }
   }
 }

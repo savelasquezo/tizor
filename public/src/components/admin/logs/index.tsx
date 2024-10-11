@@ -103,20 +103,20 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
             <thead className="font-medium text-gray-900">
               <tr className="border-b-2 border-slate-400 font-cocogoose font-semibold uppercase text-xs">
                 <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">{t('logs.table.th1')}</th>
-                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5 hidden sm:table-cell">{t('logs.table.th2')}</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">{t('logs.table.th2')}</th>
                 <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">{t('logs.table.th3')}</th>
                 <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5 hidden sm:table-cell">{t('logs.table.th4')}</th>
-                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">{t('logs.table.th5')}</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5 hidden sm:table-cell">{t('logs.table.th5')}</th>
               </tr>
             </thead>
             <tbody>
               {filledTickets.map((ticket, index) => (
                 <tr key={index} className="w-full border-b border-slate-300 uppercase text-xs text-gray-500 text-center align-middle h-6">
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.voucher ? ticket.voucher : ''}</td>
-                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.amount ? formatNumber(ticket.amount) : ''}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.amount ? formatNumber(ticket.amount) : ''}</td>
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.date ? ticket.date : ''}</td>
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.type ? t(`logs.types.${lowerCase(ticket.type)}`) : ''}</td>
-                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.state ? t(`logs.states.${lowerCase(ticket.state)}`) : ''}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.state ? t(`logs.states.${lowerCase(ticket.state)}`) : ''}</td>
                 </tr>
               ))}
             </tbody>
@@ -128,7 +128,9 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
               breakLabel={'...'}
               pageCount={pageCount}
               onPageChange={changePage}
-              className={'relative w-full flex flex-row items-center justify-center gap-x-2'}
+              pageRangeDisplayed={3}
+              marginPagesDisplayed={1}
+              className={'relative w-full flex flex-row items-center justify-center gap-x-1 lg:gap-x-3'}
               pageClassName={'text-gray-700 rounded-full !px-3 !py-1 transition-colors duration-300'}
               activeClassName={'text-blue-800 font-semibold rounded-full !px-3 !py-1 transition-colors duration-300'}
               previousClassName={'absolute left-4 lg:left-10 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-1 transition-colors duration-300'}

@@ -164,7 +164,11 @@
     "table": {
       "th1": "User",
       "th2": "Balance",
-      "th3": "Date"
+      "th3": "Date",
+      "information": {
+        "alert": "Don't you share your link yet?",
+        "message": "Get passive income from your referrals"
+      }
     }
   }
 }

@@ -117,7 +117,7 @@ const ForgotPasswordConfirmModal: React.FC<ForgotPasswordConfirmInfo> = ({ close
       </form>
       { success && (<div className="text-lime-400 text-sm mt-2">{success}</div>)}
       { error && (<div className="text-red-400 text-sm mt-2">{error}</div>)}
-      { !error && !success && (<div className="text-gray-400 text-xs mt-2 h-6">¿Necesitas ayuda? support@zoexbet.com</div>)}
+      { !error && !success && (<div className="text-gray-400 text-xs mt-2 h-6">¿Necesitas ayuda? support@tizorbank.com</div>)}
     </div>
   );
 };

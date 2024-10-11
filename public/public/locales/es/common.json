@@ -164,7 +164,11 @@
     "table": {
       "th1": "Usuario",
       "th2": "Saldo",
-      "th3": "Fecha"
+      "th3": "Fecha",
+      "information": {
+        "alert": "¿Aun no comparte tu Link?",
+        "message": "Obten intereses pasivos de tus referidos"
+      }
     }
   }
 }

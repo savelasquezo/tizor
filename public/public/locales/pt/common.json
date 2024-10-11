@@ -164,7 +164,11 @@
     "table": {
       "th1": "Usuário",
       "th2": "Saldo",
-      "th3": "Data"
+      "th3": "Data",
+      "information": {
+        "alert": "Você ainda não compartilhou seu link?",
+        "message": "Obtenha renda passiva de seus referidos"
+      }
     }
   }
 }

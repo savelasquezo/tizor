@@ -80,36 +80,36 @@ const Shared: React.FC<SessionAuthenticated> = ({ session }) => {
             </a>
           ))}
           <span className='w-full h-auto hidden lg:flex items-end justify-end'>
-            <Image priority width={360} height={130} src={"/assets/images/logo0.webp"} className="h-10 w-auto object-fit self-start z-10" alt="" />
+            <Image priority width={910} height={90} src={"/assets/images/tbank01.webp"} className="h-10 w-auto object-fit self-start z-10" alt="" />
           </span> 
         </div>
       </div>
       <div className='h-full w-full lg:w-1/2 mt-4 lg:mt-0 px-4'>
         <div className='block lg:hidden pt-1 pb-4 mb-2'>
-          <p className='text-[0.55rem] text-center font-cocogoose'>{t('shared.description')}</p>
+          <p className='text-[0.55rem] text-justify font-cocogoose'>{t('shared.description')}</p>
           <div className='w-full bg-blue-100 h-12 flex items-center justify-between rounded-sm px-4 border-2 border-blue-50 my-4'>
             <p className='text-[0.60rem]'>{process.env.NEXT_PUBLIC_APP_API_URL}/?singup=True&uuid=WERf234</p>
             <span onClick={handleCopyClick} className={`cursor-pointer transition-colors duration-1000 ${copySuccess ? 'text-green-500' : ''}`}><FaRegCopy /></span>
           </div>
-          <p className='text-[0.55rem] text-center leading-tight font-cocogoose'>{t('shared.information')}</p>
+          <p className='text-[0.55rem] text-justify leading-tight font-cocogoose'>{t('shared.information')}</p>
         </div>
         <section className="w-full h-full">
           {filledTickets.length > 0 ? (
             <div>
-              <table className="min-w-full text-center text-sm font-light">
+              <table className="min-w-full text-center text-sm font-light table-fixed">
                 <thead className="font-medium text-gray-900">
                   <tr className="border-b-2 border-slate-400 font-cocogoose font-semibold uppercase text-xs">
-                    <th scope="col" className=" px-6 py-2">{t('shared.table.th1')}</th>
-                    <th scope="col" className=" px-6 py-2">{t('shared.table.th2')}</th>
-                    <th scope="col" className=" px-6 py-2">{t('shared.table.th3')}</th>
+                    <th scope="col" className="w-1/3 px-6 py-2">{t('shared.table.th1')}</th>
+                    <th scope="col" className="w-1/3 px-6 py-2">{t('shared.table.th2')}</th>
+                    <th scope="col" className="w-1/3 px-6 py-2">{t('shared.table.th3')}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filledTickets.map((obj, index) => (
                     <tr key={index} className="border-b border-slate-300 text-sm text-gray-600 text-center align-middle h-10">
-                      <td className="whitespace-nowrap px-6 py-2 font-cocogoose text-xs">{obj.username ? obj.username : ''}</td>
-                      <td className="whitespace-nowrap px-6 py-2">{obj.balance ? formatNumber(obj.balance) : ''}</td>
-                      <td className="whitespace-nowrap px-6 py-2">{obj.date_joined ? obj.date_joined : ''}</td>
+                      <td className="w-1/3 whitespace-nowrap px-6 py-2 font-creatodisplay text-xs sm:text-base">{obj.username ? obj.username : ''}</td>
+                      <td className="w-1/3 whitespace-nowrap px-6 py-2 font-creatodisplay">{obj.balance ? formatNumber(obj.balance) : ''}</td>
+                      <td className="w-1/3 whitespace-nowrap px-6 py-2 font-creatodisplay">{obj.date_joined ? obj.date_joined : ''}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -118,8 +118,8 @@ const Shared: React.FC<SessionAuthenticated> = ({ session }) => {
           ) : (
             <div className='w-full h-full flex flex-col justify-start items-center'>
               <span className='text-center text-gray-800 mt-8 text-sm'>
-                <p>¡Aun no has realizado ningun deposito!</p>
-                <p>Agrega saldo a tu cuenta y empieza a generar intereses.</p>
+                <p>{t('shared.table.information.alert')}</p>
+                <p>{t('shared.table.information.message')}</p>
               </span>
             </div>
           )}
