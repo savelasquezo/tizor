@@ -7,7 +7,7 @@ import { SessionProvider } from 'next-auth/react';
 import Flag from 'react-world-flags';
 import { Select, SelectItem } from "@nextui-org/react";
 
-import Navbar from '@/components/navbar/index';
+import Hero from '@/components/home/index';
 
 import { SiteType } from '@/lib/types/types';
 import { useLanguage } from '@/utils/i18next';
@@ -38,12 +38,9 @@ export default function Home() {
 
   return (
     <SessionProvider>
-      <Suspense fallback={<div>Loading...</div>}>
-        <main className="bg-tizor5 h-screen w-screen overflow-hidden">
-          <Navbar />
-          <div className="mt-40 text-white">
-            <h1>{t('welcome_message')}</h1>
-          </div>
+      <Suspense fallback={null}>
+        <main className="h-screen w-screen overflow-hidden">
+          <Hero />
           <Select className="!w-36" radius={'sm'} defaultSelectedKeys={["US"]} disabledKeys={[selectedLanguage === 'us' ? 'US' : 'ES']} startContent={<Flag code={selectedLanguage === 'us' ? 'US' : 'ES'} className="w-6 h-6" />}>
             <SelectItem onClick={() => handleLanguageChange('us')} key="US" startContent={<Flag code="US" className="w-6 h-6" />}>Ingles</SelectItem>
             <SelectItem onClick={() => handleLanguageChange('es')} key="ES" startContent={<Flag code="ES" className="w-6 h-6" />}>Español</SelectItem>

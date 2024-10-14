@@ -32,6 +32,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 :root {
   --foreground-rgb: 0, 0, 0;

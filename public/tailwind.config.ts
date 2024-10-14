@@ -16,6 +16,7 @@ const config: Config = {
         creatodisplay: ['CreatoDisplay', 'sans-serif'],
         cocogoose: ['Cocogoose', 'sans-serif'],
         carvingsoft: ['CarvingSoft', 'sans-serif'],
+        gilroy: ['Gilroy', 'sans-serif'],
       },
       backgroundImage: {
         'background-image01': "url('/assets/demo/background01.webp')",

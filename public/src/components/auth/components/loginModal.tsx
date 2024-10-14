@@ -3,22 +3,29 @@ import { getSession, signIn } from 'next-auth/react';
 import CircleLoader from 'react-spinners/CircleLoader';
 import { ModalFunction } from '@/lib/types/types';
 
-import {CiMail} from 'react-icons/ci'
-import {FiLock} from 'react-icons/fi'
+import { Input } from "@nextui-org/react";
 
+import { CiMail } from 'react-icons/ci'
+import { FiLock } from 'react-icons/fi'
+import { IoEye } from "react-icons/io5";
+import { IoEyeOff } from "react-icons/io5";
 
 const LoginModal: React.FC<ModalFunction> = ({ closeModal }) => {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    
+
+    const [isVisible, setIsVisible] = useState(false);
+    const toggleVisibility = () => setIsVisible(!isVisible);
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
 
     const { email, password } = formData;
-    
+    const siteEmail = localStorage.getItem('nextsite.data.email');
+
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const onSubmit = async (e: React.FormEvent) => {
@@ -27,58 +34,72 @@ const LoginModal: React.FC<ModalFunction> = ({ closeModal }) => {
         setError('');
         await new Promise(resolve => setTimeout(resolve, 1000));
         const res = await signIn('credentials', {
-          redirect: false,
-          email: email,
-          password: password,
+            redirect: false,
+            email: email,
+            password: password,
         });
-    
+
         const session = await getSession();
         if (!res?.error && session) {
-          setLoading(false);
-          closeModal()
+            setLoading(false);
+            closeModal()
         } else {
             if (res?.error) {
                 setError(res.error);
             }
-          setLoading(false);
+            setLoading(false);
         }
     };
 
     return (
-        <div>
+        <div className="container">
             <form method="POST" onSubmit={onSubmit} className="flex flex-col gap-y-4 p-2">
-                <div className="relative h-12 w-full min-w-[200px]">
-                    <div className="absolute text-gray-500 text-lg top-2/4 left-4 grid h-5 w-5 -translate-y-2/4 items-center"><CiMail/></div>
-                    <input className="h-full w-full indent-8 text-gray-200 rounded-lg border border-gray-700 focus:border-gray-700 bg-transparent px-3 py-2 !pr-9 text-sm outline outline-0 ring-0 focus:!ring-0 focus:outline-0 disabled:border-0"
-                        type="email"
-                        name="email"
-                        value={email}
-                        onChange={(e) => onChange(e)}
-                        required
-                        placeholder="Email"
-                    />
-                </div>
-                <div className="relative h-12 w-full min-w-[200px]">
-                    <div className="absolute text-gray-500 text-lg top-2/4 left-4 grid h-5 w-5 -translate-y-2/4 items-center"><FiLock/></div>
-                    <input className="h-full w-full indent-8 text-gray-200 rounded-lg border border-gray-700 focus:border-gray-700 bg-transparent px-3 py-2 !pr-9 text-sm outline-0 ring-0 focus:!ring-0 focus:outline-0 disabled:border-0"
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={(e) => onChange(e)}
-                        required
-                        placeholder="Contraseña"
-                    />
-                </div>
+                <Input
+                    label=""
+                    type="email"
+                    name="email"
+                    value={email}
+                    required
+                    variant="underlined"
+                    onChange={(e) => onChange(e)}
+                    placeholder="you@example.com"
+                    labelPlacement="outside"
+                    className="w-full"
+                    startContent={<CiMail className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}
+                />
+                <Input
+                    label=""
+                    type={isVisible ? "text" : "password"}
+                    name="password"
+                    value={password}
+                    required
+                    variant="underlined"
+                    onChange={(e) => onChange(e)}
+                    placeholder=""
+                    labelPlacement="outside"
+                    className="w-full"
+                    startContent={<FiLock className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}
+                    endContent={
+                        <button className="focus:outline-none" type="button" onClick={toggleVisibility} aria-label="toggle password visibility">
+                            {isVisible ? (
+                                <IoEyeOff className="text-2xl text-default-400 pointer-events-none" />
+                            ) : (
+                                <IoEye className="text-2xl text-default-400 pointer-events-none" />
+                            )}
+                        </button>
+                    }
+
+                />
                 {loading ? (
-                    <button type="button" className="h-10 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full text-center flex items-center justify-center">
-                      <CircleLoader loading={loading} size={25} color="#1c1d1f" />
+                    <button type="button" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full text-center flex items-center justify-center">
+                        <CircleLoader loading={loading} size={25} color="#ffff" />
                     </button>
-                  ) : (
-                    <button type="submit" className="h-10 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full text-center">Ingresar</button>
+                ) : (
+                    <button type="submit" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full font-cocogoose text-xs text-center uppercase">Ingresar</button>
                 )}
             </form>
-            { error && (<div className="text-red-400 text-sm mt-2">{error}</div>)}
-            { !error && (<div className="text-gray-400 text-xs mt-2 h-6">¿Necesitas ayuda? support@tizorbank.com</div>)}
+            {error && (<div className="text-red-800 text-sm mt-2">{error}</div>)}
+            {!error && (<div className="text-gray-800 text-sm mt-2 h-6">¿Necesitas ayuda? support@tizorbank.com</div>)}
         </div>
     );
 };

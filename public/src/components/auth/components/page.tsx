@@ -11,7 +11,6 @@ import { SessionAuth } from '@/lib/types/types';
 
 import {AiOutlineClose, AiFillLock, AiFillUnlock} from 'react-icons/ai'
 
-
 const Auth: React.FC<SessionAuth> = ({ session  }) => {
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -47,7 +46,6 @@ const Auth: React.FC<SessionAuth> = ({ session  }) => {
       
     }, [searchParams]);
 
-
     const openModal = (tab: string) => {
       setShowModal(true);
       setActiveTab(tab);
@@ -63,59 +61,58 @@ const Auth: React.FC<SessionAuth> = ({ session  }) => {
     };
 
     return (
-        <main className="inline-flex items-center h-full ml-5 gap-x-3 lg:w-2/5 lg:justify-end lg:ml-0 ">
+        <main className="inline-flex">
             {session && session?.user? (
-              <div className='inline-flex gap-x-4'>
-                <a href="/admin" className="text-white uppercase text-xs font-semibold p-2 rounded transition-colors duration-300">Administrar</a>
-                <button onClick={() => {signOut();}} className="text-white uppercase text-xs font-semibold p-2 rounded transition-colors duration-300">Salir</button>
+              <div className='flex flex-row items-center'>
+                <a href="/admin"><button className="py-2 px-6 flex text-sm font-semibold font-cocogoose">Administrar</button></a>
+                <button onClick={() => {signOut();}} className='py-2 px-6 flex text-sm font-semibold font-cocogoose'>Salir</button>
               </div>
               ) : (
-              <div className='inline-flex gap-x-2'>
-                <button onClick={() => openModal('login')} className="text-white text-sm font-semibold py-1 px-2 rounded transition-colors duration-300">Ingresar</button>
-                <button onClick={() => openModal('singup')} className="text-white text-sm font-semibold py-1 px-2 rounded transition-colors duration-300">Inscribirse</button>
+              <div className='flex flex-row items-center'>
+                <button onClick={() => openModal('login')} className='py-2 px-6 flex text-sm font-semibold font-cocogoose'>Ingresar</button>
+                <button onClick={() => openModal('singup')} className='py-2 px-6 flex text-sm font-semibold font-cocogoose'>Inscribirse</button>
               </div>
             )}
             {showModal && (
-            <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center transition bg-opacity-50 bg-gray-900 backdrop-blur-sm z-40 ${closingModal ? "animate-fade-out animate__animated animate__fadeOut" : "animate-fade-in animate__animated animate__fadeIn"}`}>
-                <div className="realtive bg-gray-800 w-4/5 max-w-xl h-1/2 max-h-[28rem] flex justify-start items-center rounded-2xl leading-normal md:w-3/5 lg:w-1/2 lg:h-3/5 xl:h-4/5">
+            <div className={`fixed top-0 left-0 right-0 z-50 flex justify-center items-center w-full h-full transition bg-opacity-50 bg-gray-900 backdrop-blur-sm ${closingModal ? "animate-fade-out animate__animated animate__fadeOut" : "animate-fade-in animate__animated animate__fadeIn"}`}>
+                <div className="bg-white w-11/12 h-2/3 max-w-xl max-h-[50lvh] flex justify-start items-center rounded-lg leading-normal md:w-3/5 lg:w-1/2 lg:h-3/5 xl:h-4/5">
                   <div className="relative w-full h-full p-6">
-                    <button onClick={closeModal} className='absolute top-4 right-4 text-xl text-gray-400 hover:text-gray-600 transition-colors duration-300' ><AiOutlineClose /></button>
+                    <button onClick={closeModal} className='absolute top-4 right-4 text-xl text-gray-600 hover:text-gray-700 transition-colors duration-300' ><AiOutlineClose /></button>
                     <div className={`flex flex-row w-full items-center ${activeTab === 'auth' ?  'hidden' : ''}`}>
-                      <button onClick={() => openModal('login')} className={`text-gray-100 rounded-full px-4 py-1 inline-flex text-sm font-semibold transition duration-300 mr-2 ${activeTab === 'login' ?  'bg-red-500 hover:bg-red-600' : ''}`}>Ingresar</button>
-                      <button onClick={() => openModal('singup')} className={`text-gray-100 rounded-full px-4 py-1 inline-flex text-sm font-semibold transition duration-300 mr-2 ${activeTab === 'singup' ? 'bg-pink-700 hover:bg-pink-800' : ''}`}>Inscribirse</button>
+                      <button onClick={() => openModal('login')} className={`text-gray-800 rounded-md px-4 py-1 inline-flex text-sm font-semibold transition duration-300 mr-2 ${activeTab === 'login' ?  'bg-gray-800 hover:bg-gray-900 text-white' : ''}`}>Ingresar</button>
+                      <button onClick={() => openModal('singup')} className={`text-gray-800 rounded-md px-4 py-1 inline-flex text-sm font-semibold transition duration-300 mr-2 ${activeTab === 'singup' ? 'bg-gray-800 hover:bg-gray-900 text-white' : ''}`}>Inscribirse</button>
                       {showForgotPasswordModal ? (
-                        <button onClick={() => openModal('forgot_password_confirm')} className={`text-gray-100 rounded-full px-2 py-1 inline-flex text-sm font-semibold transition duration-300 mr-2 ${activeTab === 'forgot_password_confirm' ? 'bg-green-600 hover:bg-green-700' : ''}`}><AiFillUnlock/></button>
+                        <button onClick={() => openModal('forgot_password_confirm')} className={`text-gray-600 rounded-md px-2 py-1 inline-flex text-sm font-semibold transition duration-300 mr-2 ${activeTab === 'forgot_password_confirm' ? 'bg-gray-800 hover:bg-gray-900 text-white' : ''}`}><AiFillUnlock/></button>
                         ) : (
-                        <button onClick={() => openModal('forgot-password')} className={`text-gray-100 rounded-full px-2 py-1 inline-flex text-sm font-semibold transition duration-300 mr-2 ${activeTab === 'forgot-password' ? 'bg-yellow-600 hover:bg-yellow-700' : ''}`}><AiFillLock/></button>
+                        <button onClick={() => openModal('forgot-password')} className={`text-gray-600 rounded-md px-2 py-1 inline-flex text-sm font-semibold transition duration-300 mr-2 ${activeTab === 'forgot-password' ? 'bg-gray-800 hover:bg-gray-900 text-white' : ''}`}><AiFillLock/></button>
                         )}
                     </div>
                     <div style={{ display: activeTab === 'login' ? 'block' : 'none' }} className={`h-full my-4 ${activeTab === 'login' ? 'animate-fade-in animate__animated animate__fadeIn' : 'animate-fade-out animate__animated animate__fadeOut'} ${activeTab === 'singup' ? 'hidden' : ''}`}>
                       <LoginModal closeModal={closeModal}/>
-                      <div className="text-start items-center inline-flex gap-x-2">
-                        <p className="text-xs text-gray-300">¿No tienes una cuenta?</p>
-                        <button onClick={() => openModal('singup')} className="cursor-pointer text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">Inscribete</button>
-                      </div><br />
-                      <button onClick={() => openModal('forgot-password')} className="hover:underline text-xs text-blue-500">¿Olvidaste la contraseña?</button>
+                      <div className="text-start items-center inline-flex gap-x-2 font-cocogoose">
+                        <p className="text-xs text-gray-900 font-semibold">¿no tienes una cuenta?</p>
+                        <button onClick={() => openModal('singup')} className="cursor-pointer text-xs font-semibold text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">Inscribete</button>
+                      </div><br /><button onClick={() => openModal('forgot-password')} className="hover:underline font-cocogoose font-semibold text-xs text-blue-500">¿Olvidaste la contraseña?</button>
                     </div>
                     <div style={{ display: activeTab === 'singup' ? 'block' : 'none' }} className={`h-full my-4 ${activeTab === 'singup' ? 'animate-fade-in animate__animated animate__fadeIn' : 'animate-fade-out animate__animated animate__fadeOut'} ${activeTab === 'login' ? 'hidden' : ''}`}>
                       <RegisterModal closeModal={closeModal}/>
-                      <div className="inline-flex gap-x-2 items-center">
-                        <p className="text-xs text-gray-300">¿Ya tienes una cuenta?</p>
-                        <button onClick={() => openModal('login')} className="cursor-pointer text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">Ingresar</button>
+                      <div className="text-start items-center inline-flex gap-x-2 font-cocogoose">
+                        <p className="text-xs text-gray-900 font-semibold">¿Ya tienes una cuenta?</p>
+                        <button onClick={() => openModal('login')} className="cursor-pointer text-xs font-semibold text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">Ingresar</button>
                       </div>
                     </div>
                     <div style={{ display: activeTab === 'forgot-password' ? 'block' : 'none' }} className={`h-full my-4 ${activeTab === 'forgot-password' ? 'animate-fade-in animate__animated animate__fadeIn' : 'animate-fade-out animate__animated animate__fadeOut'} ${activeTab === 'login' ? 'hidden' : ''}`}>
                       <ForgotPasswordModal closeModal={closeModal}/>
-                      <div className="inline-flex gap-x-2 items-center">
-                        <p className="text-xs text-gray-300">¿Ya tienes una cuenta?</p>
-                        <button onClick={() => openModal('login')} className="cursor-pointer text-gray-200 hover:text-green-300 transition-colors duration-300 -mt-1">Ingresar</button>
+                      <div className="text-start items-center inline-flex gap-x-2 font-cocogoose">
+                        <p className="text-xs text-gray-900 font-semibold">¿Ya tienes una cuenta?</p>
+                        <button onClick={() => openModal('login')} className="cursor-pointer text-xs font-semibold text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">Ingresar</button>
                       </div>
                     </div>
                     <div style={{ display: activeTab === 'forgot_password_confirm' ? 'block' : 'none' }} className={`h-full my-4 ${activeTab === 'forgot_password_confirm' ? 'animate-fade-in animate__animated animate__fadeIn' : 'animate-fade-out animate__animated animate__fadeOut'} ${activeTab === 'login' ? 'hidden' : ''}`}>
                       <ForgotPasswordConfirmModal closeModal={closeModal} updateForgotPasswordModalState={updateForgotPasswordModalState}/>
-                      <div className="inline-flex gap-x-2 items-center">
-                        <p className="text-xs text-gray-300">¿Ya tienes una cuenta?</p>
-                        <button onClick={() => openModal('login')} className="cursor-pointer text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">Ingresar</button>
+                      <div className="text-start items-center inline-flex gap-x-2 font-cocogoose">
+                        <p className="text-xs text-gray-900 font-semibold">¿Ya tienes una cuenta?</p>
+                        <button onClick={() => openModal('login')} className="cursor-pointer text-xs font-semibold text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">Ingresar</button>
                       </div>
                     </div>
                     <div style={{ display: activeTab === 'auth' ? 'block' : 'none' }} className={`w-full h-full my-4 ${activeTab === 'auth' ? 'animate-fade-in animate__animated animate__fadeIn' : 'animate-fade-out animate__animated animate__fadeOut'}`}>
