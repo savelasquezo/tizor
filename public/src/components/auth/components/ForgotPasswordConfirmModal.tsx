@@ -10,6 +10,7 @@ import { IoEye } from "react-icons/io5";
 import { IoEyeOff } from "react-icons/io5";
 
 const ForgotPasswordConfirmModal: React.FC<ForgotPasswordConfirmInfo> = ({ closeModal, updateForgotPasswordModalState }) => {
+  const nextSite = JSON.parse(localStorage.getItem('nextsite.data') || '{}');
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -144,9 +145,9 @@ const ForgotPasswordConfirmModal: React.FC<ForgotPasswordConfirmInfo> = ({ close
           )
         )}
       </form>
-      {success && (<div className="text-lime-400 text-sm mt-2">{success}</div>)}
-      {error && (<div className="text-red-400 text-sm mt-2">{error}</div>)}
-      {!error && !success && (<div className="text-gray-400 text-xs mt-2 h-6">¿Necesitas ayuda? support@tizorbank.com</div>)}
+      {success && (<div className="text-lime-700 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">{success}</div>)}
+      {error && (<div className="text-red-800 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">{error}</div>)}
+      {!error && !success && (<div className="text-gray-600 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">¿Necesitas ayuda? {nextSite.email}</div>)}
     </div>
   );
 };

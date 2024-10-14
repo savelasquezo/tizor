@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { getSession, signIn } from 'next-auth/react';
 import CircleLoader from 'react-spinners/CircleLoader';
+
 import { ModalFunction } from '@/lib/types/types';
 
 import { Input } from "@nextui-org/react";
@@ -10,10 +11,14 @@ import { FiLock } from 'react-icons/fi'
 import { IoEye } from "react-icons/io5";
 import { IoEyeOff } from "react-icons/io5";
 
+
+
 const LoginModal: React.FC<ModalFunction> = ({ closeModal }) => {
+    const nextSite = JSON.parse(localStorage.getItem('nextsite.data') || '{}');
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
     const [isVisible, setIsVisible] = useState(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
@@ -24,25 +29,30 @@ const LoginModal: React.FC<ModalFunction> = ({ closeModal }) => {
     });
 
     const { email, password } = formData;
-    const siteEmail = localStorage.getItem('nextsite.data.email');
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, [e.target.name]: e.target.value });
-
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         setError('');
+    
         await new Promise(resolve => setTimeout(resolve, 1000));
+    
         const res = await signIn('credentials', {
             redirect: false,
             email: email,
-            password: password,
+            password: password
         });
-
+    
         const session = await getSession();
         if (!res?.error && session) {
             setLoading(false);
-            closeModal()
+            setRegistrationSuccess(true);
+    
+            setTimeout(() => {
+                closeModal();
+                window.location.href = '/admin';
+            }, 2000);
         } else {
             if (res?.error) {
                 setError(res.error);
@@ -50,6 +60,7 @@ const LoginModal: React.FC<ModalFunction> = ({ closeModal }) => {
             setLoading(false);
         }
     };
+    
 
     return (
         <div className="container">
@@ -90,16 +101,22 @@ const LoginModal: React.FC<ModalFunction> = ({ closeModal }) => {
                     }
 
                 />
-                {loading ? (
-                    <button type="button" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full text-center flex items-center justify-center">
-                        <CircleLoader loading={loading} size={25} color="#ffff" />
-                    </button>
+                {registrationSuccess ? (
+                    <p onClick={closeModal} className="h-10 bg-green-700 text-white font-semibold rounded-sm py-2 px-4 w-full text-sm flex items-center justify-center transition-all duration-300">
+                        <CircleLoader loading={!loading} size={25} color="#ffff" />
+                    </p>
                 ) : (
-                    <button type="submit" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full font-cocogoose text-xs text-center uppercase">Ingresar</button>
+                    loading ? (
+                        <button type="button" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full text-center flex items-center justify-center transition-all duration-300">
+                            <CircleLoader loading={loading} size={25} color="#ffff" />
+                        </button>
+                    ) : (
+                        <button type="submit" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full font-cocogoose text-xs text-center uppercase">Ingresar</button>
+                    )
                 )}
             </form>
-            {error && (<div className="text-red-800 text-sm mt-2">{error}</div>)}
-            {!error && (<div className="text-gray-800 text-sm mt-2 h-6">¿Necesitas ayuda? support@tizorbank.com</div>)}
+            {error && (<div className="text-red-800 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">{error}</div>)}
+            {!error && (<div className="text-gray-600 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">¿Necesitas ayuda? {nextSite.email}</div>)}
         </div>
     );
 };

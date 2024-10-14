@@ -14,12 +14,13 @@ import { IoEyeOff } from "react-icons/io5";
 import { IoWalletOutline } from "react-icons/io5";
 
 import { Input } from "@nextui-org/react";
+import { Select, SelectItem } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 
 
-
-
 const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
+  const nextSite = JSON.parse(localStorage.getItem('nextsite.data') || '{}');
+
   const searchParams = useSearchParams();
   const [infoRefered, setInfoRefered] = useState(false);
 
@@ -35,6 +36,8 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
   });
 
   const { email, username, address, password } = formData;
+  const [selectedNetwork, setSelectedNetwork] = useState('bep20');
+  const [network, setNetwork] = useState('');
 
   useEffect(() => {
     if (searchParams.get('uuid')) {
@@ -87,7 +90,8 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
           address,
           ref,
           password,
-          re_password
+          re_password,
+          network: selectedNetwork
         }),
       });
 
@@ -110,6 +114,11 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
       setLoading(false);
     }
 
+  };
+
+  const handleNetworkChange = (net: any) => {
+    setSelectedNetwork(net);
+    setNetwork(net);
   };
 
   return (
@@ -144,21 +153,28 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
           pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
           readOnly={registrationSuccess}
         />
-        <Input
-          label=""
-          type="text"
-          name="address"
-          value={address}
-          required
-          variant="underlined"
-          onChange={(e) => onChange(e)}
-          placeholder="Wallet"
-          labelPlacement="outside"
-          className="w-full"
-          startContent={<IoWalletOutline className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}
-          pattern="^[a-zA-Z0-9]+$"
-          readOnly={registrationSuccess}
-        />
+        <div className="flex flex-row items-center justify-start gap-x-2">
+          <Input
+            label=""
+            type="text"
+            name="address"
+            value={address}
+            required
+            variant="underlined"
+            onChange={(e) => onChange(e)}
+            placeholder="Wallet"
+            labelPlacement="outside"
+            className="w-full"
+            startContent={<IoWalletOutline className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}
+            pattern="^[a-zA-Z0-9]+$"
+            readOnly={registrationSuccess}
+          />
+          <Select className="!w-[9rem] lg:!w-[7rem]" variant="underlined" radius={'none'} selectedKeys={[selectedNetwork]} disabledKeys={[selectedNetwork]} isDisabled={registrationSuccess}>
+            <SelectItem onClick={() => handleNetworkChange('bep20')} key="bep20">BEP20</SelectItem>
+            <SelectItem onClick={() => handleNetworkChange('erc20')} key="erc20">ERC20</SelectItem>
+            <SelectItem onClick={() => handleNetworkChange('trc20')} key="trc20">TRC20</SelectItem>
+          </Select>
+        </div>
         <Input
           label=""
           type={isVisible ? "text" : "password"}
@@ -197,9 +213,9 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
           )
         )}
       </form>
-      {success && (<div className="text-lime-700 text-xs md:text-sm mt-0 md:mt-2">{success}</div>)}
-      {error && (<div className="text-red-800 text-xs md:text-sm mt-0 md:mt-2">{error}</div>)}
-      {!error && !success && (<div className="text-gray-800 text-sm mt-2 h-6">¿Necesitas ayuda? support@tizorbank.com</div>)}
+      {success && (<div className="text-lime-700 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">{success}</div>)}
+      {error && (<div className="text-red-800 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">{error}</div>)}
+      {!error && !success && (<div className="text-gray-600 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">¿Necesitas ayuda? {nextSite.email}</div>)}
     </div>
   );
 };

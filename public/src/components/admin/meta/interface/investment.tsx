@@ -316,8 +316,8 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
             </div>
           ) : (
             <div className='flex flex-col gap-y-2'>
-              <p className="mt-2 text-gray-900 text-xs text-justify">{t('meta.interface.investment.unlock.description.txt1')}</p>
-              <p className="mt-2 text-gray-900 text-xs text-justify">{t('meta.interface.investment.unlock.description.txt2')}</p>
+              <p className="mt-2 text-gray-900 text-[0.65rem] leading-none md:text-xs text-justify">{t('meta.interface.investment.unlock.description.txt1')}</p>
+              <p className="mt-2 text-gray-900 text-[0.65rem] leading-none md:text-xs text-justify">{t('meta.interface.investment.unlock.description.txt2')}</p>
             </div>
           )}
         </form>

@@ -60,7 +60,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     objects = AccountManager()
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username','address','ref']
+    REQUIRED_FIELDS = ['username','address','network','ref']
 
     def __str__(self):
         return f"{self.email}"

@@ -157,7 +157,7 @@ const Withdrawal: React.FC<SessionAuthenticated> = ({ session }) => {
             <span onClick={handleCopyClick} className={`cursor-pointer transition-colors duration-1000 ${copySuccess ? 'text-green-500' : ''}`}><FaRegCopy /></span>
           </div>
           <div className="text-center">
-            <p className="mt-2 text-gray-900 text-xs">{t('meta.interface.withdrawal.description')}</p>
+            <p className="mt-2 text-gray-800 text-[0.65rem] leading-none md:text-xs">{t('meta.interface.withdrawal.description')}</p>
             <div className='flex items-center justify-center text-xs h-10 my-4 border-t-1 border-gray-400'>
               {registrationSuccess && <p className="text-green-900 font-semibold font-cocogoose text-[0.65rem] uppercase mt-3">
                 {t('meta.interface.withdrawal.message.success')}<br />{t('meta.interface.withdrawal.message.information')}</p>}
