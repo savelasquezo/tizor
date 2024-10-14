@@ -170,8 +170,11 @@ const Investment: React.FC<SessionAuthenticated> = ({ session }) => {
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (name === 'voucher') {
-      setVoucherFilter(value);
-      const foundTicket = tickets.find(ticket => ticket.voucher === value && ticket.state === 'active');
+      const lowerCaseValue = value.toLowerCase();
+      setVoucherFilter(lowerCaseValue);
+      const foundTicket = tickets.find(ticket => 
+        ticket.voucher.toLowerCase() === lowerCaseValue && ticket.state === 'active'
+      );
       setFilteredTicket(foundTicket || null);
     }
   };

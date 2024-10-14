@@ -44,7 +44,7 @@ export type HistoryInfo = {
 
 export type AccountReferedInfo = {
     username: string;
-    balance: number;
+    balance: number | null;
     date_joined: string;
 };
 

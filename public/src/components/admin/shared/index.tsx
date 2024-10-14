@@ -57,7 +57,7 @@ const Shared: React.FC<SessionAuthenticated> = ({ session }) => {
 
   const filledTickets = [...tickets];
   while (filledTickets.length < 5) {
-    filledTickets.push({ username: '', balance: 0, date_joined: '', });
+    filledTickets.push({ username: '', balance: null, date_joined: '', });
   }
 
   return (
@@ -108,7 +108,7 @@ const Shared: React.FC<SessionAuthenticated> = ({ session }) => {
                   {filledTickets.map((obj, index) => (
                     <tr key={index} className="border-b border-slate-300 text-sm text-gray-600 text-center align-middle h-10">
                       <td className="w-1/3 whitespace-nowrap px-6 py-2 font-creatodisplay text-xs sm:text-base">{obj.username ? obj.username : ''}</td>
-                      <td className="w-1/3 whitespace-nowrap px-6 py-2 font-creatodisplay">{obj.balance ? formatNumber(obj.balance) : ''}</td>
+                      <td className="w-1/3 whitespace-nowrap px-6 py-2 font-creatodisplay">{obj.balance !== undefined && obj.balance !== null ? formatNumber(obj.balance) : ''}</td>
                       <td className="w-1/3 whitespace-nowrap px-6 py-2 font-creatodisplay">{obj.date_joined ? obj.date_joined : ''}</td>
                     </tr>
                   ))}

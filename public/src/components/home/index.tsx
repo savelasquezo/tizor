@@ -29,29 +29,29 @@ export default function Hero() {
           </div>
           <div className='flex flex-row items-center justify-end'>
             <nav className='text-gray-800 text-lg lg:flex items-center'>
-              <a href="#" className='py-2 px-6 flex text-sm font-semibold font-cocogoose'>T-Bank</a>
-              <a href="#" className='py-2 px-6 flex text-sm font-semibold font-cocogoose'>CDT</a>
+              <a href="#" className='py-2 px-6 text-sm font-semibold font-cocogoose hidden lg:flex'>T-Bank</a>
+              <a href="#" className='py-2 px-6 text-sm font-semibold font-cocogoose hidden lg:flex'>CDT</a>
               <Auth/>
             </nav>
           </div>
         </div>
       </header>
       <div className='bg-white overflow-hidden'>
-        <div className='container flex flex-row justify-center items-center mx-auto px-6 py-16'>
-          <div className='w-2/3 h-full flex flex-col items-center justify-start gap-y-4 -mt-[6rem]'>
+        <div className='w-11/12 lg:w-2/3 container flex flex-row justify-center items-center mx-auto px-6 py-16'>
+          <div className='w-full h-full flex flex-col items-center justify-start gap-y-4 -mt-[2rem] lg:-mt-[6rem]'>
             <div className='flex flex-col text-center'>
               <p className='font-cocogoose text-2xl font-semibold'>Cuenta de Ahorros</p>
               <p className='font-cocogoose text-xs font-semibold'>ver crecer tu dinero como nunca antes lo has visto</p>
             </div>
             <div className='max-w-lg w-full bg-gray-800 px-8 py-12 rounded-tl-[5rem] rounded-br-[5rem] font-gilroy text-white'>
               <p className='text-7xl font-semibold'>{data?.max_interest ?? '--'}%<span className='text-lg'> E.A.</span></p><br />
-              <ul className='list-disc pl-12 text-lg'>
-                <li className='font-thin'>Sin comisiones ni cuota de manejo</li>
-                <li className='font-thin'>Dinero siempre disponible</li>
-                <li className='font-thin'>Inversiones desde 1$</li>
+              <ul className='list-disc pl-6 md:pl-12 text-lg'>
+                <li className='font-thin text-sm lg:text-base'>Sin comisiones ni cuota de manejo</li>
+                <li className='font-thin text-sm lg:text-base'>Dinero siempre disponible</li>
+                <li className='font-thin text-sm lg:text-base'>Inversiones desde 1$</li>
               </ul>
             </div>
-            <p className='w-2/3 mt-10 font-cocogoose text-xs text-justify'>
+            <p className='w-full mt-4 lg:mt-10 font-cocogoose text-xs text-justify'>
               Ahorrar de forma sencilla es posible con T-Bank. Abre tu cuenta y comienza a gestionar tus ahorros desde cualquier lugar. Haz crecer tu dinero dia a dia con nosotros.
               <span className='ml-2 font-semibold cursor-pointer'>Mira Nuestras Tasas de Interes</span>
             </p>
