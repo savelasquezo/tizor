@@ -112,7 +112,7 @@ const Meta: React.FC<SessionAuthenticated> = ({ session }) => {
       </div>
       <div className='w-10/12 lg:max-w-80 h-auto p-0 mt-8 lg:mt-0 px-4'>
         <div className='w-full h-full'>
-          <CircularProgressbar value={percentage} text={`${percentage}%`} styles={buildStyles({pathColor: '#4caf50', textColor: '#1f2937', trailColor: '#e0e0e0', strokeLinecap: 'butt', textSize: '18px',})}/>
+          <CircularProgressbar value={83.5} text={`${83.5}%`} styles={buildStyles({pathColor: '#4caf50', textColor: '#1f2937', trailColor: '#e0e0e0', strokeLinecap: 'butt', textSize: '18px',})}/>
         </div>
       </div>
       {showModal && (

@@ -36,7 +36,10 @@ class Tizorbank(models.Model):
     legal = CKEditor5Field(_("Legal"), config_name='extends', blank=True, null=True)
     file = models.FileField(upload_to=FilesUploadTo, max_length=512, null=True, blank=True,
                             help_text="Files-Terms/Legal")
-    
+
+    video = models.URLField(_("Video"), blank=True, null=True)
+    thumbnail = models.URLField(_("Thumbnail"), blank=True, null=True ,help_text="Thumbnail for web video")
+
     template_invoice = models.FileField(_("Invoice"),upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for invoice")
     template_invoice_status = models.FileField(_("Invoice Alert"),upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for invoice status")
                                              

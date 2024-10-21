@@ -19,7 +19,7 @@ const config: Config = {
         gilroy: ['Gilroy', 'sans-serif'],
       },
       backgroundImage: {
-        'background-image01': "url('/assets/demo/background01.webp')",
+        'image02': "url('/assets/images/background02.png')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },

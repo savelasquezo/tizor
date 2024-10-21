@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <SessionProvider>
       <Suspense fallback={null}>
-        <main className="h-screen w-screen overflow-hidden">
+        <main className="h-screen w-screen overflow-x-hidden">
           <Hero />
         </main>
       </Suspense>

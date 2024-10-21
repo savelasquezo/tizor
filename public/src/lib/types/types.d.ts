@@ -80,6 +80,8 @@ export type SiteType = {
     address: string;
     file: string | null;
     legal: string;
+    video: string | null;
+    thumbnail: string | null;
     template_block: string | null;
     template_block_status: string | null;
     template_invoice: string | null;

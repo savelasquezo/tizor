@@ -78,6 +78,10 @@ class TizorbankAdmin(admin.ModelAdmin):
         ('template_investment','template_investment_status'),
         )}
 
+    fieldsets_video = {'fields': (
+        ('video','thumbnail'),
+        )}
+
     fieldsets_legal = {'fields': (
         'file',
         ('terms','legal'),
@@ -85,6 +89,7 @@ class TizorbankAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('', fieldsets_),
+        ('Multimedia', fieldsets_video),
         ('Templates', fieldsets_templates),
         ('Terms/Legal', fieldsets_legal),
     )
