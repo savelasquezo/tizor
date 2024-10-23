@@ -35,6 +35,7 @@ DEBUG = True if DEBUG == "True" else False
 ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://127.0.0.1:8000']
+X_FRAME_OPTIONS = 'ALLOW-FROM http://localhost:3000'
 
 
 if not os.path.exists(os.path.join(BASE_DIR, 'logs')):
@@ -359,6 +360,7 @@ if not DEBUG:
     ALLOWED_HOSTS = ['tizorbank.com', 'localhost', '127.0.0.1']
     CORS_ALLOWED_ORIGINS = ['https://tizorbank.com','https://analytics.google.com']
     CSRF_TRUSTED_ORIGINS = ['https://tizorbank.com','https://analytics.google.com']
+    X_FRAME_OPTIONS = 'ALLOW-FROM https://tizorbank.com'
     
     EMAIL_PORT = 465
     EMAIL_USE_SSL = True

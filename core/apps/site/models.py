@@ -13,6 +13,9 @@ def FilesUploadTo(instance, id):
 def ImagesUploadTo(instance, id):
     return f"uploads/files/{id}"
 
+def MediaUploadTo(instance, id):
+    return f"uploads/video/{id}"
+
 links = (('facebook', 'Facebook'),('instagram', 'Instagram'),('youtube', 'YouTube'),('tiktok', 'TikTok'),
          ('twitter', 'Twitter'),('linkedin', 'LinkedIn'),('reddit', 'Reddit'),('pinterest', 'Pinterest'),
          ('snapchat', 'Snapchat'),('telegram', 'Telegram'),('whatsapp', 'WhatsApp'),
@@ -37,8 +40,8 @@ class Tizorbank(models.Model):
     file = models.FileField(upload_to=FilesUploadTo, max_length=512, null=True, blank=True,
                             help_text="Files-Terms/Legal")
 
-    video = models.URLField(_("Video"), blank=True, null=True)
-    thumbnail = models.URLField(_("Thumbnail"), blank=True, null=True ,help_text="Thumbnail for web video")
+    video = models.FileField(_("Video"),upload_to=MediaUploadTo, max_length=512, blank=True, null=True, help_text="Video (MP4)")
+    thumbnail = models.FileField(_("Thumbnail"),upload_to=MediaUploadTo, max_length=512, blank=True, null=True ,help_text="Thumbnail for web video (JPG, PNG)")
 
     template_invoice = models.FileField(_("Invoice"),upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for invoice")
     template_invoice_status = models.FileField(_("Invoice Alert"),upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for invoice status")

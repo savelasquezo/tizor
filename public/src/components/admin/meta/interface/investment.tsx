@@ -6,11 +6,7 @@ import ReactPaginate from 'react-paginate';
 
 import { NextResponse } from 'next/server';
 import CircleLoader from 'react-spinners/CircleLoader';
-
-
-
 import { Slider } from "@nextui-org/slider";
-
 
 import { FaUnlock } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa6";
