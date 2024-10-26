@@ -9,18 +9,6 @@ class ImageSliderSerializer(serializers.ModelSerializer):
             return obj.file.url.lstrip('')
         return None
 
-    video = serializers.SerializerMethodField()
-    def get_video(self, obj):
-        if obj.video:
-            return obj.video.url.lstrip('')
-        return None
-
-    thumbnail = serializers.SerializerMethodField()
-    def get_thumbnail(self, obj):
-        if obj.thumbnail:
-            return obj.thumbnail.url.lstrip('')
-        return None
-
     class Meta:
         model = model.ImageSlider
         fields = '__all__'
@@ -40,6 +28,18 @@ class TizorbankSerializer(serializers.ModelSerializer):
     links = LinkSerializer(many=True, read_only=True, source='link_set')
     images = ImageSliderSerializer(many=True, read_only=True, source='imageslider_set')
     faqs = FAQSerializer(many=True, read_only=True, source='faqs_set') 
+
+    video = serializers.SerializerMethodField()
+    def get_video(self, obj):
+        if obj.video:
+            return obj.video.url.lstrip('')
+        return None
+
+    thumbnail = serializers.SerializerMethodField()
+    def get_thumbnail(self, obj):
+        if obj.thumbnail:
+            return obj.thumbnail.url.lstrip('')
+        return None
 
     class Meta:
         model = model.Tizorbank
