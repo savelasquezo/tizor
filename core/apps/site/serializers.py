@@ -9,6 +9,18 @@ class ImageSliderSerializer(serializers.ModelSerializer):
             return obj.file.url.lstrip('')
         return None
 
+    video = serializers.SerializerMethodField()
+    def get_video(self, obj):
+        if obj.video:
+            return obj.video.url.lstrip('')
+        return None
+
+    thumbnail = serializers.SerializerMethodField()
+    def get_thumbnail(self, obj):
+        if obj.thumbnail:
+            return obj.thumbnail.url.lstrip('')
+        return None
+
     class Meta:
         model = model.ImageSlider
         fields = '__all__'
