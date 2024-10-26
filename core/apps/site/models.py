@@ -11,10 +11,10 @@ def FilesUploadTo(instance, id):
     return f"uploads/items/{id}"
 
 def ImagesUploadTo(instance, id):
-    return f"uploads/files/{id}"
+    return f"media/uploads/files/{id}"
 
 def MediaUploadTo(instance, id):
-    return f"uploads/video/{id}"
+    return f"media/uploads/video/{id}"
 
 links = (('facebook', 'Facebook'),('instagram', 'Instagram'),('youtube', 'YouTube'),('tiktok', 'TikTok'),
          ('twitter', 'Twitter'),('linkedin', 'LinkedIn'),('reddit', 'Reddit'),('pinterest', 'Pinterest'),
