@@ -356,6 +356,7 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
     CORS_ALLOW_ALL_ORIGINS = False
+    MEDIA_URL = '/media/'
     MEDIA_ROOT = '/var/www/media/'
     ALLOWED_HOSTS = ['tizorbank.com', 'localhost', '127.0.0.1']
     CORS_ALLOWED_ORIGINS = ['https://tizorbank.com','https://analytics.google.com']
