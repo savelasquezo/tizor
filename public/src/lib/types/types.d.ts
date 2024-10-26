@@ -77,6 +77,7 @@ export type SiteType = {
     max_interest: number;
     email: string;
     network: string;
+    phone: string;
     address: string;
     file: string | null;
     legal: string;

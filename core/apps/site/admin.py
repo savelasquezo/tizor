@@ -60,6 +60,7 @@ class TizorbankAdmin(admin.ModelAdmin):
         'default',
         'email',
         'network',
+        'phone',
         'address',
         'min_interest',
         'max_interest',
@@ -68,7 +69,8 @@ class TizorbankAdmin(admin.ModelAdmin):
         )
 
     fieldsets_ = {'fields': (
-        ('email','network','address'),
+        ('email','phone'),
+        ('network','address'),
         ('min_interest','max_interest','ref','unlock'),
         )}
 

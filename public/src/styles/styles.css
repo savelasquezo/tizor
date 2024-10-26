@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 @import "animate.css/animate.min.css";
+.whatsapp_widget_icon{border: none !important; margin-right: 10px;}
+.whatsapp_widget_wrapper{margin-right: 10px;}
 
 @font-face {
   font-family: 'Cocogoose';

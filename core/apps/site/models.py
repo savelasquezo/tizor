@@ -33,6 +33,7 @@ class Tizorbank(models.Model):
     
     email = models.EmailField(_("Email"), max_length=256, blank=False, null=False)
     network = models.CharField(_("Network"),choices=networks, default="bep20" , max_length=8, blank=False, null=False)
+    phone = models.CharField(_("Phone"),max_length=256, unique=True, blank=False, null=False)
     address = models.CharField(_("Address"),max_length=256, unique=True, blank=False, null=False)
     
     terms = CKEditor5Field(_("Terms & Conditions"), config_name='extends', blank=True, null=True)
