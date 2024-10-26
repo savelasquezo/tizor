@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { imageLoader } from '@/utils/imageConfig';
 
 const useClickOutside = (handler: () => void) => {
   const domNode = useRef<HTMLDivElement>(null);
@@ -32,7 +33,7 @@ const Video: React.FC<{ url: string, thumbnail: string }> = ({ url, thumbnail })
         <div className="w-full px-4 lg:w-3/5">
           <div className="relative z-20 h-[300px] overflow-hidden rounded-lg md:h-[450px]">
             <div className="absolute left-0 top-0 h-full w-full">
-              <Image priority width={1800} height={1300} src={thumbnail} className="h-full w-full object-cover object-center" alt="" />
+              <Image priority width={1800} height={1300} loader={imageLoader} src={thumbnail} className="h-full w-full object-cover object-center" alt="" />
             </div>
             <div
               className={`absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-gray-800 bg-opacity-80`}
