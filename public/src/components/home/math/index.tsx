@@ -61,15 +61,14 @@ const InvestmentSimulator: React.FC = () => {
               name='months'
               variant={'underlined'}
               label="Temporalidad"
-              onChange={(e) => setMonths(Number(e.target.value))}
+              onChange={(e) => {
+                const value = Number(e.target.value);
+                setMonths(value > 36 ? 36 : value);
+              }}
               onKeyDown={(e) => {
                 if (!/[0-9]/.test(e.key) && e.key !== "Backspace" && e.key !== "ArrowLeft" && e.key !== "ArrowRight") {
                   e.preventDefault();
                 }
-              }}
-              onChange={(e) => {
-                const value = Number(e.target.value);
-                setMonths(value > 36 ? 36 : value); // Limita el valor máximo a 36
               }}
               min={3}
               max={36}
