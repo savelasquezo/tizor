@@ -13,12 +13,6 @@ const InvestmentSimulator: React.FC = () => {
   const [months, setMonths] = useState<number>(3);
   const [interest, setInterest] = useState<number>(14);
 
-  const handleKeyDown = (event: any) => {
-    if (!['ArrowUp', 'ArrowDown'].includes(event.key)) {
-      event.preventDefault();
-    }
-  };
-
   const mathInterest = (months: number) => {
     const minRate = data?.min_interest || 12;
     const maxRate = data?.max_interest || 24;
@@ -53,7 +47,11 @@ const InvestmentSimulator: React.FC = () => {
               variant={'underlined'}
               label="Inversión"
               onChange={(e) => setAmount(Number(e.target.value))}
-              onKeyDown={handleKeyDown}
+              onKeyDown={(e) => {
+                if (!/[0-9]/.test(e.key) && e.key !== "Backspace" && e.key !== "ArrowLeft" && e.key !== "ArrowRight") {
+                  e.preventDefault();
+                }
+              }}
               min={100}
               max={100000}
               step={100}
@@ -64,7 +62,15 @@ const InvestmentSimulator: React.FC = () => {
               variant={'underlined'}
               label="Temporalidad"
               onChange={(e) => setMonths(Number(e.target.value))}
-              onKeyDown={handleKeyDown}
+              onKeyDown={(e) => {
+                if (!/[0-9]/.test(e.key) && e.key !== "Backspace" && e.key !== "ArrowLeft" && e.key !== "ArrowRight") {
+                  e.preventDefault();
+                }
+              }}
+              onChange={(e) => {
+                const value = Number(e.target.value);
+                setMonths(value > 36 ? 36 : value); // Limita el valor máximo a 36
+              }}
               min={3}
               max={36}
               step={3}
@@ -101,7 +107,7 @@ const InvestmentSimulator: React.FC = () => {
         </div>
         <div className='w-full flex flex-col lg:flex-row items-center justify-center gap-6'>
           <p className='w-full lg:w-3/4 font-cocogoose text-[0.55rem] text-gray-800 text-justify'>
-            La simulación del CDT T-Bank te muestra un cálculo estimado del valor de tu inversión, el plazo y la tasa vigente al momento de la consulta. Recuerda que esta información es solo referencial y no constituye una oferta comercial. Informes
+            La simulación del Staking T-Bank te muestra un cálculo estimado del valor de tu inversión, el plazo y la tasa vigente al momento de la consulta. Recuerda que esta información es solo referencial y no constituye una oferta comercial. Informes
             <span className='font-semibold cursor-pointer ml-1'>Términos & Condiciones</span>
           </p>
           <div className='w-full lg:w-1/4'>

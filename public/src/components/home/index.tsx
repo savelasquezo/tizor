@@ -51,7 +51,7 @@ export default function Hero() {
           <div className='flex flex-row items-center justify-end'>
             <nav className='text-gray-800 text-lg lg:flex items-center'>
               <a href="#" className='py-2 px-6 text-sm font-semibold font-cocogoose hidden lg:flex'>T-Bank</a>
-              <a href="#" className='py-2 px-6 text-sm font-semibold font-cocogoose hidden lg:flex'>CDT</a>
+              <a href="#" className='py-2 px-6 text-sm font-semibold font-cocogoose hidden lg:flex'>Staking</a>
               <Auth />
             </nav>
           </div>
