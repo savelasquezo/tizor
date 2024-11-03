@@ -27,6 +27,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "src/app/en/page.tsx", "src/app/layout.tsx", "src/app/page.tsx", "src/utils/i18next.js"  ],
+, "src/app/en/page.tsx", "src/app/layout.tsx", "src/app/page.tsx", "src/utils/i18next.js", "src/app/about-us/page.tsx", "src/utils/i18nextUI.tsx"  ],
   "exclude": ["node_modules"]
 }

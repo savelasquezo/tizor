@@ -82,18 +82,15 @@ class TizorbankAdmin(admin.ModelAdmin):
 
     fieldsets_video = {'fields': (
         ('video','thumbnail'),
+        ('tutorial_1','tutorial_thumbnail_1'),
+        ('tutorial_2','tutorial_thumbnail_2')
         )}
 
-    fieldsets_legal = {'fields': (
-        'file',
-        ('terms','legal'),
-        )}
 
     fieldsets = (
         ('', fieldsets_),
         ('Multimedia', fieldsets_video),
-        ('Templates', fieldsets_templates),
-        ('Terms/Legal', fieldsets_legal),
+        ('Templates', fieldsets_templates)
     )
 
     def has_add_permission(self, request):

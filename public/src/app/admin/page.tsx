@@ -7,9 +7,6 @@ import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
 
-
-import Flag from 'react-world-flags';
-import { Select, SelectItem } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 
 import Context from '@/components/admin/context/index';
@@ -21,8 +18,10 @@ import Shared from '@/components/admin/shared/index';
 import { FaPowerOff } from "react-icons/fa";
 import HashLoader from 'react-spinners/HashLoader';
 
+
 import { useLanguage } from '@/utils/i18next';
 import { SiteType } from '@/lib/types/types';
+import I18nextUI  from '@/utils/i18nextUI';
 
 const AdminPage: React.FC = () => {
   const { data: session } = useSession();
@@ -60,12 +59,7 @@ const AdminPage: React.FC = () => {
             </Link>
             <div className="flex flex-row items-center justify-end gap-x-2">
               <div className='flex flex-row items-center justify-center gap-x-4'>
-                <Select className="!w-20" radius={'sm'} selectedKeys={[selectedLanguage]} disabledKeys={[selectedLanguage]} startContent={<Flag code={selectedLanguage} className="w-6 h-6" />}>
-                  <SelectItem onClick={() => handleLanguageChange('us')} key="us" startContent={<Flag code="us" className="w-6 h-6" />}></SelectItem>
-                  <SelectItem onClick={() => handleLanguageChange('es')} key="es" startContent={<Flag code="es" className="w-6 h-6" />}></SelectItem>
-                  <SelectItem onClick={() => handleLanguageChange('pt')} key="pt" startContent={<Flag code="pt" className="w-6 h-6" />}></SelectItem>
-                  <SelectItem onClick={() => handleLanguageChange('fr')} key="fr" startContent={<Flag code="fr" className="w-6 h-6" />}></SelectItem>
-                </Select>
+                <I18nextUI  selectedLanguage={selectedLanguage} onLanguageChange={handleLanguageChange}/>
               </div>
               <Button onClick={() => { signOut({ callbackUrl: '/' }); }} type="submit" isIconOnly color="default" className="!bg-gray-100" aria-label="">
                 <FaPowerOff />

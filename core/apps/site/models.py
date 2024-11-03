@@ -35,14 +35,16 @@ class Tizorbank(models.Model):
     network = models.CharField(_("Network"),choices=networks, default="bep20" , max_length=8, blank=False, null=False)
     phone = models.CharField(_("Phone"),max_length=256, unique=True, blank=False, null=False)
     address = models.CharField(_("Address"),max_length=256, unique=True, blank=False, null=False)
-    
-    terms = CKEditor5Field(_("Terms & Conditions"), config_name='extends', blank=True, null=True)
-    legal = CKEditor5Field(_("Legal"), config_name='extends', blank=True, null=True)
     file = models.FileField(upload_to=FilesUploadTo, max_length=512, null=True, blank=True,
                             help_text="Files-Terms/Legal")
 
     video = models.FileField(_("Video"),upload_to=MediaUploadTo, max_length=512, blank=True, null=True, help_text="Video (MP4)")
     thumbnail = models.FileField(_("Thumbnail"),upload_to=MediaUploadTo, max_length=512, blank=True, null=True ,help_text="Thumbnail for web video (JPG, PNG)")
+    
+    tutorial_1 = models.FileField(_("Tutorial"),upload_to=MediaUploadTo, max_length=512, blank=True, null=True ,help_text="Tutorial for web video -How to buy (JPG, PNG)")
+    tutorial_thumbnail_1 = models.FileField(_("Thumbnail"),upload_to=MediaUploadTo, max_length=512, blank=True, null=True ,help_text="Thumbnail for web video (JPG, PNG)")
+    tutorial_2 = models.FileField(_("Tutorial"),upload_to=MediaUploadTo, max_length=512, blank=True, null=True ,help_text="Tutorial for web video -How to use (JPG, PNG)")
+    tutorial_thumbnail_2 = models.FileField(_("Thumbnail"),upload_to=MediaUploadTo, max_length=512, blank=True, null=True ,help_text="Thumbnail for web video (JPG, PNG)")
 
     template_invoice = models.FileField(_("Invoice"),upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for invoice")
     template_invoice_status = models.FileField(_("Invoice Alert"),upload_to=TemplatesUploadTo, max_length=512, null=True, blank=True,help_text="Template for invoice status")

@@ -45,7 +45,7 @@ const InvestmentSimulator: React.FC = () => {
               type="number"
               name='amount'
               variant={'underlined'}
-              label="Inversión"
+              label="$ Inversión"
               onChange={(e) => setAmount(Number(e.target.value))}
               onKeyDown={(e) => {
                 if (!/[0-9]/.test(e.key) && e.key !== "Backspace" && e.key !== "ArrowLeft" && e.key !== "ArrowRight") {
@@ -60,7 +60,7 @@ const InvestmentSimulator: React.FC = () => {
               type="number"
               name='months'
               variant={'underlined'}
-              label="Temporalidad"
+              label="Tiempo (Meses)"
               onChange={(e) => {
                 const value = Number(e.target.value);
                 setMonths(value > 36 ? 36 : value);
@@ -115,7 +115,7 @@ const InvestmentSimulator: React.FC = () => {
         </div>
       </div>
       <div className='absolute lg:static w-full lg:w-2/5 flex items-start justify-start lg:-translate-x-16 opacity-5 lg:opacity-100 grayscale lg:grayscale-0'>
-        <Image priority width={1800} height={1300} src={"/assets/images/background05.png"} className="w-auto h-[30rem] object-contain" alt="" />
+        <Image priority width={540} height={470} src={"/assets/images/background05.png"} className="w-auto h-[30rem] object-contain" alt="" />
       </div>
     </section>
   );

@@ -21,7 +21,7 @@ const useClickOutside = (handler: () => void) => {
   return domNode;
 };
 
-const Video: React.FC<{ url: string, thumbnail: string }> = ({ url, thumbnail }) => {
+const Video: React.FC<{ url: string, thumbnail: string, width: number, height:number  }> = ({ url, thumbnail, width, height }) => {
   const [videoOpen, setVideoOpen] = useState(false);
 
   const domNode = useClickOutside(() => {
@@ -30,16 +30,15 @@ const Video: React.FC<{ url: string, thumbnail: string }> = ({ url, thumbnail })
   return (
     <section className="w-full h-full py-8">
       <div ref={domNode} className="flex flex-wrap justify-center">
-        <div className="w-full px-4 lg:w-3/5">
+        <div className="w-full px-4">
           <div className="relative z-20 h-[300px] overflow-hidden rounded-lg md:h-[450px]">
             <div className="absolute left-0 top-0 h-full w-full">
-              <Image priority width={1800} height={1300} loader={imageLoader} src={thumbnail} className="h-full w-full object-cover object-center" alt="" />
+              <Image priority width={width} height={height} loader={thumbnail ? imageLoader : undefined}  src={thumbnail ?? '/assets/video/thumbnail.webp'} className="h-full w-full object-cover object-center" alt="" />
             </div>
             <div
               className={`absolute left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-gray-800 bg-opacity-80`}
             >
-              <a
-                href="/#"
+              <span
                 onClick={() => setVideoOpen(true)}
                 className="absolute z-20 flex h-20 w-20 items-center justify-center rounded-full bg-gray-200 text-gray-800 md:h-[100px] md:w-[100px]"
               >
@@ -52,7 +51,7 @@ const Video: React.FC<{ url: string, thumbnail: string }> = ({ url, thumbnail })
                 >
                   <path d="M22.5 12.634C23.1667 13.0189 23.1667 13.9811 22.5 14.366L2.25 26.0574C1.58333 26.4423 0.750001 25.9611 0.750001 25.1913L0.750002 1.80866C0.750002 1.03886 1.58334 0.557731 2.25 0.942631L22.5 12.634Z" />
                 </svg>
-              </a>
+              </span>
             </div>
 
             <div>
@@ -422,7 +421,7 @@ const Video: React.FC<{ url: string, thumbnail: string }> = ({ url, thumbnail })
             <>
               <iframe
                 className="h-[320px] w-full"
-                src={url}
+                src={url ?? '/assets/video/tbank.mp4'}
               />
             </>
           </div>
