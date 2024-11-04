@@ -1,5 +1,224 @@
 {
   "i18next": "en",
+  "home": {
+    "header": {
+      "link": "Home",
+      "auth": {
+        "admin": "Admin",
+        "login": "Login",
+        "singin": "Signup",
+        "logout": "Logout",
+        "restore": "Restore",
+        "message": {
+          "have-account": "¿Already have an account?",
+          "not-account": "¿Don't have an account?",
+          "forgot-password": "¿Forgot Password?",
+          "verify-email": "Verify Email",
+          "updated": "Updated",
+          "activate": "Activate",
+          "activated": "Activated",
+          "need-help": "¿Need help?",
+          "welcome": "Welcome to",
+          "welcome-paragraph": "We are excited to welcome you to our community! Activate your account by clicking on the Activate button, and you'll be ready to start saving for real."
+        },
+        "error": {
+          "user-invalid": "Invalid User! Only Alphanumeric",
+          "email-invalid": "Invalid Email! Only Alphanumeric",
+          "email-notfound": "Email Not Found!",
+          "login-failed": "Incorrect Credentials!",
+          "register-failed": "Error! Registration could not be completed",
+          "restore-failed": "Error Updating! Try Again!"
+        },
+        "success": {
+          "register-success": "We've sent a verification email!",
+          "restore-send-email": "We've sent a password reset email!",
+          "restore-success": "Password Updated!"
+        }
+      }
+    },
+    "hero": {
+      "title": {
+        "title": "Savings Account",
+        "subtitle": "watch your money grow like never before"
+      },
+      "list": {
+        "obj1": "No fees or maintenance costs",
+        "obj2": "Money always available",
+        "obj3": "Investments from"
+      },
+      "description": "Saving easily is possible with T-Bank. Open your account and start managing your savings from anywhere. Grow your money day by day with us."
+    },
+    "how-to": {
+      "title": {
+        "title": "¿How does work?",
+        "subtitle": "Saving with us is easy and hassle-free. Open your account and start enjoying the highest market interest rates, all from wherever you want. If you need us, we'll always be here to support you."
+      },
+      "cards": {
+        "obj1": {
+          "title": "Sign Up",
+          "subtitle": "Create your account and complete identity verification quickly and securely."
+        },
+        "obj2": {
+          "title": "Invest",
+          "subtitle": "Easily deposit cryptocurrencies, check our guide if you've never done it before."
+        },
+        "obj3": {
+          "title": "Save",
+          "subtitle": "Enjoy the superior returns we offer. Grow your investments!"
+        }
+      }
+    },
+    "video": {
+      "title": "Make your money truly work for you!",
+      "description": "We tend to be cautious, especially with money, but we also enjoy sharing what makes us feel secure and is beneficial."
+    },
+    "credit": {
+      "title": "Credit Lines",
+      "paragraph1": "Accessing our credit lines is an excellent way to make your goals a reality, whether for personal projects or unexpected needs. With an interest rate of ",
+      "paragraph2": "per month, we offer one of the best options on the market, designed to provide support and confidence every step of the way.",
+      "paragraph3": "Discover our special conditions and start reaching your goals today!"
+    },
+    "math": {
+      "title": "Investment Simulator",
+      "paragraph1": "Saving with us is easy and hassle-free. Open your account and start enjoying the highest market interest rates, all from wherever you want. If you need us, we'll always be here to support you.",
+      "paragraph2": "The T-Bank Staking simulation gives you an estimated calculation of your investment value, the term, and the rate in effect at the time of inquiry. Remember, this information is for reference only and does not constitute a commercial offer.",
+      "calc": {
+        "label1": "Investment",
+        "label2": "Time (M)",
+        "label3": "Interest (A.E.)",
+        "label4": "Total"
+      },
+      "buton": "Request"
+    },
+    "support": {
+      "title": "¿Need Help?",
+      "description": "Our main goal is to make your life easier. So if you need assistance, just press a button.",
+      "buton": "Technical Support"
+    },
+    "footer": {
+      "paragraph1": "Make your money truly work for you!"
+    },
+    "widget-whatsapp": {
+      "title": "Welcome to T-Bank!",
+      "subtitle": "Have questions? Check out our",
+      "help": "Frequently Asked Questions",
+      "button": "Chat"
+    }
+  },
+  "about-us": {
+    "hero": {
+      "title": {
+        "title": "Innovating",
+        "subtitle": "Savings and Investments"
+      },
+      "description": "Our innovative platform focuses on cryptocurrency savings and offers staking options that allow our users to achieve attractive returns. We invest in a decentralized exchange and cryptocurrency mining, enabling us to generate higher returns."
+    },
+    "about": {
+      "title": "¿About us?",
+      "paragraph1": "At T-bank, we are a group of investors passionate about the revolution that the decentralization of money can bring to the financial world. We firmly believe that removing intermediaries is key to empowering our clients, allowing them to maximize their capital returns.",
+      "paragraph2": "Our innovative platform focuses on cryptocurrency savings and offers staking options that allow our users to achieve attractive returns. We invest in a decentralized exchange and cryptocurrency mining, enabling us to generate higher returns and pass them on to our clients.",
+      "paragraph3": "Invest smartly and watch your money grow."
+    },
+    "services": {
+      "title": {
+        "title": "Services",
+        "subtitle": "Saving with us is easy and hassle-free. Open your account and start enjoying the highest market interest rates, all from wherever you want. If you need us, we'll always be here to support you. apply",
+        "terms-and-conditions": "Terms & Conditions"
+      },
+      "card1": {
+        "title": "Savings Account",
+        "description": {
+          "paragraph1": "We offer a savings account that allows you to earn up to ",
+          "paragraph2": "Annual Effective Rate, giving you the freedom to access your funds at any time without extra charges. It's the perfect option for those looking for a profitable and secure alternative for their savings, without the complications of additional fees."
+        }
+      },
+      "card2": {
+        "title": "Credit Lines",
+        "description": {
+          "paragraph1": "Access our credit lines with a competitive interest rate of just ",
+          "paragraph2": "per month and amounts up to ",
+          "paragraph3": "We provide a flexible and accessible option to finance your projects or personal needs. Enjoy clear conditions, manageable payments, and the peace of mind of having the support you need to reach your goals."
+        }
+      },
+      "card3": {
+        "title": "Investments",
+        "description": {
+          "paragraph1": "Invest smartly by locking your balance in staking and earn up to ",
+          "paragraph2": "Annual Effective Rate. With this defined-term investment strategy, your money grows while you enjoy peace of mind and assured returns."
+        }
+      },
+      "deafult": "Make your money truly work for you!"
+    }
+  },
+  "help-and-tutorials": {
+    "faqs": {
+      "title": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Explore our FAQ section to resolve your doubts quickly. Find detailed answers to the most common questions about platform use, features, support, and more. Start here and take advantage of all the resources we've prepared for you!"
+      },
+      "list": {
+        "faq1": {
+          "question": "How to Invest",
+          "answer": "Send the Money"
+        },
+        "faq2": {
+          "question": "How to Invest",
+          "answer": "Send the Money"
+        },
+        "faq3": {
+          "question": "How to Invest",
+          "answer": "Send the Money"
+        },
+        "faq4": {
+          "question": "How to Invest",
+          "answer": "Send the Money"
+        },
+        "faq5": {
+          "question": "Innovating",
+          "answer": "Savings and Investments"
+        }
+      }
+    },
+    "tutorials": {
+      "title": {
+        "title": "Tutorials",
+        "subtitle": "Learn how to navigate and use each platform tool with our detailed tutorials and guides. From basics to advanced features, these resources will show you step-by-step how to optimize your experience, manage your activities, and make the most of each feature to achieve your goals."
+      },
+      "gallery": {
+        "video1": {
+          "title": "¿How to Invest?",
+          "subtitle": "Savings and Investments"
+        },
+        "video2": {
+          "title": "¿How to Manage It?",
+          "subtitle": "Savings and Investments"
+        }
+      }
+    }
+  },
+  "terms-and-conditions": {
+    "terms-conditions": {
+      "title": "Terminos & Condiciones",
+      "paragraph1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus.",
+      "paragraph2": "Cras velit ante, egestas sed facilisis a, volutpat vel eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi fringilla lorem ut sem feugiat mattis in et enim. Maecenas vestibulum sagittis nunc vitae aliquam. Suspendisse molestie leo nec dolor placerat, in iaculis est molestie. Nullam fermentum viverra eleifend. Phasellus ullamcorper eu lacus at ultricies. Proin vel gravida tortor. Pellentesque non est venenatis felis ultricies consequat. Aenean ullamcorper nisl vitae felis lacinia dignissim. Maecenas ornare odio eu lectus scelerisque malesuada. Duis dignissim dui a blandit vulputate. Vivamus feugiat mattis sapien, at pellentesque ipsum rhoncus et. Maecenas sodales felis arcu, fermentum mollis arcu cursus et. Pellentesque dignissim a urna ut tempus. Vivamus vehicula, metus vestibulum mattis gravida, sem nibh scelerisque ante, vitae ultricies metus risus sed mi.",
+      "paragraph3": "Nullam laoreet semper lacus, sed sagittis justo vestibulum ut. Nulla condimentum, nibh in condimentum dapibus, ante lacus vehicula sapien, nec accumsan enim mauris vel risus. Pellentesque vitae posuere augue. In laoreet pretium tortor, convallis convallis dui dapibus nec.",
+      "paragraph4": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus.",
+      "items": {
+        "obj1": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj2": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj3": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj4": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj5": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj6": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj7": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj8": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et."
+      }
+    },
+    "legal": {
+      "title": "Aviso Legal",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus."
+    }
+  },
   "admin": {
     "context": {
       "card1": {
@@ -51,7 +270,7 @@
           "message": {
             "success": "Updated! You have successfully changed your virtual wallet.",
             "information": "Keep your data updated to avoid transaction losses.",
-            "help": "Need help?"
+            "help": "¿Need help?"
           }
         },
         "invoice": {
@@ -79,7 +298,7 @@
           "message": {
             "success": "Congratulations! You have successfully generated your invoice.",
             "information": "Transfer the amount in USDT to the indicated wallet address.",
-            "help": "Need help?"
+            "help": "¿Need help?"
           }
         },
         "withdrawal": {
@@ -107,7 +326,7 @@
           "message": {
             "success": "Congratulations! You have successfully generated the transfer request.",
             "information": "We will verify the transfer and send it in the coming hours.",
-            "help": "Need help?"
+            "help": "¿Need help?"
           }
         },
         "investment": {
@@ -152,7 +371,7 @@
           "message": {
             "success": "Congratulations! You have successfully created a new investment.",
             "information": "The generated balance will be transferred to your account at the end of the investment period.",
-            "help": "Need help?"
+            "help": "¿Need help?"
           }
         }
       }
@@ -165,7 +384,7 @@
         "th2": "Balance",
         "th3": "Date",
         "information": {
-          "alert": "Don't you share your link yet?",
+          "alert": "¿Don't you share your link yet?",
           "message": "Get passive income from your referrals"
         }
       }

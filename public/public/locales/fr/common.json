@@ -1,5 +1,192 @@
 {
   "i18next": "fr",
+"home": {
+    "header": {
+      "link": "Accueil",
+      "auth": {
+        "admin": "Administrer",
+        "login": "Se connecter",
+        "singin": "S'inscrire",
+        "logout": "Déconnexion",
+        "restore": "Restaurer",
+        "message": {
+          "have-account": "Vous avez déjà un compte ?",
+          "not-account": "Vous n'avez pas de compte ?",
+          "forgot-password": "Mot de passe oublié ?",
+          "verify-email": "Vérifier l'email",
+          "updated": "Mis à jour",
+          "activate": "Activer",
+          "activated": "Activé",
+          "need-help": "Besoin d'aide ?",
+          "welcome": "Bienvenue à",
+          "welcome-paragraph": "Nous sommes ravis de vous accueillir dans notre communauté ! Activez votre compte en cliquant sur le bouton Activer, et vous serez prêt à économiser pour de vrai."
+        },
+        "error": {
+          "user-invalid": "Utilisateur invalide ! Uniquement des caractères alphanumériques",
+          "email-invalid": "Email invalide ! Uniquement des caractères alphanumériques",
+          "email-notfound": "Email non trouvé !",
+          "login-failed": "Identifiants incorrects !",
+          "register-failed": "Erreur ! L'inscription n'a pas pu être effectuée",
+          "restore-failed": "Erreur lors de la mise à jour ! Veuillez réessayer !"
+        },
+        "success": {
+          "register-success": "Nous avons envoyé un email de vérification.",
+          "restore-send-email": "Nous avons envoyé un email de réinitialisation !",
+          "restore-success": "Mot de passe mis à jour !"
+        }
+      }
+    },
+    "hero": {
+      "title": {
+        "title": "Compte d'épargne",
+        "subtitle": "voyez votre argent croître comme jamais auparavant"
+      },
+      "list": {
+        "obj1": "Sans frais ni frais de gestion",
+        "obj2": "Argent toujours disponible",
+        "obj3": "Investissements à partir de"
+      },
+      "description": "Économiser facilement est possible avec T-Bank. Ouvrez votre compte et commencez à gérer vos économies de n'importe où. Faites croître votre argent jour après jour avec nous."
+    },
+    "how-to": {
+      "title": {
+        "title": "Comment fonctionne T-Bank ?",
+        "subtitle": "Épargner avec nous est facile et sans complications. Ouvrez votre compte et commencez à profiter des taux d'intérêt les plus élevés du marché, où que vous soyez. Si vous avez besoin de nous, nous serons toujours là pour vous aider."
+      },
+      "cards": {
+        "obj1": {
+          "title": "S'inscrire",
+          "subtitle": "Créez votre compte et complétez la vérification d'identité rapidement et en toute sécurité."
+        },
+        "obj2": {
+          "title": "Investir",
+          "subtitle": "Déposez facilement des cryptomonnaies, consultez notre guide si vous ne l'avez jamais fait."
+        },
+        "obj3": {
+          "title": "Épargner",
+          "subtitle": "Profitez de notre rentabilité supérieure. Faites croître vos investissements !"
+        }
+      }
+    },
+    "video": {
+      "title": "Faites vraiment travailler votre argent pour vous !",
+      "description": "Nous avons tendance à être prudents, surtout en matière d'argent, mais nous aimons aussi partager ce qui nous apporte sécurité et bénéfices."
+    },
+    "credit": {
+      "title": "Lignes de Crédit",
+      "paragraph1": "Accéder à nos lignes de crédit est un excellent moyen de réaliser vos objectifs, que ce soit pour des projets personnels ou des besoins imprévus. Avec un taux d'intérêt de ",
+      "paragraph2": "mensuel, nous vous offrons l'une des meilleures options du marché, conçue pour vous offrir soutien et confiance à chaque étape.",
+      "paragraph3": "Découvrez nos conditions spéciales et commencez à atteindre vos objectifs dès aujourd'hui !"
+    },
+    "math": {
+      "title": "Simulateur d'Investissement",
+      "paragraph1": "Épargner avec nous est facile et sans complications. Ouvrez votre compte et commencez à profiter des taux d'intérêt les plus élevés du marché, où que vous soyez. Si vous avez besoin de nous, nous serons toujours là pour vous aider.",
+      "paragraph2": "La simulation de staking T-Bank vous montre une estimation de la valeur de votre investissement, de la durée et du taux en vigueur au moment de la consultation. Rappelez-vous que cette information est à titre indicatif uniquement et ne constitue pas une offre commerciale.",
+      "calc": {
+        "label1": "Investissement",
+        "label2": "Durée (M)",
+        "label3": "Intérêt (A.E)",
+        "label4": "Total"
+      },
+      "buton": "Demander"
+    },
+    "support": {
+      "title": "Besoin d'aide ?",
+      "description": "Notre principal objectif est de vous faciliter la vie. Si vous avez besoin d'aide, appuyez simplement sur un bouton.",
+      "buton": "Support Technique"
+    },
+    "footer": {
+      "paragraph1": "Faites vraiment travailler votre argent pour vous !"
+    },
+    "widget-whatsapp": {
+      "title": "Bienvenue chez T-Bank !",
+      "subtitle": "Des questions ? Consultez nos",
+      "help": "FAQ",
+      "button": "Discuter"
+    }
+  },
+  "about-us": {
+    "hero": {
+      "title": {
+        "title": "Innover",
+        "subtitle": "Épargne et Investissement"
+      },
+      "description": "Notre plateforme innovante se concentre sur l'épargne en cryptomonnaies et offre des options de staking permettant à nos utilisateurs d'obtenir des rendements attractifs. Nous investissons dans une bourse décentralisée et dans le minage de cryptomonnaies, ce qui nous permet de générer des rendements supérieurs."
+    },
+    "about": {
+      "title": "Qui sommes-nous ?",
+      "paragraph1": "Chez T-bank, nous sommes un groupe d'investisseurs passionnés par la révolution que la décentralisation de la monnaie peut apporter au monde financier. Nous croyons fermement que l'élimination des intermédiaires est la clé pour autonomiser nos clients et leur permettre de maximiser les rendements de leurs capitaux.",
+      "paragraph2": "Notre plateforme innovante se concentre sur l'épargne en cryptomonnaies et offre des options de staking permettant à nos utilisateurs d'obtenir des rendements attractifs. Nous investissons dans une bourse décentralisée et dans le minage de cryptomonnaies, ce qui nous permet de générer des rendements supérieurs et de les transférer à nos clients.",
+      "paragraph3": "Investissez intelligemment et regardez votre argent croître."
+    },
+    "services": {
+      "title": {
+        "title": "Services",
+        "subtitle": "Épargner avec nous est facile et sans complications. Ouvrez votre compte et commencez à profiter des taux d'intérêt les plus élevés du marché, où que vous soyez. Si vous avez besoin de nous, nous serons toujours là pour vous aider.",
+        "terms-and-conditions": "Termes & Conditions"
+      },
+      "card1": {
+        "title": "Compte d'Épargne",
+        "description": {
+          "paragraph1": "Nous offrons un compte d'épargne qui vous permet de gagner jusqu'à ",
+          "paragraph2": "Annuel Effectif, vous offrant la liberté d'accéder à vos fonds à tout moment sans frais supplémentaires. C'est l'option parfaite pour ceux qui recherchent une alternative rentable et sécurisée pour leurs économies, sans les complications de frais supplémentaires."
+        }
+      },
+      "card2": {
+        "title": "Lignes de Crédit",
+        "description": {
+          "paragraph1": "Accédez à nos lignes de crédit avec un taux compétitif de seulement ",
+          "paragraph2": "par mois et des montants allant jusqu'à ",
+          "paragraph3": "Nous vous offrons une option flexible et accessible pour financer vos projets ou besoins personnels. Profitez de conditions claires, de paiements gérables et de la tranquillité d'avoir le soutien dont vous avez besoin pour atteindre vos objectifs."
+        }
+      },
+      "card3": {
+        "title": "Investissements",
+        "description": {
+          "paragraph1": "Investissez intelligemment en bloquant votre solde en staking et obtenez jusqu'à ",
+          "paragraph2": "Annuel Effectif. Avec cette stratégie d'investissement à terme défini, votre argent travaille pendant que vous profitez de tranquillité et d'un rendement garanti."
+        }
+      },
+      "deafult": "Faites vraiment travailler votre argent pour vous !"
+    }
+  },
+  "help-and-tutorials": {
+    "faqs": {
+      "title": {
+        "title": "Questions Fréquentes",
+        "subtitle": "Explorez notre section de questions fréquentes pour résoudre vos doutes rapidement. Trouvez des réponses détaillées aux questions les plus courantes sur l'utilisation de la plateforme, les fonctionnalités, le support et bien plus encore. Commencez ici et profitez de toutes les informations à portée de main."
+      }
+    },
+    "tutorials": {
+      "title": {
+        "title": "Tutoriels",
+        "subtitle": "Découvrez tout ce que vous devez savoir pour naviguer efficacement sur notre plateforme et tirer le meilleur parti de nos services."
+      }
+    }
+  },
+  "terms-and-conditions": {
+    "terms-conditions": {
+      "title": "Terminos & Condiciones",
+      "paragraph1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus.",
+      "paragraph2": "Cras velit ante, egestas sed facilisis a, volutpat vel eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi fringilla lorem ut sem feugiat mattis in et enim. Maecenas vestibulum sagittis nunc vitae aliquam. Suspendisse molestie leo nec dolor placerat, in iaculis est molestie. Nullam fermentum viverra eleifend. Phasellus ullamcorper eu lacus at ultricies. Proin vel gravida tortor. Pellentesque non est venenatis felis ultricies consequat. Aenean ullamcorper nisl vitae felis lacinia dignissim. Maecenas ornare odio eu lectus scelerisque malesuada. Duis dignissim dui a blandit vulputate. Vivamus feugiat mattis sapien, at pellentesque ipsum rhoncus et. Maecenas sodales felis arcu, fermentum mollis arcu cursus et. Pellentesque dignissim a urna ut tempus. Vivamus vehicula, metus vestibulum mattis gravida, sem nibh scelerisque ante, vitae ultricies metus risus sed mi.",
+      "paragraph3": "Nullam laoreet semper lacus, sed sagittis justo vestibulum ut. Nulla condimentum, nibh in condimentum dapibus, ante lacus vehicula sapien, nec accumsan enim mauris vel risus. Pellentesque vitae posuere augue. In laoreet pretium tortor, convallis convallis dui dapibus nec.",
+      "paragraph4": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus.",
+      "items": {
+        "obj1": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj2": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj3": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj4": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj5": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj6": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj7": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj8": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et."
+      }
+    },
+    "legal": {
+      "title": "Aviso Legal",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus."
+    }
+  },
   "admin": {
     "context": {
       "card1": {

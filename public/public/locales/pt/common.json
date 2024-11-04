@@ -1,5 +1,192 @@
 {
   "i18next": "pt",
+  "home": {
+    "header": {
+      "link": "Início",
+      "auth": {
+        "admin": "Administrar",
+        "login": "Entrar",
+        "singin": "Cadastrar",
+        "logout": "Sair",
+        "restore": "Restaurar",
+        "message": {
+          "have-account": "Já tem uma conta?",
+          "not-account": "Não tem uma conta?",
+          "forgot-password": "Esqueceu sua senha?",
+          "verify-email": "Verificar email",
+          "updated": "Atualizado",
+          "activate": "Ativar",
+          "activated": "Ativado",
+          "need-help": "Precisa de ajuda?",
+          "welcome": "Bem-vindo ao",
+          "welcome-paragraph": "Estamos felizes em tê-lo em nossa comunidade! Ative sua conta clicando no botão Ativar, e você estará pronto para economizar de verdade."
+        },
+        "error": {
+          "user-invalid": "Usuário inválido! Apenas caracteres alfanuméricos",
+          "email-invalid": "Email inválido! Apenas caracteres alfanuméricos",
+          "email-notfound": "Email não encontrado!",
+          "login-failed": "Credenciais incorretas!",
+          "register-failed": "Erro! O cadastro não pôde ser concluído",
+          "restore-failed": "Erro na atualização! Por favor, tente novamente!"
+        },
+        "success": {
+          "register-success": "Enviamos um email de verificação.",
+          "restore-send-email": "Enviamos um email de recuperação!",
+          "restore-success": "Senha atualizada!"
+        }
+      }
+    },
+    "hero": {
+      "title": {
+        "title": "Conta Poupança",
+        "subtitle": "veja seu dinheiro crescer como nunca antes"
+      },
+      "list": {
+        "obj1": "Sem tarifas nem taxas de administração",
+        "obj2": "Dinheiro sempre disponível",
+        "obj3": "Investimentos a partir de"
+      },
+      "description": "Economizar com facilidade é possível com o T-Bank. Abra sua conta e comece a gerenciar suas economias de onde estiver. Faça seu dinheiro crescer dia após dia conosco."
+    },
+    "how-to": {
+      "title": {
+        "title": "Como funciona o T-Bank?",
+        "subtitle": "Poupar conosco é fácil e sem complicações. Abra sua conta e comece a aproveitar as maiores taxas de juros do mercado, onde quer que você esteja. Se precisar de nós, estaremos sempre prontos para ajudar."
+      },
+      "cards": {
+        "obj1": {
+          "title": "Cadastrar-se",
+          "subtitle": "Crie sua conta e complete a verificação de identidade de forma rápida e segura."
+        },
+        "obj2": {
+          "title": "Investir",
+          "subtitle": "Deposite criptomoedas facilmente, consulte nosso guia se nunca fez isso antes."
+        },
+        "obj3": {
+          "title": "Poupar",
+          "subtitle": "Aproveite nossa rentabilidade superior. Faça seu investimento crescer!"
+        }
+      }
+    },
+    "video": {
+      "title": "Faça seu dinheiro trabalhar de verdade para você!",
+      "description": "Tendemos a ser cautelosos, especialmente com dinheiro, mas também gostamos de compartilhar o que nos traz segurança e benefícios."
+    },
+    "credit": {
+      "title": "Linhas de Crédito",
+      "paragraph1": "Acessar nossas linhas de crédito é uma excelente maneira de realizar seus objetivos, seja para projetos pessoais ou necessidades inesperadas. Com uma taxa de ",
+      "paragraph2": "ao mês, oferecemos uma das melhores opções do mercado, projetada para oferecer suporte e confiança a cada etapa.",
+      "paragraph3": "Descubra nossas condições especiais e comece a alcançar seus objetivos hoje mesmo!"
+    },
+    "math": {
+      "title": "Simulador de Investimento",
+      "paragraph1": "Poupar conosco é fácil e sem complicações. Abra sua conta e comece a aproveitar as maiores taxas de juros do mercado, onde quer que você esteja. Se precisar de nós, estaremos sempre prontos para ajudar.",
+      "paragraph2": "A simulação de staking do T-Bank mostra uma estimativa do valor do seu investimento, da duração e da taxa em vigor no momento da consulta. Lembre-se de que essas informações são apenas indicativas e não constituem uma oferta comercial.",
+      "calc": {
+        "label1": "Investimento",
+        "label2": "Duração (M)",
+        "label3": "Juros (A.E)",
+        "label4": "Total"
+      },
+      "buton": "Solicitar"
+    },
+    "support": {
+      "title": "Precisa de ajuda?",
+      "description": "Nosso principal objetivo é facilitar sua vida. Se precisar de ajuda, basta clicar em um botão.",
+      "buton": "Suporte Técnico"
+    },
+    "footer": {
+      "paragraph1": "Faça seu dinheiro trabalhar de verdade para você!"
+    },
+    "widget-whatsapp": {
+      "title": "Bem-vindo ao T-Bank!",
+      "subtitle": "Alguma dúvida? Confira nossas",
+      "help": "FAQ",
+      "button": "Conversar"
+    }
+  },
+  "about-us": {
+    "hero": {
+      "title": {
+        "title": "Inovar",
+        "subtitle": "Poupança e Investimento"
+      },
+      "description": "Nossa plataforma inovadora é focada em poupança em criptomoedas e oferece opções de staking que permitem aos nossos usuários obter retornos atrativos. Investimos em uma bolsa descentralizada e em mineração de criptomoedas, o que nos permite gerar retornos superiores."
+    },
+    "about": {
+      "title": "Quem somos?",
+      "paragraph1": "No T-bank, somos um grupo de investidores apaixonados pela revolução que a descentralização da moeda pode trazer ao mundo financeiro. Acreditamos firmemente que eliminar intermediários é a chave para capacitar nossos clientes e permitir que maximizem o retorno de seus capitais.",
+      "paragraph2": "Nossa plataforma inovadora é focada em poupança em criptomoedas e oferece opções de staking que permitem aos nossos usuários obter retornos atrativos. Investimos em uma bolsa descentralizada e em mineração de criptomoedas, o que nos permite gerar retornos superiores e transferi-los para nossos clientes.",
+      "paragraph3": "Invista de forma inteligente e veja seu dinheiro crescer."
+    },
+    "services": {
+      "title": {
+        "title": "Serviços",
+        "subtitle": "Poupar conosco é fácil e sem complicações. Abra sua conta e comece a aproveitar as maiores taxas de juros do mercado, onde quer que você esteja. Se precisar de nós, estaremos sempre prontos para ajudar.",
+        "terms-and-conditions": "Termos & Condições"
+      },
+      "card1": {
+        "title": "Conta Poupança",
+        "description": {
+          "paragraph1": "Oferecemos uma conta poupança que permite ganhar até ",
+          "paragraph2": "Anual Efetivo, oferecendo a liberdade de acessar seus fundos a qualquer momento sem taxas adicionais. É a opção perfeita para quem procura uma alternativa rentável e segura para suas economias, sem as complicações de taxas adicionais."
+        }
+      },
+      "card2": {
+        "title": "Linhas de Crédito",
+        "description": {
+          "paragraph1": "Acesse nossas linhas de crédito com uma taxa competitiva de apenas ",
+          "paragraph2": "ao mês e valores de até ",
+          "paragraph3": "Oferecemos uma opção flexível e acessível para financiar seus projetos ou necessidades pessoais. Aproveite as condições claras, pagamentos administráveis e a tranquilidade de ter o suporte necessário para alcançar seus objetivos."
+        }
+      },
+      "card3": {
+        "title": "Investimentos",
+        "description": {
+          "paragraph1": "Invista de forma inteligente bloqueando seu saldo em staking e ganhe até ",
+          "paragraph2": "Anual Efetivo. Com essa estratégia de investimento de prazo definido, seu dinheiro trabalha enquanto você aproveita a tranquilidade e o rendimento garantido."
+        }
+      },
+      "deafult": "Faça seu dinheiro trabalhar de verdade para você!"
+    }
+  },
+  "help-and-tutorials": {
+    "faqs": {
+      "title": {
+        "title": "Perguntas Frequentes",
+        "subtitle": "Explore nossa seção de perguntas frequentes para resolver suas dúvidas rapidamente. Encontre respostas detalhadas para as perguntas mais comuns sobre o uso da plataforma, funcionalidades, suporte e muito mais. Comece aqui e aproveite todas as informações ao seu alcance."
+      }
+    },
+    "tutorials": {
+      "title": {
+        "title": "Tutoriais",
+        "subtitle": "Descubra tudo o que você precisa saber para navegar com eficiência em nossa plataforma e aproveitar ao máximo nossos serviços."
+      }
+    }
+  },
+  "terms-and-conditions": {
+    "terms-conditions": {
+      "title": "Terminos & Condiciones",
+      "paragraph1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus.",
+      "paragraph2": "Cras velit ante, egestas sed facilisis a, volutpat vel eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi fringilla lorem ut sem feugiat mattis in et enim. Maecenas vestibulum sagittis nunc vitae aliquam. Suspendisse molestie leo nec dolor placerat, in iaculis est molestie. Nullam fermentum viverra eleifend. Phasellus ullamcorper eu lacus at ultricies. Proin vel gravida tortor. Pellentesque non est venenatis felis ultricies consequat. Aenean ullamcorper nisl vitae felis lacinia dignissim. Maecenas ornare odio eu lectus scelerisque malesuada. Duis dignissim dui a blandit vulputate. Vivamus feugiat mattis sapien, at pellentesque ipsum rhoncus et. Maecenas sodales felis arcu, fermentum mollis arcu cursus et. Pellentesque dignissim a urna ut tempus. Vivamus vehicula, metus vestibulum mattis gravida, sem nibh scelerisque ante, vitae ultricies metus risus sed mi.",
+      "paragraph3": "Nullam laoreet semper lacus, sed sagittis justo vestibulum ut. Nulla condimentum, nibh in condimentum dapibus, ante lacus vehicula sapien, nec accumsan enim mauris vel risus. Pellentesque vitae posuere augue. In laoreet pretium tortor, convallis convallis dui dapibus nec.",
+      "paragraph4": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus.",
+      "items": {
+        "obj1": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj2": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj3": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj4": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj5": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj6": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj7": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj8": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et."
+      }
+    },
+    "legal": {
+      "title": "Aviso Legal",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus."
+    }
+  },
   "admin": {
     "context": {
       "card1": {
