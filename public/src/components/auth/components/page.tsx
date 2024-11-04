@@ -1,21 +1,27 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { signOut } from 'next-auth/react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Button } from "@nextui-org/react";
+
+import { useLanguage } from '@/utils/i18next';
+import { SessionAuth } from '@/lib/types/types';
 
 import AuthModal from "@/components/auth/components/authModal";
 import LoginModal from "@/components/auth/components/loginModal";
 import RegisterModal from "@/components/auth/components/registerModal";
 import ForgotPasswordModal from "@/components/auth/components/ForgotPasswordModal";
 import ForgotPasswordConfirmModal from "@/components/auth/components/ForgotPasswordConfirmModal";
-import { SessionAuth } from '@/lib/types/types';
 
+import { Button } from "@nextui-org/react";
 import { AiOutlineClose, AiFillLock, AiFillUnlock } from 'react-icons/ai'
 import { FaUser, FaPowerOff } from "react-icons/fa";
 import { MdOutlineDashboard } from "react-icons/md";
 
 
 const Auth: React.FC<SessionAuth> = ({ session }) => {
+  const { t } = useLanguage();
+
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -68,15 +74,15 @@ const Auth: React.FC<SessionAuth> = ({ session }) => {
     <main className="inline-flex">
       {session && session?.user ? (
         <div className='flex flex-row items-center gap-x-2 sm:gap-x-0'>
-          <a href="/admin"><button className="py-2 px-6 text-sm font-semibold font-cocogoose hidden sm:inline">Administrar</button></a>
+          <a href="/admin"><button className="py-2 px-6 text-sm font-semibold font-cocogoose hidden sm:inline">{t('home.header.auth.admin')}</button></a>
           <a href="/admin"><Button isIconOnly color="default" className="!bg-gray-100 flex sm:hidden" aria-label=""><MdOutlineDashboard /></Button></a>
-          <button onClick={() => { signOut(); }} className='py-2 px-6 text-sm font-semibold font-cocogoose hidden sm:inline'>Salir</button>
+          <button onClick={() => { signOut(); }} className='py-2 px-6 text-sm font-semibold font-cocogoose hidden sm:inline'>{t('home.header.auth.logout')}</button>
           <Button onClick={() => { signOut(); }} isIconOnly color="default" className="!bg-gray-100 flex sm:hidden" aria-label=""><FaPowerOff /></Button>
         </div>
       ) : (
         <div className='flex flex-row items-center'>
-          <button onClick={() => openModal('login')} className='py-2 px-6 text-sm font-semibold font-cocogoose hidden lg:flex'>Ingresar</button>
-          <button onClick={() => openModal('singup')} className='py-2 px-6 text-sm font-semibold font-cocogoose hidden sm:inline'>Inscribirse</button>
+          <button onClick={() => openModal('login')} className='py-2 px-6 text-sm font-semibold font-cocogoose hidden lg:flex'>{t('home.header.auth.login')}</button>
+          <button onClick={() => openModal('singup')} className='py-2 px-6 text-sm font-semibold font-cocogoose hidden sm:inline'>{t('home.header.auth.singin')}</button>
           <Button onClick={() => openModal('singup')} isIconOnly color="default" className="!bg-gray-100 flex sm:hidden" aria-label=""><FaUser /></Button>
         </div>
       )}
@@ -86,8 +92,8 @@ const Auth: React.FC<SessionAuth> = ({ session }) => {
             <div className="relative w-full h-full p-6">
               <button onClick={closeModal} className='absolute top-4 right-4 text-xl text-gray-600 hover:text-gray-700 transition-colors duration-300' ><AiOutlineClose /></button>
               <div className={`flex flex-row w-full items-center ${activeTab === 'auth' ? 'hidden' : ''}`}>
-                <button onClick={() => openModal('login')} className={`text-gray-800 rounded-md px-4 py-1 inline-flex text-sm font-semibold transition duration-300 mr-2 ${activeTab === 'login' ? 'bg-gray-800 hover:bg-gray-900 text-white' : ''}`}>Ingresar</button>
-                <button onClick={() => openModal('singup')} className={`text-gray-800 rounded-md px-4 py-1 inline-flex text-sm font-semibold transition duration-300 mr-2 ${activeTab === 'singup' ? 'bg-gray-800 hover:bg-gray-900 text-white' : ''}`}>Inscribirse</button>
+                <button onClick={() => openModal('login')} className={`text-gray-800 rounded-md px-4 py-1 inline-flex text-sm font-semibold transition duration-300 mr-2 ${activeTab === 'login' ? 'bg-gray-800 hover:bg-gray-900 text-white' : ''}`}>{t('home.header.auth.login')}</button>
+                <button onClick={() => openModal('singup')} className={`text-gray-800 rounded-md px-4 py-1 inline-flex text-sm font-semibold transition duration-300 mr-2 ${activeTab === 'singup' ? 'bg-gray-800 hover:bg-gray-900 text-white' : ''}`}>{t('home.header.auth.singin')}</button>
                 {showForgotPasswordModal ? (
                   <button onClick={() => openModal('forgot_password_confirm')} className={`text-gray-600 rounded-md px-2 py-1 inline-flex text-sm font-semibold transition duration-300 mr-2 ${activeTab === 'forgot_password_confirm' ? 'bg-gray-800 hover:bg-gray-900 text-white' : ''}`}><AiFillUnlock /></button>
                 ) : (
@@ -97,29 +103,29 @@ const Auth: React.FC<SessionAuth> = ({ session }) => {
               <div style={{ display: activeTab === 'login' ? 'block' : 'none' }} className={`h-full my-4 ${activeTab === 'login' ? 'animate-fade-in animate__animated animate__fadeIn' : 'animate-fade-out animate__animated animate__fadeOut'} ${activeTab === 'singup' ? 'hidden' : ''}`}>
                 <LoginModal closeModal={closeModal} />
                 <div className="text-start items-center inline-flex gap-x-2 font-cocogoose">
-                  <p className="text-xs text-gray-900 font-semibold">¿no tienes una cuenta?</p>
-                  <button onClick={() => openModal('singup')} className="cursor-pointer text-xs font-semibold text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">Inscribete</button>
-                </div><br /><button onClick={() => openModal('forgot-password')} className="hover:underline font-cocogoose font-semibold text-xs text-blue-500">¿Olvidaste la contraseña?</button>
+                  <p className="text-xs text-gray-900 font-semibold">{t('home.header.auth.message.not-account')}</p>
+                  <button onClick={() => openModal('singup')} className="cursor-pointer text-xs font-semibold text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">{t('home.header.auth.singin')}</button>
+                </div><br /><button onClick={() => openModal('forgot-password')} className="hover:underline font-cocogoose font-semibold text-xs text-blue-500">{t('home.header.auth.message.forgot-password')}</button>
               </div>
               <div style={{ display: activeTab === 'singup' ? 'block' : 'none' }} className={`h-full my-4 ${activeTab === 'singup' ? 'animate-fade-in animate__animated animate__fadeIn' : 'animate-fade-out animate__animated animate__fadeOut'} ${activeTab === 'login' ? 'hidden' : ''}`}>
                 <RegisterModal closeModal={closeModal} />
                 <div className="text-start items-center inline-flex gap-x-2 font-cocogoose">
-                  <p className="text-xs text-gray-900 font-semibold">¿Ya tienes una cuenta?</p>
-                  <button onClick={() => openModal('login')} className="cursor-pointer text-xs font-semibold text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">Ingresar</button>
+                  <p className="text-xs text-gray-900 font-semibold">{t('home.header.auth.message.have-account')}</p>
+                  <button onClick={() => openModal('login')} className="cursor-pointer text-xs font-semibold text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">{t('home.header.auth.login')}</button>
                 </div>
               </div>
               <div style={{ display: activeTab === 'forgot-password' ? 'block' : 'none' }} className={`h-full my-4 ${activeTab === 'forgot-password' ? 'animate-fade-in animate__animated animate__fadeIn' : 'animate-fade-out animate__animated animate__fadeOut'} ${activeTab === 'login' ? 'hidden' : ''}`}>
                 <ForgotPasswordModal closeModal={closeModal} />
                 <div className="text-start items-center inline-flex gap-x-2 font-cocogoose">
-                  <p className="text-xs text-gray-900 font-semibold">¿Ya tienes una cuenta?</p>
-                  <button onClick={() => openModal('login')} className="cursor-pointer text-xs font-semibold text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">Ingresar</button>
+                  <p className="text-xs text-gray-900 font-semibold">{t('home.header.auth.message.have-account')}</p>
+                  <button onClick={() => openModal('login')} className="cursor-pointer text-xs font-semibold text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">{t('home.header.auth.login')}</button>
                 </div>
               </div>
               <div style={{ display: activeTab === 'forgot_password_confirm' ? 'block' : 'none' }} className={`h-full my-4 ${activeTab === 'forgot_password_confirm' ? 'animate-fade-in animate__animated animate__fadeIn' : 'animate-fade-out animate__animated animate__fadeOut'} ${activeTab === 'login' ? 'hidden' : ''}`}>
                 <ForgotPasswordConfirmModal closeModal={closeModal} updateForgotPasswordModalState={updateForgotPasswordModalState} />
                 <div className="text-start items-center inline-flex gap-x-2 font-cocogoose">
-                  <p className="text-xs text-gray-900 font-semibold">¿Ya tienes una cuenta?</p>
-                  <button onClick={() => openModal('login')} className="cursor-pointer text-xs font-semibold text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">Ingresar</button>
+                  <p className="text-xs text-gray-900 font-semibold">{t('home.header.auth.message.have-account')}</p>
+                  <button onClick={() => openModal('login')} className="cursor-pointer text-xs font-semibold text-red-500 hover:text-pink-600 transition-colors duration-300 -mt-1">{t('home.header.auth.login')}</button>
                 </div>
               </div>
               <div style={{ display: activeTab === 'auth' ? 'block' : 'none' }} className={`w-full h-full my-4 ${activeTab === 'auth' ? 'animate-fade-in animate__animated animate__fadeIn' : 'animate-fade-out animate__animated animate__fadeOut'}`}>

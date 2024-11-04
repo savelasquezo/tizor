@@ -1,5 +1,224 @@
 {
   "i18next": "es",
+  "home": {
+    "header": {
+      "link": "Inicio",
+      "auth": {
+        "admin": "Administrar",
+        "login": "Ingresar",
+        "singin": "Inscribirse",
+        "logout": "Salir",
+        "restore": "Restablecer",
+        "message": {
+          "have-account": "¿Ya tienes una cuenta?",
+          "not-account": "¿No tienes una cuenta?",
+          "forgot-password": "¿Olvidaste la contraseña?",
+          "verify-email": "Verificar email",
+          "updated": "Actualizado",
+          "activate": "Activar",
+          "activated": "Activado",
+          "need-help": "¿Necesitas ayuda?",
+          "welcome": "¡Bienvenido a",
+          "welcome-paragraph": "¡Nos emociona darte la bienvenida a nuestra comunidad! Activa tu cuenta dando clic en el botón Activar, y ahora estarás listo para ahorrar de verdad."
+        },
+        "error": {
+          "user-invalid": "¡Usuario invalido! Unicamente Alfanuméricos",
+          "email-invalid": "¡Email invalido! Unicamente Alfanuméricos",
+          "email-notfound": "¡Email no fue Encontrado!",
+          "login-failed": "¡Credenciales Incorrectas!",
+          "register-failed": "¡Error! No fue posible realizar el registro",
+          "restore-failed": "¡Error al Actualizar! Inténtalo Nuevamente!"
+        },
+        "success": {
+          "register-success": "¡Enviamos un correo electrónico de verificación.!",
+          "restore-send-email": "¡Enviamos un Correo Electronio de Restablecimiento!",
+          "restore-success": "¡Contraseña Actualizada!"
+        }
+      }
+    },
+    "hero": {
+      "title": {
+        "title": "Cuenta de Ahorros",
+        "subtitle": "ver crecer tu dinero como nunca antes lo has visto"
+      },
+      "list": {
+        "obj1": "Sin comisiones ni cuota de manejo",
+        "obj2": "Dinero siempre disponible",
+        "obj3": "Inversiones desde"
+      },
+      "description": "Ahorrar de forma sencilla es posible con T-Bank. Abre tu cuenta y comienza a gestionar tus ahorros desde cualquier lugar. Haz crecer tu dinero dia a dia con nosotros."
+    },
+    "how-to": {
+      "title": {
+        "title": "¿Como funciona T-Bank?",
+        "subtitle": "Ahorrar con nosotros es fácil y sin complicaciones. Abre tu cuenta y empieza a disfrutar de los intereses más altos del mercado, todo desde donde quieras. Si nos necesitas, siempre estaremos aquí para apoyarte."
+      },
+      "cards": {
+        "obj1": {
+          "title": "Incribirse",
+          "subtitle": "Crea tu cuenta y completa la verificación de identidad de manera rápida y segura."
+        },
+        "obj2": {
+          "title": "Invertir",
+          "subtitle": "Depósita fácilmente criptomonedas, mira nuestro instructivo si nunca lo has intentado"
+        },
+        "obj3": {
+          "title": "Ahorrar",
+          "subtitle": "Disfruta de la rentabilidad superior que ofrecemos. ¡Haz crecer tus inversiones!"
+        }
+      }
+    },
+    "video": {
+      "title": "¡Haz que tu dinero trabaje para ti de verdad!",
+      "description": "Tendemos a ser cautelosos, especialmente en temas de dinero, pero también disfrutamos compartir lo que nos da seguridad y nos resulta beneficioso.​"
+    },
+    "credit": {
+      "title": "Lineas de Credito",
+      "paragraph1": "Acceder a nuestras líneas de crédito es una excelente manera de hacer realidad tus metas, ya sea para proyectos personales o necesidades imprevistas, Con una tasa de interés de ",
+      "paragraph2": "mensual, te ofrecemos una de las mejores opciones del mercado, diseñada para brindarte respaldo y confianza en cada paso.",
+      "paragraph3": "¡Conoce nuestras condiciones especiales y empieza a alcanzar tus objetivos hoy mismo!"
+    },
+    "math": {
+      "title": "Simulador de Inversiones",
+      "paragraph1": "Ahorrar con nosotros es fácil y sin complicaciones. Abre tu cuenta y empieza a disfrutar de los intereses más altos del mercado, todo desde donde quieras. Si nos necesitas, siempre estaremos aquí para apoyarte.",
+      "paragraph2": "La simulación del Staking T-Bank te muestra un cálculo estimado del valor de tu inversión, el plazo y la tasa vigente al momento de la consulta. Recuerda que esta información es solo referencial y no constituye una oferta comercial. Informes.",
+      "calc": {
+        "label1": "Inversión",
+        "label2": "Tiempo (M)",
+        "label3": "Interes (E.A)",
+        "label4": "Total"
+      },
+      "buton": "Solicitar"
+    },
+    "support": {
+      "title": "¿Necesitas ayuda?",
+      "description": "Nuestro principal objetivo es facilitarte la vida. Por eso, si necesitas asistencia, solo tienes que presionar un botón.",
+      "buton": "Soporte Tecnico"
+    },
+    "footer": {
+      "paragraph1": "¡Haz que tu dinero trabaje para ti de verdad!"
+    },
+    "widget-whatsapp": {
+      "title": "¡Bienvenido a T-Bank!",
+      "subtitle": "¿Tienes dudas? Consulta nuestras",
+      "help": "Preguntas Frecuentes",
+      "button": "Chatear"
+    }
+  },
+  "about-us": {
+    "hero": {
+      "title": {
+        "title": "Innovando",
+        "subtitle": "Ahorro e Inversiónes"
+      },
+      "description": "Nuestra plataforma innovadora se centra en el ahorro en criptomonedas y ofrece opciones de staking que permiten a nuestros usuarios obtener rendimientos atractivos. Invertimos en una bolsa descentralizada y en minería de criptomonedas, lo que nos permite generar retornos superiores."
+    },
+    "about": {
+      "title": "¿Quienes Somos?",
+      "paragraph1": "En T-bank, somos un grupo de inversionistas apasionados por la revolución que la descentralización del dinero puede traer al mundo financiero. Creemos firmemente que eliminar intermediarios es clave para empoderar a nuestros clientes, permitiéndoles maximizar el rendimiento de sus capitales.",
+      "paragraph2": "Nuestra plataforma innovadora se centra en el ahorro en criptomonedas y ofrece opciones de staking que permiten a nuestros usuarios obtener rendimientos atractivos. Invertimos en una bolsa descentralizada y en minería de criptomonedas, lo que nos permite generar retornos superiores y trasladarlos a nuestros clientes.",
+      "paragraph3": "Invierte de manera inteligente y ve cómo tu dinero crece."
+    },
+    "services": {
+      "title": {
+        "title": "Servicios",
+        "subtitle": "Ahorrar con nosotros es fácil y sin complicaciones. Abre tu cuenta y empieza a disfrutar de los intereses más altos del mercado, todo desde donde quieras. Si nos necesitas, siempre estaremos aquí para apoyarte. aplican ",
+        "terms-and-conditions": "Terminos & Condiciones"
+      },
+      "card1": {
+        "title": "Cuenta de Ahorros",
+        "description": {
+          "paragraph1": "Ofrecemos una cuenta de ahorros que te permite ganar hasta un  ",
+          "paragraph2": "Efectivo Anual, brindándote la libertad de acceder a tus fondos en cualquier momento sin cargos extra. Es la opción perfecta para quienes buscan una alternativa rentable y segura para sus ahorros, sin las complicaciones de tarifas adicionales."
+        }
+      },
+      "card2": {
+        "title": "Lineas de Credito",
+        "description": {
+          "paragraph1": "Accede a nuestras líneas de crédito con un interés competitivo de solo ",
+          "paragraph2": "mensual y montos de hasta ",
+          "paragraph3": "Te brindamos una opción flexible y accesible para financiar tus proyectos o necesidades personales. Disfruta de condiciones claras, pagos manejables y la tranquilidad de contar con el respaldo que necesitas para alcanzar tus metas."
+        }
+      },
+      "card3": {
+        "title": "Inversiones",
+        "description": {
+          "paragraph1": "Invierte de manera inteligente bloqueando tu saldo en staking y obtén hasta un ",
+          "paragraph2": "Efectivo Anual. Con esta estrategia de inversión a plazo definido, tu dinero gana mientras tú disfrutas de tranquilidad y rendimiento asegurado"
+        }
+      },
+      "deafult": "¡Haz que tu dinero trabaje para ti de verdad!"
+    }
+  },
+  "help-and-tutorials": {
+    "faqs": {
+      "title": {
+        "title": "¿Preguntas Frecuentes?",
+        "subtitle": "Explora nuestra sección de Preguntas Frecuentes para resolver tus dudas rápidamente. Encuentra respuestas detalladas a las consultas más comunes sobre el uso de la plataforma, funcionalidades, soporte y mucho más. ¡Empieza aquí y aprovecha todos los recursos que hemos preparado para ti!"
+      },
+      "list": {
+        "faq1": {
+          "question": "¿Como Invertir",
+          "answer": "Envia el Dinero"
+        },
+        "faq2": {
+          "question": "¿Como Invertir",
+          "answer": "Envia el Dinero"
+        },
+        "faq3": {
+          "question": "¿Como Invertir",
+          "answer": "Envia el Dinero"
+        },
+        "faq4": {
+          "question": "¿Como Invertir",
+          "answer": "Envia el Dinero"
+        },
+        "faq5": {
+          "question": "Innovando",
+          "answer": "Ahorro e nversiónes"
+        }
+      }
+    },
+    "tutorials": {
+      "title": {
+        "title": "Tutoriales",
+        "subtitle": "Aprende a navegar y utilizar cada herramienta de la plataforma con nuestros tutoriales y guías detalladas. Desde lo más básico hasta las funciones avanzadas, estos recursos te mostrarán paso a paso cómo optimizar tu experiencia, gestionar tus actividades y aprovechar al máximo cada característica para alcanzar tus objetivos."
+      },
+      "gallery": {
+        "video1": {
+          "title": "¿Como Invertir?",
+          "subtitle": "Ahorro e Inversiónes"
+        },
+        "video2": {
+          "title": "¿Como Administrarla?",
+          "subtitle": "Ahorro e Inversiónes"
+        }
+      }
+    }
+  },
+  "terms-and-conditions": {
+    "terms-conditions": {
+      "title": "Terminos & Condiciones",
+      "paragraph1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus.",
+      "paragraph2": "Cras velit ante, egestas sed facilisis a, volutpat vel eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi fringilla lorem ut sem feugiat mattis in et enim. Maecenas vestibulum sagittis nunc vitae aliquam. Suspendisse molestie leo nec dolor placerat, in iaculis est molestie. Nullam fermentum viverra eleifend. Phasellus ullamcorper eu lacus at ultricies. Proin vel gravida tortor. Pellentesque non est venenatis felis ultricies consequat. Aenean ullamcorper nisl vitae felis lacinia dignissim. Maecenas ornare odio eu lectus scelerisque malesuada. Duis dignissim dui a blandit vulputate. Vivamus feugiat mattis sapien, at pellentesque ipsum rhoncus et. Maecenas sodales felis arcu, fermentum mollis arcu cursus et. Pellentesque dignissim a urna ut tempus. Vivamus vehicula, metus vestibulum mattis gravida, sem nibh scelerisque ante, vitae ultricies metus risus sed mi.",
+      "paragraph3": "Nullam laoreet semper lacus, sed sagittis justo vestibulum ut. Nulla condimentum, nibh in condimentum dapibus, ante lacus vehicula sapien, nec accumsan enim mauris vel risus. Pellentesque vitae posuere augue. In laoreet pretium tortor, convallis convallis dui dapibus nec.",
+      "paragraph4": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus.",
+      "items": {
+        "obj1": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj2": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj3": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj4": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj5": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj6": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj7": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
+        "obj8": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et."
+      }
+    },
+    "legal": {
+      "title": "Aviso Legal",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus."
+    }
+  },
   "admin": {
     "context": {
       "card1": {
@@ -18,156 +237,156 @@
         "title": "Total",
         "description": "Intereses obtenidos"
       }
-    }
-  },
-  "logs": {
-    "table": {
-      "th1": "Voucher",
-      "th2": "Valor",
-      "th3": "Fecha",
-      "th4": "Movimiento",
-      "th5": "Estado"
     },
-    "types": {
-      "interest": "Intereses",
-      "outcome": "Retiro",
-      "income": "Deposito",
-      "investment": "Inversion",
-      "ref": "Referidos"
-    },
-    "states": {
-      "invoiced": "Facturado",
-      "done": "Aprobado",
-      "refund": "Rembolso"
-    },
-    "filter": "Ingresa Voucher"
-  },
-  "meta": {
-    "description": "Tizorbank transforma la manera en que piensas sobre tus finanzas; fintech innovadora que ofrece la oportunidad de hacer crecer su dinero con rendimientos diarios superiores. A través de nuestra plataforma de inversión puedes invertir de manera segura, sin complicaciones, y ver cómo tus ahorros generan rentabilidades constantes día tras día.",
-    "information": "La seguridad es nuestra prioridad, para garantizar que siempre tengas control total sobre tus fondos y evitar cualquier inconveniente, es esencial que mantengas tus datos de usuario actualizados; Mantener tu información al día es la clave para que sigamos cuidando de tu capital de forma eficiente y sin riesgos.",
-    "interface": {
-      "updateInfo": {
-        "title": "Actualizar Informacion",
-        "description": "Tizorbank no se hace responsable por pérdidas o inconvenientes si el usuario no mantiene su dirección actualizada o pierde el acceso a su billetera digital. Es esencial que los datos estén siempre al día para garantizar la seguridad de las inversiones y el acceso continuo a los fondos.",
-        "message": {
-          "success": "¡Actualizado! Has cambiado correctamente tu billetera virtual",
-          "information": "Manten tus datos actualizados para evitar perdidas en transacciones",
-          "help": "¿Necesitas ayuda?"
-        }
+    "logs": {
+      "table": {
+        "th1": "Voucher",
+        "th2": "Valor",
+        "th3": "Fecha",
+        "th4": "Movimiento",
+        "th5": "Estado"
       },
-      "invoice": {
-        "button": "Agregar",
-        "tab1": "Agregar",
-        "tab2": "Historial",
-        "placeholder": "Ingrese el monto",
-        "description": "La confirmación de la transaccion puede tardar hasta 36 horas en verificarse, durante este tiempo nuestro sistema procesará tu solicitud para garantizar la seguridad de cada transacción, si tienes dudas contacta a nuestro servicio de atención al cliente.",
-        "table": {
-          "th1": "Voucher",
-          "th2": "Wallet",
-          "th3": "Valor",
-          "th4": "Fecha",
-          "th5": "Estado",
-          "information": {
-            "alert": "¡Aun no has realizado ningun deposito!",
-            "message": "Agrega saldo a tu cuenta y empieza a generar intereses"
+      "types": {
+        "interest": "Intereses",
+        "outcome": "Retiro",
+        "income": "Deposito",
+        "investment": "Inversion",
+        "ref": "Referidos"
+      },
+      "states": {
+        "invoiced": "Facturado",
+        "done": "Aprobado",
+        "refund": "Rembolso"
+      },
+      "filter": "Ingresa Voucher"
+    },
+    "meta": {
+      "description": "Tizorbank transforma la manera en que piensas sobre tus finanzas; fintech innovadora que ofrece la oportunidad de hacer crecer su dinero con rendimientos diarios superiores. A través de nuestra plataforma de inversión puedes invertir de manera segura, sin complicaciones, y ver cómo tus ahorros generan rentabilidades constantes día tras día.",
+      "information": "La seguridad es nuestra prioridad, para garantizar que siempre tengas control total sobre tus fondos y evitar cualquier inconveniente, es esencial que mantengas tus datos de usuario actualizados; Mantener tu información al día es la clave para que sigamos cuidando de tu capital de forma eficiente y sin riesgos.",
+      "interface": {
+        "updateInfo": {
+          "title": "Actualizar Informacion",
+          "description": "Tizorbank no se hace responsable por pérdidas o inconvenientes si el usuario no mantiene su dirección actualizada o pierde el acceso a su billetera digital. Es esencial que los datos estén siempre al día para garantizar la seguridad de las inversiones y el acceso continuo a los fondos.",
+          "message": {
+            "success": "¡Actualizado! Has cambiado correctamente tu billetera virtual",
+            "information": "Manten tus datos actualizados para evitar perdidas en transacciones",
+            "help": "¿Necesitas ayuda?"
           }
         },
-        "states": {
-          "invoiced": "Facturado",
-          "done": "Aprobado",
-          "error": "Error"
-        },
-        "message": {
-          "success": "¡Felicidades! Has generado tu factura con éxito",
-          "information": "Transfiere la cantidad en USDT a la dirección de wallet indicada",
-          "help": "¿Necesitas ayuda?"
-        }
-      },
-      "withdrawal": {
-        "button": "Transferir",
-        "tab1": "Transferir",
-        "tab2": "Historial",
-        "placeholder": "Ingrese el monto",
-        "description": "La confirmación de la transferencia puede tardar hasta 36 horas en efectuarse, durante este tiempo nuestro sistema procesará tu solicitud para garantizar la seguridad de cada transacción, si tienes dudas contacta a nuestro servicio de atención al cliente.",
-        "table": {
-          "th1": "Voucher",
-          "th2": "Wallet",
-          "th3": "Valor",
-          "th4": "Fecha",
-          "th5": "Estado",
-          "information": {
-            "alert": "¡Aun no has realizado ningun retiro!",
-            "message": "El costo de las transacciones dependeran de la red seleccionada"
-          }
-        },
-        "states": {
-          "invoiced": "Facturado",
-          "done": "Aprobado",
-          "error": "Error"
-        },
-        "message": {
-          "success": "¡Felicidades! Has generado la solicitud de Transferencia con éxito",
-          "information": "Verificaremos la tranferencia y realizaremos el envío en las próximas horas",
-          "help": "¿Necesitas ayuda?"
-        }
-      },
-      "investment": {
-        "button": "Invertir",
-        "tab1": "Invertir",
-        "tab2": "Historial",
-        "description": "Invierte tu dinero a plazos definidos en Tizorbank y maximiza tus ganancias. Al optar por esta modalidad, aseguras un rendimiento superior en comparación con las inversiones tradicionales.",
-        "table": {
-          "th1": "Voucher",
-          "th2": "Saldo",
-          "th3": "Interes",
-          "th4": "Acumulado",
-          "th5": "Fecha",
-          "th6": "Estado",
-          "information": {
-            "alert": "¡Aun no has realizado ninguna inversion!",
-            "message": "Invierte tu dinero en plazos definidos y aumenta tu rentabilidad"
-          }
-        },
-        "label": {
-          "invest": "Inversion",
-          "temporality": "Temporalidad"
-        },
-        "results": {
-          "total": "Total",
-          "interest": "Interes",
-          "invest": "Inversion",
-          "settlement": "Liquidación"
-        },
-        "states": {
-          "active": "Activa",
-          "inactive": "Inactiva",
-          "cancelled": "Cancelada"
-        },
-        "unlock": {
-          "description": {
-            "txt1": "El usuario tiene la opción de cancelar su inversión en cualquier momento, lo que activará el reembolso de los fondos inicialmente invertidos. Además, se otorgará una compensación adicional, calculada en función de los intereses generados hasta la fecha de cancelación. Este proceso ofrece una forma de recuperar su inversión de manera directa y sencilla.",
-            "txt2": "Es importante destacar que la cancelación de la inversión es irreversible y se ejecuta de manera inmediata. Una vez solicitada la transacción, no se puede revertir ni modificar. Por ello, se recomienda evaluar cuidadosamente su decisión antes de proceder con la cancelación."
+        "invoice": {
+          "button": "Agregar",
+          "tab1": "Agregar",
+          "tab2": "Historial",
+          "placeholder": "Ingrese el monto",
+          "description": "La confirmación de la transaccion puede tardar hasta 36 horas en verificarse, durante este tiempo nuestro sistema procesará tu solicitud para garantizar la seguridad de cada transacción, si tienes dudas contacta a nuestro servicio de atención al cliente.",
+          "table": {
+            "th1": "Voucher",
+            "th2": "Wallet",
+            "th3": "Valor",
+            "th4": "Fecha",
+            "th5": "Estado",
+            "information": {
+              "alert": "¡Aun no has realizado ningun deposito!",
+              "message": "Agrega saldo a tu cuenta y empieza a generar intereses"
+            }
           },
-          "information": "La eliminación de la inversión es irreversible, aplicará una penalización al capital acumulado, reembolsará la inversión inicial junto con una compensación adicional calculada en función de los intereses generados hasta la fecha de la eliminación, revisa detenidamente las condiciones antes de proceder."
+          "states": {
+            "invoiced": "Facturado",
+            "done": "Aprobado",
+            "error": "Error"
+          },
+          "message": {
+            "success": "¡Felicidades! Has generado tu factura con éxito",
+            "information": "Transfiere la cantidad en USDT a la dirección de wallet indicada",
+            "help": "¿Necesitas ayuda?"
+          }
         },
-        "message": {
-          "success": "¡Felicidades! Has generado una nueva Inversion con éxito",
-          "information": "El saldo genrado sera transferido a tu cuenta al finalziar el periodo de inversion.",
-          "help": "¿Necesitas ayuda?"
+        "withdrawal": {
+          "button": "Transferir",
+          "tab1": "Transferir",
+          "tab2": "Historial",
+          "placeholder": "Ingrese el monto",
+          "description": "La confirmación de la transferencia puede tardar hasta 36 horas en efectuarse, durante este tiempo nuestro sistema procesará tu solicitud para garantizar la seguridad de cada transacción, si tienes dudas contacta a nuestro servicio de atención al cliente.",
+          "table": {
+            "th1": "Voucher",
+            "th2": "Wallet",
+            "th3": "Valor",
+            "th4": "Fecha",
+            "th5": "Estado",
+            "information": {
+              "alert": "¡Aun no has realizado ningun retiro!",
+              "message": "El costo de las transacciones dependeran de la red seleccionada"
+            }
+          },
+          "states": {
+            "invoiced": "Facturado",
+            "done": "Aprobado",
+            "error": "Error"
+          },
+          "message": {
+            "success": "¡Felicidades! Has generado la solicitud de Transferencia con éxito",
+            "information": "Verificaremos la tranferencia y realizaremos el envío en las próximas horas",
+            "help": "¿Necesitas ayuda?"
+          }
+        },
+        "investment": {
+          "button": "Invertir",
+          "tab1": "Invertir",
+          "tab2": "Historial",
+          "description": "Invierte tu dinero a plazos definidos en Tizorbank y maximiza tus ganancias. Al optar por esta modalidad, aseguras un rendimiento superior en comparación con las inversiones tradicionales.",
+          "table": {
+            "th1": "Voucher",
+            "th2": "Saldo",
+            "th3": "Interes",
+            "th4": "Acumulado",
+            "th5": "Fecha",
+            "th6": "Estado",
+            "information": {
+              "alert": "¡Aun no has realizado ninguna inversion!",
+              "message": "Invierte tu dinero en plazos definidos y aumenta tu rentabilidad"
+            }
+          },
+          "label": {
+            "invest": "Inversion",
+            "temporality": "Temporalidad"
+          },
+          "results": {
+            "total": "Total",
+            "interest": "Interes",
+            "invest": "Inversion",
+            "settlement": "Liquidación"
+          },
+          "states": {
+            "active": "Activa",
+            "inactive": "Inactiva",
+            "cancelled": "Cancelada"
+          },
+          "unlock": {
+            "description": {
+              "txt1": "El usuario tiene la opción de cancelar su inversión en cualquier momento, lo que activará el reembolso de los fondos inicialmente invertidos. Además, se otorgará una compensación adicional, calculada en función de los intereses generados hasta la fecha de cancelación. Este proceso ofrece una forma de recuperar su inversión de manera directa y sencilla.",
+              "txt2": "Es importante destacar que la cancelación de la inversión es irreversible y se ejecuta de manera inmediata. Una vez solicitada la transacción, no se puede revertir ni modificar. Por ello, se recomienda evaluar cuidadosamente su decisión antes de proceder con la cancelación."
+            },
+            "information": "La eliminación de la inversión es irreversible, aplicará una penalización al capital acumulado, reembolsará la inversión inicial junto con una compensación adicional calculada en función de los intereses generados hasta la fecha de la eliminación, revisa detenidamente las condiciones antes de proceder."
+          },
+          "message": {
+            "success": "¡Felicidades! Has generado una nueva Inversion con éxito",
+            "information": "El saldo genrado sera transferido a tu cuenta al finalziar el periodo de inversion.",
+            "help": "¿Necesitas ayuda?"
+          }
         }
       }
-    }
-  },
-  "shared": {
-    "description": "Invita a otros a unirse y comienza a generar ganancias pasivas diarias. Cada nuevo usuario que se registre con tu enlace y realice una inversión generara intereses automaticamente. Tus amigos disfrutarán de los beneficios de invertir y verás crecer tus ganancias cada día. Comparte la oportunidad de generar riqueza y maximiza tus ingresos en nuestra comunidad de inversores.",
-    "information": "Envia tu enlace de invitación y comienza a generar ganancias al invitar a otros a invertir, generaras interese diarios por su inversion. ¡Es fácil y rápido!",
-    "table": {
-      "th1": "Usuario",
-      "th2": "Saldo",
-      "th3": "Fecha",
-      "information": {
-        "alert": "¿Aun no comparte tu Link?",
-        "message": "Obten intereses pasivos de tus referidos"
+    },
+    "shared": {
+      "description": "Invita a otros a unirse y comienza a generar ganancias pasivas diarias. Cada nuevo usuario que se registre con tu enlace y realice una inversión generara intereses automaticamente. Tus amigos disfrutarán de los beneficios de invertir y verás crecer tus ganancias cada día. Comparte la oportunidad de generar riqueza y maximiza tus ingresos en nuestra comunidad de inversores.",
+      "information": "Envia tu enlace de invitación y comienza a generar ganancias al invitar a otros a invertir, generaras interese diarios por su inversion. ¡Es fácil y rápido!",
+      "table": {
+        "th1": "Usuario",
+        "th2": "Saldo",
+        "th3": "Fecha",
+        "information": {
+          "alert": "¿Aun no comparte tu Link?",
+          "message": "Obten intereses pasivos de tus referidos"
+        }
       }
     }
   }

@@ -95,18 +95,4 @@ class ImageSlider(models.Model):
         verbose_name_plural = _("Images")
 
 
-class FAQs(models.Model):
-    uuid = models.UUIDField(_("ID"),default=uuid.uuid4, unique=True)
-    settings = models.ForeignKey(Tizorbank, on_delete=models.CASCADE)
-    is_active = models.BooleanField(default=True, verbose_name='')
-    
-    question = models.CharField(_("Title"),max_length=64, null=False, blank=False)
-    answer = models.TextField(_("Description"),max_length=1024, null=False, blank=False)
-
-    def __str__(self):
-        return f"{self.uuid}"
-
-    class Meta:
-        verbose_name = _("FAQ")
-        verbose_name_plural = _("FAQs")
 

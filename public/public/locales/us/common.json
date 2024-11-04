@@ -18,156 +18,156 @@
         "title": "Total",
         "description": "Earned interest"
       }
-    }
-  },
-  "logs": {
-    "table": {
-      "th1": "Voucher",
-      "th2": "Value",
-      "th3": "Date",
-      "th4": "Movement",
-      "th5": "Status"
     },
-    "types": {
-      "interest": "Interests",
-      "outcome": "Withdrawal",
-      "income": "Deposit",
-      "investment": "Investment",
-      "ref": "Referrals"
-    },
-    "states": {
-      "invoiced": "Invoiced",
-      "done": "Approved",
-      "refund": "Refund"
-    },
-    "filter": "Enter Voucher"
-  },
-  "meta": {
-    "description": "Tizorbank transforms the way you think about your finances; an innovative fintech that offers the opportunity to grow your money with superior daily returns. Through our investment platform, you can invest securely and hassle-free, watching your savings generate constant returns day after day.",
-    "information": "Security is our priority. To ensure you always have full control over your funds and avoid any inconveniences, it's essential to keep your user data updated. Maintaining your information is key to us managing your capital efficiently and without risks.",
-    "interface": {
-      "updateInfo": {
-        "title": "Update Information",
-        "description": "Tizorbank is not responsible for losses or inconveniences if the user does not keep their address updated or loses access to their digital wallet. It is essential to have up-to-date data to ensure the security of investments and continuous access to funds.",
-        "message": {
-          "success": "Updated! You have successfully changed your virtual wallet.",
-          "information": "Keep your data updated to avoid transaction losses.",
-          "help": "Need help?"
-        }
+    "logs": {
+      "table": {
+        "th1": "Voucher",
+        "th2": "Value",
+        "th3": "Date",
+        "th4": "Movement",
+        "th5": "Status"
       },
-      "invoice": {
-        "button": "Add",
-        "tab1": "Add",
-        "tab2": "History",
-        "placeholder": "Enter amount",
-        "description": "The confirmation of the transaction may take up to 36 hours to verify. During this time, our system will process your request to ensure the security of each transaction. If you have any questions, contact our customer service.",
-        "table": {
-          "th1": "Voucher",
-          "th2": "Wallet",
-          "th3": "Value",
-          "th4": "Date",
-          "th5": "Status",
-          "information": {
-            "alert": "You have not made any deposits yet!",
-            "message": "Add funds to your account and start generating interest."
+      "types": {
+        "interest": "Interests",
+        "outcome": "Withdrawal",
+        "income": "Deposit",
+        "investment": "Investment",
+        "ref": "Referrals"
+      },
+      "states": {
+        "invoiced": "Invoiced",
+        "done": "Approved",
+        "refund": "Refund"
+      },
+      "filter": "Enter Voucher"
+    },
+    "meta": {
+      "description": "Tizorbank transforms the way you think about your finances; an innovative fintech that offers the opportunity to grow your money with superior daily returns. Through our investment platform, you can invest securely and hassle-free, watching your savings generate constant returns day after day.",
+      "information": "Security is our priority. To ensure you always have full control over your funds and avoid any inconveniences, it's essential to keep your user data updated. Maintaining your information is key to us managing your capital efficiently and without risks.",
+      "interface": {
+        "updateInfo": {
+          "title": "Update Information",
+          "description": "Tizorbank is not responsible for losses or inconveniences if the user does not keep their address updated or loses access to their digital wallet. It is essential to have up-to-date data to ensure the security of investments and continuous access to funds.",
+          "message": {
+            "success": "Updated! You have successfully changed your virtual wallet.",
+            "information": "Keep your data updated to avoid transaction losses.",
+            "help": "Need help?"
           }
         },
-        "states": {
-          "invoiced": "Invoiced",
-          "done": "Approved",
-          "error": "Error"
-        },
-        "message": {
-          "success": "Congratulations! You have successfully generated your invoice.",
-          "information": "Transfer the amount in USDT to the indicated wallet address.",
-          "help": "Need help?"
-        }
-      },
-      "withdrawal": {
-        "button": "Transfer",
-        "tab1": "Transfer",
-        "tab2": "History",
-        "placeholder": "Enter amount",
-        "description": "The confirmation of the transfer may take up to 36 hours to process. During this time, our system will ensure the security of each transaction. If you have any questions, contact our customer service.",
-        "table": {
-          "th1": "Voucher",
-          "th2": "Wallet",
-          "th3": "Value",
-          "th4": "Date",
-          "th5": "Status",
-          "information": {
-            "alert": "You have not made any withdrawals yet!",
-            "message": "Transaction costs will depend on the selected network."
-          }
-        },
-        "states": {
-          "invoiced": "Invoiced",
-          "done": "Approved",
-          "error": "Error"
-        },
-        "message": {
-          "success": "Congratulations! You have successfully generated the transfer request.",
-          "information": "We will verify the transfer and send it in the coming hours.",
-          "help": "Need help?"
-        }
-      },
-      "investment": {
-        "button": "Invest",
-        "tab1": "Invest",
-        "tab2": "History",
-        "description": "Invest your money in defined terms with Tizorbank and maximize your profits. By opting for this option, you ensure a higher return compared to traditional investments.",
-        "table": {
-          "th1": "Voucher",
-          "th2": "Balance",
-          "th3": "Interest",
-          "th4": "Accumulated",
-          "th5": "Date",
-          "th6": "Status",
-          "information": {
-            "alert": "You haven't made any investments yet!",
-            "message": "Invest your money in defined terms and increase your profitability"
-          }
-        },
-        "label": {
-          "invest": "Investment",
-          "temporality": "Term"
-        },
-        "results": {
-          "total": "Total",
-          "interest": "Interest",
-          "invest": "Investment",
-          "settlement": "Settlement"
-        },
-        "states": {
-          "active": "Active",
-          "inactive": "Inactive",
-          "cancelled": "Cancelled"
-        },
-        "unlock": {
-          "description": {
-            "txt1": "The user has the option to cancel their investment at any time, which will trigger the refund of the initially invested funds. Additionally, an extra compensation will be provided, calculated based on the interest generated up to the cancellation date. This process offers a straightforward way to recover your investment.",
-            "txt2": "It is important to note that the cancellation of the investment is irreversible and is executed immediately. Once the transaction is requested, it cannot be reversed or modified. Therefore, it is recommended to carefully consider your decision before proceeding with the cancellation."
+        "invoice": {
+          "button": "Add",
+          "tab1": "Add",
+          "tab2": "History",
+          "placeholder": "Enter amount",
+          "description": "The confirmation of the transaction may take up to 36 hours to verify. During this time, our system will process your request to ensure the security of each transaction. If you have any questions, contact our customer service.",
+          "table": {
+            "th1": "Voucher",
+            "th2": "Wallet",
+            "th3": "Value",
+            "th4": "Date",
+            "th5": "Status",
+            "information": {
+              "alert": "You have not made any deposits yet!",
+              "message": "Add funds to your account and start generating interest."
+            }
           },
-          "information": "The removal of the investment is irreversible, a penalty will be applied to the accumulated capital, the initial investment will be refunded along with an additional compensation calculated based on the interest generated up to the removal date. Please review the conditions carefully before proceeding."
+          "states": {
+            "invoiced": "Invoiced",
+            "done": "Approved",
+            "error": "Error"
+          },
+          "message": {
+            "success": "Congratulations! You have successfully generated your invoice.",
+            "information": "Transfer the amount in USDT to the indicated wallet address.",
+            "help": "Need help?"
+          }
         },
-        "message": {
-          "success": "Congratulations! You have successfully created a new investment.",
-          "information": "The generated balance will be transferred to your account at the end of the investment period.",
-          "help": "Need help?"
+        "withdrawal": {
+          "button": "Transfer",
+          "tab1": "Transfer",
+          "tab2": "History",
+          "placeholder": "Enter amount",
+          "description": "The confirmation of the transfer may take up to 36 hours to process. During this time, our system will ensure the security of each transaction. If you have any questions, contact our customer service.",
+          "table": {
+            "th1": "Voucher",
+            "th2": "Wallet",
+            "th3": "Value",
+            "th4": "Date",
+            "th5": "Status",
+            "information": {
+              "alert": "You have not made any withdrawals yet!",
+              "message": "Transaction costs will depend on the selected network."
+            }
+          },
+          "states": {
+            "invoiced": "Invoiced",
+            "done": "Approved",
+            "error": "Error"
+          },
+          "message": {
+            "success": "Congratulations! You have successfully generated the transfer request.",
+            "information": "We will verify the transfer and send it in the coming hours.",
+            "help": "Need help?"
+          }
+        },
+        "investment": {
+          "button": "Invest",
+          "tab1": "Invest",
+          "tab2": "History",
+          "description": "Invest your money in defined terms with Tizorbank and maximize your profits. By opting for this option, you ensure a higher return compared to traditional investments.",
+          "table": {
+            "th1": "Voucher",
+            "th2": "Balance",
+            "th3": "Interest",
+            "th4": "Accumulated",
+            "th5": "Date",
+            "th6": "Status",
+            "information": {
+              "alert": "You haven't made any investments yet!",
+              "message": "Invest your money in defined terms and increase your profitability"
+            }
+          },
+          "label": {
+            "invest": "Investment",
+            "temporality": "Term"
+          },
+          "results": {
+            "total": "Total",
+            "interest": "Interest",
+            "invest": "Investment",
+            "settlement": "Settlement"
+          },
+          "states": {
+            "active": "Active",
+            "inactive": "Inactive",
+            "cancelled": "Cancelled"
+          },
+          "unlock": {
+            "description": {
+              "txt1": "The user has the option to cancel their investment at any time, which will trigger the refund of the initially invested funds. Additionally, an extra compensation will be provided, calculated based on the interest generated up to the cancellation date. This process offers a straightforward way to recover your investment.",
+              "txt2": "It is important to note that the cancellation of the investment is irreversible and is executed immediately. Once the transaction is requested, it cannot be reversed or modified. Therefore, it is recommended to carefully consider your decision before proceeding with the cancellation."
+            },
+            "information": "The removal of the investment is irreversible, a penalty will be applied to the accumulated capital, the initial investment will be refunded along with an additional compensation calculated based on the interest generated up to the removal date. Please review the conditions carefully before proceeding."
+          },
+          "message": {
+            "success": "Congratulations! You have successfully created a new investment.",
+            "information": "The generated balance will be transferred to your account at the end of the investment period.",
+            "help": "Need help?"
+          }
         }
       }
-    }
-  },
-  "shared": {
-    "description": "Invite others to join and start generating passive daily earnings. Each new user who registers with your link and makes an investment will automatically generate interest. Your friends will enjoy the benefits of investing, and you will see your earnings grow each day. Share the opportunity to create wealth and maximize your income in our investor community.",
-    "information": "Send your invitation link and start generating earnings by inviting others to invest; you will earn daily interest from their investments. It's easy and quick!",
-    "table": {
-      "th1": "User",
-      "th2": "Balance",
-      "th3": "Date",
-      "information": {
-        "alert": "Don't you share your link yet?",
-        "message": "Get passive income from your referrals"
+    },
+    "shared": {
+      "description": "Invite others to join and start generating passive daily earnings. Each new user who registers with your link and makes an investment will automatically generate interest. Your friends will enjoy the benefits of investing, and you will see your earnings grow each day. Share the opportunity to create wealth and maximize your income in our investor community.",
+      "information": "Send your invitation link and start generating earnings by inviting others to invest; you will earn daily interest from their investments. It's easy and quick!",
+      "table": {
+        "th1": "User",
+        "th2": "Balance",
+        "th3": "Date",
+        "information": {
+          "alert": "Don't you share your link yet?",
+          "message": "Get passive income from your referrals"
+        }
       }
     }
   }

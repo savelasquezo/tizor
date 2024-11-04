@@ -1,15 +1,19 @@
+'use client';
+
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from 'next/navigation';
 import { NextResponse } from 'next/server';
-import Image from 'next/image';
-import CircleLoader from 'react-spinners/CircleLoader';
+
+import { useLanguage } from '@/utils/i18next';
 import { ModalFunction } from '@/lib/types/types';
 
+import CircleLoader from 'react-spinners/CircleLoader';
 
 const AuthModal: React.FC<ModalFunction> = ({ closeModal }) => {
   const searchParams = useSearchParams();
   const [token, setToken] = useState('');
   const [uid, setUID] = useState('');
+  const { t } = useLanguage();
 
   const [activated, setActivated] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -63,23 +67,14 @@ const AuthModal: React.FC<ModalFunction> = ({ closeModal }) => {
     <div className="w-full h-full sha">
       <div className="relative w-full h-full flex flex-col items-start justify-start">
         <div className="flex flex-col items-start justify-start p-6">
-          <p className="text-start text-lg text-gray-800 font-cocogoose">¡Bienvenido a Tizorbank!</p><br />
-          <p className="text-sm text-gray-800 font-thin text-justify">¡Nos emociona darte la bienvenida a nuestra comunidad! Activa tu cuenta dando clic en el botón Activar, y ahora estarás listo para ahorrar de verdad.</p>
+          <p className="text-start text-lg text-gray-800 font-cocogoose">{t('home.header.auth.message.welcome')}</p><br />
+          <p className="text-sm text-gray-800 font-thin text-justify">{t('home.header.auth.message.welcome-paragraph')}</p>
         </div>
         <div className="absolute bottom-10 w-full px-4 ">
-          {activated ? (
-            <p className="h-10 bg-green-700 text-white font-semibold font-cocogoose text-xs rounded-sm py-2 px-4 w-full text-center flex items-center justify-center">
-              Activado
-            </p>
-          ) : (
-            loading ? (
-              <button type="button" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full text-center flex items-center justify-center">
-                <CircleLoader loading={loading} size={25} color="#ffff" />
-              </button>
-            ) : (
-              <button type="button" onClick={activateAccount} className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full font-cocogoose text-xs text-center uppercase">Activar</button>
-            )
-          )}
+          {activated ? (<p className="h-10 bg-green-700 text-white font-semibold font-cocogoose text-xs rounded-sm py-2 px-4 w-full text-center flex items-center justify-center">{t('home.header.auth.message.activated')}</p>
+          ) : (loading ? (<button type="button" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full text-center flex items-center justify-center"><CircleLoader loading={loading} size={25} color="#ffff" /></button>
+            ) : (<button type="button" onClick={activateAccount} className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full font-cocogoose text-xs text-center uppercase">{t('home.header.auth.message.activate')}</button>))
+          }
         </div>
       </div>
     </div>

@@ -40,34 +40,6 @@ class fetchInformation(generics.GenericAPIView):
             return Response({'detail': 'NotFound Tizorbank Information.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-class fetchFAQs(generics.ListAPIView):
-    """
-    Endpoint to retrieve details of the currently active FAQs.
-    Requires no authentication.
-    """
-    serializer_class = serializer.FAQSerializer
-    permission_classes = [AllowAny]
-
-    pagination_class = PageNumberPagination
-    page_size = 10
-
-    def get_queryset(self):
-        queryset = model.FAQs.objects.filter(is_active=True)
-        return queryset
-
-    def list(self, request, *args, **kwargs):
-        try:
-            queryset = self.get_queryset()
-            page = self.paginate_queryset(queryset)
-            if page is not None:
-                serializer = self.get_serializer(page, many=True)
-                return self.get_paginated_response(serializer.data)
-            serializer = self.get_serializer(queryset, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Exception as e:
-            logger.error("%s", e, exc_info=True)
-            return Response({'error': 'Not Found FAQs.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
 class fetchImagesSlider(generics.ListAPIView):
     """
     Endpoint to retrieve all images of Slider module.

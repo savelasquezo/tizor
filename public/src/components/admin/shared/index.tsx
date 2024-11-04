@@ -64,12 +64,12 @@ const Shared: React.FC<SessionAuthenticated> = ({ session }) => {
     <section className='w-full lg:w-3/5 flex flex-col-reverse lg:flex-row items-center justify-between break-words bg-white shadow-md rounded-2xl bg-clip-border py-1 lg:px-2 lg:pt-3 lg:pb-8'>
       <div className='w-full lg:w-1/2 h-full flex flex-col items-center lg:items-start lg:justify-between px-4 py-1'>
         <div className='hidden lg:flex flex-col items-start justify-start gap-y-4'>
-          <p className='text-[0.65rem] text-justify leading-tight font-cocogoose'>{t('shared.description')}</p>
+          <p className='text-[0.65rem] text-justify leading-tight font-cocogoose'>{t('admin.shared.description')}</p>
           <div className='w-full bg-blue-100 h-12 flex items-center justify-between rounded-sm px-4 border-2 border-blue-50'>
             <p className='text-sm'>{process.env.NEXT_PUBLIC_APP_API_URL}/?singup=True&uuid={session.user.uuid}</p>
             <span onClick={handleCopyClick} className={`cursor-pointer transition-colors duration-1000 ${copySuccess ? 'text-green-500' : ''}`}><FaRegCopy /></span>
           </div>
-          <p className='text-[0.65rem] text-justify leading-tight font-cocogoose'>{t('shared.information')}</p>
+          <p className='text-[0.65rem] text-justify leading-tight font-cocogoose'>{t('admin.shared.information')}</p>
         </div>
         <div className='w-full flex flex-row items-center justify-center lg:justify-start gap-x-2.5 lg:gap-x-4 my-6 lg:my-0'>
           {data?.links?.map((link: any) => (
@@ -86,12 +86,12 @@ const Shared: React.FC<SessionAuthenticated> = ({ session }) => {
       </div>
       <div className='h-full w-full lg:w-1/2 mt-4 lg:mt-0 px-4'>
         <div className='block lg:hidden pt-1 pb-4 mb-2'>
-          <p className='text-[0.55rem] text-justify font-cocogoose'>{t('shared.description')}</p>
+          <p className='text-[0.55rem] text-justify font-cocogoose'>{t('admin.shared.description')}</p>
           <div className='w-full bg-blue-100 h-12 flex items-center justify-between rounded-sm px-4 border-2 border-blue-50 my-4'>
             <p className='text-[0.60rem]'>{process.env.NEXT_PUBLIC_APP_API_URL}/?singup=True&uuid=WERf234</p>
             <span onClick={handleCopyClick} className={`cursor-pointer transition-colors duration-1000 ${copySuccess ? 'text-green-500' : ''}`}><FaRegCopy /></span>
           </div>
-          <p className='text-[0.55rem] text-justify leading-tight font-cocogoose'>{t('shared.information')}</p>
+          <p className='text-[0.55rem] text-justify leading-tight font-cocogoose'>{t('admin.shared.information')}</p>
         </div>
         <section className="w-full h-full">
           {filledTickets.length > 0 ? (
@@ -99,9 +99,9 @@ const Shared: React.FC<SessionAuthenticated> = ({ session }) => {
               <table className="min-w-full text-center text-sm font-light table-fixed">
                 <thead className="font-medium text-gray-900">
                   <tr className="border-b-2 border-slate-400 font-cocogoose font-semibold uppercase text-xs">
-                    <th scope="col" className="w-1/3 px-6 py-2">{t('shared.table.th1')}</th>
-                    <th scope="col" className="w-1/3 px-6 py-2">{t('shared.table.th2')}</th>
-                    <th scope="col" className="w-1/3 px-6 py-2">{t('shared.table.th3')}</th>
+                    <th scope="col" className="w-1/3 px-6 py-2">{t('admin.shared.table.th1')}</th>
+                    <th scope="col" className="w-1/3 px-6 py-2">{t('admin.shared.table.th2')}</th>
+                    <th scope="col" className="w-1/3 px-6 py-2">{t('admin.shared.table.th3')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -118,8 +118,8 @@ const Shared: React.FC<SessionAuthenticated> = ({ session }) => {
           ) : (
             <div className='w-full h-full flex flex-col justify-start items-center'>
               <span className='text-center text-gray-800 mt-8 text-sm'>
-                <p>{t('shared.table.information.alert')}</p>
-                <p>{t('shared.table.information.message')}</p>
+                <p>{t('admin.shared.table.information.alert')}</p>
+                <p>{t('admin.shared.table.information.message')}</p>
               </span>
             </div>
           )}

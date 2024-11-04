@@ -1,4 +1,3 @@
-// SocialLinks.tsx
 import React from "react";
 import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp, FaTelegramPlane, FaYoutube, FaBloggerB } from "react-icons/fa";
 import { PiPlaceholder } from "react-icons/pi";
@@ -19,7 +18,7 @@ interface SocialLinksProps {
 
 const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => {
   return (
-    <div className='w-full flex flex-row items-center justify-start gap-x-2.5 lg:gap-x-4 mb-20 lg:my-0'>
+    <div className='w-full flex flex-row items-center justify-start gap-x-2.5 ml-6 mb-12 lg:gap-x-4 lg:my-0'>
       {links.map((link) => (
         <a
           key={link.id}

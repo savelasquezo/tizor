@@ -1,6 +1,5 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 import { nextSite } from '@/utils/next-site';
 import { useLanguage } from '@/utils/i18next';
@@ -12,7 +11,7 @@ import Footer from '@/components/home/footer/index';
 import Video from '@/components/home/video'
 
 import { Accordion, AccordionItem } from "@nextui-org/react";
-import {NextIconAcordion} from '@/app/help-and-tutorials/icons/nextorg-acordion';
+import { NextIconAcordion } from '@/app/help-and-tutorials/icons/nextorg-acordion';
 import { ImQuestion } from "react-icons/im";
 
 
@@ -20,50 +19,61 @@ const HelpPage: React.FC = () => {
   const [data, setData] = useState<{ [key: string]: any } | null>(null);
   const { t } = useLanguage();
 
-  const [faqs, setFaqs] = useState<{ id: number; question: string; answer: string }[]>([]);
   useEffect(() => {
     const fetchedSettings = nextSite();
     if (fetchedSettings) {
       setData(fetchedSettings);
     }
-    const fetchFaqs = async () => {
-      try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/site/fetch-faqs/`);
-        const activeFaqs = response.data.results.filter((faq: any) => faq.is_active);
-        setFaqs(activeFaqs);
-      } catch (error) {
-        console.error('Error fetching FAQs:', error);
-      }
-    };
-    fetchFaqs();
   }, []);
 
   return (
     <main className="relative bg-white w-full h-auto overflow-x-hidden font-cocogoose">
       <Header />
-      <section className='w-4/5 flex flex-col p-12 mx-auto'>
+      <section className='w-full lg:w-4/5 flex flex-col p-4 py-12 lg:p-12 mx-auto'>
         <div className="w-full mx-auto text-center mb-12">
-          <div className="w-full flex flex-col items-center justify-start gap-y-4 text-3xl font-bold leading-tight text-gray-800 sm:text-4xl lg:text-3xl font-cocogoose">
-            <h2>¿Preguntas Frecuentes?</h2>
-            <p className='w-3/4 text-xs'>Explora nuestra sección de Preguntas Frecuentes para resolver tus dudas rápidamente. Encuentra respuestas detalladas a las consultas más comunes sobre el uso de la plataforma, funcionalidades, soporte y mucho más. ¡Empieza aquí y aprovecha todos los recursos que hemos preparado para ti!</p>
+          <div className="w-full flex flex-col items-center justify-start gap-y-4 text-3xl font-bold text-gray-800 sm:text-4xl lg:text-3xl font-cocogoose">
+            <h2 className='text-lg sm:text-3xl lg:text-4xl'>{t('help-and-tutorials.faqs.title.title')}</h2>
+            <p className='w-full lg:w-3/4 text-[0.65rem] lg:text-xs leading-3 lg:leading-tight'>{t('help-and-tutorials.faqs.title.subtitle')}</p>
           </div>
         </div>
-        <Accordion selectionMode="multiple" variant="splitted">
-          {faqs.map((faq) => (
-            <AccordionItem key={faq.id} aria-label={faq.question} title={faq.question} startContent={<ImQuestion className="!shadow-md" />} indicator={<NextIconAcordion/>}>
-              <p className='text-xs py-4'>{faq.answer}</p>
-            </AccordionItem>
-          ))}
+        <Accordion fullWidth selectionMode="multiple" variant="splitted">
+          <AccordionItem key={"1"} aria-label={t('help-and-tutorials.faqs.list.faq1.question')} title={<span className='text-sm sm:text-base lg:text-lg'>{t('help-and-tutorials.faqs.list.faq1.question')}</span>} startContent={<ImQuestion className="!shadow-md" />} indicator={<NextIconAcordion />}>
+            <p className='text-[0.65rem] lg:text-xs p-2 lg:py-4'>{t('help-and-tutorials.faqs.list.faq1.answer')}</p>
+          </AccordionItem>
+          <AccordionItem key={"2"} aria-label={t('help-and-tutorials.faqs.list.faq2.question')} title={<span className='text-sm sm:text-base lg:text-lg'>{t('help-and-tutorials.faqs.list.faq2.question')}</span>} startContent={<ImQuestion className="!shadow-md" />} indicator={<NextIconAcordion />}>
+            <p className='text-[0.65rem] lg:text-xs py-4'>{t('help-and-tutorials.faqs.list.faq2.answer')}</p>
+          </AccordionItem>
+          <AccordionItem key={"3"} aria-label={t('help-and-tutorials.faqs.list.faq3.question')} title={<span className='text-sm sm:text-base lg:text-lg'>{t('help-and-tutorials.faqs.list.faq3.question')}</span>} startContent={<ImQuestion className="!shadow-md" />} indicator={<NextIconAcordion />}>
+            <p className='text-[0.65rem] lg:text-xs py-4'>{t('help-and-tutorials.faqs.list.faq3.answer')}</p>
+          </AccordionItem>
+          <AccordionItem key={"4"} aria-label={t('help-and-tutorials.faqs.list.faq4.question')} title={<span className='text-sm sm:text-base lg:text-lg'>{t('help-and-tutorials.faqs.list.faq4.question')}</span>} startContent={<ImQuestion className="!shadow-md" />} indicator={<NextIconAcordion />}>
+            <p className='text-[0.65rem] lg:text-xs py-4'>{t('help-and-tutorials.faqs.list.faq4.answer')}</p>
+          </AccordionItem>
+          <AccordionItem key={"5"} aria-label={t('help-and-tutorials.faqs.list.faq5.question')} title={<span className='text-sm sm:text-base lg:text-lg'>{t('help-and-tutorials.faqs.list.faq5.question')}</span>} startContent={<ImQuestion className="!shadow-md" />} indicator={<NextIconAcordion />}>
+            <p className='text-[0.65rem] lg:text-xs py-4'>{t('help-and-tutorials.faqs.list.faq5.answer')}</p>
+          </AccordionItem>
         </Accordion>
         <hr className="my-12 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25" />
         <div className="w-full mx-auto text-center">
           <div className="w-full flex flex-col items-center justify-start gap-y-4 text-3xl font-bold leading-tight text-gray-800 sm:text-4xl lg:text-3xl font-cocogoose">
-            <h2>Tutoriales</h2>
-            <p className='w-3/4 text-xs'>Aprende a navegar y utilizar cada herramienta de la plataforma con nuestros tutoriales y guías detalladas. Desde lo más básico hasta las funciones avanzadas, estos recursos te mostrarán paso a paso cómo optimizar tu experiencia, gestionar tus actividades y aprovechar al máximo cada característica para alcanzar tus objetivos.</p>
+            <h2>{t('help-and-tutorials.tutorials.title.title')}</h2>
+            <p className='w-full lg:w-3/4 text-[0.65rem] lg:text-xs leading-3 lg:leading-5'>{t('help-and-tutorials.tutorials.title.subtitle')}</p>
           </div>
-          <div className='w-full flex flex-row'>
-            <Video thumbnail={data?.tutorial_thumbnail_1} url={data?.tutorial_1} width={1200} height={600} />
-            <Video thumbnail={data?.tutorial_thumbnail_2} url={data?.tutorial_2} width={1200} height={600} />
+          <div className='w-full flex flex-col lg:flex-row'>
+            <div className='w-full lg:w-1/2 flex flex-col justify-center items-center'>
+              <Video thumbnail={data?.tutorial_thumbnail_1} url={data?.tutorial_1} width={1200} height={600} />
+              <div className='flex flex-col lg:gap-y-2 -mt-2'>
+                <p className='font-semibold'>{t('help-and-tutorials.tutorials.gallery.video1.title')}</p>
+                <p className='text-xs'>{t('help-and-tutorials.tutorials.gallery.video1.subtitle')}</p>
+              </div>
+            </div>
+            <div className='w-full lg:w-1/2 flex flex-col justify-center items-center'>
+              <Video thumbnail={data?.tutorial_thumbnail_2} url={data?.tutorial_2} width={1200} height={600} />
+              <div className='flex flex-col lg:gap-y-2 -mt-2'>
+                <p className='font-semibold'>{t('help-and-tutorials.tutorials.gallery.video2.title')}</p>
+                <p className='text-xs'>{t('help-and-tutorials.tutorials.gallery.video2.subtitle')}</p>
+              </div>
+            </div>
           </div>
         </div>
         <hr className="my-12 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25" />

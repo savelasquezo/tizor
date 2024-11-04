@@ -1,29 +1,25 @@
+'use client';
+
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from 'next/navigation';
 import { NextResponse } from 'next/server';
 
-import Image from 'next/image';
-import CircleLoader from 'react-spinners/CircleLoader';
+import { useLanguage } from '@/utils/i18next';
 import { ModalFunction } from '@/lib/types/types';
 
+import CircleLoader from 'react-spinners/CircleLoader';
+import { Input } from "@nextui-org/react";
+import { Select, SelectItem } from "@nextui-org/react";
 import { AiOutlineUser } from 'react-icons/ai'
 import { CiMail } from 'react-icons/ci'
 import { FiLock } from 'react-icons/fi'
-import { IoEye } from "react-icons/io5";
-import { IoEyeOff } from "react-icons/io5";
-import { IoWalletOutline } from "react-icons/io5";
-
-import { Input } from "@nextui-org/react";
-import { Select, SelectItem } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
-
+import { IoEye, IoEyeOff, IoWalletOutline } from "react-icons/io5";
 
 const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
   const nextSite = JSON.parse(localStorage.getItem('nextsite.data') || '{}');
+  const { t } = useLanguage();
 
   const searchParams = useSearchParams();
-  const [infoRefered, setInfoRefered] = useState(false);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -38,12 +34,6 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
   const { email, username, address, password } = formData;
   const [selectedNetwork, setSelectedNetwork] = useState('bep20');
   const [network, setNetwork] = useState('');
-
-  useEffect(() => {
-    if (searchParams.get('uuid')) {
-      setInfoRefered(true);
-    }
-  }, [searchParams]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -61,7 +51,7 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     const usernamePattern = /^[a-zA-Z0-9]+$/;
     if (!usernamePattern.test(username)) {
-      setError('¡Email invalido! Unicamente Alfanuméricos');
+      setError(`${t('home.header.auth.error.user-invalid')}`);
       setLoading(false);
       return;
     } else {
@@ -70,7 +60,7 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
 
     const emailPattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
     if (!emailPattern.test(email)) {
-      setError('¡Email invalido! example@domain.com');
+      setError(`${t('home.header.auth.error.email-invalid')}`);
       setLoading(false);
       return;
     } else {
@@ -102,12 +92,11 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
         return setError(errorMessage);
       }
       setRegistrationSuccess(true);
-      setSuccess("¡Enviamos un correo electrónico de verificación.! ");
+      setSuccess(`${t('home.header.auth.success.register-success')}`);
       NextResponse.json({ success: 'The request has been processed successfully.' }, { status: 200 });
 
     } catch (error: any) {
-      const errorMessage = error.response?.data?.error || 'There was an error with the network request';
-      setError(errorMessage);
+      setError(`${t('home.header.auth.error.register-failed')}`);
       NextResponse.json({ error: 'There was an error with the network request' }, { status: 500 });
 
     } finally {
@@ -169,7 +158,7 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
             pattern="^[a-zA-Z0-9]+$"
             readOnly={registrationSuccess}
           />
-          <Select className="!w-[9rem] lg:!w-[7rem]" variant="underlined" radius={'none'} selectedKeys={[selectedNetwork]} disabledKeys={[selectedNetwork]} isDisabled={registrationSuccess}>
+          <Select aria-label="net" className="!w-[9rem] lg:!w-[7rem]" variant="underlined" radius={'none'} selectedKeys={[selectedNetwork]} disabledKeys={[selectedNetwork]} isDisabled={registrationSuccess}>
             <SelectItem onClick={() => handleNetworkChange('bep20')} key="bep20">BEP20</SelectItem>
             <SelectItem onClick={() => handleNetworkChange('erc20')} key="erc20">ERC20</SelectItem>
             <SelectItem onClick={() => handleNetworkChange('trc20')} key="trc20">TRC20</SelectItem>
@@ -200,22 +189,15 @@ const RegisterModal: React.FC<ModalFunction> = ({ closeModal }) => {
 
         />
         {registrationSuccess ? (
-          <p onClick={closeModal} className="h-10 bg-green-700 text-white font-semibold rounded-sm py-2 px-4 w-full text-sm text-center uppercase">
-            Verificar email
-          </p>
-        ) : (
-          loading ? (
-            <button type="button" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full text-center flex items-center justify-center">
-              <CircleLoader loading={loading} size={25} color="#ffff" />
-            </button>
-          ) : (
-            <button type="submit" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full font-cocogoose text-xs text-center uppercase">Inscribirse</button>
+          <p onClick={closeModal} className="h-10 bg-green-700 text-white font-semibold rounded-sm py-2 px-4 w-full text-sm text-center uppercase">{t('home.header.auth.message.verify-email')}</p>
+          ) : (loading ? (<button type="button" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full text-center flex items-center justify-center">
+            <CircleLoader loading={loading} size={25} color="#ffff" /></button>) : (<button type="submit" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full font-cocogoose text-xs text-center uppercase">{t('home.header.auth.singin')}</button>)
           )
-        )}
+        }
       </form>
       {success && (<div className="text-lime-700 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">{success}</div>)}
       {error && (<div className="text-red-800 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">{error}</div>)}
-      {!error && !success && (<div className="text-gray-600 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">¿Necesitas ayuda? {nextSite.email}</div>)}
+      {!error && !success && (<div className="text-gray-600 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">{t('home.header.auth.message.need-help')} {nextSite.email}</div>)}
     </div>
   );
 };

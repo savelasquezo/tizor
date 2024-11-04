@@ -18,156 +18,156 @@
         "title": "Total",
         "description": "Juros obtidos"
       }
-    }
-  },
-  "logs": {
-    "table": {
-      "th1": "Comprovante",
-      "th2": "Valor",
-      "th3": "Data",
-      "th4": "Movimento",
-      "th5": "Status"
     },
-    "types": {
-      "interest": "Interesses",
-      "outcome": "Retirada",
-      "income": "Depósito",
-      "investment": "Investimento",
-      "ref": "Indicações"
-    },
-    "states": {
-      "invoiced": "Faturado",
-      "done": "Aprovado",
-      "refund": "Reembolso"
-    },
-    "filter": "Digite o Comprovante"
-  },
-  "meta": {
-    "description": "A Tizorbank transforma a maneira como você pensa sobre suas finanças; uma fintech inovadora que oferece a oportunidade de fazer seu dinheiro crescer com retornos diários superiores. Através da nossa plataforma de investimento, você pode investir de forma segura e sem complicações, vendo suas economias gerarem retornos constantes dia após dia.",
-    "information": "A segurança é nossa prioridade. Para garantir que você tenha total controle sobre seus fundos e evitar qualquer inconveniente, é essencial manter seus dados de usuário atualizados. Manter suas informações em dia é a chave para gerenciarmos seu capital de forma eficiente e sem riscos.",
-    "interface": {
-      "updateInfo": {
-        "title": "Atualizar Informações",
-        "description": "A Tizorbank não se responsabiliza por perdas ou inconvenientes se o usuário não mantiver seu endereço atualizado ou perder o acesso à sua carteira digital. É essencial que os dados estejam sempre atualizados para garantir a segurança dos investimentos e o acesso contínuo aos fundos.",
-        "message": {
-          "success": "Atualizado! Você alterou sua carteira virtual com sucesso.",
-          "information": "Mantenha seus dados atualizados para evitar perdas em transações.",
-          "help": "Precisa de ajuda?"
-        }
+    "logs": {
+      "table": {
+        "th1": "Comprovante",
+        "th2": "Valor",
+        "th3": "Data",
+        "th4": "Movimento",
+        "th5": "Status"
       },
-      "invoice": {
-        "button": "Adicionar",
-        "tab1": "Adicionar",
-        "tab2": "Histórico",
-        "placeholder": "Digite o valor",
-        "description": "A confirmação da transação pode levar até 36 horas para ser verificada. Durante este tempo, nosso sistema processará seu pedido para garantir a segurança de cada transação. Se você tiver dúvidas, entre em contato com nosso serviço de atendimento ao cliente.",
-        "table": {
-          "th1": "Comprovante",
-          "th2": "Carteira",
-          "th3": "Valor",
-          "th4": "Data",
-          "th5": "Status",
-          "information": {
-            "alert": "Você ainda não fez nenhum depósito!",
-            "message": "Adicione saldo à sua conta e comece a gerar juros."
+      "types": {
+        "interest": "Interesses",
+        "outcome": "Retirada",
+        "income": "Depósito",
+        "investment": "Investimento",
+        "ref": "Indicações"
+      },
+      "states": {
+        "invoiced": "Faturado",
+        "done": "Aprovado",
+        "refund": "Reembolso"
+      },
+      "filter": "Digite o Comprovante"
+    },
+    "meta": {
+      "description": "A Tizorbank transforma a maneira como você pensa sobre suas finanças; uma fintech inovadora que oferece a oportunidade de fazer seu dinheiro crescer com retornos diários superiores. Através da nossa plataforma de investimento, você pode investir de forma segura e sem complicações, vendo suas economias gerarem retornos constantes dia após dia.",
+      "information": "A segurança é nossa prioridade. Para garantir que você tenha total controle sobre seus fundos e evitar qualquer inconveniente, é essencial manter seus dados de usuário atualizados. Manter suas informações em dia é a chave para gerenciarmos seu capital de forma eficiente e sem riscos.",
+      "interface": {
+        "updateInfo": {
+          "title": "Atualizar Informações",
+          "description": "A Tizorbank não se responsabiliza por perdas ou inconvenientes se o usuário não mantiver seu endereço atualizado ou perder o acesso à sua carteira digital. É essencial que os dados estejam sempre atualizados para garantir a segurança dos investimentos e o acesso contínuo aos fundos.",
+          "message": {
+            "success": "Atualizado! Você alterou sua carteira virtual com sucesso.",
+            "information": "Mantenha seus dados atualizados para evitar perdas em transações.",
+            "help": "Precisa de ajuda?"
           }
         },
-        "states": {
-          "invoiced": "Faturado",
-          "done": "Aprovado",
-          "error": "Erro"
-        },
-        "message": {
-          "success": "Parabéns! Você gerou sua fatura com sucesso.",
-          "information": "Transfira a quantia em USDT para o endereço da carteira indicado.",
-          "help": "Precisa de ajuda?"
-        }
-      },
-      "withdrawal": {
-        "button": "Transferir",
-        "tab1": "Transferir",
-        "tab2": "Histórico",
-        "placeholder": "Digite o valor",
-        "description": "A confirmação da transferência pode levar até 36 horas para ser realizada. Durante este tempo, nosso sistema processará seu pedido para garantir a segurança de cada transação. Se você tiver dúvidas, entre em contato com nosso serviço de atendimento ao cliente.",
-        "table": {
-          "th1": "Comprovante",
-          "th2": "Carteira",
-          "th3": "Valor",
-          "th4": "Data",
-          "th5": "Status",
-          "information": {
-            "alert": "Você ainda não fez nenhum saque!",
-            "message": "Os custos das transações dependerão da rede selecionada."
-          }
-        },
-        "states": {
-          "invoiced": "Faturado",
-          "done": "Aprovado",
-          "error": "Erro"
-        },
-        "message": {
-          "success": "Parabéns! Você gerou a solicitação de transferência com sucesso.",
-          "information": "Verificaremos a transferência e realizaremos o envio nas próximas horas.",
-          "help": "Precisa de ajuda?"
-        }
-      },
-      "investment": {
-        "button": "Investir",
-        "tab1": "Investir",
-        "tab2": "Histórico",
-        "description": "Invista seu dinheiro em prazos definidos no Tizorbank e maximize seus lucros. Ao optar por esta modalidade, você garante um retorno superior em comparação com os investimentos tradicionais.",
-        "table": {
-          "th1": "Voucher",
-          "th2": "Saldo",
-          "th3": "Juros",
-          "th4": "Acumulado",
-          "th5": "Data",
-          "th6": "Estado",
-          "information": {
-            "alert": "Você ainda não fez nenhum investimento!",
-            "message": "Invista seu dinheiro em prazos definidos e aumente sua rentabilidade"
-          }
-        },
-        "label": {
-          "invest": "Investimento",
-          "temporality": "Temporalidade"
-        },
-        "results": {
-          "total": "Total",
-          "interest": "Juros",
-          "invest": "Investimento",
-          "settlement": "Liquidação"
-        },
-        "states": {
-          "active": "Ativa",
-          "inactive": "Inativa",
-          "cancelled": "Cancelada"
-        },
-        "unlock": {
-          "description": {
-            "txt1": "O usuário tem a opção de cancelar seu investimento a qualquer momento, o que acionará o reembolso dos fundos inicialmente investidos. Além disso, será concedida uma compensação adicional, calculada com base nos juros gerados até a data do cancelamento. Este processo oferece uma forma simples de recuperar seu investimento.",
-            "txt2": "É importante destacar que o cancelamento do investimento é irreversível e é executado imediatamente. Uma vez solicitada a transação, ela não pode ser revertida ou modificada. Por isso, é recomendado avaliar cuidadosamente sua decisão antes de prosseguir com o cancelamento."
+        "invoice": {
+          "button": "Adicionar",
+          "tab1": "Adicionar",
+          "tab2": "Histórico",
+          "placeholder": "Digite o valor",
+          "description": "A confirmação da transação pode levar até 36 horas para ser verificada. Durante este tempo, nosso sistema processará seu pedido para garantir a segurança de cada transação. Se você tiver dúvidas, entre em contato com nosso serviço de atendimento ao cliente.",
+          "table": {
+            "th1": "Comprovante",
+            "th2": "Carteira",
+            "th3": "Valor",
+            "th4": "Data",
+            "th5": "Status",
+            "information": {
+              "alert": "Você ainda não fez nenhum depósito!",
+              "message": "Adicione saldo à sua conta e comece a gerar juros."
+            }
           },
-          "information": "A remoção do investimento é irreversível, uma penalização será aplicada ao capital acumulado, o investimento inicial será reembolsado junto com uma compensação adicional calculada com base nos juros gerados até a data da remoção. Revise cuidadosamente as condições antes de prosseguir."
+          "states": {
+            "invoiced": "Faturado",
+            "done": "Aprovado",
+            "error": "Erro"
+          },
+          "message": {
+            "success": "Parabéns! Você gerou sua fatura com sucesso.",
+            "information": "Transfira a quantia em USDT para o endereço da carteira indicado.",
+            "help": "Precisa de ajuda?"
+          }
         },
-        "message": {
-          "success": "Parabéns! Você gerou um novo investimento com sucesso.",
-          "information": "O saldo gerado será transferido para sua conta ao final do período de investimento.",
-          "help": "Precisa de ajuda?"
+        "withdrawal": {
+          "button": "Transferir",
+          "tab1": "Transferir",
+          "tab2": "Histórico",
+          "placeholder": "Digite o valor",
+          "description": "A confirmação da transferência pode levar até 36 horas para ser realizada. Durante este tempo, nosso sistema processará seu pedido para garantir a segurança de cada transação. Se você tiver dúvidas, entre em contato com nosso serviço de atendimento ao cliente.",
+          "table": {
+            "th1": "Comprovante",
+            "th2": "Carteira",
+            "th3": "Valor",
+            "th4": "Data",
+            "th5": "Status",
+            "information": {
+              "alert": "Você ainda não fez nenhum saque!",
+              "message": "Os custos das transações dependerão da rede selecionada."
+            }
+          },
+          "states": {
+            "invoiced": "Faturado",
+            "done": "Aprovado",
+            "error": "Erro"
+          },
+          "message": {
+            "success": "Parabéns! Você gerou a solicitação de transferência com sucesso.",
+            "information": "Verificaremos a transferência e realizaremos o envio nas próximas horas.",
+            "help": "Precisa de ajuda?"
+          }
+        },
+        "investment": {
+          "button": "Investir",
+          "tab1": "Investir",
+          "tab2": "Histórico",
+          "description": "Invista seu dinheiro em prazos definidos no Tizorbank e maximize seus lucros. Ao optar por esta modalidade, você garante um retorno superior em comparação com os investimentos tradicionais.",
+          "table": {
+            "th1": "Voucher",
+            "th2": "Saldo",
+            "th3": "Juros",
+            "th4": "Acumulado",
+            "th5": "Data",
+            "th6": "Estado",
+            "information": {
+              "alert": "Você ainda não fez nenhum investimento!",
+              "message": "Invista seu dinheiro em prazos definidos e aumente sua rentabilidade"
+            }
+          },
+          "label": {
+            "invest": "Investimento",
+            "temporality": "Temporalidade"
+          },
+          "results": {
+            "total": "Total",
+            "interest": "Juros",
+            "invest": "Investimento",
+            "settlement": "Liquidação"
+          },
+          "states": {
+            "active": "Ativa",
+            "inactive": "Inativa",
+            "cancelled": "Cancelada"
+          },
+          "unlock": {
+            "description": {
+              "txt1": "O usuário tem a opção de cancelar seu investimento a qualquer momento, o que acionará o reembolso dos fundos inicialmente investidos. Além disso, será concedida uma compensação adicional, calculada com base nos juros gerados até a data do cancelamento. Este processo oferece uma forma simples de recuperar seu investimento.",
+              "txt2": "É importante destacar que o cancelamento do investimento é irreversível e é executado imediatamente. Uma vez solicitada a transação, ela não pode ser revertida ou modificada. Por isso, é recomendado avaliar cuidadosamente sua decisão antes de prosseguir com o cancelamento."
+            },
+            "information": "A remoção do investimento é irreversível, uma penalização será aplicada ao capital acumulado, o investimento inicial será reembolsado junto com uma compensação adicional calculada com base nos juros gerados até a data da remoção. Revise cuidadosamente as condições antes de prosseguir."
+          },
+          "message": {
+            "success": "Parabéns! Você gerou um novo investimento com sucesso.",
+            "information": "O saldo gerado será transferido para sua conta ao final do período de investimento.",
+            "help": "Precisa de ajuda?"
+          }
         }
       }
-    }
-  },
-  "shared": {
-    "description": "Convide outros a se juntarem e comece a gerar ganhos passivos diários. Cada novo usuário que se registrar com seu link e fizer um investimento gerará automaticamente juros. Seus amigos desfrutarão dos benefícios de investir e você verá seus ganhos crescerem a cada dia. Compartilhe a oportunidade de criar riqueza e maximize sua renda em nossa comunidade de investidores.",
-    "information": "Envie seu link de convite e comece a gerar ganhos ao convidar outros a investir; você gerará juros diários com o investimento deles. É fácil e rápido!",
-    "table": {
-      "th1": "Usuário",
-      "th2": "Saldo",
-      "th3": "Data",
-      "information": {
-        "alert": "Você ainda não compartilhou seu link?",
-        "message": "Obtenha renda passiva de seus referidos"
+    },
+    "shared": {
+      "description": "Convide outros a se juntarem e comece a gerar ganhos passivos diários. Cada novo usuário que se registrar com seu link e fizer um investimento gerará automaticamente juros. Seus amigos desfrutarão dos benefícios de investir e você verá seus ganhos crescerem a cada dia. Compartilhe a oportunidade de criar riqueza e maximize sua renda em nossa comunidade de investidores.",
+      "information": "Envie seu link de convite e comece a gerar ganhos ao convidar outros a investir; você gerará juros diários com o investimento deles. É fácil e rápido!",
+      "table": {
+        "th1": "Usuário",
+        "th2": "Saldo",
+        "th3": "Data",
+        "information": {
+          "alert": "Você ainda não compartilhou seu link?",
+          "message": "Obtenha renda passiva de seus referidos"
+        }
       }
     }
   }

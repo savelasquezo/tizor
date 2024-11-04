@@ -123,8 +123,8 @@ const Withdrawal: React.FC<SessionAuthenticated> = ({ session }) => {
     <div className="w-full h-full">
       <div className="w-full h-56 space-y-4">
         <div className='w-full flex flex-row'>
-          <button onClick={() => switchModal('add')} className={`h-6 text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'add' ? 'bg-blue-700 hover:bg-blue-900' : 'bg-blue-400'}`}>{t('meta.interface.withdrawal.tab1')}</button>
-          <button onClick={() => switchModal('lst')} className={`h-6 text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'lst' ? 'bg-gray-700 hover:bg-gray-800' : 'bg-gray-400'}`}>{t('meta.interface.withdrawal.tab2')}</button>
+          <button onClick={() => switchModal('add')} className={`h-6 text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'add' ? 'bg-blue-700 hover:bg-blue-900' : 'bg-blue-400'}`}>{t('admin.meta.interface.withdrawal.tab1')}</button>
+          <button onClick={() => switchModal('lst')} className={`h-6 text-gray-100 font-cocogoose rounded-sm px-2 py-1 inline-flex text-xs uppercase font-semibold transition duration-300 mr-2 ${activeTab === 'lst' ? 'bg-gray-700 hover:bg-gray-800' : 'bg-gray-400'}`}>{t('admin.meta.interface.withdrawal.tab2')}</button>
         </div>
         <form className={`${activeTab === 'add' ? 'block animate-fade-in animate__animated animate__fadeIn' : 'hidden animate-fade-out animate__animated animate__fadeOut'}`}>
           <div className="relative h-full flex items-center rounded-md border border-gray-400">
@@ -140,7 +140,7 @@ const Withdrawal: React.FC<SessionAuthenticated> = ({ session }) => {
               pattern="[0-9]*"
               required
               readOnly={registrationSuccess}
-              placeholder={t('meta.interface.withdrawal.placeholder')}
+              placeholder={t('admin.meta.interface.withdrawal.placeholder')}
             />
             {!registrationSuccess ? (
               loading ? (<button className="flex justify-center items-center bg-blue-800 h-10 w-10 text-white p-2 shadow-sm rounded-r-md"><CircleLoader loading={loading} size={14} color="#ffff" /></button>) : (
@@ -157,12 +157,12 @@ const Withdrawal: React.FC<SessionAuthenticated> = ({ session }) => {
             <span onClick={handleCopyClick} className={`cursor-pointer transition-colors duration-1000 ${copySuccess ? 'text-green-500' : ''}`}><FaRegCopy /></span>
           </div>
           <div className="text-center">
-            <p className="mt-2 text-gray-800 text-[0.65rem] leading-none md:text-xs">{t('meta.interface.withdrawal.description')}</p>
+            <p className="mt-2 text-gray-800 text-[0.65rem] leading-none md:text-xs">{t('admin.meta.interface.withdrawal.description')}</p>
             <div className='flex items-center justify-center text-xs h-10 my-4 border-t-1 border-gray-400'>
               {registrationSuccess && <p className="text-green-900 font-semibold font-cocogoose text-[0.65rem] uppercase mt-3">
-                {t('meta.interface.withdrawal.message.success')}<br />{t('meta.interface.withdrawal.message.information')}</p>}
+                {t('admin.meta.interface.withdrawal.message.success')}<br />{t('admin.meta.interface.withdrawal.message.information')}</p>}
               {error && <p className="text-red-600 font-semibold font-carvingsoft text-sm mt-3 uppercase">{error}</p>}
-              {!registrationSuccess && !error && <p className="text-gray-900 mt-3">{t('meta.interface.withdrawal.message.help')} {data?.email ?? 'support@webmaster.com'}</p>}
+              {!registrationSuccess && !error && <p className="text-gray-900 mt-3">{t('admin.meta.interface.withdrawal.message.help')} {data?.email ?? 'support@webmaster.com'}</p>}
             </div>
           </div>
         </form>
@@ -172,11 +172,11 @@ const Withdrawal: React.FC<SessionAuthenticated> = ({ session }) => {
               <table className="w-full text-center text-sm font-light table-fixed">
                 <thead className="font-medium text-gray-900">
                   <tr className="border-b-2 border-slate-400 font-cocogoose font-semibold uppercase text-xs">
-                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1">{t('meta.interface.withdrawal.table.th1')}</th>
-                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1 hidden lg:table-cell">{t('meta.interface.withdrawal.table.th2')}</th>
-                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1 hidden sm:table-cell">{t('meta.interface.withdrawal.table.th3')}</th>
-                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1">{t('meta.interface.withdrawal.table.th4')}</th>
-                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1">{t('meta.interface.withdrawal.table.th5')}</th>
+                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1">{t('admin.meta.interface.withdrawal.table.th1')}</th>
+                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1 hidden lg:table-cell">{t('admin.meta.interface.withdrawal.table.th2')}</th>
+                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1 hidden sm:table-cell">{t('admin.meta.interface.withdrawal.table.th3')}</th>
+                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1">{t('admin.meta.interface.withdrawal.table.th4')}</th>
+                    <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-1">{t('admin.meta.interface.withdrawal.table.th5')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -186,7 +186,7 @@ const Withdrawal: React.FC<SessionAuthenticated> = ({ session }) => {
                       <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-1 font-bankprinter hidden lg:table-cell">{obj.address ? obj.address : ''}</td>
                       <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-1 font-bankprinter hidden sm:table-cell">{obj.amount ? formatNumber(obj.amount) : ''}</td>
                       <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-1 font-bankprinter">{obj.date ? obj.date : ''}</td>
-                      <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-1 font-bankprinter">{obj.state ? t(`meta.interface.withdrawal.states.${lowerCase(obj.state)}`) : ''}</td>
+                      <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-1 font-bankprinter">{obj.state ? t(`admin.meta.interface.withdrawal.states.${lowerCase(obj.state)}`) : ''}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -211,8 +211,8 @@ const Withdrawal: React.FC<SessionAuthenticated> = ({ session }) => {
           ) : (
             <div className='w-full h-full flex flex-col justify-start items-center'>
               <span className='text-center text-gray-800 mt-8 text-sm'>
-                <p>{t('meta.interface.withdrawal.table.information.alert')}</p>
-                <p>{t('meta.interface.withdrawal.table.information.message')}</p>
+                <p>{t('admin.meta.interface.withdrawal.table.information.alert')}</p>
+                <p>{t('admin.meta.interface.withdrawal.table.information.message')}</p>
               </span>
             </div>
           )}

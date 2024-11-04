@@ -18,16 +18,11 @@ class LinkSerializer(serializers.ModelSerializer):
         model = model.Link
         fields = '__all__'
 
-class FAQSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = model.FAQs
-        fields = '__all__'
 
 class TizorbankSerializer(serializers.ModelSerializer):
 
     links = LinkSerializer(many=True, read_only=True, source='link_set')
     images = ImageSliderSerializer(many=True, read_only=True, source='imageslider_set')
-    faqs = FAQSerializer(many=True, read_only=True, source='faqs_set') 
 
     video = serializers.SerializerMethodField()
     def get_video(self, obj):

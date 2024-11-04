@@ -75,7 +75,7 @@ const UpdateInfo: React.FC<SessionAuthenticated> = ({ session }) => {
     <div className="w-full h-full">
       <div className="w-full h-auto space-y-4">
         <form className='w-full h-full'>
-          <p className='text-gray-900 font-cocogoose text-start font-semibold my-4'>{t('meta.interface.updateInfo.title')}</p>
+          <p className='text-gray-900 font-cocogoose text-start font-semibold my-4'>{t('admin.meta.interface.updateInfo.title')}</p>
           <div className="relative flex items-center rounded-md border border-gray-400">
             <Select className="!w-[9rem] lg:!w-[7rem]" radius={'none'} selectedKeys={[selectedNetwork]} disabledKeys={[selectedNetwork]}>
               <SelectItem onClick={() => handleNetworkChange('bep20')} key="bep20">BEP20</SelectItem>
@@ -99,11 +99,11 @@ const UpdateInfo: React.FC<SessionAuthenticated> = ({ session }) => {
               )) : (<p className="flex justify-center items-center bg-gray-600 h-10 w-10 text-white p-2 shadow-sm rounded-r-md"><FaCheck /></p>
             )}
           </div>
-          <p className="mt-2 text-gray-900 text-xs text-center">{t('meta.interface.updateInfo.description')}</p>
+          <p className="mt-2 text-gray-900 text-xs text-center">{t('admin.meta.interface.updateInfo.description')}</p>
           <div className='flex items-center justify-center text-xs h-10 my-4 border-t-1 border-gray-400 text-center'>
-            {registrationSuccess && <p className="text-green-900 font-semibold font-cocogoose text-[0.65rem] mt-3">{t('meta.interface.updateInfo.message.success')} <br />{t('meta.interface.updateInfo.message.information')}</p>}
+            {registrationSuccess && <p className="text-green-900 font-semibold font-cocogoose text-[0.65rem] mt-3">{t('admin.meta.interface.updateInfo.message.success')} <br />{t('admin.meta.interface.updateInfo.message.information')}</p>}
             {error && <p className="text-red-600 font-semibold font-carvingsoft text-sm mt-3 uppercase">{error}</p>}
-            {!registrationSuccess && !error && <p className="text-gray-900 mt-3">{t('meta.interface.updateInfo.message.help')} {data?.email ?? 'support@webmaster.com'}</p>}
+            {!registrationSuccess && !error && <p className="text-gray-900 mt-3">{t('admin.meta.interface.updateInfo.message.help')} {data?.email ?? 'support@webmaster.com'}</p>}
           </div>
         </form>
       </div>

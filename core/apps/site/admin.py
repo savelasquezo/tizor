@@ -44,17 +44,10 @@ class LinksInline(admin.TabularInline):
     extra = 0
     fieldsets = ((' ', {'fields': (('name','link','is_active'),)}),)
 
-class FAQsInline(admin.StackedInline):
-    
-    model = model.FAQs
-    extra = 0
-    fieldsets = ((' ', {'fields': (('question','is_active'),'answer')}),)
-
-
 
 class TizorbankAdmin(admin.ModelAdmin):
 
-    inlines = [ImageSliderInline, LinksInline, FAQsInline, ]
+    inlines = [ImageSliderInline, LinksInline, ]
     
     list_display = (
         'default',

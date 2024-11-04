@@ -1,16 +1,21 @@
+'use client';
+
 import React, { useState } from 'react';
 import { NextResponse } from 'next/server';
 import { useRouter, useSearchParams } from 'next/navigation';
-import CircleLoader from 'react-spinners/CircleLoader';
-import { ForgotPasswordConfirmInfo } from '@/lib/types/types';
-import { Input } from "@nextui-org/react";
 
+import { useLanguage } from '@/utils/i18next';
+import { ForgotPasswordConfirmInfo } from '@/lib/types/types';
+
+import CircleLoader from 'react-spinners/CircleLoader';
+import { Input } from "@nextui-org/react";
 import { FiLock } from 'react-icons/fi'
-import { IoEye } from "react-icons/io5";
-import { IoEyeOff } from "react-icons/io5";
+import { IoEye, IoEyeOff } from "react-icons/io5";
+
 
 const ForgotPasswordConfirmModal: React.FC<ForgotPasswordConfirmInfo> = ({ closeModal, updateForgotPasswordModalState }) => {
   const nextSite = JSON.parse(localStorage.getItem('nextsite.data') || '{}');
+  const { t } = useLanguage();
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -67,13 +72,13 @@ const ForgotPasswordConfirmModal: React.FC<ForgotPasswordConfirmInfo> = ({ close
       if (res.ok) {
         setChangePasswordSuccess(true);
         updateForgotPasswordModalState(false);
-        setSuccess('¡Contraseña Actualizada!');
+        setError(`${t('home.header.auth.success.restore-success')}`);
         NextResponse.json({ success: 'The request has been processed successfully.' }, { status: 200 });
       }
 
     } catch (error) {
       setChangePasswordSuccess(false);
-      setError('¡Error al Actualizar! Inténtalo Nuevamente!');
+      setError(`${t('home.header.auth.error.restore-failed')}`);
       NextResponse.json({ error: 'There was an error with the network request' }, { status: 500 });
     } finally {
       setLoading(false);
@@ -131,23 +136,15 @@ const ForgotPasswordConfirmModal: React.FC<ForgotPasswordConfirmInfo> = ({ close
           }
         />
         {changePasswordSuccess ? (
-          <button className="h-10 bg-green-700 text-white font-semibold rounded-sm py-2 px-4 w-full text-sm text-center uppercase"
-            onClick={() => { closeModal(); router.push('/'); }}>
-            Actualizado
-          </button>
-        ) : (
-          loading ? (
-            <button type="button" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full text-center flex items-center justify-center">
-              <CircleLoader loading={loading} size={25} color="#ffff" />
-            </button>
-          ) : (
-            <button type="submit" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full font-cocogoose text-xs text-center uppercase">Restablecer</button>
+          <button onClick={() => { closeModal(); router.push('/'); }} className="h-10 bg-green-700 text-white font-semibold rounded-sm py-2 px-4 w-full text-sm text-center uppercase">{t('home.header.auth.message.updated')}</button>
+          ) : (loading ? (<button type="button" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full text-center flex items-center justify-center"><CircleLoader loading={loading} size={25} color="#ffff" /></button>
+            ) : (<button type="submit" className="h-10 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-sm py-2 px-4 w-full font-cocogoose text-xs text-center uppercase">{t('home.header.auth.restore')}</button>)
           )
-        )}
+        }
       </form>
       {success && (<div className="text-lime-700 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">{success}</div>)}
       {error && (<div className="text-red-800 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">{error}</div>)}
-      {!error && !success && (<div className="text-gray-600 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">¿Necesitas ayuda? {nextSite.email}</div>)}
+      {!error && !success && (<div className="text-gray-600 font-semibold font-cocogoose text-[0.65rem] md:text-xs mt-0 md:mt-2">{t('home.header.auth.message.need-help')} {nextSite.email}</div>)}
     </div>
   );
 };

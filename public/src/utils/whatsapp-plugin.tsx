@@ -43,11 +43,16 @@ export function WhatsappPlugin() {
             headerCaption="Online"
             bodyBgColor="#ECE5DD"
             chatPersonName="Tizorbot"
-            chatMessage={<>¡Bienvenido a T-Bank! 👋 <br /> ¿Tienes dudas? Consulta nuestras<br /> <a className='text-gray-800 font-semibold font-cocogoose' href="/help-and-tutorials" target='_blank'>Preguntas Frecuentes.</a></>}
+            chatMessage={
+              <>{t('home.widget-whatsapp.title')} 👋 <br />
+                {t('home.widget-whatsapp.subtitle')}<br /> 
+                <a className='text-gray-800 font-semibold font-cocogoose' href="/help-and-tutorials">{t('home.widget-whatsapp.help')}</a>
+              </>
+            }
             footerBgColor="#999"
             placeholder="Escribe un Mensaje"
             btnBgColor="#1f2937"
-            btnTxt={<span className='font-cocogoose uppercase text-xs'>Chatear</span>}
+            btnTxt={<span className='font-cocogoose uppercase text-xs'>{t('home.widget-whatsapp.button')}</span>}
             btnTxtColor="white"
             style={{ border: 'none !important'}}
 		/>

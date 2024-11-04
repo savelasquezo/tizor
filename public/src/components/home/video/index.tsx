@@ -1,6 +1,10 @@
+'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+
 import { imageLoader } from '@/utils/imageConfig';
+
 
 const useClickOutside = (handler: () => void) => {
   const domNode = useRef<HTMLDivElement>(null);

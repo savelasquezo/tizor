@@ -86,7 +86,7 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
             name="voucher"
             value={voucherFilter}
             onChange={handleFilterChange}
-            placeholder={t('logs.filter')}
+            placeholder={t('admin.logs.filter')}
             className="w-2/3"
             startContent={<MdQrCode2 className="text-2xl text-default-400 pointer-events-none flex-shrink-0"/>}
           />
@@ -102,11 +102,11 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
           <table className="min-w-full text-center text-sm font-light table-fixed">
             <thead className="font-medium text-gray-900">
               <tr className="border-b-2 border-slate-400 font-cocogoose font-semibold uppercase text-xs">
-                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">{t('logs.table.th1')}</th>
-                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">{t('logs.table.th2')}</th>
-                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">{t('logs.table.th3')}</th>
-                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5 hidden sm:table-cell">{t('logs.table.th4')}</th>
-                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5 hidden sm:table-cell">{t('logs.table.th5')}</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">{t('admin.logs.table.th1')}</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">{t('admin.logs.table.th2')}</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5">{t('admin.logs.table.th3')}</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5 hidden sm:table-cell">{t('admin.logs.table.th4')}</th>
+                <th scope="col" className="w-1/3 sm:w-1/5 px-2 lg:px-6 py-0.5 hidden sm:table-cell">{t('admin.logs.table.th5')}</th>
               </tr>
             </thead>
             <tbody>
@@ -115,8 +115,8 @@ const Logs: React.FC<SessionAuthenticated> = ({ session }) => {
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.voucher ? ticket.voucher : ''}</td>
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.amount ? formatNumber(ticket.amount) : ''}</td>
                   <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter">{ticket.date ? ticket.date : ''}</td>
-                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.type ? t(`logs.types.${lowerCase(ticket.type)}`) : ''}</td>
-                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.state ? t(`logs.states.${lowerCase(ticket.state)}`) : ''}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.type ? t(`admin.logs.types.${lowerCase(ticket.type)}`) : ''}</td>
+                  <td className="w-1/3 sm:w-1/5 whitespace-nowrap px-2 lg:px-6 py-0.5 font-bankprinter hidden sm:table-cell">{ticket.state ? t(`admin.logs.states.${lowerCase(ticket.state)}`) : ''}</td>
                 </tr>
               ))}
             </tbody>
