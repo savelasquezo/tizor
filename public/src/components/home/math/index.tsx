@@ -29,7 +29,7 @@ const InvestmentSimulator: React.FC = () => {
 
   useEffect(() => {
     setInterest(mathInterest(months));
-  }, [months]);
+  }, [months, mathInterest]); 
 
   useEffect(() => {
     const fetchedSettings = nextSite();
