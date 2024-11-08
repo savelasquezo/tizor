@@ -19,17 +19,17 @@ const InvestmentSimulator: React.FC = () => {
   const [months, setMonths] = useState<number>(3);
   const [interest, setInterest] = useState<number>(14);
 
-  const mathInterest = (months: number) => {
-    const minRate = data?.min_interest || 12;
-    const maxRate = data?.max_interest || 24;
-    return minRate + ((maxRate - minRate) * (months - 3)) / (33);
-  };
-
   const total = amount * Math.pow(1 + (interest / 1200), months);
 
   useEffect(() => {
-    setInterest(mathInterest(months));
-  }, [months, mathInterest]); 
+    const calculateInterest = () => {
+      const minRate = data?.min_interest || 12;
+      const maxRate = data?.max_interest || 24;
+      return minRate + ((maxRate - minRate) * (months - 3)) / (33);
+    };
+  
+    setInterest(calculateInterest());
+  }, [months, data]);
 
   useEffect(() => {
     const fetchedSettings = nextSite();
