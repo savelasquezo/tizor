@@ -51,7 +51,8 @@
     "how-to": {
       "title": {
         "title": "¿Como funciona T-Bank?",
-        "subtitle": "Ahorrar con nosotros es fácil y sin complicaciones. Abre tu cuenta y empieza a disfrutar de los intereses más altos del mercado, todo desde donde quieras. Si nos necesitas, siempre estaremos aquí para apoyarte."
+        "subtitle": "Ahorrar con nosotros es fácil y sin complicaciones. Abre tu cuenta y empieza a disfrutar de los intereses más altos del mercado, todo desde donde quieras. Si nos necesitas, siempre estaremos aquí para apoyarte.",
+        "help": "Preguntas Frecuentes"
       },
       "cards": {
         "obj1": {
@@ -88,12 +89,14 @@
         "label3": "Interes (E.A)",
         "label4": "Total"
       },
-      "buton": "Solicitar"
+      "buton": "Solicitar",
+      "investment-message": "¡Hola T-Bank! Estoy interesado en realizar una inversión y me gustaría recibir más información. ¿Podrían ayudarme?"
     },
     "support": {
       "title": "¿Necesitas ayuda?",
       "description": "Nuestro principal objetivo es facilitarte la vida. Por eso, si necesitas asistencia, solo tienes que presionar un botón.",
-      "buton": "Soporte Tecnico"
+      "buton": "Soporte Tecnico",
+      "help-message": "¡Hola T-Bank! Necesito un poco de ayuda con mi cuenta. ¿Podrías echarme una mano?"
     },
     "footer": {
       "paragraph1": "¡Haz que tu dinero trabaje para ti de verdad!"
@@ -158,24 +161,24 @@
       },
       "list": {
         "faq1": {
-          "question": "¿Como Invertir",
-          "answer": "Envia el Dinero"
+          "question": "¿Cómo puedo invertir en T-Bank?",
+          "answer": "Para invertir en T-Bank, debes registrarte en nuestra plataforma y vincular una billetera compatible con USDT (Tether). Luego, podrás transferir fondos y seleccionar un plan de staking que se ajuste a tus objetivos de inversión. Una vez que tus fondos estén en staking, comenzarán a generar ingresos de acuerdo con nuestras proyecciones anuales de rendimiento."
         },
         "faq2": {
-          "question": "¿Como Invertir",
-          "answer": "Envia el Dinero"
+          "question": "¿Qué es el staking y cómo funciona en T-Bank?",
+          "answer": "El staking es el proceso mediante el cual tus fondos se bloquean durante un período de tiempo específico, permitiéndote obtener rendimientos a cambio. En T-Bank, los fondos que se destinan al staking se gestionan en mercados de futuros de criptomonedas y en operaciones de minería de Bitcoin, lo cual ayuda a maximizar la rentabilidad. Una vez finalizado el período de staking, puedes retirar tanto el capital invertido como los rendimientos generados."
         },
         "faq3": {
-          "question": "¿Como Invertir",
-          "answer": "Envia el Dinero"
+          "question": " ¿Cuál es el período mínimo para mantener mis fondos en staking?",
+          "answer": "El período mínimo de staking en T-Bank es de tres meses. Si decides retirar tus fondos antes de este plazo, se aplicará una penalización, y recibirás únicamente un porcentaje de los rendimientos acumulados hasta ese momento."
         },
         "faq4": {
-          "question": "¿Como Invertir",
-          "answer": "Envia el Dinero"
+          "question": " ¿Qué es el programa de referidos y cómo funciona?",
+          "answer": "Nuestro programa de referidos permite a los usuarios ganar comisiones pasivas invitando a otros a invertir en T-Bank. Cuando uno de tus referidos realiza una inversión, recibes un porcentaje del monto invertido, que se paga en USDT. Este porcentaje se aplica solo a la inversión inicial de tus referidos y no a reinversiones futuras."
         },
         "faq5": {
-          "question": "Innovando",
-          "answer": "Ahorro e nversiónes"
+          "question": "¿Qué sucede si T-Bank actualiza los Términos y Condiciones?",
+          "answer": "T-Bank se reserva el derecho de modificar los Términos y Condiciones en cualquier momento para adaptarse a nuevas regulaciones o cambios en el mercado. Si se realizan actualizaciones, serás notificado oportunamente, y los cambios entrarán en vigor de inmediato. Te recomendamos revisar periódicamente los Términos y Condiciones para estar al tanto de cualquier cambio."
         }
       }
     },
@@ -187,11 +190,11 @@
       "gallery": {
         "video1": {
           "title": "¿Como Invertir?",
-          "subtitle": "Ahorro e Inversiónes"
+          "subtitle": "Descubre el Paso a Paso para Empezar a Invertir en T-Bank y Aprovecha al Máximo tus Fondos"
         },
         "video2": {
           "title": "¿Como Administrarla?",
-          "subtitle": "Ahorro e Inversiónes"
+          "subtitle": "Guía Completa para Navegar y Sacar el Máximo Provecho de la Plataforma T-Bank"
         }
       }
     }
@@ -199,24 +202,50 @@
   "terms-and-conditions": {
     "terms-conditions": {
       "title": "Terminos & Condiciones",
-      "paragraph1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus.",
-      "paragraph2": "Cras velit ante, egestas sed facilisis a, volutpat vel eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi fringilla lorem ut sem feugiat mattis in et enim. Maecenas vestibulum sagittis nunc vitae aliquam. Suspendisse molestie leo nec dolor placerat, in iaculis est molestie. Nullam fermentum viverra eleifend. Phasellus ullamcorper eu lacus at ultricies. Proin vel gravida tortor. Pellentesque non est venenatis felis ultricies consequat. Aenean ullamcorper nisl vitae felis lacinia dignissim. Maecenas ornare odio eu lectus scelerisque malesuada. Duis dignissim dui a blandit vulputate. Vivamus feugiat mattis sapien, at pellentesque ipsum rhoncus et. Maecenas sodales felis arcu, fermentum mollis arcu cursus et. Pellentesque dignissim a urna ut tempus. Vivamus vehicula, metus vestibulum mattis gravida, sem nibh scelerisque ante, vitae ultricies metus risus sed mi.",
-      "paragraph3": "Nullam laoreet semper lacus, sed sagittis justo vestibulum ut. Nulla condimentum, nibh in condimentum dapibus, ante lacus vehicula sapien, nec accumsan enim mauris vel risus. Pellentesque vitae posuere augue. In laoreet pretium tortor, convallis convallis dui dapibus nec.",
-      "paragraph4": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus.",
+      "paragraph1": "Tizor Bank (en adelante, T-Bank) es una plataforma descentralizada que permite a los usuarios almacenar sus fondos en USDT (Tether) a través de redes de blockchain. T-Bank ofrece servicios de staking para generar ingresos sobre estos fondos, con rendimientos anuales efectivos de hasta el",
+      "paragraph2": "Efectivo Anual. Además, cuenta con un programa de referidos que permite a los usuarios ganar comisiones pasivas del ",
+      "paragraph3": "sobre las inversiones de sus referidos, siempre que los referidos conserven la inversión en el ecosistema de la plataforma T-Bank.",
       "items": {
-        "obj1": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj2": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj3": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj4": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj5": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj6": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj7": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj8": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et."
+        "obj1": {
+          "title": "Inversión y Gestión de Fondos",
+          "paragraph1": "Los fondos invertidos en T-Bank se manejan en mercados de futuros descentralizados de criptomonedas, específicamente en BTC (Bitcoin), operados por expertos con una estricta gestión de riesgos.Adicionalmente, una porción de los fondos se destina a operaciones de minería de Bitcoin en nuestras instalaciones, con equipos ASIC de alta tecnología Whatsminer para maximizar la eficiencia.",
+          "paragraph2": "Los fondos puestos en staking deben permanecer en este estado por un período definido para asegurar la rentabilidad adecuada. En caso de que el usuario decida retirar sus fondos antes del plazo de tres meses, se aplicará una penalización que implica recibir únicamente el ",
+          "paragraph3": "de las ganancias generadas hasta el momento del desembolso. La rentabilidad esperada se basa en nuestras proyecciones de mercado y no está garantizada, ya que depende de la volatilidad y riesgos asociados a las inversiones en el mercado de futuros de criptomonedas."
+        },
+        "obj2": {
+          "title": "Comiciones de Referidos",
+          "paragraph1": "T-Bank ofrece un programa de referidos mediante el cual un usuario puede obtener un",
+          "paragraph2": "de la inversión total que realice el cliente referido. Los pagos se efectuarán en USDT y podrán ser retirados conforme a las políticas internas de T-Bank. Las comisiones de referidos se calculan con base en la inversión inicial del cliente referido y no aplican sobre futuras reinversiones."
+        },
+        "obj3": {
+          "title": "Riesgos y Limitaciones",
+          "paragraph1": "T-Bank implementa rigurosas estrategias de gestión de riesgos para mitigar posibles pérdidas; sin embargo, debido a la naturaleza volátil de los mercados de futuros y el ecosistema de criptomonedas, el usuario reconoce y acepta los riesgos inherentes a este tipo de inversiones.",
+          "paragraph2": "Los usuarios comprenden que T-Bank no es una entidad bancaria tradicional y que su modelo de inversión y generación de ingresos depende de mercados descentralizados de alta volatilidad y riesgo."
+        },
+        "obj4": {
+          "title": "Aceptación de Términos",
+          "paragraph1": "Al utilizar los servicios de T-Bank, los usuarios aceptan que sus fondos se administren en mercados de futuros descentralizados de criptomonedas y en actividades de minería de Bitcoin mediante los equipos ASIC de la empresa."
+        },
+        "obj5": {
+          "title": "Descentralización y la Libertad Financiera",
+          "paragraph1": "Los creadores de T-Bank son un grupo de inversionistas que comparten la visión de la libertad financiera y la descentralización del dinero, brindando a los usuarios opciones financieras fuera del control de sistemas bancarios tradicionales"
+        },
+        "obj6": {
+          "title": "Modificaciones de Términos y Condiciones",
+          "paragraph1": "T-Bank se reserva el derecho a modificar estos Términos y Condiciones en cualquier momento. Las actualizaciones serán notificadas a los usuarios y entrarán en vigor inmediatamente.",
+          "paragraph2": "T-Bank no garantiza beneficios fijos y no es responsable de pérdidas derivadas de fluctuaciones de mercado u otros factores externos.",
+          "paragraph3": "Estos términos pueden adaptarse para incluir cláusulas adicionales o mayor detalle según el marco regulatorio y la estructura operativa de T-Bank."
+        },
+        "obj7": {
+          "title": "Política de Privacidad y Protección de Datos",
+          "paragraph1": "T-Bank garantiza la privacidad y seguridad de los datos personales de sus usuarios. La información recopilada se usa únicamente para mejorar la experiencia en la plataforma y cumplir requisitos legales.",
+          "paragraph2": "Los datos están protegidos por encriptación y no se comparten con terceros sin consentimiento, salvo por exigencias legales o regulatorias."
+        }
       }
     },
     "legal": {
       "title": "Aviso Legal",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus."
+      "description": "Al acceder y utilizar los servicios de T-Bank, el usuario reconoce y acepta que está de acuerdo con los Términos y Condiciones aquí descritos. Los servicios ofrecidos por T-Bank no constituyen asesoramiento financiero y no garantizan rendimientos fijos. T-Bank no será responsable por cualquier pérdida derivada de fluctuaciones en los mercados de criptomonedas o de la toma de decisiones de inversión. El usuario asume los riesgos inherentes al uso de los servicios y entiende que las inversiones en criptomonedas están sujetas a alta volatilidad. Se recomienda a los usuarios realizar una evaluación cuidadosa de sus inversiones y, si lo consideran necesario, consultar a un asesor financiero independiente."
     }
   },
   "admin": {

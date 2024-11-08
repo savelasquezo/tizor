@@ -54,7 +54,7 @@ const AboutPage: React.FC = () => {
             </p>
           </div>
           <div className='absolute lg:static w-full lg:w-2/5 flex items-center justify-center -translate-x-8 lg:-translate-x-16 opacity-5 lg:opacity-100 grayscale lg:grayscale-0'>
-            <Image width={370} height={360} src={"/assets/images/figure02.jpg"} className="w-auto h-[30rem] object-contain scale-75 sm:scale-100" style={{ WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 20%)', maskImage: 'linear-gradient(to top, transparent 0%, black 20%)' }} alt="" />
+            <Image width={370} height={360} src={"/assets/images/figure01.webp"} className="w-auto h-[30rem] object-contain scale-75 sm:scale-100" style={{ WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 20%)', maskImage: 'linear-gradient(to top, transparent 0%, black 20%)' }} alt="" />
           </div>
         </div>
         <hr className="my-4 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25" />
@@ -62,20 +62,20 @@ const AboutPage: React.FC = () => {
           <p className='font-cocogoose text-2xl font-semibold my-2 text-blue-950 text-center uppercase'>{t('about-us.services.title.title')}</p>
           <p className='lg:w-1/2 lg:mb-10 text-center font-cocogoose text-[0.65rem] lg:text-xs text-gray-800'>{t('about-us.services.title.subtitle')}<a href='/terms-and-conditions' className='font-semibold'>{t('about-us.services.title.terms-and-conditions')}</a></p>
           <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-12 py-12 !overflow-hidden">
-            <Card isFooterBlurred radius="lg" className={`border-none ${selectedCard === "1" ? "scale-105" : "scale-100"}`}>
-              <Image onClick={() => handleClick("1")} width={320} height={360} src="https://javilinares.com/wp-content/uploads/2024/04/Imagen18-2-1024x631.jpg" className="object-cover" style={{ WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 20%)', maskImage: 'linear-gradient(to top, transparent 0%, black 20%)' }} alt="" />
+            <Card isFooterBlurred radius="lg" className={`border-none hover:scale-105 ${selectedCard === "1" ? "scale-105" : "scale-100"}`}>
+              <Image onClick={() => handleClick("1")} width={320} height={360} src={"/assets/images/card1.webp"} className="object-cover" style={{ WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 20%)', maskImage: 'linear-gradient(to top, transparent 0%, black 20%)' }} alt="" />
               <CardFooter className="justify-between before:bg-black border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
                 <p className="flex justify-center items-center p-2 text-sm text-gray-800 font-cocogoose font-bold">{t('about-us.services.card1.title')}</p>
               </CardFooter>
             </Card>
-            <Card isFooterBlurred radius="lg" className={`border-none ${selectedCard === "2" ? "scale-105" : "scale-100"}`}>
-              <Image onClick={() => handleClick("2")} width={320} height={360} src="https://em.bank/wp-content/uploads/2024/05/how-to-open-a-business-bank-account-in-europe.jpg" className="object-cover" style={{ WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 20%)', maskImage: 'linear-gradient(to top, transparent 0%, black 20%)' }} alt="" />
+            <Card isFooterBlurred radius="lg" className={`border-none hover:scale-105 ${selectedCard === "2" ? "scale-105" : "scale-100"}`}>
+              <Image onClick={() => handleClick("2")} width={320} height={360} src={"/assets/images/card2.webp"} className="object-cover" style={{ WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 20%)', maskImage: 'linear-gradient(to top, transparent 0%, black 20%)' }} alt="" />
               <CardFooter className="justify-between before:bg-black border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
                 <p className="flex justify-center items-center p-2 text-sm text-gray-800 font-cocogoose font-bold">{t('about-us.services.card2.title')}</p>
               </CardFooter>
             </Card>
-            <Card isFooterBlurred radius="lg" className={`border-none ${selectedCard === "3" ? "scale-105" : "scale-100"}`}>
-              <Image onClick={() => handleClick("3")} width={320} height={360} src="https://media.licdn.com/dms/image/v2/D5612AQFZhJ6wQ9dOcg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1713208448771?e=1735776000&v=beta&t=jF1NFi1dyp7EZGiyVXR2-G3j543pH4QCw75GjtYZE6k" className="object-cover" style={{ WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 20%)', maskImage: 'linear-gradient(to top, transparent 0%, black 20%)' }} alt="" />
+            <Card isFooterBlurred radius="lg" className={`border-none hover:scale-105 ${selectedCard === "3" ? "scale-105" : "scale-100"}`}>
+              <Image onClick={() => handleClick("3")} width={320} height={360} src={"/assets/images/card3.webp"} className="object-cover" style={{ WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 20%)', maskImage: 'linear-gradient(to top, transparent 0%, black 20%)' }} alt="" />
               <CardFooter className="justify-between before:bg-black border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
                 <p className="flex justify-center items-center p-2 text-sm text-gray-800 font-cocogoose font-bold">{t('about-us.services.card3.title')}</p>
               </CardFooter>

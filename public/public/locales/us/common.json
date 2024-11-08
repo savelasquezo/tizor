@@ -51,7 +51,8 @@
     "how-to": {
       "title": {
         "title": "¿How does work?",
-        "subtitle": "Saving with us is easy and hassle-free. Open your account and start enjoying the highest market interest rates, all from wherever you want. If you need us, we'll always be here to support you."
+        "subtitle": "Saving with us is easy and hassle-free. Open your account and start enjoying the highest market interest rates, all from wherever you want. If you need us, we'll always be here to support you.",
+        "help": "Frequently Asked Questions"
       },
       "cards": {
         "obj1": {
@@ -88,12 +89,14 @@
         "label3": "Interest (A.E.)",
         "label4": "Total"
       },
-      "buton": "Request"
+      "buton": "Request",
+      "investment-message": "Hi T-Bank! I'm interested in making an investment and would love to get more information. Could you help me?"
     },
     "support": {
       "title": "¿Need Help?",
       "description": "Our main goal is to make your life easier. So if you need assistance, just press a button.",
-      "buton": "Technical Support"
+      "buton": "Technical Support",
+      "help-message": "Hi T-Bank! I need a bit of help with my account. Could you lend me a hand?"
     },
     "footer": {
       "paragraph1": "Make your money truly work for you!"
@@ -158,24 +161,34 @@
       },
       "list": {
         "faq1": {
-          "question": "How to Invest",
-          "answer": "Send the Money"
+          "question": "How can I invest in T-Bank?",
+          "answer": "To invest in T-Bank, you need to register on our platform and link a compatible wallet with USDT (Tether). Then, you can transfer funds and select a staking plan that fits your investment goals. Once your funds are in staking, they will begin to generate income according to our annual return projections."
         },
         "faq2": {
-          "question": "How to Invest",
-          "answer": "Send the Money"
+          "question": "What is staking, and how does it work in T-Bank?",
+          "answer": "Staking is the process by which your funds are locked for a specific period, allowing you to earn returns. At T-Bank, the funds designated for staking are managed in cryptocurrency futures markets and Bitcoin mining operations, which help maximize profitability. Once the staking period ends, you can withdraw both the invested capital and the generated returns."
         },
         "faq3": {
-          "question": "How to Invest",
-          "answer": "Send the Money"
+          "question": "What is the minimum period to keep my funds in staking?",
+          "answer": "The minimum staking period in T-Bank is three months. If you decide to withdraw your funds before this term, a penalty will apply, and you will receive only a percentage of the returns accumulated up to that point."
         },
         "faq4": {
-          "question": "How to Invest",
-          "answer": "Send the Money"
+          "question": "What is the referral program, and how does it work?",
+          "answer": "Our referral program allows users to earn passive commissions by inviting others to invest in T-Bank. When one of your referrals makes an investment, you receive a percentage of the invested amount, paid in USDT. This percentage applies only to your referrals' initial investment and not to future reinvestments."
         },
         "faq5": {
-          "question": "Innovating",
-          "answer": "Savings and Investments"
+          "question": "What happens if T-Bank updates the Terms and Conditions?",
+          "answer": "T-Bank reserves the right to modify the Terms and Conditions at any time to adapt to new regulations or market changes. If updates are made, you will be notified promptly, and the changes will take effect immediately. We recommend periodically reviewing the Terms and Conditions to stay informed of any changes."
+        }
+      },
+      "gallery": {
+        "video1": {
+          "title": "How to Invest?",
+          "subtitle": "Discover the Step-by-Step Guide to Start Investing in T-Bank and Make the Most of Your Funds"
+        },
+        "video2": {
+          "title": "How to Manage It?",
+          "subtitle": "Complete Guide to Navigating and Making the Most of the T-Bank Platform"
         }
       }
     },
@@ -198,25 +211,51 @@
   },
   "terms-and-conditions": {
     "terms-conditions": {
-      "title": "Terminos & Condiciones",
-      "paragraph1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus.",
-      "paragraph2": "Cras velit ante, egestas sed facilisis a, volutpat vel eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi fringilla lorem ut sem feugiat mattis in et enim. Maecenas vestibulum sagittis nunc vitae aliquam. Suspendisse molestie leo nec dolor placerat, in iaculis est molestie. Nullam fermentum viverra eleifend. Phasellus ullamcorper eu lacus at ultricies. Proin vel gravida tortor. Pellentesque non est venenatis felis ultricies consequat. Aenean ullamcorper nisl vitae felis lacinia dignissim. Maecenas ornare odio eu lectus scelerisque malesuada. Duis dignissim dui a blandit vulputate. Vivamus feugiat mattis sapien, at pellentesque ipsum rhoncus et. Maecenas sodales felis arcu, fermentum mollis arcu cursus et. Pellentesque dignissim a urna ut tempus. Vivamus vehicula, metus vestibulum mattis gravida, sem nibh scelerisque ante, vitae ultricies metus risus sed mi.",
-      "paragraph3": "Nullam laoreet semper lacus, sed sagittis justo vestibulum ut. Nulla condimentum, nibh in condimentum dapibus, ante lacus vehicula sapien, nec accumsan enim mauris vel risus. Pellentesque vitae posuere augue. In laoreet pretium tortor, convallis convallis dui dapibus nec.",
-      "paragraph4": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus.",
+      "title": "Terms & Conditions",
+      "paragraph1": "Tizor Bank (hereinafter, T-Bank) is a decentralized platform that allows users to store their funds in USDT (Tether) through blockchain networks. T-Bank offers staking services to generate income on these funds, with effective annual returns of up to",
+      "paragraph2": "Effective Annual. Additionally, it has a referral program that allows users to earn passive commissions of",
+      "paragraph3": "on their referrals' investments, provided that the referrals retain the investment within the T-Bank platform ecosystem.",
       "items": {
-        "obj1": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj2": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj3": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj4": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj5": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj6": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj7": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et.",
-        "obj8": "Ut vulputate tincidunt nunc mattis sagittis. Suspendisse condimentum placerat egestas. Integer lectus orci, bibendum a luctus vitae, laoreet sed erat. Vestibulum dictum arcu enim, non bibendum lorem feugiat et."
+        "obj1": {
+          "title": "Investment and Fund Management",
+          "paragraph1": "The funds invested in T-Bank are managed in decentralized cryptocurrency futures markets, specifically in BTC (Bitcoin), operated by experts with strict risk management. Additionally, a portion of the funds is allocated to Bitcoin mining operations in our facilities, using high-tech ASIC Whatsminer equipment to maximize efficiency.",
+          "paragraph2": "Funds placed in staking must remain in this state for a defined period to ensure adequate profitability. If the user decides to withdraw their funds before the three-month period, a penalty will apply, meaning they will only receive",
+          "paragraph3": "of the profits generated up to the time of disbursement. The expected profitability is based on our market projections and is not guaranteed, as it depends on the volatility and risks associated with investments in the cryptocurrency futures market."
+        },
+        "obj2": {
+          "title": "Referral Commissions",
+          "paragraph1": "T-Bank offers a referral program through which a user can earn",
+          "paragraph2": "of the total investment made by the referred client. Payments will be made in USDT and can be withdrawn according to T-Bank's internal policies. Referral commissions are calculated based on the initial investment of the referred client and do not apply to future reinvestments."
+        },
+        "obj3": {
+          "title": "Risks and Limitations",
+          "paragraph1": "T-Bank implements rigorous risk management strategies to mitigate possible losses; however, due to the volatile nature of the futures markets and the cryptocurrency ecosystem, the user acknowledges and accepts the inherent risks of this type of investment.",
+          "paragraph2": "Users understand that T-Bank is not a traditional banking entity, and its investment and income generation model relies on highly volatile and high-risk decentralized markets."
+        },
+        "obj4": {
+          "title": "Acceptance of Terms",
+          "paragraph1": "By using T-Bank services, users accept that their funds are managed in decentralized cryptocurrency futures markets and in Bitcoin mining activities using the company's ASIC equipment."
+        },
+        "obj5": {
+          "title": "Decentralization and Financial Freedom",
+          "paragraph1": "The creators of T-Bank are a group of investors who share the vision of financial freedom and the decentralization of money, providing users with financial options outside the control of traditional banking systems."
+        },
+        "obj6": {
+          "title": "Modifications to Terms and Conditions",
+          "paragraph1": "T-Bank reserves the right to modify these Terms and Conditions at any time. Updates will be notified to users and will take effect immediately.",
+          "paragraph2": "T-Bank does not guarantee fixed profits and is not responsible for losses resulting from market fluctuations or other external factors.",
+          "paragraph3": "These terms may be adjusted to include additional clauses or more details based on T-Bank’s regulatory framework and operational structure."
+        },
+        "obj7": {
+          "title": "Privacy and Data Protection Policy",
+          "paragraph1": "T-Bank ensures the privacy and security of its users' personal data. The information collected is used solely to enhance the platform experience and comply with legal requirements.",
+          "paragraph2": "The data is protected by encryption and is not shared with third parties without consent, except for legal or regulatory demands."
+        }
       }
     },
     "legal": {
-      "title": "Aviso Legal",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi congue pharetra eros, eget rutrum nibh porttitor id. Quisque vestibulum arcu a tempus lobortis. Vivamus sit amet malesuada mauris. Nullam nec elit in diam imperdiet venenatis quis at orci. In et congue risus, eget ullamcorper velit. Donec neque augue, ultrices ac faucibus non, tincidunt ac metus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ultricies scelerisque porttitor. Vivamus sed leo suscipit neque ullamcorper sodales. Aenean sodales bibendum cursus."
+      "title": "Legal Notice",
+      "description": "By accessing and using T-Bank services, the user acknowledges and agrees to the Terms and Conditions described herein. The services offered by T-Bank do not constitute financial advice and do not guarantee fixed returns. T-Bank will not be liable for any loss resulting from fluctuations in cryptocurrency markets or investment decisions. The user assumes the inherent risks of using the services and understands that investments in cryptocurrencies are subject to high volatility. Users are advised to carefully assess their investments and, if necessary, consult an independent financial advisor."
     }
   },
   "admin": {

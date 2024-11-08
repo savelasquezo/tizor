@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 import { useLanguage } from '@/utils/i18next';
 import { nextSite } from '@/utils/next-site';
+import WhatsappButton from '@/utils/whatsapp-button';
 
 import { Input } from "@nextui-org/react";
 import { MdQrCode2 } from "react-icons/md";
@@ -21,7 +22,7 @@ const InvestmentSimulator: React.FC = () => {
   const mathInterest = (months: number) => {
     const minRate = data?.min_interest || 12;
     const maxRate = data?.max_interest || 24;
-    return minRate + ((maxRate - minRate) * (months - 3))/(33);
+    return minRate + ((maxRate - minRate) * (months - 3)) / (33);
   };
 
   const total = amount * Math.pow(1 + (interest / 1200), months);
@@ -111,14 +112,14 @@ const InvestmentSimulator: React.FC = () => {
           </div>
         </div>
         <div className='w-full flex flex-col lg:flex-row items-center justify-center gap-6'>
-          <p className='w-full lg:w-3/4 font-cocogoose text-[0.55rem] text-gray-800 text-justify'>{t('home.math.paragraph2')}</p>
+          <p className='w-full lg:w-3/4 font-cocogoose text-[0.55rem] text-gray-800 text-justify'>{t('home.math.paragraph2')}<a href='/terms-and-conditions' className='font-semibold mx-1'>{t('about-us.services.title.terms-and-conditions')}</a></p>
           <div className='w-full lg:w-1/4'>
-            <button type="button" disabled className="flex justify-center items-center bg-gray-800 h-10 w-full text-white p-2 shadow-sm rounded-sm focus:bg-red-800 hover:bg-red-900 transition-colors duration-700">{t('home.math.buton')}</button>
+            <WhatsappButton name={t('home.math.buton')} phoneNumber={data?.phone} message={t('home.math.investment-message')} />
           </div>
         </div>
       </div>
       <div className='absolute lg:static w-full lg:w-2/5 flex items-center justify-center lg:items-start lg:justify-start lg:-translate-x-16 opacity-5 lg:opacity-100 grayscale lg:grayscale-0'>
-        <Image priority width={540} height={470} src={"/assets/images/background05.png"} className="w-auto h-[30rem] object-contain" alt="" />
+        <Image priority width={540} height={470} src={"/assets/images/background03.webp"} className="w-auto h-[30rem] object-contain" alt="" />
       </div>
     </section>
   );

@@ -31,9 +31,9 @@ const HelpPage: React.FC = () => {
       <Header />
       <section className='w-full lg:w-4/5 flex flex-col p-4 py-12 lg:p-12 mx-auto'>
         <div className="w-full mx-auto text-center mb-12">
-          <div className="w-full flex flex-col items-center justify-start gap-y-4 text-3xl font-bold text-gray-800 sm:text-4xl lg:text-3xl font-cocogoose">
-            <h2 className='text-lg sm:text-3xl lg:text-4xl'>{t('help-and-tutorials.faqs.title.title')}</h2>
-            <p className='w-full lg:w-3/4 text-[0.65rem] lg:text-xs leading-3 lg:leading-tight'>{t('help-and-tutorials.faqs.title.subtitle')}</p>
+          <div className="w-full flex flex-col items-center justify-start gap-y-4 text-3xl text-gray-800 sm:text-4xl lg:text-3xl font-cocogoose">
+            <h2 className='text-lg sm:text-3xl lg:text-4xl font-bold'>{t('help-and-tutorials.faqs.title.title')}</h2>
+            <p className='w-full lg:w-3/4 text-[0.65rem] lg:text-xs leading-3 lg:leading-tight font-thin'>{t('help-and-tutorials.faqs.title.subtitle')}</p>
           </div>
         </div>
         <Accordion fullWidth selectionMode="multiple" variant="splitted">
@@ -56,22 +56,22 @@ const HelpPage: React.FC = () => {
         <hr className="my-12 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25" />
         <div className="w-full mx-auto text-center">
           <div className="w-full flex flex-col items-center justify-start gap-y-4 text-3xl font-bold leading-tight text-gray-800 sm:text-4xl lg:text-3xl font-cocogoose">
-            <h2>{t('help-and-tutorials.tutorials.title.title')}</h2>
-            <p className='w-full lg:w-3/4 text-[0.65rem] lg:text-xs leading-3 lg:leading-5'>{t('help-and-tutorials.tutorials.title.subtitle')}</p>
+            <h2 className='font-bold'>{t('help-and-tutorials.tutorials.title.title')}</h2>
+            <p className='w-full lg:w-3/4 text-[0.65rem] lg:text-xs leading-3 lg:leading-5 font-thin'>{t('help-and-tutorials.tutorials.title.subtitle')}</p>
           </div>
           <div className='w-full flex flex-col lg:flex-row'>
             <div className='w-full lg:w-1/2 flex flex-col justify-center items-center'>
               <Video thumbnail={data?.tutorial_thumbnail_1} url={data?.tutorial_1} width={1200} height={600} />
-              <div className='flex flex-col lg:gap-y-2 -mt-2'>
+              <div className='flex flex-col items-center justify-start lg:gap-y-2 -mt-2'>
                 <p className='font-semibold'>{t('help-and-tutorials.tutorials.gallery.video1.title')}</p>
-                <p className='text-xs'>{t('help-and-tutorials.tutorials.gallery.video1.subtitle')}</p>
+                <p className='text-xs w-full lg:w-2/3'>{t('help-and-tutorials.tutorials.gallery.video1.subtitle')}</p>
               </div>
             </div>
             <div className='w-full lg:w-1/2 flex flex-col justify-center items-center'>
               <Video thumbnail={data?.tutorial_thumbnail_2} url={data?.tutorial_2} width={1200} height={600} />
-              <div className='flex flex-col lg:gap-y-2 -mt-2'>
+              <div className='flex flex-col items-center justify-start lg:gap-y-2 -mt-2'>
                 <p className='font-semibold'>{t('help-and-tutorials.tutorials.gallery.video2.title')}</p>
-                <p className='text-xs'>{t('help-and-tutorials.tutorials.gallery.video2.subtitle')}</p>
+                <p className='text-xs w-full lg:w-2/3'>{t('help-and-tutorials.tutorials.gallery.video2.subtitle')}</p>
               </div>
             </div>
           </div>

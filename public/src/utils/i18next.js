@@ -1,4 +1,5 @@
 'use client';
+
 import { createContext, useContext, useState, useEffect } from 'react';
 
 const LanguageContext = createContext();
@@ -6,6 +7,7 @@ const LanguageContext = createContext();
 export const I18next = ({ children }) => {
   const [language, setLanguage] = useState('us');
   const [translations, setTranslations] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const storedLanguage = JSON.parse(localStorage.getItem('nextsite.locale') || '"us"');
@@ -17,8 +19,10 @@ export const I18next = ({ children }) => {
         if (!res.ok) throw new Error(`Error loading translations for language: ${storedLanguage || language}`);
         const data = await res.json();
         setTranslations(data);
+        setLoading(false);
       } catch (error) {
         console.error(`Error loading translations for language: ${storedLanguage || language}`, error);
+        setLoading(false);
       }
     };
 
@@ -33,6 +37,8 @@ export const I18next = ({ children }) => {
   const t = (key) => {
     return key.split('.').reduce((obj, i) => obj?.[i], translations) || key;
   };
+
+  if (loading) return null;
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage: changeLanguage, t }}>
