@@ -123,8 +123,25 @@ export default function Home() {
           </div>
           <Math />
           <hr className="my-12 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-25" />
-          <a href="https://url.hk/i/es/b5e44" className="flex items-center justify-center md:hidden mx-auto w-full"><Image priority width={600} height={650} src={"/assets/images/redotpay02.webp"} className="w-auto object-contain shadow-2xl transition-all duration-700" alt="" /></a>
-          <a href="https://url.hk/i/es/b5e44" className="hidden md:flex md:items-center md:justify-center mx-auto w-11/12"><Image priority width={1400} height={395} src={"/assets/images/redotpay03.webp"} className="w-auto object-contain shadow-2xl transition-all duration-700" alt="" /></a>
+          <div className="w-full h-auto flex flex-row justify-center items-start md:items-center gap-x-32 px-12">
+            <a href="https://url.hk/i/es/b5e44" className="hidden md:flex w-1/2 items-center justify-end"><Image priority width={1400} height={395} src={"/assets/images/redotpay01.webp"} className="w-1/2 object-fill shadow-2xl -rotate-6 transition-all duration-700" alt="" /></a>
+            <div className="w-full md:w-1/2 h-full flex flex-col items-center justify-center md:items-start md:justify-start font-cocogoose">
+              <p className="font-semibold text-2xl md:text-base mb-2">Tarjeta Redotpay</p>
+              <p className="w-full md:w-2/3 text-[0.65rem] text-justify leading-3">Aprovecha las ventajas de la tarjeta Redotpay
+              Con la tarjeta prepagada virtual y física Redotpay, convierte tus criptomonedas en dinero fiduciario para realizar retiros en cajeros automáticos y pagos en cualquier establecimiento a nivel mundial. Disfruta de la libertad financiera y de las facilidades de uso que ofrece. ¡Es el momento de la descentralización!</p>
+              <a href="https://url.hk/i/es/b5e44" className="w-full md:w-2/3 flex items-center justify-end mt-6"><Image priority width={1400} height={395} src={"/assets/images/redotpay00.webp"} className="w-full object-fill shadow-2xl transition-all duration-700" alt="" /></a>
+            </div>
+          </div>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
           <hr className="lg:my-12 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25" />
           <div className='relative w-full h-60 lg:h-96 flex flex-row lg:mt-12'>
             <Image priority width={1800} height={1300} src={"/assets/images/background01.webp"} className="hidden lg:block absolute top-0 right-0 w-auto h-96 object-contain" alt="" />
