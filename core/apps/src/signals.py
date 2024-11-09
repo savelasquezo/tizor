@@ -14,7 +14,8 @@ logger = logging.getLogger(__name__)
 @receiver(post_save, sender=model.Account)
 def updateAccount(sender, instance, created, **kwargs):
     if created:
-        instance.interest = Tizorbank.objects.get(default="Tizorbank").min_interest
+        tz = Tizorbank.objects.filter(default="Tizorbank").first()
+        instance.interest = Tizorbank.objects.get(default="Tizorbank").min_interest if tz else 0
         instance.save()
         
     file_path = os.path.join(settings.BASE_DIR, 'data', f'{instance.username}.json')
