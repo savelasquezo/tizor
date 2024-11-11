@@ -191,7 +191,7 @@ class requestInvestment(generics.GenericAPIView):
     serializer_class = serializer.InvestmentSerializer
     permission_classes = [IsAuthenticated]
 
-    pagination_class = paginate.PageNumberPagination
+    pagination_class = paginate.InvestmentPagination
     page_size = 5
 
     def get_queryset(self, request):

@@ -273,8 +273,8 @@
         "description": "Daily interest"
       },
       "card4": {
-        "title": "Total",
-        "description": "Earned interest"
+        "title": "Invested",
+        "description": "Total Invested"
       }
     },
     "logs": {

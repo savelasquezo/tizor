@@ -263,8 +263,8 @@
         "description": "Juros diários"
       },
       "card4": {
-        "title": "Total",
-        "description": "Juros obtidos"
+        "title": "Investido",
+        "description": "Total Investido"
       }
     },
     "logs": {

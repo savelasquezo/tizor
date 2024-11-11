@@ -263,8 +263,8 @@
         "description": "Intérêts quotidiens"
       },
       "card4": {
-        "title": "Total",
-        "description": "Intérêts obtenus"
+        "title": "Investi",
+        "description": "Total Investi"
       }
     },
     "logs": {

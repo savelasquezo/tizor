@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 import { useLanguage } from '@/utils/i18next';
 
 import { formatNumber } from "@/utils/formatNumber";
@@ -11,7 +12,31 @@ import { MdAttachMoney } from "react-icons/md";
 const Context: React.FC<SessionAuthenticated> = ({ session }) => {
   const { t } = useLanguage();
   const dailyAmount = Math.floor(((session?.user?.balance ?? 0) * (Math.pow(1 + (session?.user?.interest ?? 0) / 100, 1 / 365) - 1)) * 100) / 100;
+  const [investment, setInvestment] = useState(0);
+
+  const fetchData = useCallback(async (page: number = 1) => {
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_APP_API_URL}/app/v1/src/request-investment/`, {
+        params: { page: page },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `JWT ${session?.user?.accessToken}`,
+        }
+      });
   
+      const sum = response.data.sum;
+      setInvestment(sum);
+  
+    } catch (error) {
+      console.error('There was an error with the network request:', error);
+    }
+  }, [session]);
+  
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   return (
     <section className="h-full w-full">
       <div className='flex flex-wrap -mx-3 mt-4'>
@@ -79,10 +104,10 @@ const Context: React.FC<SessionAuthenticated> = ({ session }) => {
                 <div className='flex flex-col gap-1 justify-center items-start'>
                   <p className="mb-0 font-cocogoose uppercase font-semibold leading-normal text-xs lg:text-base">{t('admin.context.card4.title')}</p>
                   <p className='text-xs font-cocogoose hidden lg:block'>{t('admin.context.card4.description')}</p>                  
-                  <p className="mb-0 text-sm md:text-xl font-creatodisplay block lg:hidden">${formatNumber(session.user.profit)}</p>
+                  <p className="mb-0 text-sm md:text-xl font-creatodisplay block lg:hidden">${formatNumber(investment)}</p>
                 </div>
                 <div className="flex flex-row items-center text-right gap-4">
-                  <p className="mb-0 text-4xl font-creatodisplay hidden lg:block">${formatNumber(session.user.profit)}</p>
+                  <p className="mb-0 text-4xl font-creatodisplay hidden lg:block">${formatNumber(investment)}</p>
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
                     <span className="leading-none text-lg relative left-3.5 top-3.5 text-gray-200 text-center"><MdAttachMoney/></span>
                   </div>

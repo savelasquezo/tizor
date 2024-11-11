@@ -263,8 +263,8 @@
         "description": "Interes diario"
       },
       "card4": {
-        "title": "Total",
-        "description": "Intereses obtenidos"
+        "title": "Invertido",
+        "description": "Total Invertido"
       }
     },
     "logs": {

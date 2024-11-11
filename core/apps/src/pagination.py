@@ -22,3 +22,20 @@ class TransactionPagination(PageNumberPagination):
     
     def __sumTransaction(self, element):
         return model.Transaction.objects.filter(account=self.request.user, type=element, state='done').aggregate(tmp=Sum('amount'))['tmp']
+
+
+class InvestmentPagination(PageNumberPagination):
+    page_size = 5
+
+    def get_sum(self):
+        return model.Investment.objects.filter(account=self.request.user, state="active").aggregate(total=Sum('amount'))['total'] or 0
+
+    def get_paginated_response(self, data):
+        sum = self.get_sum()
+        return Response({
+            'count': self.page.paginator.count,
+            'sum': sum,
+            'next': self.get_next_link(),
+            'previous': self.get_previous_link(),
+            'results': data
+        })
