@@ -42,7 +42,7 @@ const LoginModal: React.FC<ModalFunction> = ({ closeModal }) => {
 
     const res = await signIn('credentials', {
       redirect: false,
-      email: email,
+      email: email.toLowerCase(),
       password: password
     });
 
