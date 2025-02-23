@@ -46,11 +46,11 @@
         "obj2": "Dinheiro sempre disponível",
         "obj3": "Investimentos a partir de"
       },
-      "description": "Economizar com facilidade é possível com o T-Bank. Abra sua conta e comece a gerenciar suas economias de onde estiver. Faça seu dinheiro crescer dia após dia conosco."
+      "description": "Economizar com facilidade é possível com o Tizor. Abra sua conta e comece a gerenciar suas economias de onde estiver. Faça seu dinheiro crescer dia após dia conosco."
     },
     "how-to": {
       "title": {
-        "title": "Como funciona o T-Bank?",
+        "title": "Como funciona o Tizor?",
         "subtitle": "Poupar conosco é fácil e sem complicações. Abra sua conta e comece a aproveitar as maiores taxas de juros do mercado, onde quer que você esteja. Se precisar de nós, estaremos sempre prontos para ajudar.",
         "help": "FAQ"
       },
@@ -82,7 +82,7 @@
     "math": {
       "title": "Simulador de Investimento",
       "paragraph1": "Poupar conosco é fácil e sem complicações. Abra sua conta e comece a aproveitar as maiores taxas de juros do mercado, onde quer que você esteja. Se precisar de nós, estaremos sempre prontos para ajudar.",
-      "paragraph2": "A simulação de staking do T-Bank mostra uma estimativa do valor do seu investimento, da duração e da taxa em vigor no momento da consulta. Lembre-se de que essas informações são apenas indicativas e não constituem uma oferta comercial.",
+      "paragraph2": "A simulação de staking do Tizor mostra uma estimativa do valor do seu investimento, da duração e da taxa em vigor no momento da consulta. Lembre-se de que essas informações são apenas indicativas e não constituem uma oferta comercial.",
       "calc": {
         "label1": "Investimento",
         "label2": "Duração (M)",
@@ -90,19 +90,19 @@
         "label4": "Total"
       },
       "buton": "Solicitar",
-      "investment-message": "Olá T-Bank! Estou interessado em fazer um investimento e gostaria de receber mais informações. Vocês poderiam me ajudar?"
+      "investment-message": "Olá Tizor! Estou interessado em fazer um investimento e gostaria de receber mais informações. Vocês poderiam me ajudar?"
     },
     "support": {
       "title": "Precisa de ajuda?",
       "description": "Nosso principal objetivo é facilitar sua vida. Se precisar de ajuda, basta clicar em um botão.",
       "buton": "Suporte Técnico",
-      "help-message": "Olá T-Bank! Preciso de uma ajudinha com minha conta. Você poderia me dar uma mão?"
+      "help-message": "Olá Tizor! Preciso de uma ajudinha com minha conta. Você poderia me dar uma mão?"
     },
     "footer": {
       "paragraph1": "Faça seu dinheiro trabalhar de verdade para você!"
     },
     "widget-whatsapp": {
-      "title": "Bem-vindo ao T-Bank!",
+      "title": "Bem-vindo ao Tizor!",
       "subtitle": "Alguma dúvida? Confira nossas",
       "help": "FAQ",
       "button": "Conversar"
@@ -118,7 +118,7 @@
     },
     "about": {
       "title": "Quem somos?",
-      "paragraph1": "No T-bank, somos um grupo de investidores apaixonados pela revolução que a descentralização da moeda pode trazer ao mundo financeiro. Acreditamos firmemente que eliminar intermediários é a chave para capacitar nossos clientes e permitir que maximizem o retorno de seus capitais.",
+      "paragraph1": "No Tizor, somos um grupo de investidores apaixonados pela revolução que a descentralização da moeda pode trazer ao mundo financeiro. Acreditamos firmemente que eliminar intermediários é a chave para capacitar nossos clientes e permitir que maximizem o retorno de seus capitais.",
       "paragraph2": "Nossa plataforma inovadora é focada em poupança em criptomoedas e oferece opções de staking que permitem aos nossos usuários obter retornos atrativos. Investimos em uma bolsa descentralizada e em mineração de criptomoedas, o que nos permite gerar retornos superiores e transferi-los para nossos clientes.",
       "paragraph3": "Invista de forma inteligente e veja seu dinheiro crescer."
     },
@@ -161,34 +161,34 @@
       },
       "list": {
         "faq1": {
-          "question": "Como posso investir no T-Bank?",
-          "answer": "Para investir no T-Bank, você precisa se registrar na nossa plataforma e vincular uma carteira compatível com USDT (Tether). Em seguida, você poderá transferir fundos e selecionar um plano de staking que se ajuste aos seus objetivos de investimento. Assim que seus fundos estiverem em staking, eles começarão a gerar renda de acordo com nossas projeções anuais de retorno."
+          "question": "Como posso investir no Tizor?",
+          "answer": "Para investir no Tizor, você precisa se registrar na nossa plataforma e vincular uma carteira compatível com USDT (Tether). Em seguida, você poderá transferir fundos e selecionar um plano de staking que se ajuste aos seus objetivos de investimento. Assim que seus fundos estiverem em staking, eles começarão a gerar renda de acordo com nossas projeções anuais de retorno."
         },
         "faq2": {
-          "question": "O que é staking e como funciona no T-Bank?",
-          "answer": "Staking é o processo pelo qual seus fundos ficam bloqueados por um período específico, permitindo que você obtenha rendimentos em troca. No T-Bank, os fundos destinados ao staking são geridos em mercados futuros de criptomoedas e em operações de mineração de Bitcoin, o que ajuda a maximizar a rentabilidade. Após o período de staking, você pode sacar tanto o capital investido quanto os rendimentos gerados."
+          "question": "O que é staking e como funciona no Tizor?",
+          "answer": "Staking é o processo pelo qual seus fundos ficam bloqueados por um período específico, permitindo que você obtenha rendimentos em troca. No Tizor, os fundos destinados ao staking são geridos em mercados futuros de criptomoedas e em operações de mineração de Bitcoin, o que ajuda a maximizar a rentabilidade. Após o período de staking, você pode sacar tanto o capital investido quanto os rendimentos gerados."
         },
         "faq3": {
           "question": "Qual é o período mínimo para manter meus fundos em staking?",
-          "answer": "O período mínimo de staking no T-Bank é de três meses. Se você decidir retirar seus fundos antes deste prazo, uma penalidade será aplicada, e você receberá apenas uma porcentagem dos rendimentos acumulados até o momento."
+          "answer": "O período mínimo de staking no Tizor é de três meses. Se você decidir retirar seus fundos antes deste prazo, uma penalidade será aplicada, e você receberá apenas uma porcentagem dos rendimentos acumulados até o momento."
         },
         "faq4": {
           "question": "O que é o programa de indicações e como funciona?",
-          "answer": "Nosso programa de indicações permite que os usuários ganhem comissões passivas ao convidar outras pessoas para investir no T-Bank. Quando um de seus indicados faz um investimento, você recebe uma porcentagem do valor investido, que é pago em USDT. Esta porcentagem se aplica apenas ao investimento inicial dos seus indicados e não a futuros reinvestimentos."
+          "answer": "Nosso programa de indicações permite que os usuários ganhem comissões passivas ao convidar outras pessoas para investir no Tizor. Quando um de seus indicados faz um investimento, você recebe uma porcentagem do valor investido, que é pago em USDT. Esta porcentagem se aplica apenas ao investimento inicial dos seus indicados e não a futuros reinvestimentos."
         },
         "faq5": {
-          "question": "O que acontece se o T-Bank atualizar os Termos e Condições?",
-          "answer": "O T-Bank reserva-se o direito de modificar os Termos e Condições a qualquer momento para se adaptar a novas regulamentações ou mudanças de mercado. Se atualizações forem feitas, você será notificado prontamente, e as alterações entrarão em vigor imediatamente. Recomendamos revisar periodicamente os Termos e Condições para ficar informado sobre quaisquer alterações."
+          "question": "O que acontece se o Tizor atualizar os Termos e Condições?",
+          "answer": "O Tizor reserva-se o direito de modificar os Termos e Condições a qualquer momento para se adaptar a novas regulamentações ou mudanças de mercado. Se atualizações forem feitas, você será notificado prontamente, e as alterações entrarão em vigor imediatamente. Recomendamos revisar periodicamente os Termos e Condições para ficar informado sobre quaisquer alterações."
         }
       },
       "gallery": {
         "video1": {
           "title": "Como Investir?",
-          "subtitle": "Descubra o Passo a Passo para Começar a Investir no T-Bank e Aproveite ao Máximo Seus Fundos"
+          "subtitle": "Descubra o Passo a Passo para Começar a Investir no Tizor e Aproveite ao Máximo Seus Fundos"
         },
         "video2": {
           "title": "Como Gerenciá-la?",
-          "subtitle": "Guia Completo para Navegar e Tirar o Máximo Proveito da Plataforma T-Bank"
+          "subtitle": "Guia Completo para Navegar e Tirar o Máximo Proveito da Plataforma Tizor"
         }
       }
     },
@@ -202,50 +202,50 @@
   "terms-and-conditions": {
     "terms-conditions": {
       "title": "Termos & Condições",
-      "paragraph1": "Tizor Bank (doravante, T-Bank) é uma plataforma descentralizada que permite aos usuários armazenar seus fundos em USDT (Tether) por meio de redes blockchain. O T-Bank oferece serviços de staking para gerar rendimentos sobre esses fundos, com rendimentos anuais efetivos de até",
+      "paragraph1": "Tizor Bank (doravante, Tizor) é uma plataforma descentralizada que permite aos usuários armazenar seus fundos em USDT (Tether) por meio de redes blockchain. O Tizor oferece serviços de staking para gerar rendimentos sobre esses fundos, com rendimentos anuais efetivos de até",
       "paragraph2": "Anual Efetivo. Além disso, possui um programa de indicações que permite aos usuários ganharem comissões passivas de",
-      "paragraph3": "sobre os investimentos de seus indicados, desde que estes mantenham o investimento dentro do ecossistema da plataforma T-Bank.",
+      "paragraph3": "sobre os investimentos de seus indicados, desde que estes mantenham o investimento dentro do ecossistema da plataforma Tizor.",
       "items": {
         "obj1": {
           "title": "Investimento e Gestão de Fundos",
-          "paragraph1": "Os fundos investidos no T-Bank são geridos em mercados de futuros descentralizados de criptomoedas, especificamente em BTC (Bitcoin), operados por especialistas com uma rigorosa gestão de riscos. Além disso, uma parte dos fundos é destinada a operações de mineração de Bitcoin em nossas instalações, com equipamentos ASIC de alta tecnologia Whatsminer para maximizar a eficiência.",
+          "paragraph1": "Os fundos investidos no Tizor são geridos em mercados de futuros descentralizados de criptomoedas, especificamente em BTC (Bitcoin), operados por especialistas com uma rigorosa gestão de riscos. Além disso, uma parte dos fundos é destinada a operações de mineração de Bitcoin em nossas instalações, com equipamentos ASIC de alta tecnologia Whatsminer para maximizar a eficiência.",
           "paragraph2": "Os fundos colocados em staking devem permanecer nesse estado por um período definido para garantir a rentabilidade adequada. Caso o usuário decida retirar seus fundos antes do período de três meses, será aplicada uma penalidade que implica o recebimento de apenas",
           "paragraph3": "dos lucros gerados até o momento do saque. A rentabilidade esperada é baseada em nossas projeções de mercado e não é garantida, pois depende da volatilidade e dos riscos associados aos investimentos no mercado de futuros de criptomoedas."
         },
         "obj2": {
           "title": "Comissões de Indicação",
-          "paragraph1": "O T-Bank oferece um programa de indicações pelo qual um usuário pode obter",
-          "paragraph2": "do valor total investido pelo cliente indicado. Os pagamentos serão feitos em USDT e poderão ser retirados conforme as políticas internas do T-Bank. As comissões de indicação são calculadas com base no investimento inicial do cliente indicado e não se aplicam a reinvestimentos futuros."
+          "paragraph1": "O Tizor oferece um programa de indicações pelo qual um usuário pode obter",
+          "paragraph2": "do valor total investido pelo cliente indicado. Os pagamentos serão feitos em USDT e poderão ser retirados conforme as políticas internas do Tizor. As comissões de indicação são calculadas com base no investimento inicial do cliente indicado e não se aplicam a reinvestimentos futuros."
         },
         "obj3": {
           "title": "Riscos e Limitações",
-          "paragraph1": "O T-Bank implementa estratégias rigorosas de gestão de riscos para mitigar possíveis perdas; no entanto, devido à natureza volátil dos mercados de futuros e do ecossistema de criptomoedas, o usuário reconhece e aceita os riscos inerentes a esse tipo de investimento.",
-          "paragraph2": "Os usuários entendem que o T-Bank não é uma instituição bancária tradicional e que seu modelo de investimento e geração de renda depende de mercados descentralizados de alta volatilidade e risco."
+          "paragraph1": "O Tizor implementa estratégias rigorosas de gestão de riscos para mitigar possíveis perdas; no entanto, devido à natureza volátil dos mercados de futuros e do ecossistema de criptomoedas, o usuário reconhece e aceita os riscos inerentes a esse tipo de investimento.",
+          "paragraph2": "Os usuários entendem que o Tizor não é uma instituição bancária tradicional e que seu modelo de investimento e geração de renda depende de mercados descentralizados de alta volatilidade e risco."
         },
         "obj4": {
           "title": "Aceitação dos Termos",
-          "paragraph1": "Ao utilizar os serviços do T-Bank, os usuários aceitam que seus fundos sejam geridos em mercados de futuros descentralizados de criptomoedas e em atividades de mineração de Bitcoin com os equipamentos ASIC da empresa."
+          "paragraph1": "Ao utilizar os serviços do Tizor, os usuários aceitam que seus fundos sejam geridos em mercados de futuros descentralizados de criptomoedas e em atividades de mineração de Bitcoin com os equipamentos ASIC da empresa."
         },
         "obj5": {
           "title": "Descentralização e Liberdade Financeira",
-          "paragraph1": "Os criadores do T-Bank são um grupo de investidores que compartilham a visão de liberdade financeira e descentralização do dinheiro, oferecendo aos usuários opções financeiras fora do controle dos sistemas bancários tradicionais."
+          "paragraph1": "Os criadores do Tizor são um grupo de investidores que compartilham a visão de liberdade financeira e descentralização do dinheiro, oferecendo aos usuários opções financeiras fora do controle dos sistemas bancários tradicionais."
         },
         "obj6": {
           "title": "Modificações dos Termos e Condições",
-          "paragraph1": "O T-Bank se reserva o direito de modificar estes Termos e Condições a qualquer momento. As atualizações serão notificadas aos usuários e entrarão em vigor imediatamente.",
-          "paragraph2": "O T-Bank não garante lucros fixos e não se responsabiliza por perdas resultantes de flutuações de mercado ou outros fatores externos.",
-          "paragraph3": "Estes termos podem ser ajustados para incluir cláusulas adicionais ou mais detalhes conforme o quadro regulatório e a estrutura operacional do T-Bank."
+          "paragraph1": "O Tizor se reserva o direito de modificar estes Termos e Condições a qualquer momento. As atualizações serão notificadas aos usuários e entrarão em vigor imediatamente.",
+          "paragraph2": "O Tizor não garante lucros fixos e não se responsabiliza por perdas resultantes de flutuações de mercado ou outros fatores externos.",
+          "paragraph3": "Estes termos podem ser ajustados para incluir cláusulas adicionais ou mais detalhes conforme o quadro regulatório e a estrutura operacional do Tizor."
         },
         "obj7": {
           "title": "Política de Privacidade e Proteção de Dados",
-          "paragraph1": "O T-Bank garante a privacidade e segurança dos dados pessoais de seus usuários. As informações coletadas são usadas apenas para melhorar a experiência na plataforma e cumprir exigências legais.",
+          "paragraph1": "O Tizor garante a privacidade e segurança dos dados pessoais de seus usuários. As informações coletadas são usadas apenas para melhorar a experiência na plataforma e cumprir exigências legais.",
           "paragraph2": "Os dados são protegidos por criptografia e não são compartilhados com terceiros sem consentimento, exceto por exigências legais ou regulatórias."
         }
       }
     },
     "legal": {
       "title": "Aviso Legal",
-      "description": "Ao acessar e utilizar os serviços do T-Bank, o usuário reconhece e aceita os Termos e Condições aqui descritos. Os serviços oferecidos pelo T-Bank não constituem aconselhamento financeiro e não garantem rendimentos fixos. O T-Bank não será responsável por quaisquer perdas resultantes de flutuações nos mercados de criptomoedas ou de decisões de investimento. O usuário assume os riscos inerentes ao uso dos serviços e entende que os investimentos em criptomoedas estão sujeitos a alta volatilidade. Recomenda-se que os usuários façam uma avaliação cuidadosa de seus investimentos e, se necessário, consultem um consultor financeiro independente."
+      "description": "Ao acessar e utilizar os serviços do Tizor, o usuário reconhece e aceita os Termos e Condições aqui descritos. Os serviços oferecidos pelo Tizor não constituem aconselhamento financeiro e não garantem rendimentos fixos. O Tizor não será responsável por quaisquer perdas resultantes de flutuações nos mercados de criptomoedas ou de decisões de investimento. O usuário assume os riscos inerentes ao uso dos serviços e entende que os investimentos em criptomoedas estão sujeitos a alta volatilidade. Recomenda-se que os usuários façam uma avaliação cuidadosa de seus investimentos e, se necessário, consultem um consultor financeiro independente."
     }
   },
   "admin": {

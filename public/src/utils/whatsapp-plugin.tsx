@@ -31,7 +31,7 @@ export function WhatsappPlugin() {
             autoOpen={true}
             autoOpenTimer={35000}
             messageBox={false}
-            //messageBoxTxt="Hola T-Bank, Necesito Informacion"
+            //messageBoxTxt="Hola Tizor, Necesito Informacion"
             iconSize="50"
             iconColor="white"
             iconBgColor="#25d366"

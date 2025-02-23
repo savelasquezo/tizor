@@ -34,7 +34,7 @@ export default function Header() {
         <div className='flex flex-row items-center justify-end'>
           <nav className='text-gray-800 text-lg flex flex-row items-center justify-center'>
             <a href="/" className='px-6 text-sm font-semibold font-cocogoose hidden sm:flex'>{t('home.header.link')}</a>
-            <a href="/about-us" className='px-6 text-sm font-semibold font-cocogoose hidden sm:flex whitespace-nowrap'>T-Bank</a>
+            <a href="/about-us" className='px-6 text-sm font-semibold font-cocogoose hidden sm:flex whitespace-nowrap'>Tizor</a>
             <div className='flex flex-row justify-center items-center gap-x-2'>
               <a href="/about-us"><Button isIconOnly color="default" className="!bg-gray-100 flex sm:hidden" aria-label=""><ImQuestion /></Button></a>
               <Auth />

@@ -352,16 +352,16 @@ CKEDITOR_5_CONFIGS = {
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 if not DEBUG:
-    DOMAIN = 'tizorbank.com'
+    DOMAIN = 'tizor.io'
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
     CORS_ALLOW_ALL_ORIGINS = False
     MEDIA_URL = '/media/'
     MEDIA_ROOT = '/var/www/media/'
-    ALLOWED_HOSTS = ['tizorbank.com', 'localhost', '127.0.0.1']
-    CORS_ALLOWED_ORIGINS = ['https://tizorbank.com','https://analytics.google.com']
-    CSRF_TRUSTED_ORIGINS = ['https://tizorbank.com','https://analytics.google.com']
-    X_FRAME_OPTIONS = 'ALLOW-FROM https://tizorbank.com'
+    ALLOWED_HOSTS = ['tizor.io', 'localhost', '127.0.0.1']
+    CORS_ALLOWED_ORIGINS = ['https://tizor.io','https://analytics.google.com']
+    CSRF_TRUSTED_ORIGINS = ['https://tizor.io','https://analytics.google.com']
+    X_FRAME_OPTIONS = 'ALLOW-FROM https://tizor.io'
     
     EMAIL_PORT = 465
     EMAIL_USE_SSL = True

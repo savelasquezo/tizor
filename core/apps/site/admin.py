@@ -8,7 +8,7 @@ import apps.src.admin as admins
 
 class TZAdminSite(admin.AdminSite):
     index_title = 'Consola Administrativa'
-    verbose_name = "T-Bank"
+    verbose_name = "Tizor"
 
     def get_app_list(self, request, app_label=None):
         """
@@ -27,7 +27,7 @@ class TZAdminSite(admin.AdminSite):
 
 admin_site = TZAdminSite()
 admin.site = admin_site
-admin_site.site_header = "T-Bank"
+admin_site.site_header = "Tizor"
 
 ###################################################################
 ###################################################################

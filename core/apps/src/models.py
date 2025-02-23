@@ -43,7 +43,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     ref = models.CharField(_("Ref"), max_length=8, blank=True)
     email = models.EmailField(_("Email"),unique=True)
     username = models.CharField(_("Usuario"),max_length=64, unique=True)
-    
+
     network = models.CharField(_("Network"),choices=networks, default="bep20" , max_length=8, blank=False, null=False)
     address = models.CharField(_("Address"), max_length=128, unique=True)
     
@@ -183,7 +183,7 @@ class Withdrawal(models.Model):
 class Transaction(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     amount = models.FloatField(_("Amount"),blank=False,null=False)
-    date = models.DateField(_("Date"), default=timezone.now)
+    date = models.TimeField(_("Date"), default=timezone.now)
     type = models.CharField(_("Type"), choices=types, max_length=128, null=False, blank=False)
     voucher = models.CharField(_("Voucher"), max_length=128, null=True, blank=True)
     state = models.CharField(choices=transactions, default="invoiced", max_length=16, verbose_name="")
