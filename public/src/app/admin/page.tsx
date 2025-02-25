@@ -55,7 +55,7 @@ const AdminPage: React.FC = () => {
         <div>
           <nav className='w-full h-16 flex flex-row items-center justify-between bg-white shadow-sm px-8 py-1'>
             <Link href="/" className="inline-flex text-center justify-center items-center">
-              <Image priority width={360} height={130} src={"/assets/images/tbank01.webp"} className="h-12 w-auto object-fit self-start mr-4 z-10" alt="Logo" />
+              <Image priority width={360} height={130} src={"/assets/images/tbank001.webp"} className="h-12 w-auto object-fit self-start mr-4 z-10" alt="Logo" />
             </Link>
             <div className="flex flex-row items-center justify-end gap-x-2">
               <div className='flex flex-row items-center justify-center gap-x-4'>

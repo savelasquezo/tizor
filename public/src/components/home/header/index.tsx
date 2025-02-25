@@ -29,7 +29,7 @@ export default function Header() {
     <header className='h-16 sm:h-32 flex items-center z-30 w-full'>
       <div className='container mx-auto px-6 flex items-center justify-between'>
         <div className='uppercase text-gray-800 font-black text-3xl pointer-events-none select-none'>
-          <Image priority width={360} height={130} src={"/assets/images/tbank01.webp"} className="h-12 sm:h-16 w-auto object-fit self-start mr-4" alt="" />
+          <Image priority width={360} height={130} src={"/assets/images/tbank001.webp"} className="h-12 sm:h-16 w-auto object-fit self-start mr-4" alt="" />
         </div>
         <div className='flex flex-row items-center justify-end'>
           <nav className='text-gray-800 text-lg flex flex-row items-center justify-center'>

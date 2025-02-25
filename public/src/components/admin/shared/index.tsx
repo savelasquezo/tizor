@@ -80,7 +80,7 @@ const Shared: React.FC<SessionAuthenticated> = ({ session }) => {
             </a>
           ))}
           <span className='w-full h-auto hidden lg:flex items-end justify-end'>
-            <Image priority width={910} height={90} src={"/assets/images/tbank01.webp"} className="h-10 w-auto object-fit self-start z-10" alt="" />
+            <Image priority width={910} height={90} src={"/assets/images/tbank001.webp"} className="h-10 w-auto object-fit self-start z-10" alt="" />
           </span> 
         </div>
       </div>
