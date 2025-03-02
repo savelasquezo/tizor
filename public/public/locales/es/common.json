@@ -290,12 +290,12 @@
       "filter": "Ingresa Voucher"
     },
     "meta": {
-      "description": "Tizorbank transforma la manera en que piensas sobre tus finanzas; fintech innovadora que ofrece la oportunidad de hacer crecer su dinero con rendimientos diarios superiores. A través de nuestra plataforma de inversión puedes invertir de manera segura, sin complicaciones, y ver cómo tus ahorros generan rentabilidades constantes día tras día.",
+      "description": "Tizor transforma la manera en que piensas sobre tus finanzas; fintech innovadora que ofrece la oportunidad de hacer crecer su dinero con rendimientos diarios superiores. A través de nuestra plataforma de inversión puedes invertir de manera segura, sin complicaciones, y ver cómo tus ahorros generan rentabilidades constantes día tras día.",
       "information": "La seguridad es nuestra prioridad, para garantizar que siempre tengas control total sobre tus fondos y evitar cualquier inconveniente, es esencial que mantengas tus datos de usuario actualizados; Mantener tu información al día es la clave para que sigamos cuidando de tu capital de forma eficiente y sin riesgos.",
       "interface": {
         "updateInfo": {
           "title": "Actualizar Informacion",
-          "description": "Tizorbank no se hace responsable por pérdidas o inconvenientes si el usuario no mantiene su dirección actualizada o pierde el acceso a su billetera digital. Es esencial que los datos estén siempre al día para garantizar la seguridad de las inversiones y el acceso continuo a los fondos.",
+          "description": "Tizor no se hace responsable por pérdidas o inconvenientes si el usuario no mantiene su dirección actualizada o pierde el acceso a su billetera digital. Es esencial que los datos estén siempre al día para garantizar la seguridad de las inversiones y el acceso continuo a los fondos.",
           "message": {
             "success": "¡Actualizado! Has cambiado correctamente tu billetera virtual",
             "information": "Manten tus datos actualizados para evitar perdidas en transacciones",
@@ -362,7 +362,7 @@
           "button": "Invertir",
           "tab1": "Invertir",
           "tab2": "Historial",
-          "description": "Invierte tu dinero a plazos definidos en Tizorbank y maximiza tus ganancias. Al optar por esta modalidad, aseguras un rendimiento superior en comparación con las inversiones tradicionales.",
+          "description": "Invierte tu dinero a plazos definidos en Tizor y maximiza tus ganancias. Al optar por esta modalidad, aseguras un rendimiento superior en comparación con las inversiones tradicionales.",
           "table": {
             "th1": "Voucher",
             "th2": "Saldo",

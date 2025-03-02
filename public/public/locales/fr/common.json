@@ -290,12 +290,12 @@
       "filter": "Entrez le reçu"
     },
     "meta": {
-      "description": "Tizorbank transforme votre façon de penser vos finances ; une fintech innovante qui offre l'opportunité de faire croître votre argent avec des rendements quotidiens supérieurs. Grâce à notre plateforme d'investissement, vous pouvez investir en toute sécurité et sans complications, et voir vos économies générer des rendements constants jour après jour.",
+      "description": "Tizor transforme votre façon de penser vos finances ; une fintech innovante qui offre l'opportunité de faire croître votre argent avec des rendements quotidiens supérieurs. Grâce à notre plateforme d'investissement, vous pouvez investir en toute sécurité et sans complications, et voir vos économies générer des rendements constants jour après jour.",
       "information": "La sécurité est notre priorité. Pour garantir que vous ayez toujours un contrôle total sur vos fonds et éviter tout désagrément, il est essentiel de maintenir vos données utilisateur à jour. Garder vos informations à jour est la clé pour gérer votre capital de manière efficace et sans risques.",
       "interface": {
         "updateInfo": {
           "title": "Mettre à jour les informations",
-          "description": "Tizorbank décline toute responsabilité en cas de pertes ou de désagréments si l'utilisateur ne maintient pas son adresse à jour ou perd l'accès à son portefeuille numérique. Il est essentiel que les données soient toujours à jour pour garantir la sécurité des investissements et l'accès continu aux fonds.",
+          "description": "Tizor décline toute responsabilité en cas de pertes ou de désagréments si l'utilisateur ne maintient pas son adresse à jour ou perd l'accès à son portefeuille numérique. Il est essentiel que les données soient toujours à jour pour garantir la sécurité des investissements et l'accès continu aux fonds.",
           "message": {
             "success": "Mis à jour ! Vous avez correctement changé votre portefeuille virtuel.",
             "information": "Gardez vos données à jour pour éviter les pertes lors des transactions.",
@@ -362,7 +362,7 @@
           "button": "Investir",
           "tab1": "Investir",
           "tab2": "Historique",
-          "description": "Investissez votre argent sur des périodes définies avec Tizorbank et maximisez vos gains. En optant pour cette modalité, vous assurez un rendement supérieur par rapport aux investissements traditionnels.",
+          "description": "Investissez votre argent sur des périodes définies avec Tizor et maximisez vos gains. En optant pour cette modalité, vous assurez un rendement supérieur par rapport aux investissements traditionnels.",
           "table": {
             "th1": "Bon",
             "th2": "Solde",

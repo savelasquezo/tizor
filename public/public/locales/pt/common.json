@@ -290,12 +290,12 @@
       "filter": "Digite o Comprovante"
     },
     "meta": {
-      "description": "A Tizorbank transforma a maneira como você pensa sobre suas finanças; uma fintech inovadora que oferece a oportunidade de fazer seu dinheiro crescer com retornos diários superiores. Através da nossa plataforma de investimento, você pode investir de forma segura e sem complicações, vendo suas economias gerarem retornos constantes dia após dia.",
+      "description": "A Tizor transforma a maneira como você pensa sobre suas finanças; uma fintech inovadora que oferece a oportunidade de fazer seu dinheiro crescer com retornos diários superiores. Através da nossa plataforma de investimento, você pode investir de forma segura e sem complicações, vendo suas economias gerarem retornos constantes dia após dia.",
       "information": "A segurança é nossa prioridade. Para garantir que você tenha total controle sobre seus fundos e evitar qualquer inconveniente, é essencial manter seus dados de usuário atualizados. Manter suas informações em dia é a chave para gerenciarmos seu capital de forma eficiente e sem riscos.",
       "interface": {
         "updateInfo": {
           "title": "Atualizar Informações",
-          "description": "A Tizorbank não se responsabiliza por perdas ou inconvenientes se o usuário não mantiver seu endereço atualizado ou perder o acesso à sua carteira digital. É essencial que os dados estejam sempre atualizados para garantir a segurança dos investimentos e o acesso contínuo aos fundos.",
+          "description": "A Tizor não se responsabiliza por perdas ou inconvenientes se o usuário não mantiver seu endereço atualizado ou perder o acesso à sua carteira digital. É essencial que os dados estejam sempre atualizados para garantir a segurança dos investimentos e o acesso contínuo aos fundos.",
           "message": {
             "success": "Atualizado! Você alterou sua carteira virtual com sucesso.",
             "information": "Mantenha seus dados atualizados para evitar perdas em transações.",
@@ -362,7 +362,7 @@
           "button": "Investir",
           "tab1": "Investir",
           "tab2": "Histórico",
-          "description": "Invista seu dinheiro em prazos definidos no Tizorbank e maximize seus lucros. Ao optar por esta modalidade, você garante um retorno superior em comparação com os investimentos tradicionais.",
+          "description": "Invista seu dinheiro em prazos definidos no Tizor e maximize seus lucros. Ao optar por esta modalidade, você garante um retorno superior em comparação com os investimentos tradicionais.",
           "table": {
             "th1": "Voucher",
             "th2": "Saldo",

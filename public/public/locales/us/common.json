@@ -300,12 +300,12 @@
       "filter": "Enter Voucher"
     },
     "meta": {
-      "description": "Tizorbank transforms the way you think about your finances; an innovative fintech that offers the opportunity to grow your money with superior daily returns. Through our investment platform, you can invest securely and hassle-free, watching your savings generate constant returns day after day.",
+      "description": "Tizor transforms the way you think about your finances; an innovative fintech that offers the opportunity to grow your money with superior daily returns. Through our investment platform, you can invest securely and hassle-free, watching your savings generate constant returns day after day.",
       "information": "Security is our priority. To ensure you always have full control over your funds and avoid any inconveniences, it's essential to keep your user data updated. Maintaining your information is key to us managing your capital efficiently and without risks.",
       "interface": {
         "updateInfo": {
           "title": "Update Information",
-          "description": "Tizorbank is not responsible for losses or inconveniences if the user does not keep their address updated or loses access to their digital wallet. It is essential to have up-to-date data to ensure the security of investments and continuous access to funds.",
+          "description": "Tizor is not responsible for losses or inconveniences if the user does not keep their address updated or loses access to their digital wallet. It is essential to have up-to-date data to ensure the security of investments and continuous access to funds.",
           "message": {
             "success": "Updated! You have successfully changed your virtual wallet.",
             "information": "Keep your data updated to avoid transaction losses.",
@@ -372,7 +372,7 @@
           "button": "Invest",
           "tab1": "Invest",
           "tab2": "History",
-          "description": "Invest your money in defined terms with Tizorbank and maximize your profits. By opting for this option, you ensure a higher return compared to traditional investments.",
+          "description": "Invest your money in defined terms with Tizor and maximize your profits. By opting for this option, you ensure a higher return compared to traditional investments.",
           "table": {
             "th1": "Voucher",
             "th2": "Balance",
